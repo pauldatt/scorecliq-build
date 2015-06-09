@@ -4,6 +4,6 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   
   def hello
-    render text: "hello world, This is Div and this will be my first live application!"
+    render text: "hello world, This is Div and this will be my first live application, you made it this far, keep going, you got it!!"
   end
 end
