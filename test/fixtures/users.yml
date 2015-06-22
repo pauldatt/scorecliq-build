@@ -1,2 +1,5 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
+divjot:
+  name: Divjot Mehton
+  email: divjot@example.com # In the databse, emails are stored as lowercase, so you must have emails submitting in you tests as lowercase
+  password_digest: <%= User.digest('password') %>

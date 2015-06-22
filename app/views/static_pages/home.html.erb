@@ -2,13 +2,22 @@
 <!DOCTYPE html>
 <html>
   <body>
-    <div class="jumbotron">
-      <div class="push-spaces container">
-        <h1>ScoreBoard Application</h1>
-        <h2> This is the Home page for the ScoreBoard Application</h2>
-        <h2><%= link_to "Sign-Up now!", signup_path, class: "btn btn-success" %></h2>
-        <h3> Sign-In-Form </h3>
-      </div>
-    </div>
+        <div class="jumbotron">
+          
+           <div class="home-login">
+            <%= render 'sessions/loginform' %>
+           </div>  
+           
+            <div class = "home-typography">
+              <h1>Welcome to ScoreBoard!</h1>
+            </div>
+            
+            <div class= "p-home-typography">
+              <h5> This is the home page for the ScoreBoard App! </h5>
+              <h5> Explain what the site is about and what it has to offer.</h5>
+              <br></br>
+              <h5> <%= link_to "Sign-Up now!", signup_path, class: "btn btn-primary" %> </h5>
+            </div>
+        </div>
   </body>
 </html>
