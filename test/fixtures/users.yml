@@ -3,3 +3,29 @@ divjot:
   name: Divjot Mehton
   email: divjot@example.com # In the databse, emails are stored as lowercase, so you must have emails submitting in you tests as lowercase
   password_digest: <%= User.digest('password') %>
+  admin: true
+  
+sukh:
+  name:  sukh
+  email: sukh@whatever.com
+  password_digest: <%= User.digest('password') %>
+  
+lana:
+  name:  lana
+  email: lana@example.com
+  password_digest: <%= User.digest('password') %>
+
+mallory:
+  name:  mallory
+  email: mallory@whatever.com
+  password_digest: <%= User.digest('password') %>
+  
+<% 30.times do |n| %>
+user_<%= n %>:
+  name:   <%= "User #{n}" %>
+  email:  <%= "user-#{n}@example.com" %>
+  password_digest: <%= User.digest('password') %>
+<% end %>
+
+  
+  

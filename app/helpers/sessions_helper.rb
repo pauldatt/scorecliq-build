@@ -10,6 +10,11 @@ module SessionsHelper
     cookies.permanent[:remember_token] = user.remember_token # This stores the remember token(encrypted) in the cookie
   end
   
+  # Returns true if the user is the current user
+  def current_user?(user)
+    user == current_user
+  end
+  
   # Returns the current logged-in user (if any)
   # Once the ID is placed on the user's browser, we find the user using the encrypted ID. 
   def current_user
@@ -41,4 +46,16 @@ module SessionsHelper
     session.delete(:user_id)
     @current_user = nil
   end
+  
+  # Stores the URL trying to be accessed.
+  def store_location
+    session[:forwarding_url] = request.url if request.get?
+  end
+  
+  # This redirects to the stored location 
+  def redirect_back_or(default)
+    redirect_to(session[:forwarding_url] || default)
+    session.delete(:forwarding_url)
+  end
+  
 end
