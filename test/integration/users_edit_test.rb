@@ -17,10 +17,10 @@ class UsersEditTest < ActionDispatch::IntegrationTest
     assert_template 'users/edit'
   end
   
-  test "successful edits with friendl forwarding" do
+  test "successful edits with friendly forwarding" do
     get edit_user_path(@user)
     log_in_as(@user)
-    assert_redirected_to edit_user_path(@user)
+    assert_template 'users/home' # This ensures that once you log in you must assert_template of 'users/home'.
     name = "divjot"
     email = "divjot@example.com"
     patch user_path(@user), user: {name: name,

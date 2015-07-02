@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name_of_scoreboard: MyString
+  name_of_organization: MyString
+  name_of_activity: MyString
+  content: MyText
+  user_id: 
+
+two:
+  name_of_scoreboard: MyString
+  name_of_organization: MyString
+  name_of_activity: MyString
+  content: MyText
+  user_id: 

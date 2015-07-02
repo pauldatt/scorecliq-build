@@ -1,7 +1,10 @@
 class UsersController < ApplicationController
-  before_action :logged_in_user, only: [:index, :edit, :update, :show, :destroy] # Each individual must sign up before they can see any profiles
+  before_action :logged_in_user, only: [:index, :edit, :update, :show, :destroy, :home] # Each individual must sign up before they can see any profiles
   before_action :correct_user,   only: [:edit, :update]
   before_action :admin_user,     only: :destroy
+  
+  def home
+  end
   
   def index
     @users = User.paginate(page: params[:page])
@@ -10,7 +13,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
   end
-  
+
   def new
     @user = User.new #new action displays the form in the new action for creating new users.
   end

@@ -36,7 +36,7 @@ h1 {
     text-align: center;
 }
 
-/* home-page typography */
+/* home-page typography prelogin */
 
 .home-login {
     margin-top: -0px;
@@ -72,6 +72,8 @@ h3 {
 
 
 .jumbotron {
+    margin-top: 20px;
+    margin-bottom: 20px;
     height: 500px;
     width: 1150px;
     background-image: image-url('soccer.jpg');
@@ -97,7 +99,7 @@ h3 {
 /* footer */
 
 footer {
-    margin-top: 45px;
+    margin-top: 40px;
     padding-top: 5px;
     border-top: 1px solid #eaeaea;
     color: $gray-light;
@@ -135,6 +137,7 @@ footer {
 .row {
     section.user_info {
         margin-top: 20px;
+        text-align: center;
      
     }
     section {
@@ -189,7 +192,9 @@ input {
         font-weight: normal;
     }
 }
-/* This is styling the actual button */
+
+
+/* This is styling the remember me button */
 #session_remember_me {
     width: auto;
     margin-left: 0;
@@ -206,73 +211,73 @@ input {
     }
 }
 
-/* user profile css */
+/* user-menu */
 
-.box1{
-    width: 300px;
-    height: 225px;
-    margin-left: 200px;
-    padding: 25px;
-    border-style: solid;
+.position-top {
+    margin-left: 0px;
+    margin-top: 20px;
 }
 
-.box2{
-    width: 300px;
-    height: 225px;
-    margin-left: 200px;
-    margin-top: 24px;
-    padding: 25px;
-    border-style: solid;
+
+.position-middle {
+    margin-top: 10px;
 }
 
-.box3{
+/*Styling the Home Page Post Login*/
+.row{
+    section.greeting{
+        font-weight: bold;
+        font-size: 20px;
+        text-align: center;
+    }
+}
+
+.row{
+    .my-score{
+        text-align: center;
+        font-weight: bold;
+    }
+}
+
+.img-1{
+    background-image: image-url('volley.jpg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    width: 360px;
+    height: 213px;
+    color: white;
+    font-weight: bold;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    text-align: center;
+}
+
+.img-1 .btn-1{
     position: absolute;
-    width: 300px;
-    height: 225px;
-    top: 126px;
-    left: 700px;
-    padding: 25px;
-    border-style: solid;
+    bottom: 0;
+    right: 110px;
 }
 
-.box4{
+.img-2{
+     background-image: image-url('board.jpg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    width: 360px;
+    height: 213px;
+    color: white;
+    font-weight: bold;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    text-align: center;
+}
+
+.img-2 .btn-2{
     position: absolute;
-    left: 700px;
-    top: 375px;
-    width: 300px;
-    height: 225px;
-    padding: 25px;
-    border-style: solid;
-}
-
-.profpic{
-    position: absolute;
-    width: 150px;
-    height: 150px;
-    border-style: solid;
-    top: 100px;
-    margin-left: 15px;
-}
-
-.usermenu{
+    bottom: 0;
+    right: 100px;
     
-    list-style-type: none;
-    padding: 20px;
-    width: 175px;
 }
 
-ul.usermenu li{
-    color: #000;
-    padding: 10px;
-    border-style: solid;
-    margin-top: 5px;
-    width: 150px;
-}
-
-.menucontainer{
-    position: absolute;
-    top: 250px;
-}
 
 
     

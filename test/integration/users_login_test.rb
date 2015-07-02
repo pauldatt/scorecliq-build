@@ -20,13 +20,14 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     get root_path
     assert_template 'static_pages/home'
     post login_path, session: { email: @user.email, password: 'password' }
+    
+    
     assert is_logged_in?
-    assert_redirected_to @user
-    follow_redirect!
-    assert_template 'users/show'
-    assert_select "a[href=?]", login_path, count: 0
-    assert_select "a[href=?]", logout_path
-    assert_select "a[href=?]", user_path(@user)
+    assert_template 'users/home' # The code is "render "users/home", therefore, I am testing for rendering a template.
+    assert_select "a[href=?]", users_path #Index
+    assert_select "a[href=?]", user_path(@user) #update
+    assert_select "a[href=?]", login_path, count: 0 #creates sessions
+    assert_select "a[href=?]", logout_path #destroys sessions
     delete logout_path
     assert_not is_logged_in?
     assert_redirected_to root_url

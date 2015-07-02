@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
       if user.activated?
         log_in user
         params[:session][:remember_me] == '1' ? remember(user) : forget(user)
-        redirect_back_or user
+        render 'users/home' # Although it work, I am not sure if its a redirect or a render.
       else
         message = "Account not activated. "
         message += "Please check your email for the activation link"
@@ -17,7 +17,7 @@ class SessionsController < ApplicationController
       end
     else
       flash.now[:danger] = "Invalid email/password combination"
-      render 'static_pages/home'
+      render 'static_pages/home' # Same thing, not sure if i should redirect or render
     end
   end
   
