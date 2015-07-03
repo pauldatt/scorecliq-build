@@ -5,9 +5,9 @@ class ScoreboardTest < ActiveSupport::TestCase
   
   def setup
     @user = users(:divjot)
-    @scoreboard = Scoreboard.new(name_of_scoreboard: "Scoreboard A", name_of_organization: 
-                  "Organization A", name_of_activity: "Activity A", content: "Admin message", 
-                  user_id: @user.id)
+    @scoreboard = @user.scoreboards.build(name_of_scoreboard: "Scoreboard A", name_of_organization: 
+                  "Organization A", name_of_activity: "Activity A", content: "Admin message")
+                  
   end
     
     test "should be valid" do
@@ -61,6 +61,11 @@ class ScoreboardTest < ActiveSupport::TestCase
     test "content should be a maximum of 50 characters" do
       @scoreboard.content = "a" * 141
       assert_not @scoreboard.valid?
+    end
+    
+    # This test requires having some micropost fixtures. They are defined in fixtures.yml
+    test "order should be most recent first" do
+      assert_equal Scoreboard.first, scoreboards(:most_recent)
     end
   
 end

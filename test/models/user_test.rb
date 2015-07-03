@@ -65,4 +65,13 @@ class UserTest < ActiveSupport::TestCase
     assert_not @user.authenticated?(:remember, '')
   end
   
+  test "associated scoreboards should be destroyed" do
+    @user.save
+    @user.scoreboards.create!(name_of_scoreboard: "Scoreboard A", name_of_organization: 
+                  "Organization A", name_of_activity: "Activity A", content: "Admin message")
+    assert_difference "Scoreboard.count", -1 do
+      @user.destroy
+    end
+  end
+  
 end 

@@ -2,22 +2,20 @@
 <!DOCTYPE html>
 <html>
   <body>
-        <div class="jumbotron">
-        
-           <div class="home-login">
+        <div class="main-img">
+          <div class="home-greet">
+            Welcome to the Scoreboard!
+          </div>
+          <div class="explain">
+            Hello, This scoreboard app is meant to cater to coaches
+            and individuals who organize teams in order to give them a better
+            way to display scores for team members. It lets them update
+            easily without a hassle and everyone can access it!
+          </div>
+          <div class="home-login">
             <%= render 'sessions/loginform' %>
-           </div>  
-           
-            <div class = "home-typography">
-              <h1>Welcome to ScoreBoard!</h1>
-            </div>
-            
-            <div class= "p-home-typography">
-              <h5> This is the home page for the ScoreBoard App! </h5>
-              <h5> Explain what the site is about and what it has to offer.</h5>
-              <br></br>
-              <h5> <%= link_to "Sign-Up now!", signup_path, class: "btn btn-primary" %> </h5>
-            </div>
+          </div>
+          <span class="button-1"> <%= link_to "Sign-Up now!", signup_path, class: "btn btn-primary" %></span>
         </div>
   </body>
 </html>

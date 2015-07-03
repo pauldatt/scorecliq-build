@@ -36,50 +36,44 @@ h1 {
     text-align: center;
 }
 
-/* home-page typography prelogin */
-
-.home-login {
-    margin-top: -0px;
-    margin-bottom: 50px;
-    margin-right: -10px;
-}
-
-.home-typography h1 {
-    font-size: 3em;
-    letter-spacing: -2px;
-    text-align: left;
-    font-weight: normal;
-    margin-top: -250px;
-    margin-bottom: 100px;
-}
-    
-.p-home-typography {
-    font-size: 1em;
-    margin-top: -80px;
-    letter-spacing: 0px;
-    text-align: left;
-    font-weight: normal;
-    color: $gray-light;
-}
-    
-h3 { 
-    font-size: 2em;
-    letter-spacing: -2px;
-    margin-top: -10px;
-    margin-right: 180px;
-    text-align: right; 
-}
-
-
-.jumbotron {
-    margin-top: 20px;
-    margin-bottom: 20px;
-    height: 500px;
+/* home-page  prelogin */
+.main-img{
+    height: 536px;
     width: 1150px;
     background-image: image-url('soccer.jpg');
     background-size: contain;
     background-repeat: no-repeat;
     background-size: 100%;
+}
+
+.home-greet{
+    font-weight: bold;
+    font-size: 30px;
+    position: relative;
+    left: 39px;
+    top: 50px;
+}
+
+.log-form{
+    width: 312px;
+    height: 241px;
+    position: relative;
+    bottom: 197px;
+    left: 744px;
+}
+
+.button-1{
+    position: relative;
+    left: 39px;
+    bottom: 249px;
+}
+
+.explain{
+    height: 190px;
+    width: 401px;
+    position: relative;
+    left: 39px;
+    top: 56px;
 }
 
 .navigation {
@@ -224,11 +218,14 @@ input {
 }
 
 /*Styling the Home Page Post Login*/
+
 .row{
     section.greeting{
         font-weight: bold;
         font-size: 20px;
         text-align: center;
+        position: relative;
+        left: 148px;
     }
 }
 
@@ -276,6 +273,78 @@ input {
     bottom: 0;
     right: 100px;
     
+}
+
+.helptip2{
+    text-align: center;
+    font-weight: bold;
+    position: relative;
+    left: 42px;
+    width: 855px;
+    
+}
+
+.news2{
+    background-image: image-url('eye.jpg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    width: 286px;
+    height: 190px;
+    color: white;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    text-align: center;
+    font-weight: bold;
+    
+}
+
+.news1{
+    background-image: image-url('view.jpg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    width: 286px;
+    height: 190px;
+    color: white;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    text-align: center;
+    font-weight: bold;
+}
+
+.news3{
+    background-image: image-url('lake.jpg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    width: 286px;
+    height: 190px;
+    color: white;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    text-align: center;
+    font-weight: bold;
+    
+}
+
+.helptip1{
+    width: 164px;
+    height: 290px;
+    left: 16px;
+}
+
+.news-pics{
+    position: relative;
+    left: 39px;
+}
+
+/* User Profile CSS **/
+.user-tit{
+    text-align: center;
+}
+
+.profile-container{
+    width: 1170px;
+    height: 700px;
+    background-color: grey;
 }
 
 

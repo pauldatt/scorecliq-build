@@ -1,15 +1,26 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
+mid_recent:
   name_of_scoreboard: MyString
   name_of_organization: MyString
   name_of_activity: MyString
   content: MyText
-  user_id: 
+  created_at: <%= 10.minutes.ago %>
 
-two:
+least_recent:
   name_of_scoreboard: MyString
   name_of_organization: MyString
   name_of_activity: MyString
   content: MyText
-  user_id: 
+  created_at: <%= 3.years.ago %>
+  
+most_recent:
+  name_of_scoreboard: MyString
+  name_of_organization: MyString
+  name_of_activity: MyString
+  content: MyText
+  created_at: <%= Time.zone.now %>
+
+
+
+  

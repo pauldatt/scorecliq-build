@@ -1,0 +1,19 @@
+<div class="row">
+  <div class= "col-md-5 col-md-offset-4">
+    <%= form_for(@scoreboard) do |f| %>
+      <%= render 'shared/scoreboard_error_messages' %>
+      <!-- Render shared error messages -->
+      
+      <%= f.label :Name_of_your_scoreboard %>
+      <%= f.text_field :name_of_scoreboard, class: "form-control" %>
+      
+      <%= f.label :Name_of_your_organization %>
+      <%= f.text_field :name_of_organization, class: "form-control" %>
+      
+      <%= f.label :Name_of_your_sport_or_activity %>
+      <%= f.text_field :name_of_activity, class: "form-control" %>
+      
+      <%= f.submit "Next", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>
