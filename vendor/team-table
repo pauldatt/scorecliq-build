@@ -1,0 +1,26 @@
+<table class="table">
+        <thead>
+          <tr>
+            <th>Team Name</th>
+            <th>Win</th>
+            <th>Loss</th>
+            <th>Tie</th>
+            <th>Standing</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+           <%= render 'scoreboards/teamsform' %>
+          </tr>
+          <tr>
+           <%= render 'scoreboards/teamsform' %>
+          </tr>
+          <tr>
+           <%= render 'scoreboards/teamsform' %>
+          </tr>
+          
+             <%= f.submit "Create Scoreboard" %> </div>
+         <% end %>
+        </tbody>
+      </table>
+      

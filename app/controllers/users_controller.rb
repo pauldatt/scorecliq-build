@@ -7,7 +7,11 @@ class UsersController < ApplicationController
   end
   
   def index
-    @users = User.paginate(page: params[:page])
+    if params[:name]
+      @users = User.search(params[:name]).order("created_at DESC")
+    else
+      @users = User.all.order('created_at DESC')
+    end
   end
   
   def show
@@ -57,19 +61,11 @@ private
     params.require(:user).permit(:name, :email, :password, :password_confirmation)
   end
   
-  # The method confirms that a user is logged-in
-  def logged_in_user
-    unless logged_in?
-      store_location
-      flash.now[:danger] = "Please sign-in to access this page."
-      render 'static_pages/home'
-    end
-  end
   
   # This method confirms that the correct user 
   def correct_user
     @user = User.find(params[:id])
-    redirect_to(root_url)  unless current_user?(@user)
+    redirect_to(root_url) unless current_user?(@user) 
   end
   
   def admin_user

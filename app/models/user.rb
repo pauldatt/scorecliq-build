@@ -70,6 +70,10 @@ class User < ActiveRecord::Base
     reset_sent_at < 2.hours.ago
   end
   
+  def self.search(search_term)
+    where("name LIKE ?", "%#{search_term}%") 
+  end
+  
   private 
   
     # Converts email to all lower-case
@@ -87,8 +91,12 @@ class User < ActiveRecord::Base
       self.name = self.name.strip
       self.email = self.email.strip
     end
-      
+    
+   
+    
 end
+
+      
 
 # The method gets defined in the user models. Then they get written in the sessions helper,
 # Once they are in the session helper they can get used by the sessions controller.

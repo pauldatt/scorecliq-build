@@ -6,7 +6,7 @@ def edit
     user.activate
     log_in user
     flash[:success] = "Account activated."
-    redirect_to user
+    redirect_to home_path
   else
     flash[:danger] = "Invalid activation link"
     redirect_to root_url

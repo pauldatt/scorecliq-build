@@ -36,49 +36,6 @@ h1 {
     text-align: center;
 }
 
-/* home-page  prelogin */
-.main-img{
-    height: 536px;
-    width: 1150px;
-    background-image: image-url('soccer.jpg');
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-size: 100%;
-}
-
-.home-greet{
-    font-weight: bold;
-    font-size: 30px;
-    position: relative;
-    left: 39px;
-    top: 50px;
-}
-
-.log-form{
-    width: 312px;
-    height: 241px;
-    position: relative;
-    bottom: 197px;
-    left: 744px;
-}
-
-.button-1{
-    position: relative;
-    left: 39px;
-    bottom: 249px;
-}
-
-.explain{
-    height: 190px;
-    width: 401px;
-    position: relative;
-    left: 39px;
-    top: 56px;
-}
-
-.navigation {
-    background-color: #FFFFFF
-}
 
 /* header */
 
@@ -90,10 +47,12 @@ h1 {
     padding-top: 15px;
 }
 
+
 /* footer */
 
 footer {
-    margin-top: 40px;
+    margin-top: 20px;
+    margin-bottom: 80px;
     padding-top: 5px;
     border-top: 1px solid #eaeaea;
     color: $gray-light;
@@ -217,141 +176,9 @@ input {
     margin-top: 10px;
 }
 
-/*Styling the Home Page Post Login*/
-
-.row{
-    section.greeting{
-        font-weight: bold;
-        font-size: 20px;
-        text-align: center;
-        position: relative;
-        left: 148px;
-    }
-}
-
-.row{
-    .my-score{
-        text-align: center;
-        font-weight: bold;
-    }
-}
-
-.img-1{
-    background-image: image-url('volley.jpg');
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-size: 100%;
-    width: 360px;
-    height: 213px;
-    color: white;
-    font-weight: bold;
-    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-    text-align: center;
-}
-
-.img-1 .btn-1{
-    position: absolute;
-    bottom: 0;
-    right: 110px;
-}
-
-.img-2{
-     background-image: image-url('board.jpg');
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-size: 100%;
-    width: 360px;
-    height: 213px;
-    color: white;
-    font-weight: bold;
-    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-    text-align: center;
-}
-
-.img-2 .btn-2{
-    position: absolute;
-    bottom: 0;
-    right: 100px;
-    
-}
-
-.helptip2{
-    text-align: center;
-    font-weight: bold;
-    position: relative;
-    left: 42px;
-    width: 855px;
-    
-}
-
-.news2{
-    background-image: image-url('eye.jpg');
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-size: 100%;
-    width: 286px;
-    height: 190px;
-    color: white;
-    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-    text-align: center;
-    font-weight: bold;
-    
-}
-
-.news1{
-    background-image: image-url('view.jpg');
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-size: 100%;
-    width: 286px;
-    height: 190px;
-    color: white;
-    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-    text-align: center;
-    font-weight: bold;
-}
-
-.news3{
-    background-image: image-url('lake.jpg');
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-size: 100%;
-    width: 286px;
-    height: 190px;
-    color: white;
-    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-    text-align: center;
-    font-weight: bold;
-    
-}
-
-.helptip1{
-    width: 164px;
-    height: 290px;
-    left: 16px;
-}
-
-.news-pics{
-    position: relative;
-    left: 39px;
-}
-
-/* User Profile CSS **/
-.user-tit{
-    text-align: center;
-}
-
-.profile-container{
-    width: 1170px;
-    height: 700px;
-    background-color: grey;
-}
 
 
 
-    
-
-    
 
 
 

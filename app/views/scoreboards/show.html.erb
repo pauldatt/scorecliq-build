@@ -1,0 +1,81 @@
+<div class= "score-show-contain">
+ <div class="div-show-left">
+   <%= link_to "My Scoreboards", scoreboards_path , class: 'btn btn-primary back-my-score' %>
+   <div class="member-list">
+     Divjot Mehton, Kuljinder Dhatt, Divjot Mehton, Kuljinder Dhatt, 
+     Divjot Mehton, Kuljinder Dhatt, Divjot Mehton, Kuljinder Dhatt, 
+     Divjot Mehton, Kuljinder Dhatt, Divjot Mehton, Kuljinder Dhatt, 
+     Divjot Mehton, Kuljinder Dhatt, Divjot Mehton, Kuljinder Dhatt.
+     Divjot Mehton, Kuljinder Dhatt, Divjot Mehton, Kuljinder Dhatt, 
+     Divjot Mehton, Kuljinder Dhatt, Divjot Mehton, Kuljinder Dhatt, 
+     Divjot Mehton, Kuljinder Dhatt, Divjot Mehton, Kuljinder Dhatt, 
+     Divjot Mehton, Kuljinder Dhatt, Divjot Mehton, Kuljinder Dhatt. 
+     Divjot Mehton, Kuljinder Dhatt, Divjot Mehton, Kuljinder Dhatt, 
+     Divjot Mehton, Kuljinder Dhatt, Divjot Mehton, Kuljinder Dhatt, 
+     Divjot Mehton, Kuljinder Dhatt, Divjot Mehton, Kuljinder Dhatt, 
+     Divjot Mehton, Kuljinder Dhatt, Divjot Mehton, Kuljinder Dhatt. 
+   </div>
+   
+   <div class="show-filler-div"> 
+    This is a filler div. Maybe you can out an advertisement here if
+    you're smart but nah yous a dumb fuck. 
+   </div>
+ </div>
+ <h3 class="score-title">
+  <%= @scoreboard.name_of_scoreboard %>
+ </h3>
+ 
+ <div class= "prof-bio">
+   <div class="score-prof">
+    <%= form_for(@scoreboard, html: { multipart: true }) do |f| %>
+      <span class="picture">
+      <%= f.file_field :picture %>
+      </span>
+    <% end %>
+    <span class= "profile-picture">
+    <%= image_tag @scoreboard.picture.url if @scoreboard.picture? %>
+    </span>
+   </div>
+   <div class="s-labels">
+    <h4 class="s-creator"> Admin: </h4>
+    <h4 class="s-org"> Organization:</h4>
+    <h4 class="s-sport">Sport/Activity:</h4>
+    <h4 class="s-period">Period:</h4>
+    <h4 class="s-location">Location:</h4>
+   </div>
+   
+   <div class="bios-labels">
+    <h4 class="b-creator">
+      <%=@scoreboard.user.name %>
+    </h4>
+    <h4 class="b-org"> 
+      <%=@scoreboard.name_of_organization %>
+     </h4>
+    <h4 class="b-sport">
+      <%=@scoreboard.name_of_activity %>
+     </h4>
+    <h4 class="b-period"><%= @scoreboard.starts_at%> <b>to</b> <%= @scoreboard.ends_at %></h4>
+    <h4 class="b-location"><%= @scoreboard.cities %> <%= @scoreboard.states%>, <%= @scoreboard.country %></h4>
+    <h4> </h4>
+   </div>
+ </div>
+
+
+ <%= link_to "Follow", "#" , class: 'btn btn-primary un-follow' %>
+ <%= link_to "Invite", "#" , class: 'btn btn-primary invite-btn' %>
+
+
+<div class="score-text">
+ This is textbox 
+</div> 
+
+<div class="score-app">
+</div>
+
+
+
+
+
+
+
+

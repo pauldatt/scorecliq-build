@@ -1,0 +1,46 @@
+<%= form_tag scoreboards_path, :method => 'get' do %>
+  <%= label_tag(:q, "Search for:") %>
+  <%= text_field_tag :search, params[:search] %>
+  <%= submit_tag "Search", :name => nil %>
+<% end %>
+
+
+<div class= "my-score-contain">
+<div class= "my-score-help-tip">
+  Some helpful filler text. If you're a jew don't come here. 
+</div>
+
+<div class="my-score-display">
+ <span class="button-my-score btn btn-primary"> My Scoreboards</span>
+ <span class="button-follow btn btn-primary"> Following</span>
+ <div class="the-display">
+
+<% @scoreboards.each do |scoreboard| %>
+   <%= div_for scoreboard, :class => "inner-disp" do %>
+    <p> Name:              <%= scoreboard.name_of_scoreboard %> </br>
+    Organization:      <%= scoreboard.name_of_organization %></br>
+    Sport:             <%= scoreboard.name_of_activity %> </br>
+    Location: <%= scoreboard.cities %> <%= scoreboard.states%>, <%= scoreboard.country %></br>
+    Period: <%= scoreboard.starts_at%> to <%= scoreboard.ends_at %> </br>
+    </p>
+    <% if scoreboard.user == current_user %>
+    <%= link_to "View", scoreboard_path(@scoreboard, :id=> scoreboard.id), class: 'btn btn-primary my-view' %>
+    <%= link_to "Edit", edit_scoreboard_path(@scoreboard, :id => scoreboard.id), class: 'btn btn-primary my-edit' %>
+    <%= link_to "Delete", scoreboard,  method: :delete, data: { confirm: "Are you sure you want to delete the scoreboard."}, class: 'btn btn-primary my-del' %>
+    <% else %>
+    <%= link_to "View", scoreboard_path(@scoreboard, :id=> scoreboard.id), class: 'btn btn-primary my-view' %>
+    <% end %>
+  <% end %>
+<% end %>
+ </div>
+</div>
+</div> 
+
+
+
+
+    
+    
+
+      
+

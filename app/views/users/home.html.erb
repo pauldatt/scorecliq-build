@@ -1,53 +1,45 @@
-<div class="container-non-responsive">
-  <div class="row">
-    <section class="greeting">
-       Welcome to the Scoreboard App
-      </section>
-    </div>
-    <div class="row">
-      <div class="col-md-2 my-score"><div class="well">Want to make changes to
-      scoreboards you own? or check for updates on the scoreboards you
-      follow? <%= link_to "My Scoreboard", "#", class: 'btn btn-primary' %></div></div>
-      
-      
-      <div class="col-md-4 col-md-offset-1">
-        <div class="img-1 img-rounded">
-          Do you want to create a scoreboard for your team, league or 
-          organization? Well look no further. Click below to create your 
-          scoreboard and invite the members to view it. 
-        <span class="btn-1"><%= link_to "Create new Scoreboard", "#", class:
-         "btn btn-primary"%></span>
-        </div>
-      </div>
-       <div class="col-md-4 col-md-offset-1"><div class="img-2 img-rounded">
-         Did Someone tell you about a scoreboard? Well Begin your search! You
-         may find your scoreboard to view soon. Check it out!! There are many 
-         scoreboards out there!
-        <span class="btn-2"><%= link_to "Search for New Scoreboard",users_path , class:
-        "btn btn-primary"%></span>
-      </div></div>
-    </div>
-    <div class="row">
-      <div class="col-md-2 well helptip1"> This is some helpful tip. If you read this
-      you will gain magical powers. </div>
-      <div class="col-md-9 col-md-offset-1">
-        <div class="row">
-          <div class="col-md-12 helptip2 well">Lost on what you need to do? 
-          Click here to learn on how to use the site! filler text 
-          filler text filler text filler text filler text filler 
-          text filler text filler text filler text
-          filler text filler text filler text filler text</div>
-        </div>
-        <div class="row">
-          <div class=" news-pics">
-          <div class="col-md-4 well news1">On July 22nd we started working on this
-          project. Can't believe we came so far.</div>
-          <div class="col-md-4 well news2">Did you know that 
-          everytone could use a scoreboard? Well Now you do. </div>
-          <div class="col-md-4 well news3"> If you don't wanna use this app
-          go kill yourself</div>
-          </div>
-        </div>
-      </div>
-    </div>
+
+<% provide(:title, "Home") %>
+<div class= "home-pg-contain">
+  <div class="home-head"> Welcome to the Scoreboard App</div>
+  <div class="my-score-desc well">Visit My Scoreboard to View, Edit and Delete Scoreboard
+   <span class="my-score-button">
+    <%= link_to "My Scoreboard", scoreboards_path , class: 'btn btn-primary' %>
+   </span>
+  </div>
+  <div class="create-new-desc well">
+    Are you the coach or leader of an organization and want a scoreboard
+    to display to your members. Well look no further!
+     <span class="create-score-button">
+       <%= link_to "Create new Scoreboard", new_scoreboard_path , class:"btn btn-primary"%>
+     </span>
+  </div>
+  <div class="search-score-desc well">
+    Did someone tell you about a scoreboard? Are you a part of an 
+    organization that owns a scoreboard? Well, what are you waiting for? 
+     <span class="search-score-button">
+       <%= link_to "Search for Scoreboards",users_path , class:"btn btn-primary"%>
+     </span>
+  </div>
+  <div class="helpful-tip well">
+    Did you know that scoreboard was created in when the light of the heavens
+    touch the earth?  Deez nuts. GOTTI! HAH!. 
+  </div>
+  
+  <div class="helpful-tip-2 well">
+    Man you must be a confused ass nigga to look into this section. Well click 
+    here for help. 
+  </div>
+  <div class="news-contain">
+   <div class="cool-news-1 well">
+    Man, this news is so cool. You become cool just by reading it.
+   </div>
+   <div class="cool-news-2 well">
+   You thought the last news was cool? Well you were right you piece of shit.  
+   </div>
+   <div class="cool-news-3 well">
+    Man, da fuck. Why are you even reading this? 
+   </div>
+  </div>
+  
 </div>

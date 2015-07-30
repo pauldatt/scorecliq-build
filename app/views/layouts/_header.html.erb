@@ -1,5 +1,5 @@
 <% if logged_in? %>
-  <header class="navigation navbar navbar-fixed-top navbar-default nav-tabs">
+  <header class="navigation navbar navbar-fixed-top navbar navbar-default nav-tabs">
     <div class="container">
       <%= link_to "ScoreBoard", home_path, id:"logo" %>
           <ul class="navigation nav navbar-nav navbar-right nav-tabs">
@@ -20,7 +20,7 @@
     </div>
   </header>
 <% else %>
-  <header class="navigation navbar navbar-fixed-top navbar-default nav-tabs">
+  <header class="navigation navbar navbar-fixed-top navbar navbar-default nav-tabs ">
     <div class="container">
       <%= link_to "ScoreBoard", root_path, id:"logo" %>
           <ul class="navigation nav navbar-nav navbar-right nav-tabs">

@@ -1,3 +1,242 @@
-// Place all the styles related to the Users controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+/* home-page  prelogin */
+.main-img{
+    height: 536px;
+    width: 1150px;
+    background-image: image-url('soccer.jpg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    margin: 0;
+}
+
+.home-greet{
+    font-weight: bold;
+    font-size: 30px;
+    position: relative;
+    left: 39px;
+    top: 50px;
+}
+
+.log-form{
+    width: 312px;
+    height: 241px;
+    position: relative;
+    bottom: 197px;
+    left: 744px;
+}
+
+.button-1{
+    position: relative;
+    left: 39px;
+    bottom: 249px;
+}
+
+.explain{
+    height: 190px;
+    width: 401px;
+    position: relative;
+    left: 39px;
+    top: 56px;
+}
+
+.navigation {
+    background-color: #FFFFFF;
+}
+
+/*Styling the Home Page Post Login*/
+
+.home-pg-contain{
+    height: 550px;
+    width: 1150px;
+    position: relative;
+}
+
+.home-head{
+    position: relative;
+    width: 310px;
+    font-weight: bold;
+    font-size: 20px;
+    text-align: center;
+    left: 539px;
+}
+
+.my-score-desc{
+    width: 166px;
+    height: 241px;
+    position: relative;
+    left: 20px;
+    top: 20px;
+    text-align: center;
+}
+
+.create-new-desc{
+    width: 300px;
+    height: 241px;
+    position: relative;
+    left: 331px;
+    bottom: 243px;
+    background-image: image-url('pop.jpg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    color: white;
+    font-weight: bold;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    text-align: center;
+    
+}
+
+.search-score-desc{
+    width: 300px;
+    height: 241px;
+    position: relative;
+    left: 742px;
+    bottom: 504px;
+    background-image: image-url('sky.jpg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    color: white;
+    font-weight: bold;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    text-align: center;
+}
+
+.helpful-tip{
+    width: 166px;
+    height: 221px;
+    position: absolute;
+    bottom: 0px;
+    left: 20px;
+}
+
+.helpful-tip-2{
+    width: 712px;
+    height: 30px;
+    position: absolute;
+    bottom: 182px;
+    left: 331px;
+    text-align: center;
+}
+.news-contain{
+    width: 712px;
+    height: 161px;
+    position: absolute;
+    bottom: 21px;
+    left: 331px;
+}
+
+.cool-news-1{
+    width: 234px;
+    height: 161px;
+    background-image: image-url('lake.jpg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    color: white;
+    font-weight: bold;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    text-align: center;
+}
+
+.cool-news-2{
+    width: 234px;
+    height: 161px;
+    position: relative;
+    left: 239px;
+    bottom: 181px;
+    background-image: image-url('view.jpg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    color: white;
+    font-weight: bold;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    text-align: center;
+}
+
+.cool-news-3{
+    width: 234px;
+    height: 161px;
+    position: relative;
+    left: 479px;
+    bottom: 362px;
+    background-image: image-url('eye.jpg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    color: white;
+    font-weight: bold;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    text-align: center;
+}
+
+/** the buttons on the home page post login **/
+.search-score-button{
+    position: absolute;
+    bottom: 0px;
+    left: 63px;
+}
+
+.create-score-button{
+    position: absolute;
+    left: 63px;
+    bottom: 0px;
+}
+
+/* User Profile CSS **/
+.user-tit{
+    text-align: center;
+}
+
+.profile-container{
+    position: relative;
+    width: 1170px;
+    height: 730px;
+  
+}
+
+.prof-pic{
+    position: relative;
+    width: 266px;
+    height: 223px;
+}
+
+.desc-area{
+    width: 845px;
+    height: 124px;
+    position: relative;
+    left: 286px;
+    bottom: 435px;
+}
+
+.info-box{
+    width: 266px;
+    height: 172px;
+}
+
+.prof-help-tip{
+    width: 266px;
+    height: 200px;
+    position: relative;
+    bottom: 145px;
+    
+}
+
+.score-own{
+    position: relative;
+    width: 845px;
+    height: 235px;
+    left: 286px;
+    bottom: 657px;
+}
+
+.score-follow{
+    position: relative;
+    width: 845px;
+    height: 237px;
+    left: 286px;
+    bottom: 658px;
+}

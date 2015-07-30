@@ -53,15 +53,7 @@ class ScoreboardTest < ActiveSupport::TestCase
       assert_not @scoreboard.valid?
     end
     
-    test "content should be present" do
-      @scoreboard.content = " "
-      assert_not @scoreboard.valid?
-    end
-    
-    test "content should be a maximum of 50 characters" do
-      @scoreboard.content = "a" * 141
-      assert_not @scoreboard.valid?
-    end
+    # The tests for the messages will go in here, once they are written.
     
     # This test requires having some micropost fixtures. They are defined in fixtures.yml
     test "order should be most recent first" do

@@ -1,3 +1,242 @@
-// Place all the styles related to the Scoreboards controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+/* Scoreboard new form */
+
+.score-form{
+    position: relative;
+    width: 359px;
+    left: 390px;
+}
+
+.score-header-form{
+    position: relative;
+    width: 359px;
+    font-size: 20px;
+    font-weight: bold;
+    left: 386px;
+}
+
+/* MY scoreboard page index page */
+.my-score-contain{
+    position: relative;
+    width: 1170px;
+    height: 580px;
+   
+}
+.my-score-help-tip{
+    position: relative;
+    width: 210px;
+    height: 277px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #C0C0C0;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.my-score-display{
+    position: relative;
+    width: 902px;
+    height: 576px;
+    left: 238px;
+    bottom: 277px;
+   
+}
+
+.the-display{
+    position: relative;
+    width: 874px;
+    max-height: 520px;
+    top: 20px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #C0C0C0;
+    overflow-y: auto;
+    padding: 10px;
+}
+
+.inner-disp{
+    width: 849px;
+    height: 106px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #C0C0C0;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    padding: 5px;
+    p{
+        font-size: 12px;
+    }
+    .my-view{
+        position: relative;
+        height: 24px;
+        width: 61px;
+        bottom: 92px;
+        left: 771px;
+        font-size: 11px;
+    }
+    .my-edit{
+        position: relative;
+        height: 24px;
+        width: 61px;
+        font-size: 11px;
+        left: 707px;
+        bottom: 67px;
+    }
+    .my-del{
+        position: relative;
+        height: 24px;
+        width: 61px;
+        font-size: 11px;
+        left: 642px;
+        bottom: 42px;
+    }
+}
+.button-follow{
+    position: relative;
+    left: 20px;
+}
+
+/* the scoreboard show page */
+.score-show-contain{
+    position: relative;
+}
+
+.div-show-left{
+    position: relative;
+    width: 232px;
+    height: 599px;
+}
+
+
+
+.back-my-score{
+    position: relative;
+    width: 232px;
+    height: 50px;
+    padding: 10px;
+    font-size: 17px;
+}
+
+
+
+.member-list{
+    position: relative;
+    width: 232px;
+    min-height: 332px;
+    max-height: 332px;
+    top: 20px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #C0C0C0;
+    padding: 20px;
+    overflow: auto;
+    border-radius: 5px;
+}
+
+.show-filler-div{
+    position: relative;
+    width: 232px;
+    height: 168px;
+    top: 28px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #C0C0C0;
+    border-radius: 5px;
+    padding: 20px;
+}
+
+.score-title{
+    position: relative;
+    width: 874px;
+    height: 50px;
+    bottom: 620px;
+    left: 249px;
+    border-radius: 5px;
+    text-align: center;
+    padding: 5px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #C0C0C0;
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+}
+
+.prof-bio{
+    position: relative;
+    width: 874px;
+    height: 177px;
+    bottom: 622px;
+    left: 249px;
+}
+
+.score-prof{
+    position: relative;
+    width: 195px;
+    height: 175px;
+    border-radius: 5px;
+}
+
+.s-labels{
+    position: relative;
+    width: 127px;
+    height: 176px;
+    left: 213px;
+    bottom: 186px;
+    h4{
+        font-size: 15px;
+        font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+        margin-bottom: 15px;
+    }
+}
+
+.bios-labels{
+    position: relative;
+    height: 176px;
+    width: 507px;
+    left: 343px;
+    bottom: 372px;
+    h4{
+        font-size: 15px;
+        font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+        margin-bottom: 15px;
+    }
+}
+
+.un-follow{
+    position: relative;
+    height: 28px;
+    width: 128px;
+    left: 996px;
+    bottom: 800px;
+    font-size: 12px;
+}
+
+.invite-btn{
+    position: relative;
+    height: 28px;
+    width: 128px;
+    bottom: 758px;
+    left: 863px;
+    font-size: 12px;
+   
+}
+
+.score-text{
+    position: relative;
+    width: 874px;
+    height: 100px;
+    border-radius: 3px;
+    background-color: #E9EAED;
+    bottom: 645px;
+    left: 248px;
+}
+
+.score-app{
+    position: relative;
+    width: 874px;
+    height: 545px;
+    border-radius: 3px;
+    background-color: #E9EAED;
+    bottom: 636px;
+    left: 248px;
+    margin-bottom: -609px;
+}
+
