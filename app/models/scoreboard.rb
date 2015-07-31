@@ -9,6 +9,9 @@ class Scoreboard < ActiveRecord::Base
   validates :name_of_activity, presence:true, length: { maximum: 50 }
   validates :user_id, presence: true
   
+  #profile pic validations
+  validate :picture_size
+  
   #Location and Period validations
   validates :starts_at, presence: true
   validates :ends_at, presence: true
@@ -17,6 +20,15 @@ class Scoreboard < ActiveRecord::Base
    def self.search(search_term)
      where("name_of_organization LIKE ? or name_of_activity LIKE ? 
      or name_of_scoreboard LIKE ?", "%#{search_term}%", "%#{search_term}%", "%#{search_term}%" )
+   end
+   
+   private
+   
+   #validate size of profile picture in terms of mb
+   def picture_size 
+     if picture.size > 5.megabytes
+       errors.add(:picture, "should be less than 5MB")
+     end
    end
    
   

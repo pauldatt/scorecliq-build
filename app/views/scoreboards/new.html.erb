@@ -1,14 +1,47 @@
 <div class="score-contain">
       <h1 class="score-header-form"></h1>
       <div class="score-form">
+         <script type="text/javascript">
+          $('#micropost_picture').bind('change', function() {
+          var size_in_megabytes = this.files[0].size/1024/1024;
+          if (size_in_megabytes > 5) {
+          alert('Maximum file size is 5MB. Please choose a smaller file.');
+          }
+          });
+          </script>
 
-      <%= form_for(@scoreboard) do |f| %>
+
+      <%= form_for(@scoreboard, html: {multipart: true}) do |f| %>
       
          <%= render 'shared/error_messages', object: f.object %>
          
          <h1>Create your scoreboard.</h1>
          
-         <%= render 'scoreboardform' %>
+         <%= f.label :Name_of_your_scoreboard %>
+         <%= f.text_field :name_of_scoreboard, class: "form-control"  %>
+      
+         <%= f.label :Name_of_your_organization %>
+         <%= f.text_field :name_of_organization, class: "form-control" %>
+      
+         <%= f.label :Name_of_your_sport_or_activity %>
+         <%= f.text_field :name_of_activity, class: "form-control" %>
+         
+         <%= f.label :Scoreboard_period_starts_at %>
+         <%= f.date_field :starts_at %>
+         
+         <%= f.label :Scoreboard_period_ends_on %>
+         <%= f.date_field :ends_at %>
+         
+         <%= f.label :Country %>
+         <%= f.select :country, options_for_select(country, "Canada") %>
+         
+         <%= f.label :State_or_Province %>
+         <%= f.select :states, options_for_select(states, "Ontario") %>
+         
+         <%= f.label :City %>
+         <%= f.text_field :cities, placeholder: "Enter your city or town" %>
+         
+         <%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png' %>
          
          <%= f.submit "Create", class: "btn btn-primary" %>
     

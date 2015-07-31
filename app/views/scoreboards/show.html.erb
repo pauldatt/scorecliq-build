@@ -27,14 +27,8 @@
  
  <div class= "prof-bio">
    <div class="score-prof">
-    <%= form_for(@scoreboard, html: { multipart: true }) do |f| %>
-      <span class="picture">
-      <%= f.file_field :picture %>
-      </span>
-    <% end %>
-    <span class= "profile-picture">
     <%= image_tag @scoreboard.picture.url if @scoreboard.picture? %>
-    </span>
+
    </div>
    <div class="s-labels">
     <h4 class="s-creator"> Admin: </h4>
@@ -66,10 +60,13 @@
 
 
 <div class="score-text">
- This is textbox 
+      
+      
+    
 </div> 
 
 <div class="score-app">
+</div>
 </div>
 
 
