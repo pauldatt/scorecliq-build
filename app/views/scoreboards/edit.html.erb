@@ -9,41 +9,15 @@
          }
         });
        </script>
+       
+        <h1>Update your scoreboard.</h1>
 
-
-      <%= form_for(@scoreboard) do |f| %>
+        <%= form_for(@scoreboard) do |f| %>
       
-         <%= render 'shared/error_messages', object: f.object %>
-         
-         <h1>Update your scoreboard.</h1>
-         
+        <%= render 'shared/error_messages', object: f.object %>
         
-         <%= f.label :Name_of_your_scoreboard %>
-         <%= f.text_field :name_of_scoreboard, class: "form-control"  %>
-      
-         <%= f.label :Name_of_your_organization %>
-         <%= f.text_field :name_of_organization, class: "form-control" %>
-      
-         <%= f.label :Name_of_your_sport_or_activity %>
-         <%= f.text_field :name_of_activity, class: "form-control" %>
+        <%= render 'scoreboardform', :f => f %>
          
-         <%= f.label :Scoreboard_period_starts_at %>
-         <%= f.date_field :starts_at %>
-         
-         <%= f.label :Scoreboard_period_ends_on %>
-         <%= f.date_field :ends_at %>
-         
-         <%= f.label :Country %>
-         <%= f.select :country, options_for_select(country, "Canada") %>
-         
-         <%= f.label :State_or_Province %>
-         <%= f.select :states, options_for_select(states, "Ontario") %>
-         
-         <%= f.label :City %>
-         <%= f.text_field :cities, placeholder: "Enter your city or town" %>
-         
-         <%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png' %>
-        
         <%= f.submit "Update" %>
     
          <% end %>

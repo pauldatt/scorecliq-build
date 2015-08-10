@@ -58,6 +58,8 @@ class ScoreboardsController < ApplicationController
   flash[:success] = "Deleted Successfully."
   redirect_to scoreboards_path
  end
+ 
+
 
 private
 

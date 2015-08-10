@@ -8,19 +8,20 @@ class SearchController < ApplicationController
 #     end
 #   end
 # end
-  
-  
-  
-   def index
-     if params[:keyword]
-       @scoreboard = Scoreboard.search(params[:keyword])
-       scoreboard = Scoreboard.find_by_id(params[:id])
-       redirect_to scoreboard
-     elsif
-       @user = User.search(params[:keyword])
-       render :text => "not heloo"
-     end
-   end
+
+
+def index
+  if params[:keyword]
+   @scoreboard = Scoreboard.search(params[:keyword])
+    scoreboard = Scoreboard.find_by_id(params[:id])
+      redirect_to scoreboard
+    elsif
+      @user = User.search(params[:keyword])
+      render :text => "not heloo"
+  end
+end
+
+
 end
        
        

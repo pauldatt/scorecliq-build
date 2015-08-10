@@ -1,28 +1,29 @@
-<%= form_for(@scoreboard) do |f| %>
-      
          <%= f.label :Name_of_your_scoreboard %>
          <%= f.text_field :name_of_scoreboard, class: "form-control"  %>
-      
+               
          <%= f.label :Name_of_your_organization %>
          <%= f.text_field :name_of_organization, class: "form-control" %>
-      
+               
          <%= f.label :Name_of_your_sport_or_activity %>
          <%= f.text_field :name_of_activity, class: "form-control" %>
-         
+                  
          <%= f.label :Scoreboard_period_starts_at %>
-         <%= f.date_field :starts_at %>
-         
+         <%= f.date_select :starts_at %>
+                  
          <%= f.label :Scoreboard_period_ends_on %>
-         <%= f.date_field :ends_at %>
-         
+         <%= f.date_select :ends_at %>
+                  
          <%= f.label :Country %>
          <%= f.select :country, options_for_select(country, "Canada") %>
-         
+                  
          <%= f.label :State_or_Province %>
          <%= f.select :states, options_for_select(states, "Ontario") %>
-         
+                  
          <%= f.label :City %>
          <%= f.text_field :cities, placeholder: "Enter your city or town" %>
-         
-      <% end %>
-      
+                  
+                  
+                  
+               
+               
+               

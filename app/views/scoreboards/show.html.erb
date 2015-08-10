@@ -1,3 +1,4 @@
+
 <div class= "score-show-contain">
  <div class="div-show-left">
    <%= link_to "My Scoreboards", scoreboards_path , class: 'btn btn-primary back-my-score' %>
@@ -28,7 +29,6 @@
  <div class= "prof-bio">
    <div class="score-prof">
     <%= image_tag @scoreboard.picture.url if @scoreboard.picture? %>
-
    </div>
    <div class="s-labels">
     <h4 class="s-creator"> Admin: </h4>
@@ -61,13 +61,35 @@
 
 <div class="score-text">
       
-      
     
 </div> 
 
 <div class="score-app">
+
 </div>
-</div>
+
+<% if @scoreboard.user == current_user %>
+ <button type= "button" class="btn btn-primary prof-update" data-toggle="modal"
+  data-target="#modal-1">Update Profile</button> 
+    <div class="modal" id="modal-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header"> Please Upload your Picture</div>
+          <%= image_tag @scoreboard.picture.url if @scoreboard.picture? %>
+          <div class="modal-body"> 
+          <%= form_for(@scoreboard, html: {multipart: true}) do |f| %>
+          <%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png' %>
+          <%= f.submit "Update" %>
+          <%end%>
+          </div>
+          <div class="modal-footer"> Click Anywhere Outside the box to Cancel</div>
+        </div>
+      </div>
+    </div>
+ </div>
+<% end %>
+
+
 
 
 

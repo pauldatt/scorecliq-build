@@ -10,12 +10,13 @@ Rails.application.routes.draw do
   delete 'logout'  => 'sessions#destroy'
   get    'home'    => 'users#home'
   get    'search'  => 'search#index', as: :search
+  get    'team'    => 'scoreboards#teams'
   
   resources :users
   resources :account_activations, only: [:edit]
   resources :password_resets,     only: [:new, :create, :edit, :update]
   resources :scoreboards
-  resources :teams
+
   #resources :messages, only: [:create, :destroy]
   
   
