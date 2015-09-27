@@ -46,9 +46,6 @@
     width: 874px;
     max-height: 520px;
     top: 20px;
-    border-style: solid;
-    border-width: 2px;
-    border-color: #C0C0C0;
     overflow-y: auto;
     padding: 10px;
 }
@@ -224,9 +221,17 @@
     width: 874px;
     height: 100px;
     border-radius: 3px;
-    background-color: #E9EAED;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #C0C0C0;
     bottom: 645px;
     left: 248px;
+    padding: 10px;
+    .status-update{
+        position: absolute;
+        left: 752px;
+        top: 60px;
+    }
 }
 
 .score-app{

@@ -11,28 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150729164738) do
+ActiveRecord::Schema.define(version: 20150811063258) do
 
   create_table "scoreboards", force: :cascade do |t|
     t.string   "name_of_scoreboard"
     t.string   "name_of_organization"
     t.string   "name_of_activity"
-    t.text     "content"
     t.integer  "user_id"
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
-    t.text     "message"
-    t.string   "win"
-    t.string   "loss"
-    t.string   "tie"
-    t.string   "standing"
-    t.string   "team_name"
     t.date     "starts_at"
     t.date     "ends_at"
     t.string   "states"
     t.string   "country"
     t.string   "cities"
     t.string   "picture"
+    t.string   "status"
   end
 
   add_index "scoreboards", ["user_id", "created_at"], name: "index_scoreboards_on_user_id_and_created_at"

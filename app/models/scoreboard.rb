@@ -10,6 +10,7 @@ class Scoreboard < ActiveRecord::Base
   validates :name_of_organization, presence: true, length: { maximum: 50 } 
   validates :name_of_activity, presence:true, length: { maximum: 50 }
   validates :user_id, presence: true
+  validates :status, length: {maximum: 255}
   
   # Profile pic validations
   validate :picture_size
