@@ -1,0 +1,6 @@
+$("#edit_team_<%=@team.id%>").hide();
+$("#team_<%=@team.id%>").html("<%= j render partial: 'team', locals: {team: @team} %>");
+$("#team_<%=@team.id%>").show();
+
+
+

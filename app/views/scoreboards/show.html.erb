@@ -18,9 +18,10 @@
    </div>
    
    <div class="show-filler-div"> 
-    This is a filler div. Maybe you can out an advertisement here if
-    you're smart but nah yous a dumb fuck. 
+    
    </div>
+   
+
  </div>
  <h3 class="score-title">
   <%= @scoreboard.name_of_scoreboard %>
@@ -31,7 +32,7 @@
     <%= image_tag @scoreboard.picture.url if @scoreboard.picture? %>
    </div>
    <div class="s-labels">
-    <h4 class="s-creator"> Admin: </h4>
+    <h4 class="s-creator">Admin:</h4>
     <h4 class="s-org"> Organization:</h4>
     <h4 class="s-sport">Sport/Activity:</h4>
     <h4 class="s-period">Period:</h4>
@@ -60,31 +61,40 @@
 
 
 <div class="score-text">
-   <%=@scoreboard.status %>
-   <% if @scoreboard.user == current_user %>
-   <button type= "button" class="btn btn-primary status-update" data-toggle="modal"
-  data-target="#modal-2">Update Status</button> 
-    <div class="modal" id="modal-2">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header"> Type up your status Update.</div>
-          <div class="modal-body"> 
-          <%= form_for(@scoreboard) do |f| %>
-          <%= f.text_field :status, class: "form-control"  %>
-          <%= f.submit "Update" %>
-          <%end%>
-          </div>
-          <div class="modal-footer"> Click Anywhere Outside the box to Cancel</div>
-        </div>
-      </div>
-    </div>
-    <% end %>
- </div>
+ <span class="status-button btn btn-primary"> Update Status </span>
     
-
+</div> 
 
 <div class="score-app">
-    
+  <span class= "score-app-button btn btn-primary"> Score </span>
+  <span class= "add-new-team-button btn btn-primary">Add New team</span>
+  
+  <div class= "app-header">
+     <div class="boxing"> Team Name </div>
+     <div class="boxing2"> Wins</div>
+     <div class="boxing2"> Losses </div>
+     <div class="boxing2"> Ties</div>
+     <div class="boxing2">Win %</div>
+   </div>
+     
+    <div class="all-teams"> <%# This is the class that jQuery searches for and applies the append action to %>
+      <%= render @scoreboard.teams.reject(&:new_record?) %>
+    </div>
+     <div class= "new-team-form">
+     
+        <%= form_for [@scoreboard, @team], remote: true, :html => { :id => 'new-team-entry' } do |f| %> <!-- this will send the ajax request to the servers asynchronously -->
+         
+        <%= render 'shared/error_messages', object: f.object %>
+      
+        <%= render 'teams/teamsform', :f => f %>
+            
+        <%= f.submit "Add", class: " form-3 btn btn-primary" %>
+                
+        <% end %>
+        <span class= "done-add btn btn-primary"> Finish Adding </span>
+        
+     </div> 
+     
 </div>
 
 <% if @scoreboard.user == current_user %>
@@ -107,6 +117,16 @@
     </div>
  </div>
 <% end %>
+</div>
+
+
+
+
+
+
+
+
+
 
 
 

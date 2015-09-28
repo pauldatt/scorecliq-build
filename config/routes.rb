@@ -15,8 +15,11 @@ Rails.application.routes.draw do
   resources :users
   resources :account_activations, only: [:edit]
   resources :password_resets,     only: [:new, :create, :edit, :update]
-  resources :scoreboards
-
+ 
+ resources :scoreboards do 
+   resources :teams, except: [:show, :new]
+   resources :teams, only: [:edit, :create, :destroy, :update]
+  end
   #resources :messages, only: [:create, :destroy]
   
   

@@ -1,5 +1,6 @@
 class Scoreboard < ActiveRecord::Base
   belongs_to :user
+  has_many :teams, dependent: :destroy
   default_scope -> { order(created_at: :desc) }
   
   # The picture uploader

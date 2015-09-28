@@ -23,6 +23,7 @@ class ScoreboardsController < ApplicationController
  # Read
  def show
   @scoreboard = Scoreboard.find_by_id(params[:id])
+  @team = @scoreboard.teams.build
  end
  
  

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150811063258) do
+ActiveRecord::Schema.define(version: 20150928084120) do
 
   create_table "scoreboards", force: :cascade do |t|
     t.string   "name_of_scoreboard"
@@ -31,6 +31,18 @@ ActiveRecord::Schema.define(version: 20150811063258) do
 
   add_index "scoreboards", ["user_id", "created_at"], name: "index_scoreboards_on_user_id_and_created_at"
   add_index "scoreboards", ["user_id"], name: "index_scoreboards_on_user_id"
+
+  create_table "teams", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "win"
+    t.integer  "loss"
+    t.integer  "tie"
+    t.integer  "scoreboard_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "teams", ["scoreboard_id"], name: "index_teams_on_scoreboard_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "name"

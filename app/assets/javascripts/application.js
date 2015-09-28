@@ -14,4 +14,18 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require turbolinks
-//= require_tree .
+//= require_tree.
+
+
+
+ $(document).ready(function(){
+    $(".add-new-team-button").on("click", function(){
+        $(".new-team-form").show();
+    });
+ });
+
+ $(document).ready(function(){
+     $(".done-add").on("click", function(){
+        $(".new-team-form").hide();
+    });
+ });

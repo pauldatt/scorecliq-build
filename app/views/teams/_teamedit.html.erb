@@ -1,0 +1,10 @@
+<%= form_for [@scoreboard, @team], remote: true do |f| %> 
+         
+ <%= render 'shared/error_messages', object: f.object %>
+      
+ <%= render 'teams/teamsform', :f => f %>
+            
+ <%= f.submit "update", class: " form-3 btn btn-primary" %>
+                
+<% end %>
+

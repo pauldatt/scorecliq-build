@@ -1,0 +1,12 @@
+<div class ="team-list" id="team_<%=team.id%>">
+ <div class= "boxin1"><%= team.name %></div>
+ <div class= "boxin2"><%= team.win %></div>
+ <div class= "boxin2"><%= team.loss %></div>
+ <div class= "boxin2"><%= team.tie %></div>
+ <div class= "boxin2"> placehold </div>
+ <span class= "boxin3 btn btn-primary"><%= link_to "Edit", edit_scoreboard_team_path(@scoreboard, team), remote: true %> </span>
+ <span class= "boxin3 btn btn-primary"><%= link_to "Del", [@scoreboard, team], remote: true, method: :delete %>
+</div>
+  
+   
+  
