@@ -24,6 +24,7 @@ class ScoreboardsController < ApplicationController
  def show
   @scoreboard = Scoreboard.find_by_id(params[:id])
   @team = @scoreboard.teams.build
+  @comment = @scoreboard.comments.new
  end
  
  
@@ -58,6 +59,26 @@ class ScoreboardsController < ApplicationController
   @scoreboard.destroy
   flash[:success] = "Deleted Successfully."
   redirect_to scoreboards_path
+ end
+ 
+ def favourite 
+  type = params[:type]
+  if type == "favourite"
+   @scoreboard = Scoreboard.find(params[:id])
+   current_user.favourite_scoreboards << @scoreboard
+   redirect_to :back
+   flash[:success] = "You followed scoreboard: #{@scoreboard.name_of_scoreboard}"
+   
+  elsif type == "unfavourite"
+   @scoreboard = Scoreboard.find(params[:id])
+   current_user.favourite_scoreboards.delete(@scoreboard)
+   redirect_to :back
+   flash[:success] = "You unfollowed scoreboard: #{@scoreboard.name_of_scoreboard}"
+   
+  else
+   redirect_to :back
+   flash[:notice] = "No action"
+  end
  end
  
 

@@ -1,12 +1,27 @@
+<%# time_ago_in_words(team.updated_at) %>
 <div class ="team-list" id="team_<%=team.id%>">
  <div class= "boxin1"><%= team.name %></div>
  <div class= "boxin2"><%= team.win %></div>
  <div class= "boxin2"><%= team.loss %></div>
  <div class= "boxin2"><%= team.tie %></div>
- <div class= "boxin2"> placehold </div>
+ <div class= "boxin2">
+    <% total_games = team.win.to_i + team.loss.to_i + team.tie.to_i %>
+    <% if total_games == 0 %>
+     <%= "N/A" %>
+    <% else %>
+     <%= (team.win.to_i/(total_games).to_f*100).round(2) %><%="%"%>
+    <% end %>
+ </div>
+ 
  <span class= "boxin3 btn btn-primary"><%= link_to "Edit", edit_scoreboard_team_path(@scoreboard, team), remote: true %> </span>
- <span class= "boxin3 btn btn-primary"><%= link_to "Del", [@scoreboard, team], remote: true, method: :delete %>
+ <span class= "boxin3 btn btn-primary"><%= link_to "Del", [@scoreboard, team], remote: true, method: :delete %> </span>
+                                                                                                                             
+
 </div>
   
    
-  
+   
+   
+   
+   
+   

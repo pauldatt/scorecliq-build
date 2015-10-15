@@ -16,15 +16,23 @@
 //= require turbolinks
 //= require_tree.
 
+$(document).on('page:change', function(){
+    $(".score-text").mouseover(function(){
+      $(this).css('background', '#C0C0C0');
+    });
+     $(".score-text").mouseleave(function(){
+      $(this).css('background', '#FFFFFF');
+    });
+ });
 
 
- $(document).ready(function(){
+$(document).on('page:change', function(){
     $(".add-new-team-button").on("click", function(){
         $(".new-team-form").show();
     });
  });
 
- $(document).ready(function(){
+$(document).on('page:change', function(){
      $(".done-add").on("click", function(){
         $(".new-team-form").hide();
     });

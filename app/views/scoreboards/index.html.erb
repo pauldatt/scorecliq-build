@@ -7,7 +7,7 @@
 
 <div class= "my-score-contain">
 <div class= "my-score-help-tip">
-  Some helpful filler text. If you're a jew don't come here. 
+  Some helpful filler text. 
 </div>
 
 <div class="my-score-display">
@@ -24,6 +24,7 @@
         Period: <%= scoreboard.starts_at%> to <%= scoreboard.ends_at %> </br>
         </p>
         <% if scoreboard.user == current_user %>
+          <%# link_to "View", scoreboard_path(scoreboard), class: 'btn btn-primary my-view' %>
           <%= link_to "View", scoreboard_path(@scoreboard, :id=> scoreboard.id), class: 'btn btn-primary my-view' %>
           <%= link_to "Edit", edit_scoreboard_path(@scoreboard, :id => scoreboard.id), class: 'btn btn-primary my-edit' %>
           <%= link_to "Delete", scoreboard,  method: :delete, data: { confirm: "Are you sure you want to delete the scoreboard."}, class: 'btn btn-primary my-del' %>

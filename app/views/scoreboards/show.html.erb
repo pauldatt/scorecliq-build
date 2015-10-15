@@ -3,20 +3,10 @@
  <div class="div-show-left">
    <%= link_to "My Scoreboards", scoreboards_path , class: 'btn btn-primary back-my-score' %>
    <div class="member-list">
-     Divjot Mehton, Kuljinder Dhatt, Divjot Mehton, Kuljinder Dhatt, 
-     Divjot Mehton, Kuljinder Dhatt, Divjot Mehton, Kuljinder Dhatt, 
-     Divjot Mehton, Kuljinder Dhatt, Divjot Mehton, Kuljinder Dhatt, 
-     Divjot Mehton, Kuljinder Dhatt, Divjot Mehton, Kuljinder Dhatt.
-     Divjot Mehton, Kuljinder Dhatt, Divjot Mehton, Kuljinder Dhatt, 
-     Divjot Mehton, Kuljinder Dhatt, Divjot Mehton, Kuljinder Dhatt, 
-     Divjot Mehton, Kuljinder Dhatt, Divjot Mehton, Kuljinder Dhatt, 
-     Divjot Mehton, Kuljinder Dhatt, Divjot Mehton, Kuljinder Dhatt. 
-     Divjot Mehton, Kuljinder Dhatt, Divjot Mehton, Kuljinder Dhatt, 
-     Divjot Mehton, Kuljinder Dhatt, Divjot Mehton, Kuljinder Dhatt, 
-     Divjot Mehton, Kuljinder Dhatt, Divjot Mehton, Kuljinder Dhatt, 
-     Divjot Mehton, Kuljinder Dhatt, Divjot Mehton, Kuljinder Dhatt. 
+     <% @scoreboard.favourited_by.each do |user| %>
+     <%= link_to "#{user.name}", user_path(user) %>
+     <% end %>
    </div>
-   
    <div class="show-filler-div"> 
     
    </div>
@@ -54,15 +44,13 @@
     <h4> </h4>
    </div>
  </div>
-
-
- <%= link_to "Follow", "#" , class: 'btn btn-primary un-follow' %>
- <%= link_to "Invite", "#" , class: 'btn btn-primary invite-btn' %>
+ 
+ <%= link_to "Follow", favourite_scoreboard_path(@scoreboard, type: "favourite"), method: :put, class: 'btn btn-primary un-follow' %>
+ <%= link_to "unfollow", favourite_scoreboard_path(@scoreboard, type: "unfavourite"), method: :put, class: 'btn btn-primary invite-btn' %>
 
 
 <div class="score-text">
- <span class="status-button btn btn-primary"> Update Status </span>
-    
+ <%= @scoreboard.status %>
 </div> 
 
 <div class="score-app">
@@ -77,13 +65,12 @@
      <div class="boxing2">Win %</div>
    </div>
      
-    <div class="all-teams"> <%# This is the class that jQuery searches for and applies the append action to %>
+    <div class="all-teams"> 
       <%= render @scoreboard.teams.reject(&:new_record?) %>
     </div>
      <div class= "new-team-form">
      
-        <%= form_for [@scoreboard, @team], remote: true, :html => { :id => 'new-team-entry' } do |f| %> <!-- this will send the ajax request to the servers asynchronously -->
-         
+        <%= form_for [@scoreboard, @team], remote: true, :html => { :id => 'new-team-entry' } do |f| %>
         <%= render 'shared/error_messages', object: f.object %>
       
         <%= render 'teams/teamsform', :f => f %>
@@ -115,9 +102,35 @@
         </div>
       </div>
     </div>
- </div>
 <% end %>
+
+
+<div class= "comment-section">
+ 
+  <%= form_for [@scoreboard, @comment] do |f| %> 
+         
+        <%= render 'shared/error_messages', object: f.object %>
+      
+       <%= f.text_area :body, class: "comment-field" %>
+       
+       <%= f.hidden_field :parent_id %>
+            
+        <%= f.submit "Join the discussion...", class: " comment-button btn btn-primary" %>
+                
+        <% end %>
+        
+ 
+  
+
+<%= nested_comments @scoreboard.comments.arrange(:order => :created_at) %>
+
+
+
+ </div>
+
 </div>
+
+
 
 
 

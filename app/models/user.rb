@@ -1,10 +1,22 @@
 class User < ActiveRecord::Base
+  # each user can creare many scoreboards
   has_many :scoreboards, dependent: :destroy
+  
+  # each user can create comments to a scoreboard
+  has_many :comments, dependent: :destroy
+  
+  #sets up the relationship with the join table
+  has_many :favourites
+  
+  #allows you to access the favourite scoreboards associated with the user
+  has_many :favourite_scoreboards, through: :favourites, source: :scoreboard
+  
+
   attr_accessor :remember_token, :activation_token, :reset_token
   before_save   :downcase_email 
-  before_create :create_activation_digest
-  before_validation :strip_whitespace, :only => [:name, :email]
-  validates :name, presence: true, length: { maximum: 50 }
+  before_create :create_activation_digest 
+  before_validation :strip_whitespace, :only => [:name, :email] 
+  validates :name, presence: true, length: { maximum: 50 } 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, length: { maximum: 255 },
                     format: { with: VALID_EMAIL_REGEX },

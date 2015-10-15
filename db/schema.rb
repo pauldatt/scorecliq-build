@@ -11,7 +11,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150928084120) do
+ActiveRecord::Schema.define(version: 20151015143455) do
+
+  create_table "comments", force: :cascade do |t|
+    t.text     "body"
+    t.integer  "user_id"
+    t.integer  "scoreboard_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.string   "ancestry"
+  end
+
+  add_index "comments", ["ancestry"], name: "index_comments_on_ancestry"
+  add_index "comments", ["scoreboard_id"], name: "index_comments_on_scoreboard_id"
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id"
+
+  create_table "favourites", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "scoreboard_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "favourites", ["scoreboard_id"], name: "index_favourites_on_scoreboard_id"
+  add_index "favourites", ["user_id", "scoreboard_id"], name: "index_favourites_on_user_id_and_scoreboard_id", unique: true
+  add_index "favourites", ["user_id"], name: "index_favourites_on_user_id"
 
   create_table "scoreboards", force: :cascade do |t|
     t.string   "name_of_scoreboard"

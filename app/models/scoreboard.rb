@@ -1,6 +1,19 @@
 class Scoreboard < ActiveRecord::Base
+  # each scoreboard is created by a user
   belongs_to :user
+  
+  # each scoreboard has many teams
   has_many :teams, dependent: :destroy
+  
+  # each scoreboard has_many comments
+  has_many :comments, dependent: :destroy
+  
+  # sets up the relationship with the favourites(join) table
+  has_many :favourites
+ 
+  #allows you to access the users associated with the favourited scoreboards
+  has_many :favourited_by, through: :favourites, source: :user
+  
   default_scope -> { order(created_at: :desc) }
   
   # The picture uploader

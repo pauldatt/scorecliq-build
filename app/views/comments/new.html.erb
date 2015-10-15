@@ -1,0 +1,11 @@
+<%= form_for [@scoreboard, @comment] do |f| %> 
+         
+        <%= render 'shared/error_messages', object: f.object %>
+      
+       <%= f.text_area :body, class: "comment-field" %>
+       
+       <%= f.hidden_field :parent_id %>
+            
+        <%= f.submit "Join the discussion...", class: " comment-button btn btn-primary" %>
+                
+<% end %>

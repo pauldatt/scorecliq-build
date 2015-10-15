@@ -1,9 +1,6 @@
 class TeamsController < ApplicationController
-    
-    def new
-     @scoreboard = Scoreboard.find(params[:scoreboard_id]) 
-     @team = @scoreboard.teams.build
-    end
+ 
+ 
    
    def create
      @scoreboard = Scoreboard.find(params[:scoreboard_id])
@@ -43,6 +40,7 @@ class TeamsController < ApplicationController
     end
    end
    
+   #Delete
    
    def destroy
      @scoreboard = Scoreboard.find(params[:scoreboard_id])
@@ -53,7 +51,6 @@ class TeamsController < ApplicationController
          format.js
      end
    end
-   
    
    private 
  

@@ -240,8 +240,7 @@
     width: 200px;
     height: 27px;
     border-radius: 3px;
-    bottom: 712px;
-    left: 249px;
+    
 }
 
 .add-new-team-button{
@@ -356,6 +355,52 @@
 .new-team-form{
     display: none;
 }
+
+.comment-section{
+   position: relative;
+    width: 874px;
+    min-height: 545px;
+    left: 248px;
+    bottom: 46px;
+    padding: 10px;
+    overflow: auto;
+    border: 2px solid #C0C0C0;
+    
+    .comment-field{
+        position: relative;
+        border: 2px solid #3071A9;
+    }
+    
+    .comment-div{
+        position: relative;
+        width: 849px;
+        height: 120px;
+        padding: 10px;
+        border: 2px solid #C0C0C0;
+        margin: 5px;
+        
+        .comment-body{
+            margin: 5px;
+            position: relative;
+            width: 816px;
+            height: 72px;
+            background-color: #C0C0C0;
+        }
+    }
+
+}
+
+.prof-update{
+    position: relative;
+    bottom: 708px;
+    left: 251px;
+}
+
+.nested_messages{
+    margin-left: 30px;
+}
+
+
 
 
 

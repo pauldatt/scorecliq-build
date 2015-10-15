@@ -27,7 +27,9 @@
  </div>
  
  <div class="score-follow well">
-  Scoreboards I follow in a scrollable div
+  <% @user.favourite_scoreboards.each do |favourite| %> <br></br>
+  <%= link_to "#{favourite.name_of_scoreboard}", scoreboard_path(favourite) %>
+  <% end %>
  </div>
  
     

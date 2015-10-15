@@ -1,0 +1,11 @@
+<div class=" comment-div"> 
+ <p> Posted by <%= link_to "#{comment.user.name}", comment.user %>
+   <%= time_ago_in_words(comment.created_at) %> ago
+ </p>
+ <div class="comment-body"> 
+  <%= comment.body %>
+  <%= link_to "Reply", new_scoreboard_comment_path(@scoreboard, comment, :parent_id => comment) %> 
+ </div>
+</div>
+
+    
