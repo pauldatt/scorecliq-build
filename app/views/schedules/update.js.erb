@@ -1,0 +1,4 @@
+$("#edit_schedule_<%=@schedule.id%>").hide();
+$("#schedule_<%=@schedule.id%>").html("<%= j render partial: 'schedule', locals: {schedule: @schedule} %>");
+$("#schedule_<%=@schedule.id%>").show();
+$(".sched-buttons").show();

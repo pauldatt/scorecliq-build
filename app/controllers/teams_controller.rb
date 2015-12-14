@@ -1,7 +1,5 @@
 class TeamsController < ApplicationController
- 
- 
-   
+
    def create
      @scoreboard = Scoreboard.find(params[:scoreboard_id])
      @team = @scoreboard.teams.build(team_params)
@@ -12,7 +10,7 @@ class TeamsController < ApplicationController
         end
         #this allows the controller to respond to the ajax request that was made by the form.
      else
-       render 'new'
+      render 'new'
      end
    end
      
@@ -44,11 +42,12 @@ class TeamsController < ApplicationController
    
    def destroy
      @scoreboard = Scoreboard.find(params[:scoreboard_id])
-     @team = @scoreboard.teams.find(params[:id])
-     @team.destroy
-      respond_to do |format|
-         format.html {redirect_to scoreboard_url(@team.scoreboard_id)}
+     @team = Team.find(params[:id]) 
+     if @team.destroy
+       respond_to do |format|
+         format.html {redirect_to scoreboard_url(@scoreboard)} 
          format.js
+       end
      end
    end
    

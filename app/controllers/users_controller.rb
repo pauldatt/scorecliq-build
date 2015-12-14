@@ -16,6 +16,7 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find(params[:id])
+    @user_all = User.all.order('created_at DESC')
   end
   
   def new
@@ -53,7 +54,7 @@ class UsersController < ApplicationController
     flash[:success] = "User deleted successfully"
     redirect_to users_url
   end
-
+  
 
 private
 

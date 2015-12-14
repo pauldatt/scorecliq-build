@@ -1,3 +1,4 @@
+
          <%= f.label :Name_of_your_scoreboard %>
          <%= f.text_field :name_of_scoreboard, class: "form-control"  %>
                
@@ -8,10 +9,10 @@
          <%= f.text_field :name_of_activity, class: "form-control" %>
                   
          <%= f.label :Scoreboard_period_starts_at %>
-         <%= f.date_select :starts_at %>
+         <%= f.text_field :starts_at, class: "datepicker" %>
                   
          <%= f.label :Scoreboard_period_ends_on %>
-         <%= f.date_select :ends_at %>
+         <%= f.text_field :ends_at, class: "datepicker" %>
                   
          <%= f.label :Country %>
          <%= f.select :country, options_for_select(country, "Canada") %>
@@ -19,7 +20,7 @@
          <%= f.label :State_or_Province %>
          <%= f.select :states, options_for_select(states, "Ontario") %>
                   
-         <%= f.label :City %>
+         <%= f.label :City_or_town %>
          <%= f.text_field :cities, placeholder: "Enter your city or town" %>
                   
                   

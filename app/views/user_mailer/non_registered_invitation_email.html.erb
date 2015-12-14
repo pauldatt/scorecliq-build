@@ -1,0 +1,9 @@
+<p>Hi, <%= @invitation.recipient_name %>. </p> <br></br>
+
+<p>You have been invited to view the following scoreboard, 
+scoreboad name: <%= @scoreboard.name_of_scoreboard %>
+scoreboard organization: <%= @scoreboard.name_of_organization %>
+sport: <%= @scoreboard.name_of_activity %></p>
+
+Please sign up as you have been invited to view the following scoreboards, click on the link <%= link_to "View scoreboard", scoreboard_url(@scoreboard) %>
+

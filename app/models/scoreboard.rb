@@ -14,11 +14,18 @@ class Scoreboard < ActiveRecord::Base
   #allows you to access the users associated with the favourited scoreboards
   has_many :favourited_by, through: :favourites, source: :user
   
+  #each scoreboard has many sent invitations
+  has_many :sent_invitations, :class_name => "Invitation"
+  
+  #each scoreboard can have many schedules on it 
+  has_many :schedules 
+  
   default_scope -> { order(created_at: :desc) }
   
-  # The picture uploader
-  mount_uploader :picture, PictureUploader
+  #each scoreboard has one picture
+  has_one :picture, as: :pictureable
   
+
   # Scoreboard information Validation
   validates :name_of_scoreboard, presence: true, length: { maximum: 50 }
   validates :name_of_organization, presence: true, length: { maximum: 50 } 
@@ -26,8 +33,6 @@ class Scoreboard < ActiveRecord::Base
   validates :user_id, presence: true
   validates :status, length: {maximum: 255}
   
-  # Profile pic validations
-  validate :picture_size
   
   #Location and Period validations
   validates :starts_at, presence: true
@@ -39,14 +44,6 @@ class Scoreboard < ActiveRecord::Base
      or name_of_scoreboard LIKE ?", "%#{search_term}%", "%#{search_term}%", "%#{search_term}%" )
    end
    
-   private
-   
-   #validate size of profile picture in terms of mb
-   def picture_size 
-     if picture.size > 5.megabytes
-       errors.add(:picture, "should be less than 5MB")
-     end
-   end
    
   
 end

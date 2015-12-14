@@ -1,4 +1,3 @@
-<%# time_ago_in_words(team.updated_at) %>
 <div class ="team-list" id="team_<%=team.id%>">
  <div class= "boxin1"><%= team.name %></div>
  <div class= "boxin2"><%= team.win %></div>
@@ -13,9 +12,10 @@
     <% end %>
  </div>
  
- <span class= "boxin3 btn btn-primary"><%= link_to "Edit", edit_scoreboard_team_path(@scoreboard, team), remote: true %> </span>
- <span class= "boxin3 btn btn-primary"><%= link_to "Del", [@scoreboard, team], remote: true, method: :delete %> </span>
-                                                                                                                             
+<% if @scoreboard.user == current_user %> 
+ <span class= "boxin3"><%= link_to "Edit", edit_scoreboard_team_path(@scoreboard, team), :data => {:disable_with => "..."}, remote: true, class: "btn btn-primary" %> </span>
+ <span class= "boxin3"><%= link_to "Del", scoreboard_team_path(@scoreboard, team), :data => {:disable_with => "..."}, remote: true, method: :delete, class: "btn btn-primary" %> </span>
+<% end %>                                                                                                                             
 
 </div>
   

@@ -1,28 +1,75 @@
-
 <div class= "score-show-contain">
+ 
  <div class="div-show-left">
    <%= link_to "My Scoreboards", scoreboards_path , class: 'btn btn-primary back-my-score' %>
    <div class="member-list">
-     <% @scoreboard.favourited_by.each do |user| %>
-     <%= link_to "#{user.name}", user_path(user) %>
+     <p> Following member count: <%= @scoreboard.favourited_by.count %> </p>
+     <% @scoreboard.favourited_by.each do |user| %> 
+     <%= link_to "#{user.name}", user_path(user) %> <br></br>
      <% end %>
    </div>
+   
    <div class="show-filler-div"> 
+    <div class="score-app-options">
+      <ul class="score-options-menu">
+       <li class= "score-options-div">Score Options</li>
+       <li class= "add-new-team-button btn btn-primary orig">Add New team</li>
+       <li class= "edit-teams-button btn btn-primary orig"> Edit/Delete Teams</li>
+       <li class= "orig">
+         <%= link_to "Reset Teams", deleteteams_scoreboard_path(@scoreboard), class: 'reset-score-button btn btn-primary',:data => {:confirm => 'Are you sure? This action cannot be reversed'} %> 
+       </li>
+       <li class= "finish-adding-team-button btn btn-primary"> Finish Adding Teams</li>
+       <li class= "finish-edit-team-button btn btn-primary"> Finish Edit/Del</li>
+      </ul>
+    </div>
+    
+    <div class= "schedule-app-options">
+      <ul class="schedule-options-menu">
+       <li class= "schedule-options-div">Schedule Options</li>
+       <li class= "add-new-schedule-button btn btn-primary orig2">Add to Schedule</li>
+       <li class= "edit-schedule-button btn btn-primary orig2"> Edit/Delete Schedules</li>
+       <li class= "orig2">
+         <%= link_to "Reset Schedules", deleteschedules_scoreboard_path(@scoreboard), class: 'reset-schedule-button btn btn-primary',:data => {:confirm => 'Are you sure? This action cannot be reversed'} %>   
+       </li>
+       <li class= "finish-adding-schedule-button btn btn-primary"> Finish Adding to Schedule</li>
+       <li class= "finish-edit-schedule-button btn btn-primary"> Finish Edit/Del</li>
+      </ul>
+     
+    </div>
     
    </div>
-   
-
  </div>
+ 
+ 
+ 
  <h3 class="score-title">
-  <%= @scoreboard.name_of_scoreboard %>
+  <%= @scoreboard.name_of_scoreboard %> <%= link_to "Delete", [@pictureable, @picture], method: :delete, data: {confirm: "Are you sure!"} %>
  </h3>
  
  <div class= "prof-bio">
    <div class="score-prof">
-    <%= image_tag @scoreboard.picture.url if @scoreboard.picture? %>
    </div>
+   <div>
+     <div>
+      <% if @picture.picture.url.present? %>
+      <div class="dropdown">
+        <div id="pictureframe" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+         <ul class="dropdown-menu">
+          <li><%= link_to "Remove" %></li>
+        </ul>
+         <%# image_tag @picture.picture.url %>
+        </div>
+      </div>
+      
+      <% else %>
+        <%= render 'pictures/uploadphoto' %>
+      <% end %>  
+     </div>
+   </div>
+ 
+   
    <div class="s-labels">
-    <h4 class="s-creator">Admin:</h4>
+    <h4 class="s-creator">Admin:</h4> 
     <h4 class="s-org"> Organization:</h4>
     <h4 class="s-sport">Sport/Activity:</h4>
     <h4 class="s-period">Period:</h4>
@@ -41,21 +88,33 @@
      </h4>
     <h4 class="b-period"><%= @scoreboard.starts_at%> <b>to</b> <%= @scoreboard.ends_at %></h4>
     <h4 class="b-location"><%= @scoreboard.cities %> <%= @scoreboard.states%>, <%= @scoreboard.country %></h4>
-    <h4> </h4>
    </div>
+   
+   
  </div>
+ <% if current_user.favourite_scoreboards.include?(@scoreboard) %>
+  <%= link_to "unfollow", favourite_scoreboard_path(@scoreboard, type: "unfavourite", remote: true), method: :put, class: 'btn btn-primary un-follow' %>
+ <% else %>
+  <%= link_to "follow", favourite_scoreboard_path(@scoreboard, type: "favourite", remote: true), method: :put, class: 'btn btn-primary un-follow' %>
+ <% end %>
  
- <%= link_to "Follow", favourite_scoreboard_path(@scoreboard, type: "favourite"), method: :put, class: 'btn btn-primary un-follow' %>
- <%= link_to "unfollow", favourite_scoreboard_path(@scoreboard, type: "unfavourite"), method: :put, class: 'btn btn-primary invite-btn' %>
-
+ <% if @scoreboard.user == current_user %>
+ <%= link_to "Invite", new_scoreboard_invitation_path(@scoreboard, @invitation), class: 'btn btn-primary invite-btn' %>
+ <% end %>
 
 <div class="score-text">
  <%= @scoreboard.status %>
-</div> 
+</div>
+
+<% if @scoreboard.user == current_user %>
+
+<% end %>
+
 
 <div class="score-app">
   <span class= "score-app-button btn btn-primary"> Score </span>
-  <span class= "add-new-team-button btn btn-primary">Add New team</span>
+  <span class= "schedule-app-button btn btn-primary"> Schedules</span>
+ <div class= "app-score-div">
   
   <div class= "app-header">
      <div class="boxing"> Team Name </div>
@@ -63,47 +122,39 @@
      <div class="boxing2"> Losses </div>
      <div class="boxing2"> Ties</div>
      <div class="boxing2">Win %</div>
-   </div>
-     
-    <div class="all-teams"> 
+  </div>
+  
+  <div class="all-teams"> 
       <%= render @scoreboard.teams.reject(&:new_record?) %>
-    </div>
-     <div class= "new-team-form">
-     
+  </div>
+    
+  <div class= "new-team-form">
         <%= form_for [@scoreboard, @team], remote: true, :html => { :id => 'new-team-entry' } do |f| %>
         <%= render 'shared/error_messages', object: f.object %>
-      
         <%= render 'teams/teamsform', :f => f %>
-            
-        <%= f.submit "Add", class: " form-3 btn btn-primary" %>
-                
+        <%= f.submit "Add", :data => {:disable_with => "Saving..."}, class: "form-3 btn btn-primary" %>
         <% end %>
-        <span class= "done-add btn btn-primary"> Finish Adding </span>
-        
-     </div> 
+  </div> 
      
-</div>
-
-<% if @scoreboard.user == current_user %>
- <button type= "button" class="btn btn-primary prof-update" data-toggle="modal"
-  data-target="#modal-1">Update Profile</button> 
-    <div class="modal" id="modal-1">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header"> Please Upload your Picture</div>
-          <%= image_tag @scoreboard.picture.url if @scoreboard.picture? %>
-          <div class="modal-body"> 
-          <%= form_for(@scoreboard, html: {multipart: true}) do |f| %>
-          <%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png' %>
-          <%= f.submit "Update" %>
-          <%end%>
-          </div>
-          <div class="modal-footer"> Click Anywhere Outside the box to Cancel</div>
-        </div>
+ </div>
+ 
+ <div class= "app-schedule-div">
+  
+      <div class= "new-schedule-form">
+        <%= form_for [@scoreboard, @schedule], remote: true, :html => { :id => 'new-schedule-entry' } do |f| %>
+        <%= render 'shared/error_messages', object: f.object %>
+        <%= render 'schedules/schedulesform', :f => f %>
+        <%= f.submit "Add", :data => {:disable_with => "Saving..."},  class: " schedule-submit-button btn btn-primary" %>
+        <% end %> 
       </div>
+      
+    <div class="all-schedules"> 
+      <%= render @scoreboard.schedules.reject(&:new_record?) %>
     </div>
-<% end %>
-
+  
+    
+ </div>
+</div>
 
 <div class= "comment-section">
  
@@ -115,13 +166,10 @@
        
        <%= f.hidden_field :parent_id %>
             
-        <%= f.submit "Join the discussion...", class: " comment-button btn btn-primary" %>
+        <%= f.submit "Join the discussion...",:data => {:disable_with => "Uploading Comment..."}, class: " comment-button btn btn-primary" %>
                 
         <% end %>
         
- 
-  
-
 <%= nested_comments @scoreboard.comments.arrange(:order => :created_at) %>
 
 
@@ -129,6 +177,368 @@
  </div>
 
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

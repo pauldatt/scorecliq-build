@@ -10,7 +10,7 @@
           });
           </script>
           
-        <h1>Create your scoreboard.</h1>
+        <h2>Create New Scoreboard</h2>
           
          <%= form_for(@scoreboard) do |f| %>
          
@@ -18,7 +18,7 @@
          
          <%= render 'scoreboardform', :f => f %>
          
-         <%= f.submit "Create", class: "btn btn-primary" %>
+         <%= f.submit "Create", :data => {:disable_with => "Creating Scoreboard..."}, class: "btn btn-primary" %>
          
          <% end %>
     

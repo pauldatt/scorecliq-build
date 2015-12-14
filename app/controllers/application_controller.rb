@@ -15,6 +15,18 @@ class ApplicationController < ActionController::Base
     end
   end
   
+  #this method is one of the ones added to help out if a resource is not found 
+  #while initially added for mailboxer, this could work for anything
+  rescue_from ActiveRecord::RecordNotFound do
+   flash[:warning] = 'Resource not found.'
+   redirect_back_or root_path #root path occurs when referer field is not valid
+  end
+
+   #this method works in conjunction with rescue_from in order to make redirects
+  def redirect_back_or(path)
+   redirect_to request.referer || path
+  end
+  
   
 end
 

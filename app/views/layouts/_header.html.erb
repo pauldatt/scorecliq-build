@@ -1,11 +1,12 @@
 <% if logged_in? %>
   <header class="navigation navbar navbar-fixed-top navbar navbar-default nav-tabs">
     <div class="container">
-      <%= link_to "ScoreBoard", home_path, id:"logo" %>
+      <%= link_to "Scorecliq", home_path, id:"logo" %>
           <ul class="navigation nav navbar-nav navbar-right nav-tabs">
             <li><%= link_to "Home", home_path %> </li>
             <li><%= link_to " Profile", current_user %></li>
             <li><%= link_to "Search", users_path %></li>
+            <li><%= link_to 'Your Conversations', conversations_path %></li>
             <li class="dropdown">
              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               Account <b class="caret"></b> </a>

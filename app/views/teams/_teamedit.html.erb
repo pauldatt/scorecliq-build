@@ -4,7 +4,7 @@
       
  <%= render 'teams/teamsform', :f => f %>
             
- <%= f.submit "update", class: " form-3 btn btn-primary" %>
+ <%= f.submit "update",:data => {:disable_with => "Updating..."}, class: " form-3 btn btn-primary" %>
                 
 <% end %>
 

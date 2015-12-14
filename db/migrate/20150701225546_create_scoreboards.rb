@@ -10,6 +10,8 @@ class CreateScoreboards < ActiveRecord::Migration
     end
     add_foreign_key :scoreboards, :users
     add_index :scoreboards, [:user_id, :created_at]
+    # adding index to make the query fast
+    # index is added on the scoreboards table on the user_id column and created_at column
   end
 end
 
