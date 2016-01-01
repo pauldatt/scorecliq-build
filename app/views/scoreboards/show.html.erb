@@ -1,14 +1,16 @@
 <div class= "score-show-contain">
  
- <div class="div-show-left">
-   <%= link_to "My Scoreboards", scoreboards_path , class: 'btn btn-primary back-my-score' %>
-   <div class="member-list">
-     <p> Following member count: <%= @scoreboard.favourited_by.count %> </p>
-     <% @scoreboard.favourited_by.each do |user| %> 
-     <%= link_to "#{user.name}", user_path(user) %> <br></br>
-     <% end %>
-   </div>
-   
+<div class="div-show-left">
+ <%= link_to "My Scoreboards", scoreboards_path , class: 'btn btn-primary back-my-score' %>
+ <div class="member-list">
+  <%= render 'followingmodal' %>
+    
+  <%= render 'pictures/editphoto' %>
+    
+   <%= social_share_button_tag %>
+    
+</div>
+  
    <div class="show-filler-div"> 
     <div class="score-app-options">
       <ul class="score-options-menu">
@@ -26,12 +28,11 @@
     <div class= "schedule-app-options">
       <ul class="schedule-options-menu">
        <li class= "schedule-options-div">Schedule Options</li>
-       <li class= "add-new-schedule-button btn btn-primary orig2">Add to Schedule</li>
+       <li class= "orig2 btn btn-primary" id="add-match"> Add Match to Schedule </li>
        <li class= "edit-schedule-button btn btn-primary orig2"> Edit/Delete Schedules</li>
        <li class= "orig2">
          <%= link_to "Reset Schedules", deleteschedules_scoreboard_path(@scoreboard), class: 'reset-schedule-button btn btn-primary',:data => {:confirm => 'Are you sure? This action cannot be reversed'} %>   
        </li>
-       <li class= "finish-adding-schedule-button btn btn-primary"> Finish Adding to Schedule</li>
        <li class= "finish-edit-schedule-button btn btn-primary"> Finish Edit/Del</li>
       </ul>
      
@@ -40,32 +41,25 @@
    </div>
  </div>
  
- 
- 
  <h3 class="score-title">
-  <%= @scoreboard.name_of_scoreboard %> <%= link_to "Delete", [@pictureable, @picture], method: :delete, data: {confirm: "Are you sure!"} %>
+  <%= @scoreboard.name_of_scoreboard %> <%= link_to "Delete Photo", [@pictureable, @picture], method: :delete, data: {confirm: "Are you sure you want to delete your picture!"}, class: "btn btn-primary" %>
  </h3>
  
  <div class= "prof-bio">
    <div class="score-prof">
-   </div>
-   <div>
+  </div>
+ <div>
+ 
      <div>
-      <% if @picture.picture.url.present? %>
-      <div class="dropdown">
-        <div id="pictureframe" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
-         <ul class="dropdown-menu">
-          <li><%= link_to "Remove" %></li>
-        </ul>
-         <%# image_tag @picture.picture.url %>
-        </div>
-      </div>
-      
-      <% else %>
-        <%= render 'pictures/uploadphoto' %>
-      <% end %>  
+       <% if @picture.picture.url.present? %>
+         <div id="pictureplacement">
+           <%= image_tag @picture.picture.url %>
+         </div>
+        <% else %>
+           <%= render 'pictures/uploadphoto' %>
+        <% end %>  
      </div>
-   </div>
+   </div> 
  
    
    <div class="s-labels">
@@ -78,7 +72,7 @@
    
    <div class="bios-labels">
     <h4 class="b-creator">
-      <%=@scoreboard.user.name %>
+      <%= link_to "#{@scoreboard.user.name}", user_path(@scoreboard.user) %>
     </h4>
     <h4 class="b-org"> 
       <%=@scoreboard.name_of_organization %>
@@ -102,13 +96,27 @@
  <%= link_to "Invite", new_scoreboard_invitation_path(@scoreboard, @invitation), class: 'btn btn-primary invite-btn' %>
  <% end %>
 
-<div class="score-text">
- <%= @scoreboard.status %>
-</div>
-
 <% if @scoreboard.user == current_user %>
-
+<div class="statuscontent">
+ <%= render 'statusedit' %>
+</div>
 <% end %>
+
+<% if @scoreboard.status.content.present? && @scoreboard.user != current_user %>
+<div class="statuscontent">
+ <%= @scoreboard.status.content %>
+ </div>
+<% end %>
+
+<% if @scoreboard.status.content.present? == false && @scoreboard.user != current_user %>
+<div class="statuscontent">
+ <p>No status</p>
+ </div>
+<% end %>
+
+
+
+
 
 
 <div class="score-app">
@@ -130,7 +138,6 @@
     
   <div class= "new-team-form">
         <%= form_for [@scoreboard, @team], remote: true, :html => { :id => 'new-team-entry' } do |f| %>
-        <%= render 'shared/error_messages', object: f.object %>
         <%= render 'teams/teamsform', :f => f %>
         <%= f.submit "Add", :data => {:disable_with => "Saving..."}, class: "form-3 btn btn-primary" %>
         <% end %>
@@ -139,44 +146,71 @@
  </div>
  
  <div class= "app-schedule-div">
-  
-      <div class= "new-schedule-form">
-        <%= form_for [@scoreboard, @schedule], remote: true, :html => { :id => 'new-schedule-entry' } do |f| %>
-        <%= render 'shared/error_messages', object: f.object %>
-        <%= render 'schedules/schedulesform', :f => f %>
-        <%= f.submit "Add", :data => {:disable_with => "Saving..."},  class: " schedule-submit-button btn btn-primary" %>
-        <% end %> 
-      </div>
-      
     <div class="all-schedules"> 
-      <%= render @scoreboard.schedules.reject(&:new_record?) %>
+        <%= render @schedules %>
+        <%= will_paginate @schedules %>
     </div>
-  
-    
+   
  </div>
+ 
 </div>
 
 <div class= "comment-section">
  
-  <%= form_for [@scoreboard, @comment] do |f| %> 
+  <%= form_for [@scoreboard, @comment], :html => { :id => "new-comment-entry" } do |f| %> 
          
-        <%= render 'shared/error_messages', object: f.object %>
-      
+       <%= render 'shared/error_messages', object: f.object %>
        <%= f.text_area :body, class: "comment-field" %>
-       
        <%= f.hidden_field :parent_id %>
-            
-        <%= f.submit "Join the discussion...",:data => {:disable_with => "Uploading Comment..."}, class: " comment-button btn btn-primary" %>
-                
-        <% end %>
+       <%= f.submit "Join the discussion...",:data => {:disable_with => "Uploading Comment..."}, class: " comment-button btn btn-primary" %>
+  <% end %>
         
-<%= nested_comments @scoreboard.comments.arrange(:order => :created_at) %>
-
-
-
+  <%= nested_comments @scoreboard.comments.arrange(:order => "created_at DESC") %>
  </div>
+ 
+  <!-- Below is the modal which is used to input the schedules.  -->
+  
+ <div class="modal" id="match-modal">
+    <div class="modal-dialog">
+          <div class="modal-content">
+           
+             <div class="modal-header">
+              Note: Team matches are automatically sorted according to the date of match. 
+             </div>
+             
+             <div class="modal-body">
+                 <div class="schedule-save-message"> The match has been added to Schedules</div>
+                <%= form_for [@scoreboard, @schedule], remote: true, :html => { :id => 'new-schedule-entry' } do |f| %>
+                <%= render 'shared/error_messages', object: f.object %>
+                <%= render 'schedules/schedulesform', :f => f %>
+                <%= f.submit "Add", :data => {:disable_with => "Saving..."},  class: " schedule-submit-button btn btn-primary" %>
+                <% end %> 
+             </div>
+             
+             <div class="modal-footer">
+              Click anywhere to cancel
+             </div>
+             
+          </div>
+    </div>
+</div>
+
+  <div class="modal" id="error-message-modal">
+   <div class="modal-dialogue">
+    <div class="modal-content">
+     <div class="modal-header"> Error!</div>
+     <div class="modal-body" id="modal-errors">
+      
+     </div>
+     <div class="modal-footer"> Click Anywhere outside this box to cancel</div>
+    </div>
+   </div>
+  </div>
+ 
 
 </div>
+
+
 
 
 

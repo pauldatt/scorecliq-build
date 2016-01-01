@@ -1,0 +1,3 @@
+$("#modal-errors").html("<%= j render partial: "team_errors" %>");
+$("#error-message-modal").modal();
+$('#edit_team_<%=@team.id%>').listview('refresh');

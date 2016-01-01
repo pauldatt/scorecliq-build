@@ -27,8 +27,10 @@ class ScoreboardsController < ApplicationController
   @team = @scoreboard.teams.build
   @comment = @scoreboard.comments.new
   @schedule = @scoreboard.schedules.build
+  @schedules= @scoreboard.schedules.paginate(page: params[:page], per_page: 10)
   @pictureable = @scoreboard
   @picture =  @pictureable.picture || @pictureable.build_picture
+  @status =  @scoreboard.status || @scoreboard.build_status
  end
  
  
@@ -98,12 +100,14 @@ class ScoreboardsController < ApplicationController
    flash[:notice] = "No action"
   end
  end
+ 
+
 
 private
 
  def scoreboard_params
   params.require(:scoreboard).permit(:name_of_scoreboard, :name_of_organization, 
-                 :name_of_activity, :starts_at, :ends_at, :cities, :states, :country, :status ) # make sure the name of the parameters match with 
+                 :name_of_activity, :starts_at, :ends_at, :cities, :states, :country) # make sure the name of the parameters match with 
                                     # the exact names written in the scoreboard model.
  end
  

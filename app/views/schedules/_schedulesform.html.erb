@@ -1,15 +1,17 @@
-<div class="schedule-teams-entry">
+  <%= f.label :Please_Select_First_Team %>
   <%= f.text_field :team1, class: "team1-form", placeholder: "Enter  First Team name"  %>
-<div class="schedule-teams-vs"> vs </div>
+  <%= f.label :Please_Select_Second_Team %>
   <%= f.text_field :team2, class: "team2-form", placeholder: "Enter Second Team Name" %>
-</div>
-               
-<div class="schedule-detail-entry">
-  <%= f.text_area :detail , class: "schedule-detail-form" %>
-</div>
-           
-           
+  <%= f.label :Please_Select_the_Date_for_the_Match %>
+  <%= f.date_select :match_date %>
+  <%= f.label :Please_type_the_time_of_the_match %>
+  <%= f.text_field :match_time, placeholder: "e.g 2:30pm or N/A" %>
+  <%= f.label :Type_any_notes_for_the_players %>
+  <%= f.text_area :detail , class: "schedule-detail-form", placeholder: "e.g messages, match score or N/A" %>
 
+           
+           
+           
   
   
   

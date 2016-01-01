@@ -1,4 +1,6 @@
 class Scoreboard < ActiveRecord::Base
+  before_create :associate_status
+
   # each scoreboard is created by a user
   belongs_to :user
   
@@ -9,23 +11,29 @@ class Scoreboard < ActiveRecord::Base
   has_many :comments, dependent: :destroy
   
   # sets up the relationship with the favourites(join) table
-  has_many :favourites
+  has_many :favourites, dependent: :destroy
  
   #allows you to access the users associated with the favourited scoreboards
-  has_many :favourited_by, through: :favourites, source: :user
+  has_many :favourited_by, through: :favourites, source: :user, dependent: :destroy
   
   #each scoreboard has many sent invitations
-  has_many :sent_invitations, :class_name => "Invitation"
+  has_many :invitations
   
   #each scoreboard can have many schedules on it 
-  has_many :schedules 
+  has_many :schedules, dependent: :destroy
   
   default_scope -> { order(created_at: :desc) }
   
   #each scoreboard has one picture
   has_one :picture, as: :pictureable
   
-
+  #each scoreboard has one status
+  has_one :status, dependent: :destroy
+  
+  def associate_status
+      self.build_status(:content => "Click here to upload Status")
+  end
+  
   # Scoreboard information Validation
   validates :name_of_scoreboard, presence: true, length: { maximum: 50 }
   validates :name_of_organization, presence: true, length: { maximum: 50 } 

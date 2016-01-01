@@ -1,9 +1,5 @@
 Rails.application.routes.draw do
   
-  get 'friendships/create'
-
-  get 'friendships/destroy'
-
   root                'static_pages#home'
   get    'help'    => 'static_pages#help'
   get    'about'   => 'static_pages#about'
@@ -43,7 +39,8 @@ Rails.application.routes.draw do
    resources :comments
    resources :teams, only: [:edit, :create, :destroy, :update]
    resources :schedules 
-   resources :pictures
+   resources :pictures, only: [:create, :update, :destroy]
+   resources :statuses, only: [:create, :update]
   end
   
   resources :friendships do

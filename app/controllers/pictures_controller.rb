@@ -13,9 +13,21 @@ def create
     end
 end
 
+def update
+    @picture = @pictureable.picture
+    if @picture.update_attributes(picture_params)
+        redirect_to @pictureable
+        flash[:success] = "Picture updated successfully"
+    else
+        render 'scoreboards/show'
+    end
+end
+
 
 def destroy
     @pictureable.picture.delete
+    redirect_to @pictureable
+    flash[:success] = "Picture Removed"
 end
     
 

@@ -1,14 +1,14 @@
 
-  <%= f.text_field :name, class: "form-1", placeholder: "Enter name"  %>
+  <%= f.text_field :name, required: true, class: "form-1", placeholder: "Enter name"  %>
                
 
-  <%= f.number_field :win, min: 0, class: "form-2", placeholder: "0"  %>
+  <%= f.number_field :win, min: 0, max: 100000000, class: "form-2", placeholder: "0"  %>
                
 
-  <%= f.number_field :loss, min: 0, class: "form-2", placeholder: "0" %>
+  <%= f.number_field :loss, min: 0, max: 100000000, class: "form-2", placeholder: "0" %>
            
            
-  <%= f.number_field :tie, min: 0, class: "form-2", placeholder: "0" %>
+  <%= f.number_field :tie, min: 0, max: 100000000, class: "form-2", placeholder: "0" %>
   
   
   

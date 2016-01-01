@@ -1,16 +1,23 @@
 class TeamsController < ApplicationController
-
+   def new
+    @scoreboard= Scoreboard.find(params[:scoreboard_id])
+    @team= @scoreboard.teams.build
+   end 
+   
    def create
      @scoreboard = Scoreboard.find(params[:scoreboard_id])
      @team = @scoreboard.teams.build(team_params)
      if @team.save
         respond_to do |format|
-         format.html {redirect_to scoreboard_url(@team.scoreboard_id)}
+         format.html {redirect_to scoreboard_url(@schedule.scoreboard_id)}
          format.js
         end
         #this allows the controller to respond to the ajax request that was made by the form.
      else
-      render 'new'
+      respond_to do |format|
+         format.html { render action: "new" }
+         format.js
+      end
      end
    end
      
@@ -20,8 +27,8 @@ class TeamsController < ApplicationController
     @scoreboard = Scoreboard.find(params[:scoreboard_id])
     @team = @scoreboard.teams.find(params[:id])
     respond_to do |format|
-         format.html {redirect_to scoreboard_url(@team.scoreboard_id)}
-         format.js
+     format.html {redirect_to scoreboard_url(@schedule.scoreboard_id)}
+     format.js
      end
    end
    
@@ -30,25 +37,26 @@ class TeamsController < ApplicationController
     @team = @scoreboard.teams.find(params[:id])
     if @team.update_attributes(team_params)
      respond_to do |format|
-         format.html {redirect_to scoreboard_url(@team.scoreboard_id)}
+         format.html {redirect_to scoreboard_url(@schedule.scoreboard_id)}
          format.js
      end
     else
-     render 'edit'
+      respond_to do |format|
+         format.html {redirect_to scoreboard_url(@schedule.scoreboard_id)}
+         format.js { render action: "update_error" }
+     end
     end
    end
    
    #Delete
    
    def destroy
-     @scoreboard = Scoreboard.find(params[:scoreboard_id])
-     @team = Team.find(params[:id]) 
-     if @team.destroy
+     @team = Team.find(params[:id])
+     @team.destroy
        respond_to do |format|
-         format.html {redirect_to scoreboard_url(@scoreboard)} 
+         format.html {redirect_to scoreboard_url(@schedule.scoreboard_id)}
          format.js
        end
-     end
    end
    
    private 

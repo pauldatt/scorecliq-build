@@ -1,0 +1,3 @@
+$("#modal-errors").html("<%= j render partial: "schedule_errors" %>");
+$("#error-message-modal").modal();
+$('#edit_team_<%=@schedule.id%>').listview('refresh');

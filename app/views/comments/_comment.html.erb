@@ -2,9 +2,13 @@
  <p> Posted by <%= link_to "#{comment.user.name}", comment.user %>
    <%= time_ago_in_words(comment.created_at) %> ago
  </p>
- <div class="comment-body"> 
+ <div class="comment-body" id="comment-<%= comment.id %>">
+  <% if comment.parent.present? %>
+  <p>@the parent user </p> 
+  <% end %>
   <%= comment.body %>
-  <%= link_to "Reply", new_scoreboard_comment_path(@scoreboard, comment, :parent_id => comment) %> 
+  <%= link_to "Reply", new_scoreboard_comment_path(@scoreboard, comment, parent_id: comment.id, js: true), remote: true %> |
+  <%= link_to "Delete", scoreboard_comment_path(@scoreboard, comment), :data => {:confirm => 'Delete Message?'}, method: :delete %>
  </div>
 </div>
 

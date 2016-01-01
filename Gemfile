@@ -21,6 +21,8 @@ gem 'ancestry',                '~> 2.1.0'
 gem 'mailboxer'
 gem 'jquery-ui-rails'
 gem 'jquery-turbolinks',       '~> 2.1.0'
+gem 'best_in_place', '~> 3.0.1'
+gem 'social-share-button', '~> 0.1.6'
 
 group :development, :test do
   gem 'sqlite3',     '1.3.9'

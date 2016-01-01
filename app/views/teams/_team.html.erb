@@ -14,7 +14,7 @@
  
 <% if @scoreboard.user == current_user %> 
  <span class= "boxin3"><%= link_to "Edit", edit_scoreboard_team_path(@scoreboard, team), :data => {:disable_with => "..."}, remote: true, class: "btn btn-primary" %> </span>
- <span class= "boxin3"><%= link_to "Del", scoreboard_team_path(@scoreboard, team), :data => {:disable_with => "..."}, remote: true, method: :delete, class: "btn btn-primary" %> </span>
+ <span class= "boxin3"><%= link_to "Del", scoreboard_team_path(@scoreboard, team), remote: true, method: :delete, class: "btn btn-primary" %> </span>
 <% end %>                                                                                                                             
 
 </div>

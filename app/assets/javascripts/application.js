@@ -11,21 +11,17 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery.purr
+//= require best_in_place
+//= require best_in_place.purr
 //= require jquery.turbolinks
 //= require jquery_ujs
 //= require jquery-ui
 //= require bootstrap
 //= require turbolinks
+//= require social-share-button
 //= require_tree.
 
-$(document).ready(function(){
-    $(".score-text").mouseover(function(){
-      $(this).css('background', '#C0C0C0');
-    });
-     $(".score-text").mouseleave(function(){
-      $(this).css('background', '#FFFFFF');
-    });
- });
 
 // the following code is for the flash messages
 $(document).ready(function(){ 
@@ -99,25 +95,15 @@ $(document).ready(function (){
  
  //score app  code ends 
  
- //the following codes after this line make the schedule app work 
+ //the following codes after this line make the schedule app work & includes code to make modal work 
+ //the code to make the pagination work is also included 
  
- $(document).ready(function (){ 
-      $(".add-new-schedule-button").on("click", function(){
-        $(".orig2").hide(300);
-        $(".finish-adding-schedule-button").show(300);
-        $(".new-schedule-form").show();
-        $(".team1-form").focus();
+$(document).ready(function(){
+    $("#add-match").click(function(){
+        $("#match-modal").modal();
     });
 });
-
-$(document).ready(function(){
-    $(".finish-adding-schedule-button").on("click", function(){
-          $(".finish-adding-schedule-button").hide();
-          $(".new-schedule-form").hide();
-          $(".orig2").show(300);
-      });
-});
-
+ 
 $(document).ready(function(){
       $(".edit-schedule-button").on("click", function(){
           $(".orig2").hide();
@@ -133,22 +119,33 @@ $(document).ready(function(){
           $(".sched-buttons").hide(300);
       });
  });
+ 
+
+$(function(){
+  $(".all-schedules").on("click", ".pagination a", function(){
+    $.getScript(this.href);
+    return false;
+  });
+});
+
+
 // the code for the schedule app ends here  
 
 
 
-// below is the js for images
- 
- $(document).ready(function(){
-     $("#files").change(function(){
-         $("#modal-1").modal('show');
-     });
+// Below is the code for images. The code makes the images appear inside the modal
+
+$(document).ready(function(){
+$('#files').on('change', function() {
+     var size_in_megabytes = this.files[0].size/1024/1024;
+     if (size_in_megabytes < 3) {
+      $("#picmodal").modal('show');
+     } else {
+        alert('Maximum file size is 3MB. Please choose a smaller file.');
+     }
  });
- 
- $(document).ready(function(){
-    $('#pictureframe').popover({html: true});   
 });
- 
+
 
 $(document).ready(function(){
     var preview = $(".upload-preview img");
@@ -160,9 +157,8 @@ $(document).ready(function(){
        reader.onload = function(e){
            $('#image')
                     .attr('src', e.target.result)
-                    .width(300)
-                    .height(300);
-
+                    .width(307)
+                    .height(317);
            image_base64 = e.target.result;
            preview.attr("src", image_base64);
        };
@@ -171,3 +167,9 @@ $(document).ready(function(){
     });
 });
 
+// below is the code for the status update in place editing
+$(document).ready(function(){
+    $(".best_in_place").best_in_place();
+});
+
+//below is the code for comments

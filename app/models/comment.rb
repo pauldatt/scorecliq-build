@@ -1,4 +1,5 @@
 class Comment < ActiveRecord::Base
+  
   has_ancestry 
   # each comment is created by a user
   belongs_to :user
@@ -6,5 +7,6 @@ class Comment < ActiveRecord::Base
   belongs_to :scoreboard
   
   
-  
+ validates :body, presence: true, length: { maximum: 140 }
+ 
 end

@@ -1,0 +1,10 @@
+<div id="comment_errors">
+    <div id="comment-error-header">
+        Please Fix the following errors:
+    </div>
+   <ul>
+    <% @comment.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+   <% end %>
+   </ul>
+</div>

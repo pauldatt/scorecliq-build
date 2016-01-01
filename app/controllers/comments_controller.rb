@@ -1,28 +1,33 @@
 class CommentsController < ApplicationController
+ 
     
     def new
      @scoreboard = Scoreboard.find(params[:scoreboard_id])
      @comment = @scoreboard.comments.new(:parent_id => params[:parent_id])
     end
+    
+   
    
     
     def create
      @scoreboard = Scoreboard.find(params[:scoreboard_id])
      @comment = @scoreboard.comments.new comment_params
-     if @comment.save
-         redirect_to scoreboard_url(@comment.scoreboard_id) 
-     else
-       render 'new'
+     respond_to do |format|
+      if @comment.save
+        format.html { redirect_to scoreboard_url(@comment.scoreboard_id) }
+      else
+       format.html  { 
+        redirect_to scoreboard_url(@comment.scoreboard_id)
+        flash[:success] = 'Comment cannot be blank and must be less than 140 characters'
+       }
+      end
      end
     end
     
-    def edit
-    end
-    
-    def update
-    end 
-    
     def destroy
+     @comment = Comment.find(params[:id])
+     @comment.destroy
+     redirect_to scoreboard_url(@comment.scoreboard_id)
     end
 
     

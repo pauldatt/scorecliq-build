@@ -2,12 +2,12 @@ class InvitationsController < ApplicationController
     
     def new
         @scoreboard = Scoreboard.find(params[:scoreboard_id])
-        @invitation = @scoreboard.sent_invitations.build
+        @invitation = @scoreboard.invitations.build
     end
     
     def create
     @scoreboard = Scoreboard.find(params[:scoreboard_id])
-    @invitation = @scoreboard.sent_invitations.build(invitation_params)
+    @invitation = @scoreboard.invitations.build(invitation_params)
     if @invitation.save
             @invitation = @invitation.recipient_email.split
             @invitation.each do |e|

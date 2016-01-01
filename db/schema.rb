@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151209160720) do
+ActiveRecord::Schema.define(version: 20151220193756) do
 
   create_table "comments", force: :cascade do |t|
     t.text     "body"
@@ -129,6 +129,8 @@ ActiveRecord::Schema.define(version: 20151209160720) do
     t.integer  "scoreboard_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+    t.date     "match_date"
+    t.string   "match_time"
   end
 
   add_index "schedules", ["scoreboard_id"], name: "index_schedules_on_scoreboard_id"
@@ -150,6 +152,15 @@ ActiveRecord::Schema.define(version: 20151209160720) do
 
   add_index "scoreboards", ["user_id", "created_at"], name: "index_scoreboards_on_user_id_and_created_at"
   add_index "scoreboards", ["user_id"], name: "index_scoreboards_on_user_id"
+
+  create_table "statuses", force: :cascade do |t|
+    t.text     "content",       default: "upload status"
+    t.integer  "scoreboard_id"
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
+  end
+
+  add_index "statuses", ["scoreboard_id"], name: "index_statuses_on_scoreboard_id"
 
   create_table "teams", force: :cascade do |t|
     t.string   "name"

@@ -1,0 +1,26 @@
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Following List: <%= @scoreboard.favourited_by.count %></button>
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <div class="modal-header" style="text-align: center"><h5>Following List</h5></div>
+      </div>
+      <div class="modal-body">
+      <ul>
+        <% @scoreboard.favourited_by.each do |user| %>
+        <% if user == @scoreboard.user %>
+         <button type="button" class="btn btn-default" id="admin">Admin: <%= link_to "#{user.name}", user_path(user) %>
+        <% else %>
+        <li><%= link_to "#{user.name}", user_path(user) %><p></li>
+        <% end %>
+        <% end %>
+      </ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+   

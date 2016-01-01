@@ -3,7 +3,7 @@ class Team < ActiveRecord::Base
   
   belongs_to :scoreboard
   
-  validates :name, presence: true, length: { maximum: 30 }
+  validates :name, presence: true, length: { maximum: 34 }
   
   private
   

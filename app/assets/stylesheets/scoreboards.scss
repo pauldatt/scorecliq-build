@@ -126,9 +126,6 @@
     min-height: 270px;
     max-height: 270px;
     top: 20px;
-    border-style: solid;
-    border-width: 2px;
-    border-color: #C0C0C0;
     padding: 20px;
     overflow: auto;
     border-radius: 5px;
@@ -179,9 +176,6 @@
                 height: 35px;
                 text-align: center;
                 background-color: #009AAB;
-            }
-            li.finish-adding-schedule-button{
-                display: none;
             }
             li.finish-edit-schedule-button{
                 display: none;
@@ -260,29 +254,43 @@
     height: 28px;
     width: 128px;
     bottom: 758px;
-    left: 863px;
+    left: 860px;
     font-size: 12px;
    
 }
 
-.score-text{
+.statuscontent{
     position: relative;
-    width: 874px;
-    height: 100px;
     border-style: solid;
     border-width: 2px;
     border-color: #C0C0C0;
-    border-radius: 5px;
-    bottom: 645px;
+    width: 875px;
+    height: 50px;
+    bottom: 640px;
     left: 248px;
-    .status-button{
-        position: absolute;
-        bottom: 0;
-        right: 0;
-    }
+    right: 70px;
+    
+}
+
+#admin {
+    position: absolute;
+    left: 33px;
+    right: 63px;
+    height: 42px;
+    bottom: 87px;
+    
 }
 
 
+#favouritedby {
+    position: relative;
+    left: -20px;
+    top: 50px;
+}
+
+#followinglist{
+    left: 50px;
+}
 
 /*My scoreboard show page the app css*/
 .score-app{
@@ -401,87 +409,89 @@
             display: none;
            }
     }
+    /* the following code is for the modal to submit schedules */ 
+    
     
     /* the following code is for the schedules */
     
     .app-schedule-div{
         position: relative;
         width: 840px;
-        height: 700px;
-        background-color: #EAEAEA;
         display: none;
         
-        .new-schedule-form{
-           position: relative;
-           display: none;
-           .schedule-teams-entry{
-            width: 50%;
-            height: 90px;
-            float: left;
-            margin-top: 10px; 
-           }
-           .schedule-teams-vs{
-            width: 100%;
-            height: 30px;
-            float: left;
-            text-align: center;
-           }
-           .schedule-detail-entry{
-            width: 40%;
-            height: 90px;
-            float: left;
-            margin-top: 10px;
-            .schedule-detail-form{
-            height: 100%;
-            }
-           }
-           .schedule-submit-button{
-            width: 10%;
-            float: left;
-            box-sizing: border-box;
-            text-align: center;
-            margin-top: 40px;
-           }
-        }
         .schedule-list{
             position: relative;
         .sched-box-1{
-            width: 50%;
-            height: 90px;
+            width: 90%;
+            height: 60px;
             float: left;
             margin-top: 10px;
             .sched-team1{
-            width: 100%;
+            width: 45%;
             height: 30px;
             float: left;
             border: 2px solid #C0C0C0;
             box-sizing: border-box;
             }
             .sched-vs{
-            width: 100%;
+            width: 10%;
             height: 30px;
             float: left;
             text-align: center;
             }
             .sched-team2{
-            width: 100%;
+            width: 45%;
+            height: 30px;
+            float: left;
+            border: 2px solid #C0C0C0;
+            box-sizing: border-box;
+            }
+            .sched-date-label{
+            width: 15%;
+            height: 30px;
+            float: left;
+            border: 2px solid #C0C0C0;
+            box-sizing: border-box;
+            }
+            .sched-date{
+            width: 20%;
+            height: 30px;
+            float: left;
+            border: 2px solid #C0C0C0;
+            box-sizing: border-box;
+            }
+            .sched-time-label{
+            width: 10%;
+            height: 30px;
+            float: left;
+            border: 2px solid #C0C0C0;
+            box-sizing: border-box;
+            }
+            .sched-time{
+            width: 10%;
+            height: 30px;
+            float: left;
+            border: 2px solid #C0C0C0;
+            box-sizing: border-box;
+            }
+            .sched-details-label{
+            width: 10%;
+            height: 30px;
+            float: left;
+            border: 2px solid #C0C0C0;
+            box-sizing: border-box;
+            }
+            .sched-details{
+            width: 35%;
             height: 30px;
             float: left;
             border: 2px solid #C0C0C0;
             box-sizing: border-box;
             }
         }
-        .sched-box-2{
-            width: 40%;
-            height: 90px;
-            float: left;
-            border: 2px solid #C0C0C0;
-            box-sizing: border-box;
-            margin-top: 10px;
-        }
         .sched-buttons{
             width: 10%;
-            height: 90px;
+            height: 60px;
             float: left;
             margin-top: 10px;
             display: none;
@@ -495,6 +505,13 @@
         }
     }
     
+}
+
+/* the following code is for the schedule form modal */
+
+.schedule-save-message{
+    display: none;
+    color: blue;
 }
 
 /* scoreboard picture on show page */
@@ -522,7 +539,35 @@
     float: top;
     margin-top: -175px;
     cursor: pointer;
+    border: 5px solid blue;
+    position: absolute;
 }
+
+
+#picturetext{
+    text-align: center;
+}
+
+#pictureplacement{
+    width: 203px;
+    height: 174px;
+    position: absolute;
+    float: top;
+    margin-top: -176px;
+    border-radius: 25px;
+}
+
+#pictureplacement:hover{
+    width: 203px;
+    height: 174px;
+    position: absolute;
+    float: top;
+    margin-top: -176px;
+    cursor: pointer;
+    border-radius: 25px;
+    
+}
+
 
 
 
@@ -547,7 +592,7 @@
     .comment-div{
         position: relative;
         width: 849px;
-        height: 120px;
+        min-height: 120px;
         padding: 10px;
         border: 2px solid #C0C0C0;
         margin: 5px;
@@ -563,11 +608,24 @@
 
 }
 
-#picturetext{
-    text-align: center;
+.hidden-reply-form{
+    display: none;
 }
 
+.nested_messages {
+  margin-left: 30px;
+}
 
-
+.purr{
+    position: fixed;
+    top: 276px;
+    right: 80px;
+    width: 360px;
+    font-weight: bold;
+    color: #C66;
+    text-transform: capitalize;
+    &:first-letter {text-transform: uppercase;}
+    
+}
 
 
