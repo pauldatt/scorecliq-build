@@ -93,7 +93,7 @@
  <% end %>
  
  <% if @scoreboard.user == current_user %>
- <%= link_to "Invite", new_scoreboard_invitation_path(@scoreboard, @invitation), class: 'btn btn-primary invite-btn' %>
+ <%= link_to "Invite", new_invitation_path(scoreboard_id: @scoreboard.id), class: 'btn btn-primary invite-btn' %>
  <% end %>
 
 <% if @scoreboard.user == current_user %>

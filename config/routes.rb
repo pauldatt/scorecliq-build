@@ -35,13 +35,15 @@ Rails.application.routes.draw do
       get :deleteteams
       get :deleteschedules
     end
-   resources :invitations, only: [:new, :create]
    resources :comments
    resources :teams, only: [:edit, :create, :destroy, :update]
    resources :schedules 
    resources :pictures, only: [:create, :update, :destroy]
    resources :statuses, only: [:create, :update]
   end
+  
+  resources :invitations, only: [:new, :create]
+  
   
   resources :friendships do
     member do

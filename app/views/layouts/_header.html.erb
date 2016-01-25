@@ -1,7 +1,7 @@
 <% if logged_in? %>
-  <header class="navigation navbar navbar-fixed-top navbar navbar-default nav-tabs">
+  <header class="navigation navbar navbar-fixed-top navbar navbar-default nav-tabs master-header">
     <div class="container">
-      <%= link_to "Scorecliq", home_path, id:"logo" %>
+      <%= link_to "scorecliq", home_path, id:"logo" %>
           <ul class="navigation nav navbar-nav navbar-right nav-tabs">
             <li><%= link_to "Home", home_path %> </li>
             <li><%= link_to " Profile", current_user %></li>
@@ -23,7 +23,7 @@
 <% else %>
   <header class="navigation navbar navbar-fixed-top navbar navbar-default nav-tabs ">
     <div class="container">
-      <%= link_to "ScoreBoard", root_path, id:"logo" %>
+      <%= link_to "scorecliq", root_path, id:"logo" %>
           <ul class="navigation nav navbar-nav navbar-right nav-tabs">
             <li><%= link_to "Home", root_path %></li>
             <li><%= link_to "Sign-Up", signup_path  %></li>

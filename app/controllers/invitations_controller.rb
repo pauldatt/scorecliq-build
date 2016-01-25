@@ -1,34 +1,59 @@
 class InvitationsController < ApplicationController
+    before_action :pick_emails, only: :create
     
     def new
         @scoreboard = Scoreboard.find(params[:scoreboard_id])
-        @invitation = @scoreboard.invitations.build
+        @invitation= Invitation.new 
+        @invitations = []
+        2.times do 
+            @invitations << Invitation.new
+        end
     end
     
     def create
     @scoreboard = Scoreboard.find(params[:scoreboard_id])
-    @invitation = @scoreboard.invitations.build(invitation_params)
-    if @invitation.save
-            @invitation = @invitation.recipient_email.split
-            @invitation.each do |e|
-                UserMailer.send_invitation_email(@scoreboard, @invitation, @split_email, e).deliver_now
-            end
-            flash[:success] = "Invitation sent successfully"
-            redirect_to new_scoreboard_invitation_path
-        else
-            render 'new'
+     @emails.each do |email|
+     UserMailer.send_invitation(@scoreboard, email).deliver_now
+     end
+     if @errors.empty?
+      redirect_to new_invitation_path(scoreboard_id: @scoreboard.id)
+      flash[:success] = "Invitations made"
+     end 
     end
-    end
-end
+   
+  
 
 
 private
 
 
-def invitation_params
-    params.require(:invitation).permit(:recipient_email)
+    def invitation_params(invite_params)
+       invite_params.permit(:recipient_email)
+    end
+    
+    VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+
+    def pick_emails
+       @emails= []
+       @errors=[]
+       params["invites"].each do |invite|
+        if valid_email?(invite[:recipient_email])
+            @emails << invite[:recipient_email]
+        else if !valid_email?(invite[:recipient_email]) && (invite[:recipient_email] != "")
+            @errors << invite[:recipient_email]
+        end
+        end
+       end
+    end
+
+    
+    def valid_email?(email)
+        (email != "")&&(email =~ VALID_EMAIL_REGEX )
+    end
+
+
+    
+
+
+
 end
-
-
-
-

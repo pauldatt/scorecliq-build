@@ -16,9 +16,6 @@ class Scoreboard < ActiveRecord::Base
   #allows you to access the users associated with the favourited scoreboards
   has_many :favourited_by, through: :favourites, source: :user, dependent: :destroy
   
-  #each scoreboard has many sent invitations
-  has_many :invitations
-  
   #each scoreboard can have many schedules on it 
   has_many :schedules, dependent: :destroy
   

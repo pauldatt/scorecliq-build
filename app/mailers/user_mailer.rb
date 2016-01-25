@@ -20,10 +20,9 @@ class UserMailer < ApplicationMailer
     mail to: user.email, subject: "Password reset"
   end
   
-  def send_invitation_email(scoreboard, invitation, split_email, e )
-     @scoreboard = scoreboard
-     @invitation = invitation
-     mail(:to => invitation)
+  def send_invitation(scoreboard,email)
+    @scoreboard = scoreboard
+    mail to: email, subject: "Invitation"
   end
      
 end

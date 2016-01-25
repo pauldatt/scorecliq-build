@@ -1,0 +1,9 @@
+<p> Oops there were some errors!</p>
+<p> 
+The following emails were not sent 
+
+<%= @errors %>
+
+</p>
+
+<p> <%= link_to "Go back to Invites", new_invitation_path(scoreboard_id: @scoreboard.id) , class: 'btn btn-primary' %></p>
