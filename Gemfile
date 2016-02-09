@@ -23,9 +23,10 @@ gem 'jquery-ui-rails'
 gem 'jquery-turbolinks',       '~> 2.1.0'
 gem 'best_in_place', '~> 3.0.1'
 gem 'social-share-button', '~> 0.1.6'
+gem 'pg_search'
 
 group :development, :test do
-  gem 'sqlite3',     '1.3.9'
+  gem 'pg',             '0.17.1'
   gem 'byebug',      '3.4.0'
   gem 'web-console', '2.0.0.beta3'
   gem 'spring',      '1.1.3'

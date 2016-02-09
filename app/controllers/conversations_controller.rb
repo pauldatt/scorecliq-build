@@ -8,6 +8,8 @@ class ConversationsController < ApplicationController
  def index
     if @box.eql? "inbox"
       @conversations = @mailbox.inbox
+    elsif @box.eql? "sent"
+      @conversations = @mailbox.sentbox
     else
       @conversations = @mailbox.trash
     end
@@ -61,7 +63,7 @@ class ConversationsController < ApplicationController
   end
 
   def get_box
-    if params[:box].blank? or !["inbox","trash"].include?(params[:box])
+    if params[:box].blank? or !["inbox","sent","trash"].include?(params[:box])
       params[:box] = 'inbox'
     end
     @box = params[:box]

@@ -35,11 +35,7 @@ class ScoreboardsController < ApplicationController
  
  
   def index
-    if params[:search]
-      @scoreboards = Scoreboard.all.search(params[:search])
-    else
-      @scoreboards = current_user.scoreboards
-    end
+      @scoreboards = current_user.scoreboards.paginate(:page => params[:page], :per_page => 10)
   end
     
  #Update

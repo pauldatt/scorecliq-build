@@ -11,7 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151220193756) do
+ActiveRecord::Schema.define(version: 20160128031906) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "comments", force: :cascade do |t|
     t.text     "body"
@@ -22,9 +25,9 @@ ActiveRecord::Schema.define(version: 20151220193756) do
     t.string   "ancestry"
   end
 
-  add_index "comments", ["ancestry"], name: "index_comments_on_ancestry"
-  add_index "comments", ["scoreboard_id"], name: "index_comments_on_scoreboard_id"
-  add_index "comments", ["user_id"], name: "index_comments_on_user_id"
+  add_index "comments", ["ancestry"], name: "index_comments_on_ancestry", using: :btree
+  add_index "comments", ["scoreboard_id"], name: "index_comments_on_scoreboard_id", using: :btree
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
   create_table "favourites", force: :cascade do |t|
     t.integer  "user_id"
@@ -33,21 +36,21 @@ ActiveRecord::Schema.define(version: 20151220193756) do
     t.datetime "updated_at",    null: false
   end
 
-  add_index "favourites", ["scoreboard_id"], name: "index_favourites_on_scoreboard_id"
-  add_index "favourites", ["user_id", "scoreboard_id"], name: "index_favourites_on_user_id_and_scoreboard_id", unique: true
-  add_index "favourites", ["user_id"], name: "index_favourites_on_user_id"
+  add_index "favourites", ["scoreboard_id"], name: "index_favourites_on_scoreboard_id", using: :btree
+  add_index "favourites", ["user_id", "scoreboard_id"], name: "index_favourites_on_user_id_and_scoreboard_id", unique: true, using: :btree
+  add_index "favourites", ["user_id"], name: "index_favourites_on_user_id", using: :btree
 
   create_table "friendships", force: :cascade do |t|
-    t.string   "user_id"
-    t.string   "friend_id"
+    t.integer  "user_id"
+    t.integer  "friend_id"
     t.boolean  "approved"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_index "friendships", ["friend_id"], name: "index_friendships_on_friend_id"
-  add_index "friendships", ["user_id", "friend_id"], name: "index_friendships_on_user_id_and_friend_id", unique: true
-  add_index "friendships", ["user_id"], name: "index_friendships_on_user_id"
+  add_index "friendships", ["friend_id"], name: "index_friendships_on_friend_id", using: :btree
+  add_index "friendships", ["user_id", "friend_id"], name: "index_friendships_on_user_id_and_friend_id", unique: true, using: :btree
+  add_index "friendships", ["user_id"], name: "index_friendships_on_user_id", using: :btree
 
   create_table "invitations", force: :cascade do |t|
     t.string   "recipient_name"
@@ -57,7 +60,7 @@ ActiveRecord::Schema.define(version: 20151220193756) do
     t.datetime "updated_at",      null: false
   end
 
-  add_index "invitations", ["scoreboard_id"], name: "index_invitations_on_scoreboard_id"
+  add_index "invitations", ["scoreboard_id"], name: "index_invitations_on_scoreboard_id", using: :btree
 
   create_table "mailboxer_conversation_opt_outs", force: :cascade do |t|
     t.integer "unsubscriber_id"
@@ -65,8 +68,8 @@ ActiveRecord::Schema.define(version: 20151220193756) do
     t.integer "conversation_id"
   end
 
-  add_index "mailboxer_conversation_opt_outs", ["conversation_id"], name: "index_mailboxer_conversation_opt_outs_on_conversation_id"
-  add_index "mailboxer_conversation_opt_outs", ["unsubscriber_id", "unsubscriber_type"], name: "index_mailboxer_conversation_opt_outs_on_unsubscriber_id_type"
+  add_index "mailboxer_conversation_opt_outs", ["conversation_id"], name: "index_mailboxer_conversation_opt_outs_on_conversation_id", using: :btree
+  add_index "mailboxer_conversation_opt_outs", ["unsubscriber_id", "unsubscriber_type"], name: "index_mailboxer_conversation_opt_outs_on_unsubscriber_id_type", using: :btree
 
   create_table "mailboxer_conversations", force: :cascade do |t|
     t.string   "subject",    default: ""
@@ -92,10 +95,10 @@ ActiveRecord::Schema.define(version: 20151220193756) do
     t.datetime "expires"
   end
 
-  add_index "mailboxer_notifications", ["conversation_id"], name: "index_mailboxer_notifications_on_conversation_id"
-  add_index "mailboxer_notifications", ["notified_object_id", "notified_object_type"], name: "index_mailboxer_notifications_on_notified_object_id_and_type"
-  add_index "mailboxer_notifications", ["sender_id", "sender_type"], name: "index_mailboxer_notifications_on_sender_id_and_sender_type"
-  add_index "mailboxer_notifications", ["type"], name: "index_mailboxer_notifications_on_type"
+  add_index "mailboxer_notifications", ["conversation_id"], name: "index_mailboxer_notifications_on_conversation_id", using: :btree
+  add_index "mailboxer_notifications", ["notified_object_id", "notified_object_type"], name: "index_mailboxer_notifications_on_notified_object_id_and_type", using: :btree
+  add_index "mailboxer_notifications", ["sender_id", "sender_type"], name: "index_mailboxer_notifications_on_sender_id_and_sender_type", using: :btree
+  add_index "mailboxer_notifications", ["type"], name: "index_mailboxer_notifications_on_type", using: :btree
 
   create_table "mailboxer_receipts", force: :cascade do |t|
     t.integer  "receiver_id"
@@ -109,8 +112,18 @@ ActiveRecord::Schema.define(version: 20151220193756) do
     t.datetime "updated_at",                                 null: false
   end
 
-  add_index "mailboxer_receipts", ["notification_id"], name: "index_mailboxer_receipts_on_notification_id"
-  add_index "mailboxer_receipts", ["receiver_id", "receiver_type"], name: "index_mailboxer_receipts_on_receiver_id_and_receiver_type"
+  add_index "mailboxer_receipts", ["notification_id"], name: "index_mailboxer_receipts_on_notification_id", using: :btree
+  add_index "mailboxer_receipts", ["receiver_id", "receiver_type"], name: "index_mailboxer_receipts_on_receiver_id_and_receiver_type", using: :btree
+
+  create_table "pg_search_documents", force: :cascade do |t|
+    t.text     "content"
+    t.integer  "searchable_id"
+    t.string   "searchable_type"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "pg_search_documents", ["searchable_type", "searchable_id"], name: "index_pg_search_documents_on_searchable_type_and_searchable_id", using: :btree
 
   create_table "pictures", force: :cascade do |t|
     t.string   "picture"
@@ -120,7 +133,7 @@ ActiveRecord::Schema.define(version: 20151220193756) do
     t.datetime "updated_at",       null: false
   end
 
-  add_index "pictures", ["pictureable_id", "pictureable_type"], name: "index_pictures_on_pictureable_id_and_pictureable_type"
+  add_index "pictures", ["pictureable_id", "pictureable_type"], name: "index_pictures_on_pictureable_id_and_pictureable_type", using: :btree
 
   create_table "schedules", force: :cascade do |t|
     t.string   "team1"
@@ -133,7 +146,7 @@ ActiveRecord::Schema.define(version: 20151220193756) do
     t.string   "match_time"
   end
 
-  add_index "schedules", ["scoreboard_id"], name: "index_schedules_on_scoreboard_id"
+  add_index "schedules", ["scoreboard_id"], name: "index_schedules_on_scoreboard_id", using: :btree
 
   create_table "scoreboards", force: :cascade do |t|
     t.string   "name_of_scoreboard"
@@ -150,8 +163,8 @@ ActiveRecord::Schema.define(version: 20151220193756) do
     t.string   "status"
   end
 
-  add_index "scoreboards", ["user_id", "created_at"], name: "index_scoreboards_on_user_id_and_created_at"
-  add_index "scoreboards", ["user_id"], name: "index_scoreboards_on_user_id"
+  add_index "scoreboards", ["user_id", "created_at"], name: "index_scoreboards_on_user_id_and_created_at", using: :btree
+  add_index "scoreboards", ["user_id"], name: "index_scoreboards_on_user_id", using: :btree
 
   create_table "statuses", force: :cascade do |t|
     t.text     "content",       default: "upload status"
@@ -160,7 +173,7 @@ ActiveRecord::Schema.define(version: 20151220193756) do
     t.datetime "updated_at",                              null: false
   end
 
-  add_index "statuses", ["scoreboard_id"], name: "index_statuses_on_scoreboard_id"
+  add_index "statuses", ["scoreboard_id"], name: "index_statuses_on_scoreboard_id", using: :btree
 
   create_table "teams", force: :cascade do |t|
     t.string   "name"
@@ -172,7 +185,7 @@ ActiveRecord::Schema.define(version: 20151220193756) do
     t.datetime "updated_at",    null: false
   end
 
-  add_index "teams", ["scoreboard_id"], name: "index_teams_on_scoreboard_id"
+  add_index "teams", ["scoreboard_id"], name: "index_teams_on_scoreboard_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
@@ -189,6 +202,16 @@ ActiveRecord::Schema.define(version: 20151220193756) do
     t.datetime "reset_sent_at"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
 
+  add_foreign_key "comments", "scoreboards"
+  add_foreign_key "comments", "users"
+  add_foreign_key "invitations", "scoreboards"
+  add_foreign_key "mailboxer_conversation_opt_outs", "mailboxer_conversations", column: "conversation_id", name: "mb_opt_outs_on_conversations_id"
+  add_foreign_key "mailboxer_notifications", "mailboxer_conversations", column: "conversation_id", name: "notifications_on_conversation_id"
+  add_foreign_key "mailboxer_receipts", "mailboxer_notifications", column: "notification_id", name: "receipts_on_notification_id"
+  add_foreign_key "schedules", "scoreboards"
+  add_foreign_key "scoreboards", "users"
+  add_foreign_key "statuses", "scoreboards"
+  add_foreign_key "teams", "scoreboards"
 end

@@ -16,7 +16,8 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find(params[:id])
-    @user_all = User.all.order('created_at DESC')
+    @pictureable = @user
+    @picture =  @pictureable.picture || @pictureable.build_picture
   end
   
   def new

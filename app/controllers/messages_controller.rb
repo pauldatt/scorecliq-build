@@ -1,6 +1,7 @@
 class MessagesController < ApplicationController
   #before_action :authenticate_user! same as the conversation controller. this
   #will need to be edited to reflect the authentication method we made 
+  before_action :validate_message_length, only: [:create]
 
   def new
   end
@@ -12,6 +13,14 @@ class MessagesController < ApplicationController
     redirect_to conversation_path(conversation)
   end
   
+  private
+  
+  def validate_message_length
+    if params[:message][:body].length > 10
+      flash[:success] ="Message length too long"
+      redirect_to new_message_path
+    end
+  end
   
 end
 

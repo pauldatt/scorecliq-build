@@ -1,20 +1,20 @@
-<%= form_tag scoreboards_path, :method => 'get' do %>
-  <%= label_tag(:q, "Search for:") %>
-  <%= text_field_tag :search, params[:search] %>
-  <%= submit_tag "Search", :name => nil %>
-<% end %>
-
-
 <div class= "my-score-contain">
-<div class= "my-score-help-tip">
-  Some helpful filler text. 
 </div>
 
 <div class="my-score-display">
- <span class="button-my-score btn btn-primary"> My Scoreboards</span>
- <span class="button-follow btn btn-primary"> Following</span>
- <div class="the-display">
+  <div id="scoreindexbutton">
+     <span class="button-my-score btn btn-primary"> My Scoreboards</span>
+  </div>
+  
+  <div id="followingindexbutton">
+     <span class="button-follow btn btn-primary"> Following</span>
+  </div>
+ 
+</div>
 
+<div class="the-display">
+
+<div id="showindex">
 <% if @scoreboards.empty? == true %>
    <%= link_to "Create New scoreboard", new_scoreboard_path %>
 <% else %>
@@ -37,14 +37,18 @@
       <% end %>
     <% end %>
  <% end %>
-     </div>
-    </div>
-    </div> 
+</div>
+     
+<div class="showfollow">
+    <p> Following scoreboard count: <%= current_user.favourite_scoreboards.count %> </p> 
+     <% current_user.favourite_scoreboards.each do |favourite| %> 
+     <%= link_to "#{favourite.name_of_scoreboard}", scoreboard_path(favourite) %> <br></br>
+     <% end %>
+ </div>
 
+</div>
 
-
-
-
+ 
     
     
 

@@ -36,16 +36,37 @@ private
     def pick_emails
        @emails= []
        @errors=[]
-       params["invites"].each do |invite|
-        if valid_email?(invite[:recipient_email])
+       if not_blank?
+        params["invites"].each do |invite|
+         if valid_email?(invite[:recipient_email])
             @emails << invite[:recipient_email]
-        else if !valid_email?(invite[:recipient_email]) && (invite[:recipient_email] != "")
+         else if !valid_email?(invite[:recipient_email]) && (invite[:recipient_email] != "")
             @errors << invite[:recipient_email]
+         end
+         end
         end
-        end
+       else
+          @errors << "You entered no emails. Please go back and enter at least 1 email address"
        end
+           
     end
-
+    
+    def not_blank? 
+        @not_blanks = []
+        
+        params["invites"].each do |invite|
+            if (invite[:recipient_email] != "")
+               @not_blanks << invite[:recipient_email]
+            end
+        end
+        
+        if @not_blanks.empty?
+            return false
+        else 
+            return true
+        end
+        
+    end
     
     def valid_email?(email)
         (email != "")&&(email =~ VALID_EMAIL_REGEX )

@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
         params[:session][:remember_me] == '1' ? remember(user) : forget(user)
         render 'users/home' # Although it work, I am not sure if its a redirect or a render.
       else
-        message = "Account not activated. "
+        message = "Account not activated."
         message += "Please check your email for the activation link"
         flash[:warning] = message
         redirect_to root_url

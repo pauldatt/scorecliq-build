@@ -14,6 +14,9 @@ class User < ActiveRecord::Base
   #the mailboxer gem is being accessed by the following code
   acts_as_messageable
   
+  #the following is an attempt at message length validation
+  validates :body, presence: true, length: { maximum: 50 }
+  
   has_many :friendships
   has_many :passive_friendships, :class_name => "Friendship", :foreign_key => "friend_id"
   
@@ -127,6 +130,21 @@ class User < ActiveRecord::Base
     def mailboxer_email(user)
     return email 
     end
+    
+    #Mulisearch method for user
+    include PgSearch
+    multisearchable :against => :name
+  
+    PgSearch.multisearch_options = {
+    :using => {
+                :tsearch => {
+                   :prefix => true,
+                   :dictionary => "english",
+                   :any_word => true
+                 }
+              }
+    
+    }
     
     
     

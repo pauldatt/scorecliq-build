@@ -1,6 +1,22 @@
-<% form_tag scoreboards_path, :method => 'get' do %>
-  <% label_tag(:q, "Search for:") %>
-  <% text_field_tag :keyword, params[:keyword] %>
-  <% submit_tag "Search", :name => nil %>
+<div id="search">
+<%= form_tag search_path, :method => 'get' do %>
+  <%= text_field_tag :search, params[:search], placeholder: "search scorecliq!" %>
+  <div id="searchbutton">
+  <%= submit_tag "Search", :name => nil %>
+  </div>
+<% end %>
+<div>
+
+<% @pg_search_documents.each do |pg_search| %>
+       <%= div_for pg_search, :class => "inner-disp" do %>
+      <% if pg_search.searchable.respond_to?(:name) %>
+        Name: <%= link_to "#{pg_search.searchable.name}", user_path(pg_search.searchable.id) %>
+      <% else %>
+        Scoreboard: <%= link_to "#{pg_search.searchable.name_of_organization}", scoreboard_path(pg_search.searchable.id) %><br>
+        Organization: <%= pg_search.searchable.name_of_scoreboard %><br>
+        Activity: <%= pg_search.searchable.name_of_activity %><br>
+      <% end %>
+    <% end %>
 <% end %>
 
+<%= will_paginate @pg_search_documents, :page_links => false %>

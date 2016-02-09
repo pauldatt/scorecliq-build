@@ -1,6 +1,7 @@
 <div class=" comment-div"> 
  <p> Posted by <%= link_to "#{comment.user.name}", comment.user %>
    <%= time_ago_in_words(comment.created_at) %> ago
+   
  </p>
  <div class="comment-body" id="comment-<%= comment.id %>">
   <% if comment.parent.present? %>
@@ -8,7 +9,9 @@
   <% end %>
   <%= comment.body %>
   <%= link_to "Reply", new_scoreboard_comment_path(@scoreboard, comment, parent_id: comment.id, js: true), remote: true %> |
+  <% if (current_user == comment.user) || (current_user == @scoreboard.user) %>
   <%= link_to "Delete", scoreboard_comment_path(@scoreboard, comment), :data => {:confirm => 'Delete Message?'}, method: :delete %>
+  <% end %>
  </div>
 </div>
 

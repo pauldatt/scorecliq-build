@@ -172,4 +172,43 @@ $(document).ready(function(){
     $(".best_in_place").best_in_place();
 });
 
+//below is the code for show page index
+
+$(document).ready(function(){
+     $("#scoreindexbutton").on("click", function(){
+        $(".showfollow").hide();
+        $("#showindex").show();
+        
+    });
+ });
+
+$(document).ready(function(){
+     $("#followingindexbutton").on("click", function(){
+         $("#showindex").hide();
+         $(".showfollow").show();
+    });
+ });
+
+
+$(document).ready(function(){
+     $(".schedule-app-button").on("click", function(){
+        $(".app-score-div").hide();
+        $(".score-app-options").hide();
+        $(".schedule-app-options").show(300);
+        $(".app-schedule-div").show(300);
+    });
+ });
+ 
+ $(document).ready(function(){
+     $(".score-app-button").on("click", function(){ 
+        $(".app-schedule-div").hide();
+        $(".schedule-app-options").hide();
+        $(".score-app-options").show(300);
+        $(".app-score-div").show(300);
+    });
+ });
+
+
+
+
 //below is the code for comments

@@ -43,11 +43,20 @@ class Scoreboard < ActiveRecord::Base
   validates :starts_at, presence: true
   validates :ends_at, presence: true
   
-   # Temporary search bar method
-   def self.search(search_term)
-     where("name_of_organization LIKE ? or name_of_activity LIKE ? 
-     or name_of_scoreboard LIKE ?", "%#{search_term}%", "%#{search_term}%", "%#{search_term}%" )
-   end
+   # Multisearch method for scoreboard
+   include PgSearch
+   multisearchable :against => [:name_of_organization, :name_of_activity, :name_of_scoreboard ]
+   
+   PgSearch.multisearch_options = {
+  :using => {
+              :tsearch => {
+                 :prefix => true,
+                 :dictionary => "english",
+                 :any_word => true
+               }
+            }
+  }
+   
    
    
   
