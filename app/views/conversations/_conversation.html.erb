@@ -1,5 +1,6 @@
 <li class="list-group-item clearfix">
   <%= link_to conversation.subject, conversation_path(conversation) %>
+  Conversation with: <%= link_to conversation.recipients.first.name, user_path(conversation.recipients.first) %>
 
   <div class="btn-group-vertical pull-right">
     <% if conversation.is_trashed?(current_user) %>

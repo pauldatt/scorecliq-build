@@ -86,12 +86,6 @@ $(document).ready(function (){
       });
  });
  
- // form code for the datepicker 
- 
- $(document).ready(function(){
-     $(".datepicker").datepicker( {dateFormat: "yy-mm-dd"});
- });
- 
  
  //score app  code ends 
  
@@ -209,6 +203,33 @@ $(document).ready(function(){
  });
 
 
+// this is the code for the dynamic states in the create scoreboard form
+$(document).ready(function(){
+$('#country').on('change', function() {
+    if ($('option:selected', this).val() === 'Canada') {
+        $("#american_states").hide();
+        $("#other_states").hide();
+        $("#canadian_provinces").show();
+    } else {
+        $("#other_states").show(); // only if Canada isn't selected
+        $("#canadian_provinces").hide();
+    }
+    
+});
+  
+});
+    
+$(document).ready(function(){
+$('#country').on('change', function() {
+    if ($('option:selected', this).val() === 'United States of America'){
+        $("#canadian_provinces").hide();
+        $("#other_states").hide();
+        $("#american_states").show();
+    } else {
+        $("#american_states").hide();
+    }
+    
+  });
+  
+});
 
-
-//below is the code for comments

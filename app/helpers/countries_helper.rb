@@ -232,7 +232,7 @@ module CountriesHelper
 	  "Ukraine",
 	  "United Arab Emirates",
 	  "United Kingdom",
-	  "United States",
+	  "United States of America",
 	  "United States Minor Outlying Islands",
 	  "Uruguay",
 	  "Uzbekistan",

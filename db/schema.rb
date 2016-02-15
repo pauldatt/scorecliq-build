@@ -155,8 +155,6 @@ ActiveRecord::Schema.define(version: 20160128031906) do
     t.integer  "user_id"
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
-    t.date     "starts_at"
-    t.date     "ends_at"
     t.string   "states"
     t.string   "country"
     t.string   "cities"

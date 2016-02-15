@@ -4,6 +4,7 @@ class ConversationsController < ApplicationController
   before_action :get_mailbox
   before_action :get_conversation, except: [ :index, :empty_trash]
   before_action :get_box, only: [:index]
+  before_action :validate_reply_length, only: [:reply]
 
  def index
     if @box.eql? "inbox"
@@ -67,5 +68,12 @@ class ConversationsController < ApplicationController
       params[:box] = 'inbox'
     end
     @box = params[:box]
+  end
+  
+  def validate_reply_length
+    if params[:body].length > 10
+      flash[:success] ="Message length too long"
+      redirect_to conversation_path(@conversation)
+    end
   end
 end

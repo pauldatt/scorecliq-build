@@ -1,5 +1,9 @@
 <div class="panel panel-default">
-  <div class="panel-heading"><%= @conversation.subject %></div>
+  <div class="panel-heading"> Subject: <%= @conversation.subject %> <br> Conversation with: 
+  <% @conversation.recipients.each do |r| %>
+    <%= r.name %>
+  <% end %>
+  </div>
 
   <div class="panel-body">
     <div class="messages">

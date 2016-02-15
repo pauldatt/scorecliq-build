@@ -39,10 +39,6 @@ class Scoreboard < ActiveRecord::Base
   validates :status, length: {maximum: 255}
   
   
-  #Location and Period validations
-  validates :starts_at, presence: true
-  validates :ends_at, presence: true
-  
    # Multisearch method for scoreboard
    include PgSearch
    multisearchable :against => [:name_of_organization, :name_of_activity, :name_of_scoreboard ]

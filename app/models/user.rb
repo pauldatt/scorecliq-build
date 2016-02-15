@@ -57,10 +57,10 @@ class User < ActiveRecord::Base
     SecureRandom.urlsafe_base64
   end
   
-  # Remembers a user in the databse for use in sessions.
+  # Remembers a user in the database for use in sessions.
   def remember
-    self.remember_token = User.new_token
-    update_attribute(:remember_digest, User.digest(remember_token)) #update the remember digest with the remember token 
+    self.remember_token = User.new_token # this method defined above generates a random token
+    update_attribute(:remember_digest, User.digest(remember_token)) #update the remember digest with the encrypted version of remember digest.  
   end
   
   def authenticated?(attribute, token)
@@ -76,8 +76,8 @@ class User < ActiveRecord::Base
   
   # Activates an account.
   def activate
-    update_attribute(:activated,    true)
-    update_attribute(:activated_at,    Time.zone.now)
+    update_attribute(:activated, true)
+    update_attribute(:activated_at, Time.zone.now)
   end
   
   # It sends an activation email
@@ -101,11 +101,6 @@ class User < ActiveRecord::Base
   def password_reset_expired?
     reset_sent_at < 2.hours.ago
   end
-  
-  def self.search(search_term)
-    where("name LIKE ?", "%#{search_term}%") 
-  end
-  
   
   private 
   
@@ -133,6 +128,7 @@ class User < ActiveRecord::Base
     
     #Mulisearch method for user
     include PgSearch
+    
     multisearchable :against => :name
   
     PgSearch.multisearch_options = {

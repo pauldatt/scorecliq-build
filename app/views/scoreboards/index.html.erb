@@ -24,7 +24,6 @@
         Organization:      <%= scoreboard.name_of_organization %></br>
         Sport:             <%= scoreboard.name_of_activity %> </br>
         Location: <%= scoreboard.cities %> <%= scoreboard.states%>, <%= scoreboard.country %></br>
-        Period: <%= scoreboard.starts_at%> to <%= scoreboard.ends_at %> </br>
         </p>
         <% if scoreboard.user == current_user %>
           <%= link_to "View", scoreboard_path(scoreboard), class: 'btn btn-primary my-view' %>

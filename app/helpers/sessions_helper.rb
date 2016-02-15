@@ -4,10 +4,11 @@ module SessionsHelper
   end
   
   # Remembers a user in a persistent session.
-  def remember(user) # this generates a remember token and saves its digest to the database. 
-    user.remember    # It was defined in the user's model
+  def remember(user)  
+    user.remember    # the method creates remember_token for that user and saves the hashed the version in the db 
     cookies.permanent.signed[:user_id] = user.id # This stores the user.ID(encrypted) in the browser cookie
-    cookies.permanent[:remember_token] = user.remember_token # This stores the remember token(encrypted) in the cookie
+    cookies.permanent[:remember_token] = user.remember_token # This stores the remember token(encrypted) in the cookie   
+    # the remember token was created in the first line of code "user.remember"
   end
   
   # Returns true if the user is the current user
