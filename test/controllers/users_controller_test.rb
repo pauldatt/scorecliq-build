@@ -7,12 +7,6 @@ class UsersControllerTest < ActionController::TestCase
     @second_user = users(:sukh)
   end
   
-  test "should redirect index when not logged in" do
-    get :index
-    assert_template 'static_pages/home'
-  end
-  
-  
   test "should get new" do
     get :new
     assert_response :success

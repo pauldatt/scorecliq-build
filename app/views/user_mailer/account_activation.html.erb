@@ -1,9 +1,9 @@
-<h1>ScoreBoard</h1>
+<h1>Scorecliq</h1>
 
 <p>Hi <%= @user.name %>,</p>
 
 <p>
-  Thanks you for registering at ScoreBoard! Click on the link below to activate your account:
+  Thanks you for registering at scorecliq! Click on the link below to activate your account:
 </p>
 
 <%= link_to "Activate your account", edit_account_activation_url(@user.activation_token, email: @user.email) %>

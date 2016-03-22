@@ -1,13 +1,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  body: MyText
-  reply: MyText
-  user_id: 
-  scoreboard_id: 
-
-two:
-  body: MyText
-  reply: MyText
-  user_id: 
-  scoreboard_id: 
+comment_a:
+   body: myprecious
+   user: divjot
+   scoreboard: scoreboard_a
+   

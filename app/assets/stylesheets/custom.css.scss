@@ -1,185 +1,334 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
-@import 'bootstrap/theme';
 
-/* mixins, variables, etc. */
+/* ----------------------------------------------- */
+/* COLOURS */
+/* ----------------------------------------------- */
 
-@mixin box_sizing {
-    -moz-box-sizing:    border-box;
-    -webkit-box-sizing: border-box;
-    box-sizing:         border-box;
+/* Orange:  #e67e22
+   Gray:    #F2EFE8
+   Light Green: #9ECEC6  */
+
+
+
+/* ----------------------------------------------- */
+/* BASIC SETUP */
+/* ----------------------------------------------- */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-/* Universal */
-
+html,
 body {
-    padding-top: 60px;
+    background-color: #F2EFE8;
+    color: #555;
+    font-family: 'Lato', 'Arial', sans-serif;
+    font-weight: 300;
+    font-size: 20px;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+}
+
+.clearfix {zoom: 1;}
+.clearfix:after {
+    content: '.';
+    clear: both;
+    display: block;
+    height: 0;
+    visibility: hidden;
+}
+
+/* ----------------------------------------------- */
+/* REUSABLE COMPONENTS */
+/* ----------------------------------------------- */
+
+.row {
+    max-width: 1140px;
+    margin: 0 auto;
 }
 
 section {
-    overflow: auto;
+    padding: 40px 0;
 }
 
-textarea {
-    resize: vertical;
+.box {
+    padding: 1%;
 }
 
-.center {
-    text_align: center;
-    h1 {
-        margin-bottom: 10px;
-    }
+.form-block{
+    width: 100%;
+    display: block;
 }
 
-/* General Typography */
+.form-block2{
+    color: #555;
+    margin-bottom: 10px;
+}
+
+/*--LINKS--*/
+a:link,
+a:visited{
+    color: #e67e22;
+    text-decoration: none;
+    padding-bottom: 1px;
+}
+
+/*-- HEADINGS --*/
+
+h1,
+h2,
+h3 {
+    font-weight: 300;
+}
 
 h1 {
+    margin-top: 0;
+    font-size: 240%;
+    word-spacing: 4px;
+    letter-spacing: 1px;
+}
+
+h2 {
+    font-size: 180%;
+    word-spacing: 2px;
+    text-align: center;
+    letter-spacing: 1px;
+}
+
+h3 {
+    font-size: 110%;
     text-align: center;
 }
 
+/*-- PARAGRAPHS--*/
 
-/* header */
-
-header {
-    color: #0FB493;
+.box p {
+    font-size: 90%;
+    line-height: 145%;
 }
 
-#logo {
-    float: left;
-    margin-right: 100px;
-    font-size: 1.3em;
-    letter-spacing: 0px;
-    padding-top: 15px;
+/*-- BUTTONS --*/
+
+/* normal button with no link */
+
+.btn{
+    background-color: #e67e22;
+    color: #fff;
 }
 
-
-/* footer */
-
-footer {
-    margin-top: 20px;
-    padding-top: 5px;
-    border-top: 1px solid #eaeaea;
-    color: $gray-light;
-    small {
-        float: left;
-    }
-    ul {
-        float: right;
-        list-style: none;
-    }
-    ul {
-        float: right;
-        list-style: none;
-        li {
-            float: left;
-            margin-left: 15px;
-            color: #000000;
-        }
-    }
+.btn:link,
+.btn:visited,
+ input[type=submit]
+  {
+    display: inline-block;
+    padding: 10px 30px;
+    font-weight: 300;
+    text-decoration: none;
+    border-radius: 200px;
 }
 
-/* miscellaneous */
-
-.debug_dump {
-    clear: both;
-    float: left;
-    width: 100%;
-    margin-top: 45px;
-    @include box_sizing;
+.btn-full:link,
+.btn-full:visited,
+ input[type=submit]
+  {
+    border: 1px solid #e67e22;
+    color: #fff;
 }
 
-/* sidebar */
-
-
-.row {
-    section.user_info {
-        margin-top: 20px;
-        text-align: center;
-     
-    }
-    section {
-        padding: 10px 0;
-        margin-top: 20px;
-    }
-
-    h1 {
-        font-size: 1.5em;
-        letter-spacing: -0.5px;
-        margin-bottom: 3px;
-        margin-top: 0px;
-    }
-} 
-
-
-/* forms */
-
-input, textarea, select, .uneditable-input {
-    width: 100%;
-    margin-bottom: 5px;
+.btn:hover,
+.btn:active,
+  {
+    background-color: #cf6d17;
 }
 
-input {
-    height: auto !important;
+.btn-full:hover,
+.btn-full:active {
+    border: 1px solid #cf6d17;
 }
 
-/* error messages */
+/* SMALL BUTTON */
+.btn-s:link,
+.btn-s:visited
+  {
+    display: inline-block;
+    padding: 2px 5px;
+    text-align: center;
+    font-weight: 300;
+    text-decoration: none;
+    border-radius: 5px;
+    background-color: #e67e22;
+}
+
+.btn-s:hover,
+.btn-s:active,
+  {
+    background-color: #cf6d17;
+}
+
+/* ERROR MESSAGES */
 
 #error_explanation {
     color: red;
     ul {
         color: red;
-        margin: 0 0 30px 0;
-    }
-}
-
-.field_with_errors {
-    @extend .has-error;
-    .form-control {
-        color: $state-danger-text;
-    }
-}
-
-/* remember me */
-
-.checkbox {
-    margin-top: -3px;
-    margin-bottom: 10px;
-    span {
-        margin-left: 20px;
-        font-weight: normal;
+        margin: 0 0 15px 0;
     }
 }
 
 
-/* This is styling the remember me button */
-#session_remember_me {
-    width: auto;
-    margin-left: 0;
+
+
+/* ----------------------------------------------- */
+/* HEADER */
+/* ----------------------------------------------- */
+
+header {
+    background-color: #9ECEC6;
 }
 
-/* users */
-.users {
+#logo{
+    float: left;
+}
+
+.main-nav{
+    font-weight: 300;
+    float: right;
     list-style: none;
-    margin: 0;
-    li {
-        overflow: auto;
-        padding: 10px 0;
-        border-bottom: 1px solid $gray-lighter;
+    margin-bottom: 0;
+}
+
+.main-nav li{
+     margin-left: 30px;
+     display: inline-block;
+     padding: 8px 0;
+     border-bottom: 3px solid transparent;
+}
+
+
+.main-nav li:hover{
+    border-bottom: 3px solid #e67e22;
+}
+
+.mobile-nav-icon{
+    display: none;
+    float: right;
+    color: #e67e22;
+    cursor: pointer;
+}
+
+/* ----------------------------------------------- */
+/* FOOTER */
+/* ----------------------------------------------- */
+
+
+
+/* ----------------------------------------------- */
+/* PRELOGIN HOME PAGE */
+/* ----------------------------------------------- */
+
+section.prelogin-home{
+   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('sunset-lg.jpg');
+   background-size: cover;
+   background-position: center;
+   height: 92vh;
+}
+
+.home-greet{
+    color: #FFF;
+    margin-bottom: 20px;
+}
+
+.home-desc{
+    color: #FFF;
+    text-align: justify;
+    margin-bottom: 50px;
+}
+
+.home-sign{
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.login-container{
+    width: 70%;
+    margin: 0 auto;
+    color: #fff;
+    
+    .login-label{
+        font-size: 80%;
+    }
+    
+    h2 { margin-bottom: 20px;}
+    
+    a:hover{
+        border: none;
+        color: #cf6d17;
+    }
+    
+    .btn{
+        margin: 20px auto 0 auto;
+        display: block;
     }
 }
 
-/* user-menu */
+/* ----------------------------------------------- */
+/* POSTLOGIN NAV & HOMEPAGE*/
+/* ----------------------------------------------- */
+.main-nav ul{
+    padding: 1%;
+    background-color: #9ECEC6;
+    margin-top: 11px;
+    position: absolute;
+    display: none;
+    
+    li{
+        margin: 0;
+    }
+}
 
-.position-top {
-    margin-left: 0px;
-    margin-top: 20px;
+.dropdown:hover{
+    ul{
+        display: block;
+    }
+}
+
+.post-login-option .row .col{
+    border: 2px solid;
+    
+    .btn{
+        margin-top: 20px;
+    }
 }
 
 
-.position-middle {
-    margin-top: 10px;
+.view-home{
+    text-align: center;
+    
+    .view-score{
+           width: 100%;
+    }
+}
+.create-home{
+    .create-score{
+           width: 100%;
+    }
+    
+    text-align: center;
 }
 
+
+.search-home{
+    .search-score{
+           width: 100%;
+    }
+    
+    text-align: center;
+    
+    
+}
 
 
 

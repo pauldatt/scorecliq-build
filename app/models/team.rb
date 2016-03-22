@@ -4,6 +4,7 @@ class Team < ActiveRecord::Base
   belongs_to :scoreboard
   
   validates :name, presence: true, length: { maximum: 34 }
+  validates :scoreboard_id, presence: true
   
   private
   
@@ -21,7 +22,5 @@ class Team < ActiveRecord::Base
     end
     
   end
-  
-  
   
 end

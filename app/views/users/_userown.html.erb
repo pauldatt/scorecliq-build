@@ -1,0 +1,9 @@
+<% @owned_scoreboards.each do |owned| %> 
+
+  <div class= "user-own-div clearfix"><%= link_to owned.name_of_scoreboard, scoreboard_path(owned) %></div>
+
+<% end %> 
+
+<div class= "user-own-pages">
+<%= will_paginate @owned_scoreboards, :param_name => 'user_own' %> 
+</div>

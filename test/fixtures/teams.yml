@@ -1,15 +1,8 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
-  win: 1
-  loss: 1
-  tie: 1
-  scoreboard_id: 
-
-two:
-  name: MyString
-  win: 1
-  loss: 1
-  tie: 1
-  scoreboard_id: 
+team_a:
+    name: team
+    win: 1
+    loss: 2
+    tie: 0
+    scoreboard: scoreboard_a

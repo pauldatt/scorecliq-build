@@ -1,12 +1,12 @@
 /* Scoreboard new form */
 
-.score-form{
+.score-form {
     position: relative;
     width: 359px;
     left: 390px;
 }
 
-.score-header-form{
+.score-header-form {
     position: relative;
     width: 359px;
     font-size: 20px;
@@ -14,103 +14,95 @@
     left: 386px;
 }
 
-/* MY scoreboard page index page */
-.my-score-contain{
-    position: relative;
-    width: 1170px;
-    height: 580px;
+
+/* ----------------------------------------------- */
+/* SCOREBOARD INDEX PAGE */
+/* ----------------------------------------------- */
+
+.scoreboard-view .row .col{
    
-}
-.my-score-help-tip{
-    position: relative;
-    width: 210px;
-    height: 277px;
-    border-style: solid;
-    border-width: 2px;
-    border-color: #C0C0C0;
-    border-radius: 5px;
-    padding: 10px;
+    min-height: 650px;
+    border: 2px solid;
+    
+    h3 {
+        border-bottom: 2px solid;
+    }
+    
+    .no-own-index{
+        text-align: center;
+        margin-top: 50px;
+    }
+    
+    .no-follow-index{
+        text-align: center;
+        margin-top: 50px;
+    }
 }
 
-.my-score-display{
-    position: relative;
-    width: 902px;
-    height: 576px;
-    left: 238px;
-    bottom: 277px;
-   
+.owned-board-div{
+    padding: 1%;
+    font-size: 70%;
+    border: 2px solid;
+    margin-bottom: 10px;
+    
+    .btn-s{
+        width: 100%;
+    }
+    
+    .owned-label-group{
+          width: 80%;
+          float: left;
+    }
+
+    .owned-button-group{
+          width: 20%;
+          float: left;
+    }
+    
+    .bottom-button{
+        margin-top: 6%;
+    }
 }
 
-.the-display{
-    position: relative;
-    width: 874px;
-    max-height: 520px;
-    top: 20px;
-    overflow-y: auto;
-    padding: 10px;
-}
+.follow-board-div{
+    padding: 1%;
+    font-size: 70%;
+    border: 2px solid;
+    margin-bottom: 10px;
+    
+    .btn-s{
+        width: 20%;
+        float: left
+    }
+    
+    .follow-label-group{
+          width: 80%;
+          float: left;
+    }       
+ }
 
-.inner-disp{
-    width: 849px;
-    height: 106px;
-    border-style: solid;
-    border-width: 2px;
-    border-color: #C0C0C0;
-    border-radius: 5px;
-    margin-bottom: 20px;
-    padding: 5px;
-    p{
-        font-size: 12px;
-    }
-    .my-view{
-        position: relative;
-        height: 24px;
-        width: 61px;
-        bottom: 92px;
-        left: 771px;
-        font-size: 11px;
-    }
-    .my-edit{
-        position: relative;
-        height: 24px;
-        width: 61px;
-        font-size: 11px;
-        left: 707px;
-        bottom: 67px;
-    }
-    .my-del{
-        position: relative;
-        height: 24px;
-        width: 61px;
-        font-size: 11px;
-        left: 642px;
-        bottom: 42px;
-    }
-}
-.button-follow{
-    position: relative;
-    left: 20px;
-}
+
+
+
+
 
 /* the scoreboard show page */
 
-.score-show-contain{
+.score-show-contain {
     position: relative;
 }
 
-.div-show-left{
+.div-show-left {
     position: relative;
     width: 232px;
     height: 599px;
-    .prof-update{
+    .prof-update {
         position: relative;
         top: 40px;
     }
 }
 
-
-
-.back-my-score{
+.back-my-score {
     position: relative;
     width: 232px;
     height: 50px;
@@ -118,9 +110,7 @@
     font-size: 17px;
 }
 
-
-
-.member-list{
+.member-list {
     position: relative;
     width: 232px;
     min-height: 270px;
@@ -131,7 +121,7 @@
     border-radius: 5px;
 }
 
-.show-filler-div{
+.show-filler-div {
     position: relative;
     width: 232px;
     min-height: 110px;
@@ -141,50 +131,50 @@
     border-color: #C0C0C0;
     border-radius: 5px;
     /* the following code is for the score option menu */
-    .score-app-options{
+    .score-app-options {
         position: relative;
-        .score-options-menu{
+        .score-options-menu {
             list-style-type: none;
-            li{
+            li {
                 width: 100%;
             }
-            li.score-options-div{
-                 padding: 5px;
-                 height: 35px;
-                 text-align: center;
-                 background-color: #009AAB;
-            }
-            li.finish-adding-team-button{
-                display: none;
-            }
-            li.finish-edit-team-button{
-                display: none;
-            }
-        }
-    }
-    /* the following code is for the schedule options menu */
-    .schedule-app-options{
-        position: relative;
-        display: none;
-        .schedule-options-menu{
-            list-style-type: none;
-            li{
-                width: 100%;
-            }
-            li.schedule-options-div{
+            li.score-options-div {
                 padding: 5px;
                 height: 35px;
                 text-align: center;
                 background-color: #009AAB;
             }
-            li.finish-edit-schedule-button{
+            li.finish-adding-team-button {
+                display: none;
+            }
+            li.finish-edit-team-button {
+                display: none;
+            }
+        }
+    }
+    /* the following code is for the schedule options menu */
+    .schedule-app-options {
+        position: relative;
+        display: none;
+        .schedule-options-menu {
+            list-style-type: none;
+            li {
+                width: 100%;
+            }
+            li.schedule-options-div {
+                padding: 5px;
+                height: 35px;
+                text-align: center;
+                background-color: #009AAB;
+            }
+            li.finish-edit-schedule-button {
                 display: none;
             }
         }
     }
 }
 
-.score-title{
+.score-title {
     position: relative;
     width: 874px;
     height: 50px;
@@ -199,7 +189,7 @@
     font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
 }
 
-.prof-bio{
+.prof-bio {
     position: relative;
     width: 874px;
     height: 177px;
@@ -207,40 +197,40 @@
     left: 249px;
 }
 
-.score-prof{
+.score-prof {
     position: relative;
     width: 195px;
     height: 175px;
     border-radius: 5px;
 }
 
-.s-labels{
+.s-labels {
     position: relative;
     width: 127px;
     height: 176px;
     left: 213px;
     bottom: 186px;
-    h4{
+    h4 {
         font-size: 15px;
         font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
         margin-bottom: 15px;
     }
 }
 
-.bios-labels{
+.bios-labels {
     position: relative;
     height: 176px;
     width: 507px;
     left: 343px;
     bottom: 372px;
-    h4{
+    h4 {
         font-size: 15px;
         font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
         margin-bottom: 15px;
     }
 }
 
-.un-follow{
+.un-follow {
     position: relative;
     height: 28px;
     width: 128px;
@@ -249,17 +239,16 @@
     font-size: 12px;
 }
 
-.invite-btn{
+.invite-btn {
     position: relative;
     height: 28px;
     width: 128px;
     bottom: 758px;
     left: 860px;
     font-size: 12px;
-   
 }
 
-.statuscontent{
+.statuscontent {
     position: relative;
     border-style: solid;
     border-width: 2px;
@@ -269,7 +258,6 @@
     bottom: 640px;
     left: 248px;
     right: 70px;
-    
 }
 
 #admin {
@@ -278,9 +266,7 @@
     right: 63px;
     height: 42px;
     bottom: 87px;
-    
 }
-
 
 #favouritedby {
     position: relative;
@@ -288,12 +274,14 @@
     top: 50px;
 }
 
-#followinglist{
+#followinglist {
     left: 50px;
 }
 
+
 /*My scoreboard show page the app css*/
-.score-app{
+
+.score-app {
     position: relative;
     width: 874px;
     min-height: 110px;
@@ -306,87 +294,77 @@
     border-width: 2px;
     border-color: #C0C0C0;
     overflow: auto;
-    
-    .score-app-button{
+    .score-app-button {
         position: relative;
         width: 122px;
     }
-    
-    .schedule-app-button{
+    .schedule-app-button {
         position: relative;
         width: 122px;
     }
-    
-    
-    .app-score-div{
+    .app-score-div {
         position: relative;
         width: 840px;
-        .app-header{
-         position: relative;
-         top: 10px;
-         
-        .boxing{
-            width: 30%;
-            height: 30px;
-            float: left;
-            border: 2px solid #C0C0C0;
-            box-sizing: border-box;
-            margin-bottom: 10px;
+        .app-header {
+            position: relative;
+            top: 10px;
+            .boxing {
+                width: 30%;
+                height: 30px;
+                float: left;
+                border: 2px solid #C0C0C0;
+                box-sizing: border-box;
+                margin-bottom: 10px;
+            }
+            .boxing2 {
+                width: 15%;
+                height: 30px;
+                float: left;
+                border: 2px solid #C0C0C0;
+                box-sizing: border-box;
+                text-align: center;
+                margin-bottom: 10px;
+            }
         }
-        
-        .boxing2{
-            width: 15%;
-            height: 30px;
-            float: left;
-            border: 2px solid #C0C0C0;
-            box-sizing: border-box;
-            text-align: center;
-            margin-bottom: 10px;
+        .team-list {
+            position: relative;
+            .boxin1 {
+                width: 30%;
+                height: 30px;
+                float: left;
+                border: 2px solid #C0C0C0;
+                box-sizing: border-box;
+                margin-top: 5px;
+            }
+            .boxin2 {
+                width: 15%;
+                height: 30px;
+                float: left;
+                border: 2px solid #C0C0C0;
+                box-sizing: border-box;
+                text-align: center;
+                margin-top: 5px;
+            }
+            .boxin3 {
+                width: 5%;
+                height: 30px;
+                float: left;
+                box-sizing: border-box;
+                text-align: center;
+                margin-top: 5px;
+                display: none;
+            }
         }
-        }
-        
-        .team-list{
-          position: relative;
-        .boxin1{
-            width: 30%;
-            height: 30px;
-            float: left;
-            border: 2px solid #C0C0C0;
-            box-sizing: border-box;
-            margin-top: 5px;
-        }
-        .boxin2{
-            width: 15%;
-            height: 30px;
-            float: left;
-            border: 2px solid #C0C0C0;
-            box-sizing: border-box;
-            text-align: center;
-            margin-top: 5px;
-        }
-        .boxin3{
-            width: 5%;
-            height: 30px;
-            float: left;
-            box-sizing: border-box;
-            text-align: center;
-            margin-top: 5px;
-            display: none;
-        }
-        }
-        
-        
         /* the form code for the teams  */
-          .form-1{
+        .form-1 {
             width: 30%;
             height: 30px;
             float: left;
             border: 2px solid #3071A9;
             box-sizing: border-box;
             margin-top: 5px;
-           }
-        
-           .form-2{
+        }
+        .form-2 {
             width: 15%;
             height: 30px;
             float: left;
@@ -394,186 +372,173 @@
             box-sizing: border-box;
             text-align: center;
             margin-top: 5px;
-           }
-
-          .form-3{
+        }
+        .form-3 {
             width: 15%;
             height: 30px;
             float: left;
             box-sizing: border-box;
             text-align: center;
             margin-top: 5px;
-           }
-
-          .new-team-form{
+        }
+        .new-team-form {
             display: none;
-           }
+        }
     }
-    /* the following code is for the modal to submit schedules */ 
-    
-    
+    /* the following code is for the modal to submit schedules */
     /* the following code is for the schedules */
-    
-    .app-schedule-div{
+    .app-schedule-div {
         position: relative;
         width: 840px;
         display: none;
-        
-        .schedule-list{
+        .schedule-list {
             position: relative;
-        .sched-box-1{
-            width: 90%;
-            height: 60px;
-            float: left;
-            margin-top: 10px;
-            .sched-team1{
-            width: 45%;
-            height: 30px;
-            float: left;
-            border: 2px solid #C0C0C0;
-            box-sizing: border-box;
+            .sched-box-1 {
+                width: 90%;
+                height: 60px;
+                float: left;
+                margin-top: 10px;
+                .sched-team1 {
+                    width: 45%;
+                    height: 30px;
+                    float: left;
+                    border: 2px solid #C0C0C0;
+                    box-sizing: border-box;
+                }
+                .sched-vs {
+                    width: 10%;
+                    height: 30px;
+                    float: left;
+                    text-align: center;
+                }
+                .sched-team2 {
+                    width: 45%;
+                    height: 30px;
+                    float: left;
+                    border: 2px solid #C0C0C0;
+                    box-sizing: border-box;
+                }
+                .sched-date-label {
+                    width: 15%;
+                    height: 30px;
+                    float: left;
+                    border: 2px solid #C0C0C0;
+                    box-sizing: border-box;
+                }
+                .sched-date {
+                    width: 20%;
+                    height: 30px;
+                    float: left;
+                    border: 2px solid #C0C0C0;
+                    box-sizing: border-box;
+                }
+                .sched-time-label {
+                    width: 10%;
+                    height: 30px;
+                    float: left;
+                    border: 2px solid #C0C0C0;
+                    box-sizing: border-box;
+                }
+                .sched-time {
+                    width: 10%;
+                    height: 30px;
+                    float: left;
+                    border: 2px solid #C0C0C0;
+                    box-sizing: border-box;
+                }
+                .sched-details-label {
+                    width: 10%;
+                    height: 30px;
+                    float: left;
+                    border: 2px solid #C0C0C0;
+                    box-sizing: border-box;
+                }
+                .sched-details {
+                    width: 35%;
+                    height: 30px;
+                    float: left;
+                    border: 2px solid #C0C0C0;
+                    box-sizing: border-box;
+                }
             }
-            .sched-vs{
-            width: 10%;
-            height: 30px;
-            float: left;
-            text-align: center;
+            .sched-buttons {
+                width: 10%;
+                height: 60px;
+                float: left;
+                margin-top: 10px;
+                display: none;
+                .sched-edit {
+                    width: 100%;
+                }
+                .sched-delete {
+                    width: 100%;
+                }
             }
-            .sched-team2{
-            width: 45%;
-            height: 30px;
-            float: left;
-            border: 2px solid #C0C0C0;
-            box-sizing: border-box;
-            }
-            .sched-date-label{
-            width: 15%;
-            height: 30px;
-            float: left;
-            border: 2px solid #C0C0C0;
-            box-sizing: border-box;
-            }
-            .sched-date{
-            width: 20%;
-            height: 30px;
-            float: left;
-            border: 2px solid #C0C0C0;
-            box-sizing: border-box;
-            }
-            .sched-time-label{
-            width: 10%;
-            height: 30px;
-            float: left;
-            border: 2px solid #C0C0C0;
-            box-sizing: border-box;
-            }
-            .sched-time{
-            width: 10%;
-            height: 30px;
-            float: left;
-            border: 2px solid #C0C0C0;
-            box-sizing: border-box;
-            }
-            .sched-details-label{
-            width: 10%;
-            height: 30px;
-            float: left;
-            border: 2px solid #C0C0C0;
-            box-sizing: border-box;
-            }
-            .sched-details{
-            width: 35%;
-            height: 30px;
-            float: left;
-            border: 2px solid #C0C0C0;
-            box-sizing: border-box;
-            }
-        }
-        .sched-buttons{
-            width: 10%;
-            height: 60px;
-            float: left;
-            margin-top: 10px;
-            display: none;
-            .sched-edit{
-                width: 100%;
-            }
-            .sched-delete{
-                width: 100%;
-            }
-        }
         }
     }
-    
 }
+
 
 /* the following code is for the schedule form modal */
 
-.schedule-save-message{
+.schedule-save-message {
     display: none;
     color: blue;
 }
 
-/* scoreboard picture on show page */
 
-#pictureframe{
-    width: 203px;
-    height: 174px;
-    border: 2.0px solid blue;
-    position: absolute;
-    float: top;
-    margin-top: -175px;
-    #pictureframetext{
-        text-align: center;
-        margin-top: 60px;
-        position: relative;
-    }
-}    
+/* scoreboard picture on show page  and on user page */
 
+// #pictureframe {
+//     width: 203px;
+//     height: 174px;
+//     border: 2.0px solid blue;
+//     #pictureframetext {
+//         text-align: center;
+//         margin-top: 60px;
+//         position: relative;
+//     }
+// }
 
-#pictureframe:hover {
-    width: 203px;
-    height: 174px;
-    border: 5px solid blue;
-    position: absolute;
-    float: top;
-    margin-top: -175px;
-    cursor: pointer;
-    border: 5px solid blue;
-    position: absolute;
-}
+// #pictureframe:hover {
+//     width: 203px;
+//     height: 174px;
+//     border: 5px solid blue;
+//     position: absolute;
+//     float: top;
+//     margin-top: -175px;
+//     cursor: pointer;
+//     border: 5px solid blue;
+//     position: absolute;
+// }
 
+// #picturetext {
+//     text-align: center;
+// }
 
-#picturetext{
-    text-align: center;
-}
+// #pictureplacement {
+//     width: 203px;
+//     height: 174px;
+//     position: absolute;
+//     float: top;
+//     margin-top: -176px;
+//     border-radius: 25px;
+// }
 
-#pictureplacement{
-    width: 203px;
-    height: 174px;
-    position: absolute;
-    float: top;
-    margin-top: -176px;
-    border-radius: 25px;
-}
-
-#pictureplacement:hover{
-    width: 203px;
-    height: 174px;
-    position: absolute;
-    float: top;
-    margin-top: -176px;
-    cursor: pointer;
-    border-radius: 25px;
-    
-}
-
-
-
+// #pictureplacement:hover {
+//     width: 203px;
+//     height: 174px;
+//     position: absolute;
+//     float: top;
+//     margin-top: -176px;
+//     cursor: pointer;
+//     border-radius: 25px;
+// }
 
 
 /* the comments section */
-.comment-section{
+
+.comment-section {
     position: relative;
     top: 20px;
     width: 874px;
@@ -583,21 +548,18 @@
     padding: 10px;
     overflow: auto;
     border: 2px solid #C0C0C0;
-    
-    .comment-field{
+    .comment-field {
         position: relative;
         border: 2px solid #3071A9;
     }
-    
-    .comment-div{
+    .comment-div {
         position: relative;
         width: 849px;
         min-height: 120px;
         padding: 10px;
         border: 2px solid #C0C0C0;
         margin: 5px;
-        
-        .comment-body{
+        .comment-body {
             margin: 5px;
             position: relative;
             width: 816px;
@@ -605,18 +567,17 @@
             background-color: #C0C0C0;
         }
     }
-
 }
 
-.hidden-reply-form{
+.hidden-reply-form {
     display: none;
 }
 
 .nested_messages {
-  margin-left: 30px;
+    margin-left: 30px;
 }
 
-.purr{
+.purr {
     position: fixed;
     top: 276px;
     right: 80px;
@@ -624,8 +585,9 @@
     font-weight: bold;
     color: #C66;
     text-transform: capitalize;
-    &:first-letter {text-transform: uppercase;}
-    
+    &:first-letter {
+        text-transform: uppercase;
+    }
 }
 
 #search {
@@ -638,7 +600,6 @@
 }
 
 // code for the index page
-
 .showfollow {
     display: none;
 }

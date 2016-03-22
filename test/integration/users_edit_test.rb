@@ -18,11 +18,12 @@ class UsersEditTest < ActionDispatch::IntegrationTest
   end
   
   test "successful edits with friendly forwarding" do
-    get edit_user_path(@user)
     log_in_as(@user)
-    assert_template 'users/home' # This ensures that once you log in you must assert_template of 'users/home'.
+    assert_redirected_to home_path # This ensures that once you log in you must assert_template of 'users/home'.
+    get edit_user_path(@user)
+    assert_template 'users/edit'
     name = "divjot"
-    email = "divjot@example.com"
+    email = "divjot65@gmail.com"
     patch user_path(@user), user: {name: name,
                                    email: email,
                                    password:              "",
@@ -31,7 +32,7 @@ class UsersEditTest < ActionDispatch::IntegrationTest
     assert_not flash.empty?
     assert_redirected_to @user
     @user.reload
-    assert_equal @user.name, name
-    assert_equal @user.email, email
+    assert_equal name, @user.name
+    assert_equal email, @user.email
   end
 end

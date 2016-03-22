@@ -28,6 +28,30 @@ $(document).ready(function(){
    $('.alert').delay(1500).slideUp(500);
 });
 
+// the following code is for the responsive navbar
+
+$(document).ready(function(){
+    $(".mobile-nav-icon").on("click", function(){ 
+        var nav = $('.main-nav');
+        var icon = $('.mobile-nav-icon i');
+        
+        nav.slideToggle();
+        
+        if (icon.hasClass('fa-bars')){
+           icon.switchClass('fa-bars','fa-times'); 
+        }
+        else
+        {
+            icon.switchClass('fa-times','fa-bars');
+        }
+        
+    });
+});
+
+//the following code is to make the pagination work by ajax on the scoreboard index page
+
+
+
 // the following buttons toggle between the score-app div and the schedule div
 
 $(document).ready(function(){
@@ -86,8 +110,13 @@ $(document).ready(function (){
       });
  });
  
- 
+
+
  //score app  code ends 
+ 
+  //the follow code is for the User Profile Page 
+
+ 
  
  //the following codes after this line make the schedule app work & includes code to make modal work 
  //the code to make the pagination work is also included 
@@ -166,22 +195,7 @@ $(document).ready(function(){
     $(".best_in_place").best_in_place();
 });
 
-//below is the code for show page index
-
-$(document).ready(function(){
-     $("#scoreindexbutton").on("click", function(){
-        $(".showfollow").hide();
-        $("#showindex").show();
-        
-    });
- });
-
-$(document).ready(function(){
-     $("#followingindexbutton").on("click", function(){
-         $("#showindex").hide();
-         $(".showfollow").show();
-    });
- });
+//below is the code for scoreboard show page menu
 
 
 $(document).ready(function(){

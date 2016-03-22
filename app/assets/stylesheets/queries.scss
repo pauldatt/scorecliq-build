@@ -1,0 +1,110 @@
+/* ----------------------------------------------- */
+/*MASTER SHELL   */
+/* ----------------------------------------------- */
+
+@media only screen and (max-width: 1200px) {
+    
+    
+}
+
+/* Small tablet to big tablet: from 768px to 1023px */
+@media only screen and (max-width: 1023px) {
+    
+    /***PRELOGIN HOME ***/
+    .login-container{
+        .btn{
+            margin-top: 48px;
+        }
+    }
+    
+ 
+    
+    
+   
+}
+
+/* Small phones to small tablets: from 481px to 767px */
+@media only screen and (max-width: 767px) {
+    /** NAVIGATION MENU **/
+    .mobile-nav-icon{
+        display: block;
+    }
+    
+    .main-nav{
+        float: left;
+        margin-left: 35px;
+        display: none;
+    }
+    
+    .main-nav li{
+        display: block;
+        padding: 5px 0;
+        border: 0;
+        
+        ul{
+            margin-top: 3px;
+        }
+    }
+    
+    .main-nav li:hover{
+        border: 0;
+    }
+    
+    /***PRELOGIN HOME ***/
+    .login-container{
+        .btn{
+            margin-top: 92px;
+        }
+    }
+    
+    /***POSTLOGIN HOME ***/
+    
+    .post-login-option .row .col{
+       width: 100%;
+       
+       .btn{
+           font-size: 150%;
+       }
+    }
+}
+
+
+/* Small phones: from 0 to 480px */
+@media only screen and (max-width: 480px) {
+    
+    /** NAVIGATION **/
+    .main-nav{
+       font-size: 80%;
+    }
+    
+    nav{ padding: 0 1%;}
+    
+    /***PRELOGIN HOME ***/
+    section.prelogin-home{
+        background: none;
+        padding: 0;
+    }
+    
+    .first{
+        background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('sunset-lg.jpg');
+        background-size: cover;
+        background-position: center;
+    }
+    
+    .login-container{
+        color: #555;
+    }
+    
+     /***POSTLOGIN HOME PAGE  ***/
+     
+      .post-login-option .row .col{
+       width: 100%;
+       
+          .btn{
+              font-size: 100%;
+          }
+       }
+    
+
+}
+

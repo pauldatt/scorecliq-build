@@ -7,7 +7,6 @@ divjot:
   activated: true
   activated_at: <%= Time.zone.now %>
   
-  
 sukh:
   name:  sukh
   email: sukh@whatever.com
@@ -28,6 +27,7 @@ mallory:
   password_digest: <%= User.digest('password') %>
   activated: true
   activated_at: <%= Time.zone.now %>
+  
   
 <% 30.times do |n| %>
 user_<%= n %>:

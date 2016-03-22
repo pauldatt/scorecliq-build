@@ -6,18 +6,12 @@ class UsersController < ApplicationController
   def home
   end
   
-  def index
-    if params[:name]
-      @users = User.search(params[:name]).order("created_at DESC")
-    else
-      @users = User.all.order('created_at DESC')
-    end
-  end
-  
   def show
     @user = User.find(params[:id])
     @pictureable = @user
     @picture =  @pictureable.picture || @pictureable.build_picture
+    @owned_scoreboards = @user.scoreboards.paginate(:page => params[:user_own], :per_page => 10)
+    @followed_scoreboards= @user.favourite_scoreboards.paginate(:page => params[:user_fol], :per_page => 10)
   end
   
   def new
@@ -31,7 +25,7 @@ class UsersController < ApplicationController
       flash[:info] = "Please check you email to activate your account."
       redirect_to root_url
     else
-      render 'new'
+      render 'users/new'
     end
   end
   
@@ -44,7 +38,6 @@ class UsersController < ApplicationController
     if @user.update_attributes(user_params)
       flash[:success] = "Updated Successfully"
       redirect_to @user
-      # Handle a successful update
     else
       render 'edit'
     end

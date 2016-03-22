@@ -4,7 +4,7 @@ class UserTest < ActiveSupport::TestCase
   
   def setup
     @user = User.new(name: "Example User", email: "user@example.com",
-                     password: "foobar", password_confirmation: "foobar")
+                    password: "foobar", password_confirmation: "foobar")
   end
   
   test "should be valid" do
@@ -68,7 +68,7 @@ class UserTest < ActiveSupport::TestCase
   test "associated scoreboards should be destroyed" do
     @user.save
     @user.scoreboards.create!(name_of_scoreboard: "Scoreboard A", name_of_organization: 
-                  "Organization A", name_of_activity: "Activity A", content: "Admin message")
+                  "Organization A", name_of_activity: "Activity A" )
     assert_difference "Scoreboard.count", -1 do
       @user.destroy
     end

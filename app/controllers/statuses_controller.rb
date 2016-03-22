@@ -8,9 +8,9 @@ class StatusesController < ApplicationController
                 format.html {redirect_to(@scoreboard)}
                 format.json {respond_with_bip(@status)}
             else
-                format.html {render 'scoreboard/show'}
+                # format.html {render 'scoreboard/show'}
                 format.json {respond_with_bip(@status)}
-            end
+          end
         end
     end
             

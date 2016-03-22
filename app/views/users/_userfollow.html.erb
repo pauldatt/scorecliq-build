@@ -1,0 +1,9 @@
+<% @followed_scoreboards.each do |followed| %> 
+
+  <div class= "user-follow-div clearfix"><%= link_to followed.name_of_scoreboard, scoreboard_path(followed) %></div>
+
+<% end %> 
+
+<div class= "user-follow-pages">
+<%= will_paginate @followed_scoreboards, :param_name => 'user_fol' %> 
+</div>

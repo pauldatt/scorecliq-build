@@ -1,13 +1,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  team1: MyString
-  team2: MyString
-  detail: MyText
-  scoreboard_id: 
-
-two:
-  team1: MyString
-  team2: MyString
-  detail: MyText
-  scoreboard_id: 
+schedule_a:
+   team1: abc
+   team2: def
+   detail: All the bs that they think it important
+   match_date: Thu, 25 Feb 2016
+   match_time: bigbang
+   scoreboard: scoreboard_a

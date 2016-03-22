@@ -5,7 +5,7 @@
  </p>
  <div class="comment-body" id="comment-<%= comment.id %>">
   <% if comment.parent.present? %>
-  <p>@the parent user </p> 
+  <p>@the parent user</p> 
   <% end %>
   <%= comment.body %>
   <%= link_to "Reply", new_scoreboard_comment_path(@scoreboard, comment, parent_id: comment.id, js: true), remote: true %> |

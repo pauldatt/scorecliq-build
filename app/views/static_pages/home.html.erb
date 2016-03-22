@@ -1,29 +1,38 @@
 <% if logged_in? %>
 
-<%= render "shared/home" %>
+    <%= render "shared/home" %>
 
-<% else %>
+    <% else %>
 
 <% provide(:title, "Home") %>
-<!DOCTYPE html>
-<html>
-  <body>
-        <div class="main-img">
-          <div class="home-greet">
-            Welcome to the Scorecliq!
-          </div>
-          <div class="explain">
-            Hello, The scorecliq app is meant to cater to coaches
-            and individuals who organize teams in order to give them a better
-            way to display scores for team members. It lets them update
-            easily without a hassle and everyone can access it!
-          </div>
-          <div class="home-login">
-            <%= render 'sessions/loginform' %>
-          </div>
-          <span class="button-1"> <%= link_to "Sign-Up now!", signup_path, class: "btn btn-primary" %></span>
-        </div>
-  </body>
-</html>
 
+    <section class="prelogin-home">
+        <div class="row">
+            <div class="col span-1-of-2 box first">
+                <h2 class="home-greet">
+                      Welcome to  Scorecliq!
+                </h2>
+                
+                <p class="home-desc">
+                     Scorecliq is a platform for coaches or organizers of clubs/leagues to 
+                     manage various records such as scores, schedules and other updates in a simple
+                     manner and make them viewable to the members of the league. Try it now for free!
+                </p>
+                
+                <div class="home-sign">
+                    <%= link_to "Sign-Up now!", signup_path, class: "btn btn-full" %>
+                </div>
+               
+               
+            </div>
+            
+            <div class="col span-1-of-2 box">
+                <div class="login-container">
+                   <%= render 'sessions/loginform' %>
+                </div>
+            </div>
+        </div>
+    </section>
+         
+        
 <% end %>

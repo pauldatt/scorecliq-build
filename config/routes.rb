@@ -1,19 +1,19 @@
 Rails.application.routes.draw do
   
   root                'static_pages#home'
-  get    'help'    => 'static_pages#help'
+  get    'help'    => 'static_pages#help' 
   get    'about'   => 'static_pages#about'
   get    'contact' => 'static_pages#contact'
   get    'signup'  => 'users#new'
   post   'login'   => 'sessions#create'
   delete 'logout'  => 'sessions#destroy'
-  get    'home'    => 'users#home'
+  get    'home'    => 'static_pages#home'
   get    'search'  => 'search#index', as: :search
   get    'team'    => 'scoreboards#teams'
   
   
   resources :users do
-      resources :pictures
+      resources :pictures, only: [:create, :update, :destroy]
   end
   resources :account_activations, only: [:edit]
   resources :password_resets,     only: [:new, :create, :edit, :update]
@@ -31,7 +31,9 @@ Rails.application.routes.draw do
   resources :messages, only: [:new, :create]
   resources :scoreboards do 
    member do
-      put :favourite
+    #   resources :favourites, only: [:create, :destroy] this would give you an undefined method
+      post :favourite
+      delete :favourite
       get :deleteteams
       get :deleteschedules
     end
@@ -43,18 +45,6 @@ Rails.application.routes.draw do
   end
   
   resources :invitations, only: [:new, :create]
-  
-  
-  resources :friendships do
-    member do
-    put 'friend_request'
-    put 'friend_request_accept'
-    delete 'friend_request_reject'
-  end
-  
-  
-  
-end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

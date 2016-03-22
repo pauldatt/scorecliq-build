@@ -23,18 +23,21 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     
     
     assert is_logged_in?
-    assert_template 'users/home' # The code is "render "users/home", therefore, I am testing for rendering a template.
-    assert_select "a[href=?]", users_path #Index
-    assert_select "a[href=?]", user_path(@user) #update
+    assert_redirected_to home_path # The code is "render "users/home", therefore, I am testing for rendering a template.
+    follow_redirect! # after the login, you must follow the redirect, below we check for links
+    assert_select "a[href=?]", home_path
+    assert_select "a[href=?]", user_path(@user) #users show page
     assert_select "a[href=?]", login_path, count: 0 #creates sessions
     assert_select "a[href=?]", logout_path #destroys sessions
-    delete logout_path
+    assert_select "a[href=?]", search_path # search_path
+    assert_select "a[href=?]", edit_user_path(@user) # changings setting for the user
+    assert_select "a[href=?]", conversations_path #conversation_path
+    delete logout_path # the code below simulates a user clicking logout
     assert_not is_logged_in?
-    assert_redirected_to root_url
-    # Simulate a user clicking logout in a second window
+    assert_redirected_to root_url # Simulates a user clicking logout in a second window
     delete logout_path
     follow_redirect!
-    # assert_select "a[href=?]", login_path # come back to this test later
+    assert_template 'sessions/_loginform' #this displays the login_form partial
     assert_select "a[href=?]", signup_path
     assert_select "a[href=?]", logout_path,      count: 0
     assert_select "a[href=?]", user_path(@user), count: 0
@@ -42,12 +45,12 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
   
   test "login with checking remember" do
     log_in_as(@user, remember_me: '1')
-    assert_not_nil cookies['remember_token']
+    assert_not_nil cookies['remember_token'] # cookie isn't nil (remembered)
   end
   
   test 'login without checking remember' do
     log_in_as(@user, remember_me: '0')
-    assert_nil cookies['remember_token']
+    assert_nil cookies['remember_token'] # cookie is nil (not remembered)
   end
 end
   

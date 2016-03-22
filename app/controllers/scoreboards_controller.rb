@@ -35,19 +35,20 @@ class ScoreboardsController < ApplicationController
  
  
   def index
-      @scoreboards = current_user.scoreboards.paginate(:page => params[:page], :per_page => 10)
+   @owned_scoreboards = current_user.scoreboards.paginate(:page => params[:owned_page], :per_page => 5)
+   @followed_scoreboards= current_user.favourite_scoreboards.paginate(:page => params[:follow_page], :per_page => 5)
   end
     
  #Update
  
  def edit
-  @scoreboard = Scoreboard.find_by_id(params[:id])
+  @scoreboard = Scoreboard.find(params[:id])
  end
  
  def update
-  @scoreboard = Scoreboard.find_by(params[:id])
+  @scoreboard = Scoreboard.find(params[:id])
   if @scoreboard.update_attributes(scoreboard_params)
-    redirect_to scoreboard_path(@scoreboard)
+    redirect_to @scoreboard
     flash[:success] = "Updated Successfully"
   else
    render 'edit'
@@ -89,6 +90,12 @@ class ScoreboardsController < ApplicationController
    @scoreboard = Scoreboard.find(params[:id])
    current_user.favourite_scoreboards.delete(@scoreboard)
    redirect_to @scoreboard
+   flash[:success] = "You unfollowed scoreboard: #{@scoreboard.name_of_scoreboard}"
+   
+  elsif type == "unfav-index"
+   @scoreboard = Scoreboard.find(params[:id])
+   current_user.favourite_scoreboards.delete(@scoreboard)
+   redirect_to scoreboards_path
    flash[:success] = "You unfollowed scoreboard: #{@scoreboard.name_of_scoreboard}"
    
   else

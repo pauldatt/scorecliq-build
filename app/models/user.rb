@@ -9,28 +9,14 @@ class User < ActiveRecord::Base
   has_many :favourites
   
   #allows you to access the favourite scoreboards associated with the user
-  has_many :favourite_scoreboards, through: :favourites, source: :scoreboard
+  has_many :favourite_scoreboards, through: :favourites, source: :scoreboard #each user can have many favourited scoreboards. 
+                                                                             # many scoreboard_id for a single user
   
   #the mailboxer gem is being accessed by the following code
   acts_as_messageable
   
-  #the following is an attempt at message length validation
-  validates :body, presence: true, length: { maximum: 50 }
-  
-  has_many :friendships
-  has_many :passive_friendships, :class_name => "Friendship", :foreign_key => "friend_id"
-  
-  has_many :active_friends, -> { where(friendships: {approved: true}) }, :through => :friendships, :source => :friend 
-  has_many :passive_friends, -> { where(friendships: {approved: true}) }, :through => :passive_friendships, :source => :user
-  has_many :pending_friends, -> { where(friendships: {approved: false}) }, :through => :friendships, :source => :friend
-  has_many :requested_friendships, -> { where(friendships: {approved: false}) }, :through => :passive_friendships, :source => :user
-  
   # each user has one picture
-  has_one :picture, as: :pictureable
-  
-  def friends
-    active_friends | passive_friends
-  end
+  has_one :picture, as: :pictureable, dependent: :destroy
 
   attr_accessor :remember_token, :activation_token, :reset_token
   before_save   :downcase_email 
@@ -126,31 +112,9 @@ class User < ActiveRecord::Base
     return email 
     end
     
-    #Mulisearch method for user
-    include PgSearch
-    
-    multisearchable :against => :name
-  
-    PgSearch.multisearch_options = {
-    :using => {
-                :tsearch => {
-                   :prefix => true,
-                   :dictionary => "english",
-                   :any_word => true
-                 }
-              }
-    
-    }
-    
-    
-    
-    
 end
-    
-
-
-      
-
+  
+#Notes
 # The method gets defined in the user models. Then they get written in the sessions helper,
 # Once they are in the session helper they can get used by the sessions controller.
 

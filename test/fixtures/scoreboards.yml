@@ -1,41 +1,50 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-mid_recent:
+scoreboard_a:
   name_of_scoreboard: MyString
   name_of_organization: MyString
-  name_of_activity: MyString
-  starts_at: 2015/08/07
-  ends_at: 2015/09/07
+  name_of_activity: MyStrings
   states: Ontario
   country: Canada
   cities: Guelph
-  picture: MyString
+  created_at: <%= 10.minutes.ago %>
+  user: divjot
+
+scoreboard_b:
+  name_of_scoreboard: MyString
+  name_of_organization: MyString
+  name_of_activity: MyStrings
+  states: Ontario
+  country: Canada
+  cities: Guelph
+  created_at: <%= 10.minutes.ago %>
+
+mid_recent:
+  name_of_scoreboard: MyString
+  name_of_organization: MyString
+  name_of_activity: MyStrings
+  states: Ontario
+  country: Canada
+  cities: Guelph
   created_at: <%= 10.minutes.ago %>
 
 least_recent:
   name_of_scoreboard: MyString
   name_of_organization: MyString
   name_of_activity: MyString
-  starts_at: 2015/08/07
-  ends_at: 2015/09/07
   states: Ontario
   country: Canada
   cities: Guelph
-  picture: MyString
   created_at: <%= 3.years.ago %>
   
 most_recent:
   name_of_scoreboard: MyString
   name_of_organization: MyString
   name_of_activity: MyString
-  starts_at: 2015/08/07
-  ends_at: 2015/09/07
   states: Ontario
   country: Canada
   cities: Guelph
-  picture: MyString
   created_at: <%= Time.zone.now %>
-
 
 
   

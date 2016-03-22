@@ -1,9 +1,4 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-one:
-  content: MyText
-  scoreboard_id: 
-
-two:
-  content: MyText
-  scoreboard_id: 
+status_a:
+   content: "pappucantdancesala"
+   scoreboard: scoreboard_a # status_a belongs to scoreboard_a

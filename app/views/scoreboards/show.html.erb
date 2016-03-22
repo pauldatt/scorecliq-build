@@ -85,16 +85,16 @@
    
  </div>
  <% if current_user.favourite_scoreboards.include?(@scoreboard) %>
-  <%= link_to "unfollow", favourite_scoreboard_path(@scoreboard, type: "unfavourite", remote: true), method: :put, class: 'btn btn-primary un-follow' %>
+  <%= link_to "unfollow", favourite_scoreboard_path(@scoreboard, type: "unfavourite", remote: true), method: :delete, class: 'btn btn-primary un-follow' %>
  <% else %>
-  <%= link_to "follow", favourite_scoreboard_path(@scoreboard, type: "favourite", remote: true), method: :put, class: 'btn btn-primary un-follow' %>
+  <%= link_to "follow", favourite_scoreboard_path(@scoreboard, type: "favourite", remote: true), method: :post, class: 'btn btn-primary un-follow' %>
  <% end %>
  
  <% if @scoreboard.user == current_user %>
  <%= link_to "Invite", new_invitation_path(scoreboard_id: @scoreboard.id), class: 'btn btn-primary invite-btn' %>
  <% end %>
 
-<% if @scoreboard.user == current_user %>
+<% if @scoreboard.user %>
 <div class="statuscontent">
  <%= render 'statusedit' %>
 </div>
@@ -155,10 +155,9 @@
 <div class= "comment-section">
  
   <%= form_for [@scoreboard, @comment], :html => { :id => "new-comment-entry" } do |f| %> 
-         
        <%= render 'shared/error_messages', object: f.object %>
        <%= f.text_area :body, class: "comment-field" %>
-       <%= f.hidden_field :parent_id %>
+       <%= f.hidden_field :parent_id %> 
        <%= f.submit "Join the discussion...",:data => {:disable_with => "Uploading Comment..."}, class: " comment-button btn btn-primary" %>
   <% end %>
         

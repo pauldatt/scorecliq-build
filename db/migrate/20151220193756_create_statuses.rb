@@ -6,7 +6,6 @@ class CreateStatuses < ActiveRecord::Migration
 
       t.timestamps null: false
     end
-    change_column :statuses, :content, :text, :default => "upload status"
     add_foreign_key :statuses, :scoreboards
   end
 end

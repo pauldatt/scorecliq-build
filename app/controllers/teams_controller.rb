@@ -1,9 +1,5 @@
 class TeamsController < ApplicationController
-   def new
-    @scoreboard= Scoreboard.find(params[:scoreboard_id])
-    @team= @scoreboard.teams.build
-   end 
-   
+    
    def create
      @scoreboard = Scoreboard.find(params[:scoreboard_id])
      @team = @scoreboard.teams.build(team_params)
@@ -64,5 +60,7 @@ class TeamsController < ApplicationController
    def team_params
      params.require(:team).permit(:name, :win, :loss, :tie)
    end
+   
+
    
 end

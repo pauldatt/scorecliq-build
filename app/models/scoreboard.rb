@@ -1,10 +1,18 @@
 class Scoreboard < ActiveRecord::Base
+  # before_create method for status
   before_create :associate_status
-
+  
+  # the method that build the association with the status as soon as it is saved
+  def associate_status
+      self.build_status(:content => "Click here to upload Status")
+  end
+  
+  # *************////// Below are all the association with the scoreboards //////*************
+  
   # each scoreboard is created by a user
   belongs_to :user
   
-  # each scoreboard has many teams
+  # each scoreboard has_many teams
   has_many :teams, dependent: :destroy
   
   # each scoreboard has_many comments
@@ -14,46 +22,42 @@ class Scoreboard < ActiveRecord::Base
   has_many :favourites, dependent: :destroy
  
   #allows you to access the users associated with the favourited scoreboards
-  has_many :favourited_by, through: :favourites, source: :user, dependent: :destroy
+  has_many :favourited_by, through: :favourites, source: :user, dependent: :destroy #the source user would look for foreign key user_id
   
   #each scoreboard can have many schedules on it 
   has_many :schedules, dependent: :destroy
   
+  #The scoreboard thats created last shows up first
   default_scope -> { order(created_at: :desc) }
   
   #each scoreboard has one picture
-  has_one :picture, as: :pictureable
+  has_one :picture, as: :pictureable, dependent: :destroy
   
   #each scoreboard has one status
   has_one :status, dependent: :destroy
   
-  def associate_status
-      self.build_status(:content => "Click here to upload Status")
-  end
+  # *************////// Below are all the validations on the scoreboard columns //////*************
   
   # Scoreboard information Validation
   validates :name_of_scoreboard, presence: true, length: { maximum: 50 }
   validates :name_of_organization, presence: true, length: { maximum: 50 } 
-  validates :name_of_activity, presence:true, length: { maximum: 50 }
+  validates :name_of_activity, presence: true, length: { maximum: 50 }
   validates :user_id, presence: true
-  validates :status, length: {maximum: 255}
   
-  
-   # Multisearch method for scoreboard
-   include PgSearch
-   multisearchable :against => [:name_of_organization, :name_of_activity, :name_of_scoreboard ]
+   # *************////// Below is the search method for scoreboard and searching associations //////*************
    
-   PgSearch.multisearch_options = {
-  :using => {
-              :tsearch => {
-                 :prefix => true,
-                 :dictionary => "english",
-                 :any_word => true
-               }
-            }
-  }
+  include PgSearch
+      
+  pg_search_scope :search_by_scoreboard, 
+                    :against => [:name_of_scoreboard, :name_of_organization, :name_of_activity],
+                    :using => {
+                        :tsearch => {
+                            tsvector_column: "tsv",
+                            :prefix => true,
+                            :dictionary => "english",
+                            :any_word => true
+                        }
+                    
+                    }
    
-   
-   
-  
 end

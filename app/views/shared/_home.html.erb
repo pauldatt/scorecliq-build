@@ -1,24 +1,25 @@
 
 <% provide(:title, "Home") %>
-<div class= "home-pg-contain">
-  <div class="home-head"> Welcome to the Scoreboard App</div>
-  <div class="my-score-desc well">Visit My Scoreboard to View, Edit and Delete Scoreboard
-   <span class="my-score-button">
-    <%= link_to "My Scoreboard", scoreboards_path , class: 'btn btn-primary' %>
-   </span>
-  </div>
-  <div class="create-new-desc well">
-    Are you the coach or leader of an organization and want a scoreboard
-    to display to your members. Well look no further!
-     <span class="create-score-button">
-       <%= link_to "Create new Scoreboard", new_scoreboard_path , class:"btn btn-primary"%>
-     </span>
-  </div>
-  <div class="search-score-desc well">
-    Did someone tell you about a scoreboard? Are you a part of an 
-    organization that owns a scoreboard? Well, what are you waiting for? 
-     <span class="search-score-button">
-       <%= link_to "Search for Scoreboards",search_path , class:"btn btn-primary"%>
-     </span>
-  </div>
-</div>
+
+<section class="post-login-option">
+    <div class="row">
+        <div class="col span-1-of-3 view-home">
+            <%= image_tag("my-img.jpg", class: "view-score") %>
+            <%= link_to "View Your Scoreboards", scoreboards_path , class: 'btn btn-full' %>
+
+        </div>
+        
+        <div class="col span-1-of-3 create-home">
+            <%= image_tag("create-img.jpg", class: "create-score") %>
+            <%= link_to "Create New Scoreboard", new_scoreboard_path , class:"btn btn-full"%>
+
+        </div>
+        
+        <div class="col span-1-of-3 search-home">
+            <%= image_tag("search-img.jpg", class: "search-score") %>
+            <%= link_to "Search For Scoreboards",search_path , class:"btn btn-full"%>
+
+            
+        </div>
+    </div>
+</section>

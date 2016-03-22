@@ -7,23 +7,23 @@
 <% end %>
 <div>
 
-
-
-<% @pg_search_documents.each do |pg_search| %>
-       <%= div_for pg_search, :class => "inner-disp" do %> 
-      <% if pg_search.searchable.respond_to?(:name) %>
-          Name: <%= link_to "#{pg_search.searchable.name}", user_path(pg_search.searchable.id) %>
-      <% elsif %>
-          Scoreboard: <%= link_to "#{pg_search.searchable.name_of_organization}", scoreboard_path(pg_search.searchable.id) %><br>
-          Organization: <%= pg_search.searchable.name_of_scoreboard %><br>
-          Activity: <%= pg_search.searchable.name_of_activity %><br>
-      <% else %>
-         <h1>do nothing</h1>
-      <% end %>
+<% if params[:search].present? %>
+<% if @scoreboard_search.present? %>
+<% @scoreboard_search.each do |scoreboard_search| %>
+    <%= div_for scoreboard_search, :class => "inner-disp" do %> 
+        Scoreboard: <%= link_to "#{scoreboard_search.name_of_scoreboard}", scoreboard_path(scoreboard_search.id) %><br>
+        Organization: <%= scoreboard_search.name_of_organization %><br>
+        Activity: <%= scoreboard_search.name_of_activity %><br>
+        state: <%= scoreboard_search.states %><br>
+        Admin: <%= link_to "#{scoreboard_search.user.name}", user_path(scoreboard_search.user.id)  %>
     <% end %>
 <% end %>
 
-<%= will_paginate @pg_search_documents, :page_links => false %>
+<%= will_paginate @scoreboard_search, :page_links => true %>
 
+<% else %>
 
+No results found, please try again.
 
+<% end %>
+<% end %>

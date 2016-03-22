@@ -1,55 +1,38 @@
-<div class= "my-score-contain">
-</div>
+<section class="scoreboard-view">
+    <div class="row">
+        
+        <div class="col span-1-of-2 box">
+            <h3>Scoreboards You Own</h3>
+            
+            <% if @owned_scoreboards.any? %>
+                  <%= render "ownedboards" %>
+            <% else %>
+                  <div class="no-own-index">
+                    <p>
+                       You don't own any Scoreboards. Do you want to create one
+                       for your organization or league? 
+                    </p>
+                   <%= link_to "Create New Scoreboard", new_scoreboard_path , class:"btn btn-full" %>
+                  </div>
+             <% end %>
+        </div>
+        
+        <div class="col span-1-of-2 box">
+            <h3>Scoreboards You Follow</h3>
+            
+            <% if @followed_scoreboards.any? %>
+                  <%= render "followedboards" %>
+            <% else %>
+                  <div class="no-follow-index">
+                     <p>
+                        You don't follow any Scoreboards. How about searching for 
+                        an organization you're a part of?
+                     </p>
+                     <%= link_to "Search for Scoreboards", search_path , class: "btn btn-full" %>
+                  </div>
+             <% end %> 
 
-<div class="my-score-display">
-  <div id="scoreindexbutton">
-     <span class="button-my-score btn btn-primary"> My Scoreboards</span>
-  </div>
-  
-  <div id="followingindexbutton">
-     <span class="button-follow btn btn-primary"> Following</span>
-  </div>
- 
-</div>
-
-<div class="the-display">
-
-<div id="showindex">
-<% if @scoreboards.empty? == true %>
-   <%= link_to "Create New scoreboard", new_scoreboard_path %>
-<% else %>
-    <% @scoreboards.each do |scoreboard| %>
-       <%= div_for scoreboard, :class => "inner-disp" do %>
-        <p> Name:              <%= scoreboard.name_of_scoreboard %> </br>
-        Organization:      <%= scoreboard.name_of_organization %></br>
-        Sport:             <%= scoreboard.name_of_activity %> </br>
-        Location: <%= scoreboard.cities %> <%= scoreboard.states%>, <%= scoreboard.country %></br>
-        </p>
-        <% if scoreboard.user == current_user %>
-          <%= link_to "View", scoreboard_path(scoreboard), class: 'btn btn-primary my-view' %>
-          <%# link_to "View", scoreboard_path(@scoreboard, :id=> scoreboard.id), class: 'btn btn-primary my-view' %>
-          <%= link_to "Edit", edit_scoreboard_path(@scoreboard, :id => scoreboard.id), class: 'btn btn-primary my-edit' %>
-          <%= link_to "Delete", scoreboard,  method: :delete, data: { confirm: "Are you sure you want to delete the scoreboard."}, class: 'btn btn-primary my-del' %>
-        <% else %>
-          <%= link_to "View", scoreboard_path(@scoreboard, :id=> scoreboard.id), class: 'btn btn-primary my-view' %>
-        <% end %>
-      <% end %>
-    <% end %>
- <% end %>
-</div>
-     
-<div class="showfollow">
-    <p> Following scoreboard count: <%= current_user.favourite_scoreboards.count %> </p> 
-     <% current_user.favourite_scoreboards.each do |favourite| %> 
-     <%= link_to "#{favourite.name_of_scoreboard}", scoreboard_path(favourite) %> <br></br>
-     <% end %>
- </div>
-
-</div>
-
- 
-    
-    
-
-      
-
+            
+        </div>
+    </div>
+</section>

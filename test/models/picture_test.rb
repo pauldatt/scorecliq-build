@@ -1,7 +1,27 @@
 require 'test_helper'
 
 class PictureTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  
+  def setup 
+    @pictureable = scoreboards(:scoreboard_a)
+    @picture = @pictureable.build_picture(picture: "picture")
+  end
+  
+  test "pictureable type must be present" do
+    @picture.pictureable_type = nil
+    assert_not @picture.valid?
+  end
+  
+  test "pictureable id must be present" do
+    @picture.pictureable_id = nil
+    assert_not @picture.valid?
+  end
+  
+  test "picture must be <= 3mb" do
+    if @picture.picture.size > 3.megabytes
+      assert_not @picture.valid?
+    end
+  end
+  
+  
 end

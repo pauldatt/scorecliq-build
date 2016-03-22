@@ -1,82 +1,91 @@
 <% provide(:title, @user.name) %>
-<div class="profile-container">
- <div class="user-tit">
-       <h3><%= @user.name %></h3>
-       <% if current_user.pending_friends.include?(@user) %>
-     <p>Status: Pending</p>
-   <% elsif %>
-    <% if current_user.friends.include?(@user) %>
-     <p>Request Accepted...Status: Friends</p>
-   <% else %>
-     <% if current_user != @user %>
-     <p><%= link_to "Add friend", friendships_path(:friend_id => @user), :method => :post %>, to get access to the conversation feature.....</p> <!-- passing the id specifies which user you want to befriend -->
-   <% end %> 
-  <% end %>
-<% end %>
-</div>
- <div class="prof-pic">
-       <% if @picture.picture.url.present? %>
-         <div id="pictureplacement">
-           <%= image_tag @picture.picture.url %>
-         </div>
-        <% else %>
-           <%= render 'pictures/uploadphoto' %>
-        <% end %>  
-     </div>
- </div>
- <%= render 'pictures/editphoto' %>
- <%= link_to "Delete Photo", [@pictureable, @picture], method: :delete, data: {confirm: "Are you sure you want to delete your picture!"}, class: "btn btn-primary" %>
- 
- <div class="info-box well">
-  Name: Paul Dhatt <br>
-  Age: 22
- </div>
- 
- <div class="desc-area well">
-  I am a part of 40 different sports team. I was an all state champion at
-  the University of Wisconsin.
- </div>
- 
- <div class="prof-help-tip well">
-  Sometimes, One must explore the wild wildnerness to truly understand
-  the world.
- </div>
- 
- <div class="score-own well"> <!-- spend time understanding the code!! -->
-  <h4>Friends</h4>
-    <ul>
-        <% @user.friends.each do |friend| %> <!-- the method "friend" is defined in the user model -->
-        <li>                                 <!-- It is the number of active and passive friends -->
-          <%= link_to "#{friend.name}", friend %>
-          <% if current_user == @user %>,
-            <%= link_to "Remove", friendship_path(:id => friend), :method => :delete %>
-          <% end %>
-        </li>
-      <% end %>
-    </ul>
 
-    <% if current_user == @user %>
-        <h4>Your Friend Requests</h4>
-        <ul>
-            <% @user.requested_friendships.each do |request| %>
-            <li>
-              <%= request.name %> 
-              <%= link_to "Accept", friendship_path(:id => request), :method => "put" %> |
-              <%= link_to "Decline", friendship_path(:id => request), :method => :delete %>
-            </li>
-          <% end %>
-        </ul>
-    <% end %>
- </div>
- 
-<div class="score-follow well">
-    <p> Following scoreboard count: <%= @user.favourite_scoreboards.count %> </p> 
-    <% @user.favourite_scoreboards.each do |favourite| %> 
-    <%= link_to "#{favourite.name_of_scoreboard}", scoreboard_path(favourite) %> <br></br>
-   <% end %>
-</div>
+<section class="user-profile">
+    <div class="row">
+        <h2><%= @user.name %></h2>
+    </div>
     
+    <div class="row">
+        <div class="col span-1-of-3">
+            
+            <div class="prof-pic">
+                <% if @picture.picture.url.present? %>
+                   <%= image_tag @picture.picture.url, class: "user-prof" %>
+                <% else %>
+                   <%= image_tag("blank-prof.jpg", class: "user-prof") %>
+                <% end %>  
+            </div>
+                
+            <div class="prof-buttons">
+                <% if current_user != @user %>
+                   <%= link_to "Message", "#", class: "btn-s btn-full user-message" %>
+                <% end %>
+    
+                <% if current_user==@user %>
+                    <% if @picture.picture.url.present? %>
+                        <%= render 'pictures/editphoto' %>
+                        <%= link_to "Del Pic", [@pictureable, @picture], method: :delete, data: {confirm: "Are you sure you want to delete your picture!"}, class: "user-del-photo btn-s btn-full" %>
+                    <% else %>
+                        <%= render "pictures/uploadphoto" %>
+                    <% end %>
+                <% end %>
+             </div>
+        </div>
+        
+        <div class="col span-1-of-3 box user-owns">
+            <h3> Scoreboards <%= @user.name %> owns: </h3>
+            
+            <% if @owned_scoreboards.any? %>
+                  <%= render "userown" %>
+            <% else %>
+                 <p>
+                     <%= @user.name %> does not own any Scoreboards.
+                 <p>
+            <% end %>
+            
+        </div>
+        
+        <div class="col span-1-of-3 box user-follows">
+            <h3> Scoreboards <%= @user.name %> follows:</h3>
+            
+            <% if @followed_scoreboards.any? %>
+                  <%= render "userfollow" %>
+            <% else %>
+                  <p>
+                      <%= @user.name %> does not follow any Scoreboards.
+                  </p>
+            <% end %>
+        </div>
+    </div>
+</section>
+
+
+<!--Below is the Modal to Message User -->
+<div class="modal">
+    <div class="modal-dialog">
+          <div class="modal-content">
+           
+             <div class="modal-header">
+              
+             </div>
+             
+             <div class="modal-body">
+                
+             </div>
+             
+             <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+             </div>
+             
+          </div>
+    </div>
 </div>
+
+
+     
+     
+
+     
 
 
 

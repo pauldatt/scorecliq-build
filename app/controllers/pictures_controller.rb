@@ -9,7 +9,8 @@ def create
         flash[:success] = "Uploaded Successfully"
         redirect_to @pictureable
     else
-        render 'scoreboards/show'
+        redirect_to @pictureable
+        flash[:danger] = "An error occured, please try again!"
     end
 end
 
@@ -18,8 +19,9 @@ def update
     if @picture.update_attributes(picture_params)
         redirect_to @pictureable
         flash[:success] = "Picture updated successfully"
-    else
-        render 'scoreboards/show'
+     else
+        redirect_to @pictureable
+        flash[:danger] = "An error occured, please try again!"
     end
 end
 
@@ -27,7 +29,7 @@ end
 def destroy
     @pictureable.picture.delete
     redirect_to @pictureable
-    flash[:success] = "Picture Removed"
+    flash[:success] = "Picture removed successfully"
 end
     
 

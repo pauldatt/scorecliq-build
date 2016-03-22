@@ -6,7 +6,8 @@ class ScoreboardTest < ActiveSupport::TestCase
   def setup
     @user = users(:divjot)
     @scoreboard = @user.scoreboards.build(name_of_scoreboard: "Scoreboard A", name_of_organization: 
-                  "Organization A", name_of_activity: "Activity A", content: "Admin message")
+                  "Organization A", name_of_activity: "Activity A")
+    @status = statuses(:status_a)
                   
   end
     
@@ -48,16 +49,31 @@ class ScoreboardTest < ActiveSupport::TestCase
       assert_not @scoreboard.valid?
     end
     
-    test "user ID should be present" do
+    
+    test "user ID must be present" do
       @scoreboard.user_id = nil
       assert_not @scoreboard.valid?
     end
-    
-    # The tests for the messages will go in here, once they are written.
-    
-    # This test requires having some micropost fixtures. They are defined in fixtures.yml
+  
     test "order should be most recent first" do
       assert_equal Scoreboard.first, scoreboards(:most_recent)
+    end
+    
+    test "associated teams should be destroyed if scoreboard is destroyed" do
+      @scoreboard.save
+      @scoreboard.teams.create!(name: "abc", win: 0, loss: 0, tie: 0)
+      assert_difference"Team.count", -1 do
+        @scoreboard.destroy
+      end
+    end
+    
+    test "associated schedules should be destroyed if scoreboard is destroyed" do
+      @scoreboard.save
+      @scoreboard.schedules.create!(team1: "abc", team2: "ded", detail: "notimportant", 
+                                    match_date: "feb 25th,1993", match_time: "anytime")
+      assert_difference"Schedule.count", -1 do
+        @scoreboard.destroy
+      end
     end
   
 end

@@ -1,176 +1,131 @@
+/* ----------------------------------------------- */
+/* USER NEW PAGE  */
+/* ----------------------------------------------- */
 
-
-/* home-page  prelogin */
-.main-img{
-    height: 536px;
-    width: 1150px;
-    background-image: image-url('soccer.jpg');
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-size: 100%;
-    margin: 0;
-}
-
-.home-greet{
-    font-weight: bold;
-    font-size: 30px;
-    position: relative;
-    left: 39px;
-    top: 50px;
-}
-
-.log-form{
-    width: 312px;
-    height: 241px;
-    position: relative;
-    bottom: 197px;
-    left: 744px;
-}
-
-.button-1{
-    position: relative;
-    left: 39px;
-    bottom: 249px;
-}
-
-.explain{
-    height: 190px;
-    width: 401px;
-    position: relative;
-    left: 39px;
-    top: 56px;
-}
-
-.navigation {
-    background-color: #FFFFFF;
-}
-
-/*Styling the Home Page Post Login*/
-
-.home-pg-contain{
-    height: 550px;
-    width: 1150px;
-    position: relative;
-}
-
-.home-head{
-    position: relative;
-    width: 310px;
-    font-weight: bold;
-    font-size: 20px;
-    text-align: center;
-    left: 539px;
-}
-
-.my-score-desc{
-    width: 166px;
-    height: 241px;
-    position: relative;
-    left: 20px;
-    top: 20px;
-    text-align: center;
-}
-
-.create-new-desc{
-    width: 300px;
-    height: 241px;
-    position: relative;
-    left: 331px;
-    bottom: 243px;
-    background-image: image-url('pop.jpg');
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-size: 100%;
-    color: white;
-    font-weight: bold;
-    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-    text-align: center;
+.user-sign-up .row .col{
+    float: none;
+    margin: 20px auto 0 auto;
     
+    .form-control{ margin-bottom: 10px;}
+    
+    .btn{
+        margin-top: 25px;
+        width: 100%;
+    }
 }
+    
 
-.search-score-desc{
-    width: 300px;
-    height: 241px;
-    position: relative;
-    left: 742px;
-    bottom: 504px;
-    background-image: image-url('sky.jpg');
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-size: 100%;
-    color: white;
-    font-weight: bold;
-    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-    text-align: center;
-}
+/* ----------------------------------------------- */
+/* USER PROFILE PAGE  */
+/* ----------------------------------------------- */
 
-
-/** the buttons on the home page post login **/
-.search-score-button{
-    position: absolute;
-    bottom: 0px;
-    left: 63px;
-}
-
-.create-score-button{
-    position: absolute;
-    left: 63px;
-    bottom: 0px;
-}
-
-/* User Profile CSS **/
-.user-tit{
-    text-align: center;
-}
-
-.profile-container{
-    position: relative;
-    width: 1170px;
-    height: 730px;
-  
+ .user-profile{
+    padding-top: 20px;
+    
+    .row .user-owns,.user-follows{
+        border: 2px solid;
+    }
+    
+    .row .col h3{
+        border-bottom: 2px solid;
+    }
+    
+    .row .col p{
+        margin: 20px auto;
+        width: 80%;
+        font-size: 120%;
+        text-align: center;
+    }
 }
 
 .prof-pic{
-    position: relative;
-    width: 266px;
-    height: 223px;
-    top: 180px;
-    left: 10px;
-}
-
-.desc-area{
-    width: 845px;
-    height: 124px;
-    position: relative;
-    left: 286px;
-    bottom: 435px;
-}
-
-.info-box{
-    width: 266px;
-    height: 172px;
-}
-
-.prof-help-tip{
-    width: 266px;
-    height: 200px;
-    position: relative;
-    bottom: 145px;
+    width: 203px;
+    height: 174px;
+    margin: 0 auto;
     
+    .user-prof{
+        width: 100%;
+        height: 100%;
+    }
 }
 
-.score-own{
-    position: relative;
-    width: 845px;
-    height: 235px;
-    left: 286px;
-    bottom: 657px;
+.prof-buttons{
+    margin-top: 10px;
+    width: 203px;
+    margin: 10px auto 0 auto;
+    
+    .btn, .btn-s{
+        padding: 1%;
+        font-size: 70%;
+    }
+    
+    .user-message{
+        width: 100%;
+        text-align: center;
+    }
+    
+    .upload-user-photo{
+        width: 100%;
+        text-align: center;
+    }
+    
+    .user-edit-photo{
+        width: 40%;
+        float: left;
+    }
+    
+    .user-del-photo{
+        width: 40%;
+        float: right;
+    }
 }
 
-.score-follow{
-    position: relative;
-    width: 845px;
-    height: 237px;
-    left: 286px;
-    bottom: 658px;
+.user-own-div{
+    border: 3px solid;
+    font-size: 80%;
+    margin-top: 10px;
+    text-align: center;
 }
+
+.user-follow-div{
+    border: 3px solid;
+    font-size: 80%;
+    margin-top: 10px;
+    text-align: center;
+}
+
+/* ----------------------------------------------- */
+/* USER CONVERSATIONS  */
+/* ----------------------------------------------- */
+.convo-group{
+    list-style: none;
+    
+    .convo-div{
+        font-size: 70%;
+        padding: 2%;
+        width: 100%;
+        border: 2px solid;
+         margin-bottom: 15px;
+         
+         .convo-labels{
+             width: 80%;
+             float: left;
+         }
+         
+         .convo-buttons{
+             width: 20%;
+             float: left;
+             
+             .btn-s{
+                 width: 100%;
+             }
+         }
+         
+         .read-btn{
+                 margin-top: 5px;
+             }
+    }
+}
+
+
+        

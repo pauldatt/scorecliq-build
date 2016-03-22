@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: "noreply@scoreboard.com"
+  default from: "noreply@scorecliq.com"
   layout 'mailer'
 end

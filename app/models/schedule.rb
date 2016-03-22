@@ -8,6 +8,7 @@ class Schedule < ActiveRecord::Base
   validates :match_date, presence: true
   validates :match_time, length: { maximum: 8 }
   validates :detail, length: { maximum: 30 }
+  validates :scoreboard_id, presence: true
   
   def auto_fill_schedule
     if self.match_time.blank?
@@ -18,5 +19,6 @@ class Schedule < ActiveRecord::Base
       self.detail="N/A"
     end 
   end
+  
   
 end
