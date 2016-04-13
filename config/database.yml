@@ -2,9 +2,9 @@ default: &default
       adapter: postgresql
       encoding: unicode
       pool: 5
-      username: ubuntu
-      password: password
-      host: <%= ENV['IP'] %>
+      username: kdhatt # same name for a superuser
+      password: otohime # same password for the database owner. 
+      host: <%= ENV['IP'] %> # config the hba_file and fix the template 1.
       
 
 development:
@@ -14,6 +14,7 @@ development:
 test:
   <<: *default
   database: app_test
+  
 
 production:
   <<: *default
