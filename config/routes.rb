@@ -31,7 +31,6 @@ Rails.application.routes.draw do
   resources :messages, only: [:new, :create]
   resources :scoreboards do 
    member do
-    #   resources :favourites, only: [:create, :destroy] this would give you an undefined method
       post :favourite
       delete :favourite
       get :deleteteams
