@@ -36,6 +36,19 @@ class Scoreboard < ActiveRecord::Base
   #each scoreboard has one status
   has_one :status, dependent: :destroy
   
+  #each scoreboard has_many events
+  has_many :events, dependent: :destroy
+  
+  #each scoreboard could be requested_by many users
+  has_many :requests
+  
+  has_many :requested_by, through: :requests, source: :user, dependent: :destroy
+  
+  #each scoreboard could have managers(admins)
+  has_many :managers
+  
+  has_many :managed_by, through: :managers, source: :user, dependent: :destroy
+  
   # *************////// Below are all the validations on the scoreboard columns //////*************
   
   # Scoreboard information Validation
