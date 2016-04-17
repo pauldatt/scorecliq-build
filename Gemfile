@@ -25,6 +25,7 @@ gem 'jquery-turbolinks',       '~> 2.1.0'
 gem 'best_in_place', '~> 3.0.1'
 gem 'social-share-button', '~> 0.1.6'
 gem 'pg_search'
+gem 'figaro'
 
 group :development, :test do
   gem 'pg',             '0.17.1'
