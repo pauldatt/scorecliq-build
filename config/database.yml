@@ -21,4 +21,4 @@ production:
   database: app_production
   
   
-  
+# The directory is part of gitignore
