@@ -65,6 +65,41 @@ ALTER SEQUENCE comments_id_seq OWNED BY comments.id;
 
 
 --
+-- Name: events; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE events (
+    id integer NOT NULL,
+    event_name character varying,
+    event_date date,
+    event_time time without time zone,
+    notes character varying,
+    scoreboard_id integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: events_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE events_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: events_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE events_id_seq OWNED BY events.id;
+
+
+--
 -- Name: favourites; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -272,6 +307,38 @@ ALTER SEQUENCE mailboxer_receipts_id_seq OWNED BY mailboxer_receipts.id;
 
 
 --
+-- Name: managers; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE managers (
+    id integer NOT NULL,
+    user_id integer,
+    scoreboard_id integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: managers_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE managers_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: managers_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE managers_id_seq OWNED BY managers.id;
+
+
+--
 -- Name: pg_search_documents; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -335,6 +402,39 @@ CREATE SEQUENCE pictures_id_seq
 --
 
 ALTER SEQUENCE pictures_id_seq OWNED BY pictures.id;
+
+
+--
+-- Name: requests; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE requests (
+    id integer NOT NULL,
+    user_id integer,
+    scoreboard_id integer,
+    approved boolean,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: requests_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE requests_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: requests_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE requests_id_seq OWNED BY requests.id;
 
 
 --
@@ -453,6 +553,75 @@ ALTER SEQUENCE statuses_id_seq OWNED BY statuses.id;
 
 
 --
+-- Name: team_matches; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE team_matches (
+    id integer NOT NULL,
+    home_team_id integer,
+    away_team_id integer,
+    match_date date,
+    match_time time without time zone,
+    location character varying,
+    score character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: team_matches_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE team_matches_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: team_matches_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE team_matches_id_seq OWNED BY team_matches.id;
+
+
+--
+-- Name: team_members; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE team_members (
+    id integer NOT NULL,
+    team_id integer,
+    user_id integer,
+    captain boolean,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: team_members_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE team_members_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: team_members_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE team_members_id_seq OWNED BY team_members.id;
+
+
+--
 -- Name: teams; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -539,6 +708,13 @@ ALTER TABLE ONLY comments ALTER COLUMN id SET DEFAULT nextval('comments_id_seq':
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY events ALTER COLUMN id SET DEFAULT nextval('events_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY favourites ALTER COLUMN id SET DEFAULT nextval('favourites_id_seq'::regclass);
 
 
@@ -581,6 +757,13 @@ ALTER TABLE ONLY mailboxer_receipts ALTER COLUMN id SET DEFAULT nextval('mailbox
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY managers ALTER COLUMN id SET DEFAULT nextval('managers_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY pg_search_documents ALTER COLUMN id SET DEFAULT nextval('pg_search_documents_id_seq'::regclass);
 
 
@@ -589,6 +772,13 @@ ALTER TABLE ONLY pg_search_documents ALTER COLUMN id SET DEFAULT nextval('pg_sea
 --
 
 ALTER TABLE ONLY pictures ALTER COLUMN id SET DEFAULT nextval('pictures_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY requests ALTER COLUMN id SET DEFAULT nextval('requests_id_seq'::regclass);
 
 
 --
@@ -616,6 +806,20 @@ ALTER TABLE ONLY statuses ALTER COLUMN id SET DEFAULT nextval('statuses_id_seq':
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY team_matches ALTER COLUMN id SET DEFAULT nextval('team_matches_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY team_members ALTER COLUMN id SET DEFAULT nextval('team_members_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY teams ALTER COLUMN id SET DEFAULT nextval('teams_id_seq'::regclass);
 
 
@@ -632,6 +836,14 @@ ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regcl
 
 ALTER TABLE ONLY comments
     ADD CONSTRAINT comments_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: events_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY events
+    ADD CONSTRAINT events_pkey PRIMARY KEY (id);
 
 
 --
@@ -683,6 +895,14 @@ ALTER TABLE ONLY mailboxer_receipts
 
 
 --
+-- Name: managers_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY managers
+    ADD CONSTRAINT managers_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: pg_search_documents_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -696,6 +916,14 @@ ALTER TABLE ONLY pg_search_documents
 
 ALTER TABLE ONLY pictures
     ADD CONSTRAINT pictures_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: requests_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY requests
+    ADD CONSTRAINT requests_pkey PRIMARY KEY (id);
 
 
 --
@@ -720,6 +948,22 @@ ALTER TABLE ONLY scoreboards
 
 ALTER TABLE ONLY statuses
     ADD CONSTRAINT statuses_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: team_matches_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY team_matches
+    ADD CONSTRAINT team_matches_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: team_members_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY team_members
+    ADD CONSTRAINT team_members_pkey PRIMARY KEY (id);
 
 
 --
@@ -757,6 +1001,13 @@ CREATE INDEX index_comments_on_scoreboard_id ON comments USING btree (scoreboard
 --
 
 CREATE INDEX index_comments_on_user_id ON comments USING btree (user_id);
+
+
+--
+-- Name: index_events_on_scoreboard_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_events_on_scoreboard_id ON events USING btree (scoreboard_id);
 
 
 --
@@ -844,6 +1095,20 @@ CREATE INDEX index_mailboxer_receipts_on_receiver_id_and_receiver_type ON mailbo
 
 
 --
+-- Name: index_managers_on_scoreboard_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_managers_on_scoreboard_id ON managers USING btree (scoreboard_id);
+
+
+--
+-- Name: index_managers_on_user_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_managers_on_user_id ON managers USING btree (user_id);
+
+
+--
 -- Name: index_pg_search_documents_on_searchable_type_and_searchable_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -855,6 +1120,20 @@ CREATE INDEX index_pg_search_documents_on_searchable_type_and_searchable_id ON p
 --
 
 CREATE INDEX index_pictures_on_pictureable_id_and_pictureable_type ON pictures USING btree (pictureable_id, pictureable_type);
+
+
+--
+-- Name: index_requests_on_scoreboard_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_requests_on_scoreboard_id ON requests USING btree (scoreboard_id);
+
+
+--
+-- Name: index_requests_on_user_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_requests_on_user_id ON requests USING btree (user_id);
 
 
 --
@@ -893,6 +1172,34 @@ CREATE INDEX index_statuses_on_scoreboard_id ON statuses USING btree (scoreboard
 
 
 --
+-- Name: index_team_matches_on_away_team_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_team_matches_on_away_team_id ON team_matches USING btree (away_team_id);
+
+
+--
+-- Name: index_team_matches_on_home_team_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_team_matches_on_home_team_id ON team_matches USING btree (home_team_id);
+
+
+--
+-- Name: index_team_members_on_team_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_team_members_on_team_id ON team_members USING btree (team_id);
+
+
+--
+-- Name: index_team_members_on_user_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_team_members_on_user_id ON team_members USING btree (user_id);
+
+
+--
 -- Name: index_teams_on_scoreboard_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -921,6 +1228,7 @@ CREATE TRIGGER tsvectorupdate BEFORE INSERT OR UPDATE ON scoreboards FOR EACH RO
 
 
 --
+<<<<<<< HEAD
 -- Name: fk_rails_1269f469ee; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -974,6 +1282,69 @@ ALTER TABLE ONLY scoreboards
 
 ALTER TABLE ONLY statuses
     ADD CONSTRAINT fk_rails_f3dcdab9aa FOREIGN KEY (scoreboard_id) REFERENCES scoreboards(id);
+=======
+-- Name: fk_rails_05dc5df04b; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY statuses
+    ADD CONSTRAINT fk_rails_05dc5df04b FOREIGN KEY (scoreboard_id) REFERENCES scoreboards(id);
+
+
+--
+-- Name: fk_rails_4852c26570; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY comments
+    ADD CONSTRAINT fk_rails_4852c26570 FOREIGN KEY (scoreboard_id) REFERENCES scoreboards(id);
+
+
+--
+-- Name: fk_rails_c0774e81d7; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY comments
+    ADD CONSTRAINT fk_rails_c0774e81d7 FOREIGN KEY (user_id) REFERENCES users(id);
+
+
+--
+-- Name: fk_rails_ccc702719b; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY scoreboards
+    ADD CONSTRAINT fk_rails_ccc702719b FOREIGN KEY (user_id) REFERENCES users(id);
+
+
+--
+-- Name: fk_rails_e591b9340a; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY invitations
+    ADD CONSTRAINT fk_rails_e591b9340a FOREIGN KEY (scoreboard_id) REFERENCES scoreboards(id);
+
+
+--
+-- Name: fk_rails_eaab32420b; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY events
+    ADD CONSTRAINT fk_rails_eaab32420b FOREIGN KEY (scoreboard_id) REFERENCES scoreboards(id);
+
+
+--
+-- Name: fk_rails_ef360605de; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY schedules
+    ADD CONSTRAINT fk_rails_ef360605de FOREIGN KEY (scoreboard_id) REFERENCES scoreboards(id);
+
+
+--
+-- Name: fk_rails_fd5160626c; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY teams
+    ADD CONSTRAINT fk_rails_fd5160626c FOREIGN KEY (scoreboard_id) REFERENCES scoreboards(id);
+>>>>>>> origin/master
 
 
 --
@@ -1059,4 +1430,14 @@ INSERT INTO schema_migrations (version) VALUES ('20160307212202');
 INSERT INTO schema_migrations (version) VALUES ('20160307235847');
 
 INSERT INTO schema_migrations (version) VALUES ('20160313172147');
+
+INSERT INTO schema_migrations (version) VALUES ('20160414223901');
+
+INSERT INTO schema_migrations (version) VALUES ('20160414230714');
+
+INSERT INTO schema_migrations (version) VALUES ('20160414233457');
+
+INSERT INTO schema_migrations (version) VALUES ('20160415000346');
+
+INSERT INTO schema_migrations (version) VALUES ('20160415011705');
 

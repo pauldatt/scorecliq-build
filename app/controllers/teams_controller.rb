@@ -6,9 +6,8 @@ class TeamsController < ApplicationController
      if @team.save
         respond_to do |format|
          format.html {redirect_to scoreboard_url(@schedule.scoreboard_id)}
-         format.js
+         format.js  #this allows the controller to respond to the ajax request that was made by the form.
         end
-        #this allows the controller to respond to the ajax request that was made by the form.
      else
       respond_to do |format|
          format.html { render action: "new" }
@@ -17,8 +16,7 @@ class TeamsController < ApplicationController
      end
    end
      
-   # Update
-   
+   # Edit
    def edit
     @scoreboard = Scoreboard.find(params[:scoreboard_id])
     @team = @scoreboard.teams.find(params[:id])
@@ -28,6 +26,7 @@ class TeamsController < ApplicationController
      end
    end
    
+   # Update
    def update
     @scoreboard = Scoreboard.find(params[:scoreboard_id])
     @team = @scoreboard.teams.find(params[:id])

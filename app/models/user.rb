@@ -6,22 +6,36 @@ class User < ActiveRecord::Base
   has_many :comments, dependent: :destroy
   
   #sets up the relationship with the join table
-  has_many :favourites
+  has_many :favourites, dependent: :destroy
   
   #allows you to access the favourite scoreboards associated with the user
-  has_many :favourite_scoreboards, through: :favourites, source: :scoreboard #each user can have many favourited scoreboards. 
+  has_many :favourite_scoreboards, through: :favourites, source: :scoreboard, dependent: :destroy #each user can have many favourited scoreboards. 
                                                                              # many scoreboard_id for a single user
   
   #the mailboxer gem is being accessed by the following code
   acts_as_messageable
   
-  # each user has one picture
+  #each user has one picture
   has_one :picture, as: :pictureable, dependent: :destroy
-
+  
+  #each user(members) could be part of many teams through team_members, this gives the all the teams associated with a user.
+  has_many :team_members
+  
+  has_many :teams, through: :team_members, source: :team, dependent: :destroy
+  
+  #each user can request to join many scoreboards
+  has_many :requests
+  
+  has_many :sent_requests, through: :requests, source: :scoreboard, dependent: :destroy
+  
+  #each user can manage many scoreboards
+  has_many :managers
+  
+  has_many :managed_scoreboards, through: :managers, source: :scoreboard, dependent: :destroy
+  
   attr_accessor :remember_token, :activation_token, :reset_token
   before_save   :downcase_email 
   before_create :create_activation_digest 
-  before_validation :strip_whitespace, :only => [:name, :email] 
   validates :name, presence: true, length: { maximum: 50 } 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, length: { maximum: 255 },
@@ -101,11 +115,6 @@ class User < ActiveRecord::Base
       self.activation_digest = User.digest(activation_token)
     end
     
-    def strip_whitespace
-      self.name = self.name.strip
-      self.email = self.email.strip
-    end
-    
     
     #this should work for the mailboxer gem to get email from the user 
     def mailboxer_email(user)
@@ -114,7 +123,7 @@ class User < ActiveRecord::Base
     
 end
   
-#Notes
+#Notes1
 # The method gets defined in the user models. Then they get written in the sessions helper,
 # Once they are in the session helper they can get used by the sessions controller.
 

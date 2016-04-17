@@ -15,6 +15,18 @@
 /log/*
 !/log/.keep
 /tmp
+<<<<<<< HEAD
 /config/database.yml
 /public/uploads
 
+=======
+
+/config/database.yml
+/config/initializers/01_dev_config_vars.rb
+/public/uploads
+
+
+
+# Ignore application configuration
+/config/application.yml
+>>>>>>> origin/master
