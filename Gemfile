@@ -26,6 +26,7 @@ gem 'social-share-button', '~> 0.1.6'
 gem 'pg_search'
 gem 'figaro'
 gem 'pg',             '0.17.1'
+gem 'newrelic_rpm'
 
 group :development, :test do
   gem 'byebug',      '3.4.0'
