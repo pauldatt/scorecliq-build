@@ -6,20 +6,13 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-<<<<<<< HEAD
 User.create!(name:  "Kuljinder",
              email: "kuljinder_d@hotmail.com",
-=======
-User.create!(name:  "Divjot",
-             email: "divjot65@gmail.com",
->>>>>>> origin/master
              password:              "otohime",
              password_confirmation: "otohime",
              admin: true,
              activated: true,
              activated_at: Time.zone.now)
-<<<<<<< HEAD
-=======
 
 # 100.times do
 
@@ -42,5 +35,4 @@ User.create!(name:  "Divjot",
 
                    
 # end
->>>>>>> origin/master
 
