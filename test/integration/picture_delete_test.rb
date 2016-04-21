@@ -13,11 +13,13 @@ class PictureDeleteTest < ActionDispatch::IntegrationTest
   end
   
   test "successfuly deleting a picture if pictureable is scoreboard" do
+    log_in_as(@user)
     delete scoreboard_picture_path(@scoreboard, @pictureable_s)
     assert_equal "Picture removed successfully", flash[:success]
   end
   
   test "successfuly deleting a picture if pictureable is a user" do
+    log_in_as(@user)
     delete user_picture_path(@user, @pictureable_u)
     assert_equal "Picture removed successfully", flash[:success]
   end

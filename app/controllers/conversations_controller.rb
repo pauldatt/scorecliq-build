@@ -5,7 +5,8 @@ class ConversationsController < ApplicationController
   before_action :get_conversation, except: [ :index, :empty_trash]
   before_action :get_box, only: [:index]
   before_action :validate_reply_length, only: [:reply]
-
+  before_action :logged_in_user, only: [:index, :show, :mark_as_read, :reply, :destroy, :restore, :empty_trash]
+  
  def index
     if @box.eql? "inbox"
       @conversations = @mailbox.inbox

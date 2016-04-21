@@ -5,9 +5,11 @@ class ScheduleUpdateTest < ActionDispatch::IntegrationTest
   def setup
     @schedule = schedules(:schedule_a)
     @scoreboard = scoreboards(:scoreboard_a)
+    @user = users(:divjot)
   end
   
   test "valid updating of the scoreboard" do
+    log_in_as(@user)
     xhr :get, edit_scoreboard_schedule_path(@scoreboard, @schedule) 
     team1 = "lordof"
     team2 = "therings"
@@ -29,6 +31,7 @@ class ScheduleUpdateTest < ActionDispatch::IntegrationTest
   end
   
   test 'invalid updating of the scoreboard' do
+    log_in_as(@user)
     team1 = "  "
     team2 = "  "
     detail = "execution is everything"

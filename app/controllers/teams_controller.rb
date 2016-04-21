@@ -1,4 +1,5 @@
 class TeamsController < ApplicationController
+  before_action :logged_in_user, only: [:create, :edit, :update, :destroy]
     
    def create
      @scoreboard = Scoreboard.find(params[:scoreboard_id])
