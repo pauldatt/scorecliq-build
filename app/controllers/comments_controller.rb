@@ -1,5 +1,7 @@
 class CommentsController < ApplicationController
- 
+
+before_action :logged_in_user, only: [:new, :create, :destroy]
+
 def new
  @scoreboard = Scoreboard.find(params[:scoreboard_id])
  @comment = @scoreboard.comments.new  :parent_id => params[:parent_id]

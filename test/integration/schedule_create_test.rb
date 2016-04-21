@@ -5,9 +5,11 @@ class ScheduleCreateTest < ActionDispatch::IntegrationTest
   def setup
     @schedule = schedules(:schedule_a)
     @scoreboard = scoreboards(:scoreboard_a)
+    @user = users(:divjot)
   end
   
   test "valid creation of a schedule" do
+    log_in_as(@user)
     assert_difference('Schedule.count', 1) do
       xhr :post, scoreboard_schedules_path(@scoreboard), schedule: {team1: "abc",
                                                                     team2: "def",
@@ -18,6 +20,7 @@ class ScheduleCreateTest < ActionDispatch::IntegrationTest
   end
   
   test "invalid creation of the scorebaord" do
+    log_in_as(@user)
     assert_no_difference("Schedule.count") do
       xhr :post, scoreboard_schedules_path(@scoreboard), schedule: {team1: " ",
                                                                     team2: "  ",

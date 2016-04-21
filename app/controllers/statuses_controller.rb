@@ -1,5 +1,6 @@
 class StatusesController < ApplicationController
-  
+before_action :logged_in_user, only: [:update]    
+      
     def update
         @scoreboard = Scoreboard.find(params[:scoreboard_id])
         @status = @scoreboard.status

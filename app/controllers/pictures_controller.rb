@@ -2,6 +2,7 @@ class PicturesController < ApplicationController
     
 before_filter :load_pictureable
 
+before_action :logged_in_user, only: [:create, :update, :destroy]
 
 def create
     @picture = @pictureable.build_picture(picture_params)

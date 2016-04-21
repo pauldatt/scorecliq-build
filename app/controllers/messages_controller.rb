@@ -2,7 +2,9 @@ class MessagesController < ApplicationController
   #before_action :authenticate_user! same as the conversation controller. this
   #will need to be edited to reflect the authentication method we made 
   before_action :validate_message_length, only: [:create]
-
+  
+  before_action :logged_in_user, only: [:create]
+  
   def new
   end
 
