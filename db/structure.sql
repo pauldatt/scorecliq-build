@@ -497,7 +497,8 @@ CREATE TABLE scoreboards (
     states character varying,
     country character varying,
     cities character varying,
-    tsv tsvector
+    tsv tsvector,
+    private boolean DEFAULT false
 );
 
 
@@ -1384,4 +1385,6 @@ INSERT INTO schema_migrations (version) VALUES ('20160414233457');
 INSERT INTO schema_migrations (version) VALUES ('20160415000346');
 
 INSERT INTO schema_migrations (version) VALUES ('20160415011705');
+
+INSERT INTO schema_migrations (version) VALUES ('20160426134550');
 

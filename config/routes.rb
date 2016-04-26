@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   get    'home'    => 'static_pages#home'
   get    'search'  => 'search#index', as: :search
   get    'team'    => 'scoreboards#teams'
+  patch  'private' => 'privates#privatize'
+  patch  'unprivate'=> 'privates#unprivatize'
   
   
   resources :users do

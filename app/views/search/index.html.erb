@@ -1,6 +1,6 @@
 <div id="search">
 <%= form_tag search_path, :method => 'get' do %>
-  <%= text_field_tag :search, params[:search], placeholder: "search scorecliq!" %>
+  <%= text_field_tag :search, params[:search], placeholder: "search for a scoreboard!" %>
   <div id="searchbutton">
   <%= submit_tag "Search", :name => nil %>
   </div>
@@ -16,7 +16,11 @@
         Activity: <%= scoreboard_search.name_of_activity %><br>
         state: <%= scoreboard_search.states %><br>
         Admin: <%= link_to "#{scoreboard_search.user.name}", user_path(scoreboard_search.user.id)  %>
-        pic: <%# image_tag scoreboard_search.user.picture.picture.url %>
+        <% if scoreboard_search.user.picture.present? %>
+        pic: <%= image_tag scoreboard_search.user.picture.picture.url %>
+        <% else %>
+        <%= image_tag("blank-prof.jpg", class: "user-prof") %>
+        <% end %>
         <% if current_user.admin? && scoreboard_search.user != current_user %>
            <%= link_to "delete", scoreboard_search.user , method: :delete, data: {confirm: "Are you sure you want to delete User"} %>
         <% end %>

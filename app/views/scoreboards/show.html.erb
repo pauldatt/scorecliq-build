@@ -10,6 +10,7 @@
    <%= social_share_button_tag %>
     
 </div>
+
   
    <div class="show-filler-div"> 
     <div class="score-app-options">
@@ -206,7 +207,11 @@
 
 </div>
 
-
+<% if @scoreboard.private == true %>
+  <%= link_to "public", unprivate_path, :method => "patch" %>
+<% else %>
+  <%= link_to "private", private_path, :method => 'patch' %>
+<% end %>
 
 
 
