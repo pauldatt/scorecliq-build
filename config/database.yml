@@ -5,7 +5,7 @@ default: &default
       username: <%= ENV['USERNAME'] %> # same name for a superuser
       password: <%= ENV['PASSWORD'] %> # same password for the database owner. 
       host: <%= ENV['IP'] %> # config the hba_file and fix the template 1.
-
+      # testing git ingore
 development:
   <<: *default
   database: app_development
