@@ -16,6 +16,7 @@
 !/log/.keep
 /tmp
 
+
 /config/database.yml
 /config/initializers/01_dev_config_vars.rb
 /public/uploads
@@ -24,3 +25,4 @@
 
 # Ignore application configuration
 /config/application.yml
+

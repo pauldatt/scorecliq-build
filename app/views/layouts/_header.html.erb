@@ -1,48 +1,41 @@
 
-  <header>
-   <% if logged_in? %>
-    <nav>
-        <div class= "row">
-            <%= link_to "scorecliq", root_path, id:"logo" %>
-            
-            <ul class= "main-nav">
-                 <li><%= link_to "Home", home_path %> </li>
-                 <li><%= link_to " Profile", current_user %></li>
-                 <li><%= link_to "Search", search_path %></li>
-                 <li><%= link_to 'Your Conversations', conversations_path %></li>
-                 <li class="dropdown">
-                      <a href="#">
-                      Account <b class="caret"></b> 
-                      </a>
-                      <ul>
-                         <li><%= link_to "Settings", edit_user_path(current_user) %></li>
-                         <li><%= link_to "Log-out", logout_path, method: 'delete'%></li>
-                      </ul>
-                 </li>
-             </ul>
-             
-             <a class="mobile-nav-icon"> <i class="fa fa-bars fa-2x"></i></a>
+<nav class="navbar navbar-fixed-top main-nav">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <a href="#"><i class="fa fa-bars fa-lg" aria-hidden="true"></i></a>
+          </button>
+          <%= link_to "SCORECLIQ", home_path, class: "navbar-brand" %>
         </div>
-    </nav>
-  
-   <% else %>
-   
-    
-      <div class="row">
-            <nav>
-                <%= link_to "scorecliq", root_path, id:"logo" %>
-                <ul class= "main-nav">
-                    <li><%= link_to "Home", root_path %></li>
-                    <li><%= link_to "Sign-Up", signup_path %></li>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav nav-pills navbar-right">
+            <% if logged_in? %>
+              <li><a href="#"><i class="fa fa-bell-o fa-lg" aria-hidden="true"></i></a></li>
+              <li><a href="#"><i class="fa fa-envelope-o fa-lg" aria-hidden="true"></i></a></li>
+              <li role="presentation" class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                      <i class="fa fa-user fa-lg" aria-hidden="true"></i>
+                      <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                   <li><%= link_to "Profile", user_path(current_user) %></li>
+                   <li role="separator" class="divider"></li>
+                   <li><%= link_to "Settings", edit_user_path(current_user) %></li>
+                   <li role="separator" class="divider"></li>
+                   <li><%= link_to "Log-out", logout_path, method: 'delete'%></li>
                 </ul>
-                <a class="mobile-nav-icon"> <i class="fa fa-bars fa-2x"></i></a>
-            </nav>
+              </li>
+            <% else %>
+              <li> <%= link_to "Home", root_path %> </li>
+              <li> <%= link_to "Sign-Up", signup_path %></li>
+            <% end %> 
+          </ul>
+        </div>
       </div>
-    
-    
-   <% end %>
-  </header>
+</nav>
 
+ 
            
               
               

@@ -1,1 +1,1 @@
-  $( "#team_<%=@team.id%>" ).hide();
+$("#team_<%=@team.id%>").fadeOut(300, function(){ $(this).remove();});

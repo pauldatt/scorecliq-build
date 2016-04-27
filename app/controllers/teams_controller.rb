@@ -1,5 +1,11 @@
 class TeamsController < ApplicationController
-  before_action :logged_in_user, only: [:create, :edit, :update, :destroy]
+  before_action :logged_in_user, only: [:create, :edit, :update, :destroy, :index]
+  
+   def index 
+    @selected = true
+    @scoreboard = Scoreboard.find(params[:scoreboard_id])
+    @team = @scoreboard.teams.new 
+   end
     
    def create
      @scoreboard = Scoreboard.find(params[:scoreboard_id])

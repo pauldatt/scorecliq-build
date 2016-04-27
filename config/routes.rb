@@ -39,13 +39,18 @@ Rails.application.routes.draw do
       get :deleteschedules
     end
    resources :comments
-   resources :teams, only: [:edit, :create, :destroy, :update]
+   resources :teams do 
+       resources :team_members
+   end
+   resources :team_matches
    resources :schedules 
    resources :pictures, only: [:create, :update, :destroy]
    resources :statuses, only: [:create, :update]
+   resources :events
   end
   
   resources :invitations, only: [:new, :create]
+  
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

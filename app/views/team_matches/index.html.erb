@@ -1,0 +1,8 @@
+<p>Team Matches </p>
+
+<div class= "new-team-form">
+        <%= form_for [@scoreboard, @team], remote: true, :html => { :id => 'new-team-entry' } do |f| %>
+        <%= render 'teams/teamsform', :f => f %>
+        <%= f.submit "Add", :data => {:disable_with => "Saving..."}, class: "form-3 btn btn-primary" %>
+        <% end %>
+  </div> 
