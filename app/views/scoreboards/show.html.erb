@@ -207,11 +207,6 @@
 
 </div>
 
-<% if @scoreboard.private == true %>
-  <%= link_to "public", unprivate_path, :method => "patch" %>
-<% else %>
-  <%= link_to "private", private_path, :method => 'patch' %>
-<% end %>
 
 
 
