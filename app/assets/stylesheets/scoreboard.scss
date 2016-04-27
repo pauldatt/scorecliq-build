@@ -1,0 +1,85 @@
+/* ----------------------------------------------- */
+/* TEAMS/STANDINGS  */
+/* ----------------------------------------------- */
+
+.team-header{
+    padding-bottom: 1%;
+    border-bottom: solid 1px #555;
+}
+
+.clear-teams-btn{
+    margin-left: 40px;
+}
+
+// The labels for the standings chart
+.standing-labels{
+    color: #efefef;
+    margin-top: 20px;
+    font-size: 120%;
+    font-weight: 300;
+    .standing-1{
+        background-color: #253341;
+        padding: 1%;
+        border: solid 2px;
+    }
+    .standing-2{
+        background-color: #253341;
+        padding: 1%;
+        border: solid 2px;
+        border-left: 0;
+    }
+}
+
+// the individual team divs 
+.team-div{
+    margin-top: 1%;
+    font-weight: 500;
+    :nth-child(n+2){
+        text-align: center;
+    }
+    .team-div-1{
+        padding: 1%;
+        border: solid 2px;
+    }
+    .team-div-2{
+        padding: 1%;
+        border: solid 2px;
+        border-left: 0;
+    }
+    .team-setting{
+        padding: 1%;
+        a:hover{
+            text-decoration: none;
+            color: #f90012;
+        }
+    }
+}
+
+.new-team-form{
+    margin-top: 1%;
+    display: none;
+    
+    .new-team-1, .new-team-2{
+        padding: 0;
+        text-align: center;
+    }
+    
+    .new-team-3 .btn {
+        width: 100%;
+    }
+    
+    
+    .col-xs-1{
+        text-align: center;
+        padding-top: 0.5%;
+        .fa{
+            font-size: 170%;
+            color: #F90012;
+        }
+        .fa:hover{
+            color: #d83434;
+        }
+    }
+    
+   
+}

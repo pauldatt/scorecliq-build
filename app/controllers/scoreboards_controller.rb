@@ -23,11 +23,8 @@ class ScoreboardsController < ApplicationController
 
  # Read
  def show 
+  @selected = true
   @scoreboard = Scoreboard.find_by_id(params[:id])
-  @team = @scoreboard.teams.build
-  @comment = @scoreboard.comments.new
-  @schedule = @scoreboard.schedules.build
-  @schedules= @scoreboard.schedules.paginate(page: params[:page], per_page: 10)
   @pictureable = @scoreboard
   @picture =  @pictureable.picture || @pictureable.build_picture
   @status =  @scoreboard.status || @scoreboard.build_status
@@ -68,7 +65,7 @@ class ScoreboardsController < ApplicationController
     @scoreboard = Scoreboard.find_by_id(params[:id])
     @scoreboard.teams.delete_all
     flash[:success] = "The Scoreboard has been reset to default."
-    redirect_to scoreboard_path(@scoreboard)
+    redirect_to scoreboard_teams_path(@scoreboard)
  end
  
  def deleteschedules

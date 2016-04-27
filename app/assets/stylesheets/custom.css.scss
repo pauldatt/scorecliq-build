@@ -1,175 +1,150 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-/* ----------------------------------------------- */
-/* COLOURS */
-/* ----------------------------------------------- */
-
-/* Orange:  #e67e22
-   Gray:    #F2EFE8
-   Light Green: #9ECEC6  */
-
-
+// COLOR VARIABLES 
+// background-color: #30373B;
+// background-color: #455a69;
 
 /* ----------------------------------------------- */
-/* BASIC SETUP */
+/* VARIABLES, MIXINS, BUTTONS   */
 /* ----------------------------------------------- */
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-html,
-body {
-    background-color: #F2EFE8;
-    color: #555;
-    font-family: 'Lato', 'Arial', sans-serif;
-    font-weight: 300;
-    font-size: 20px;
-    text-rendering: optimizeLegibility;
-    overflow-x: hidden;
-}
-
-.clearfix {zoom: 1;}
-.clearfix:after {
-    content: '.';
-    clear: both;
-    display: block;
-    height: 0;
-    visibility: hidden;
-}
-
-/* ----------------------------------------------- */
-/* REUSABLE COMPONENTS */
-/* ----------------------------------------------- */
-
-.row {
-    max-width: 1140px;
-    margin: 0 auto;
-}
-
-section {
-    padding: 40px 0;
-}
-
-.box {
-    padding: 1%;
-}
-
-.form-block{
-    width: 100%;
-    display: block;
-}
-
-.form-block2{
-    color: #555;
-    margin-bottom: 10px;
-}
-
-/*--LINKS--*/
-a:link,
-a:visited{
-    color: #e67e22;
-    text-decoration: none;
-    padding-bottom: 1px;
-}
-
-/*-- HEADINGS --*/
-
-h1,
-h2,
-h3 {
-    font-weight: 300;
-}
-
-h1 {
-    margin-top: 0;
-    font-size: 240%;
-    word-spacing: 4px;
-    letter-spacing: 1px;
-}
-
-h2 {
-    font-size: 180%;
-    word-spacing: 2px;
-    text-align: center;
-    letter-spacing: 1px;
-}
-
-h3 {
-    font-size: 110%;
-    text-align: center;
-}
-
-/*-- PARAGRAPHS--*/
-
-.box p {
-    font-size: 90%;
-    line-height: 145%;
-}
-
-/*-- BUTTONS --*/
-
-/* normal button with no link */
+$cliq-white: #EFEFEF;
 
 .btn{
-    background-color: #e67e22;
-    color: #fff;
+    text-transform: uppercase;
+   
 }
 
-.btn:link,
-.btn:visited,
- input[type=submit]
-  {
-    display: inline-block;
-    padding: 10px 30px;
-    font-weight: 300;
-    text-decoration: none;
-    border-radius: 200px;
+.btn-primary{
+    background-color: #058eae;
+    color: $cliq-white;
 }
 
-.btn-full:link,
-.btn-full:visited,
- input[type=submit]
-  {
-    border: 1px solid #e67e22;
-    color: #fff;
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open > .dropdown-toggle.btn-primary {
+    background: #216273;
 }
 
-.btn:hover,
-.btn:active,
-  {
-    background-color: #cf6d17;
+
+
+
+
+/* ----------------------------------------------- */
+/* SOME UNIVERSAL STYLING */
+/* ----------------------------------------------- */
+html {
+ /* Accomodate the footer so the min-height is 100% */
+  position: relative;
+  min-height: 100%;
 }
 
-.btn-full:hover,
-.btn-full:active {
-    border: 1px solid #cf6d17;
+body { 
+    /* Accomodate the header navbar */
+    padding-top: 50px;
+    background-color: $cliq-white;
+    /* Margin bottom by footer height */
+    padding-bottom: 80px;
+    color: #555;
 }
 
-/* SMALL BUTTON */
-.btn-s:link,
-.btn-s:visited
-  {
-    display: inline-block;
-    padding: 2px 5px;
-    text-align: center;
-    font-weight: 300;
-    text-decoration: none;
-    border-radius: 5px;
-    background-color: #e67e22;
+// THE BOOTSTRAP  SIDEGUTTER LENGTH REGULATED BY ROWS FOR COLUMNS IS CANCELLED FOR MAIN CONTAINER 
+.row{
+    margin-left: 0;
+    margin-right: 0;
 }
 
-.btn-s:hover,
-.btn-s:active,
-  {
-    background-color: #cf6d17;
+
+/* ----------------------------------------------- */
+/* TOP HEADER STYLING */
+/* ----------------------------------------------- */
+
+.main-nav{
+    background-color: #1c75bf; /* CHANGE THIS TO CHANGE BACKGROUND COLOR OF MAIN NAV */
+    box-shadow: 0 8px 6px -6px #999;
+    z-index: 800;
+    color: $cliq-white;
+    
+    a {
+        text-decoration: none;
+        color: $cliq-white;
+    }
 }
 
+/** DROPDOWN STYLING **/
+
+.nav .dropdown ul{
+    background-color: #455a69;
+    color: $cliq-white;
+    
+    a{
+        color: $cliq-white;
+    }
+}
+
+/* ----------------------------------------------- */
+/* SIDENAV STYLING  */
+/* ----------------------------------------------- */
+
+/** SHOW SIDENAV UNLESS ASKED NOT TO ***/
+.sidebar {
+        display: none;
+    }
+
+@media (min-width: 768px) {
+  .sidebar {
+        position: fixed;
+        top: 51px;
+        bottom: 0;
+        left: 0;
+        z-index: 1000;
+        display: block; /*** shows this element on screens bigger than 768 px */
+        padding: 20px;
+        overflow-x: hidden;
+        overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+        background-color: #253341; /* CHANGE THIS TO CHANGE SIDEBAR COLOR */
+    li {
+        background-color: inherit;
+        text-transform: uppercase;
+        font-size: 85%;
+        font-weight: 400;
+        a{
+            color: $cliq-white;
+        }
+    }
+  }
+}
+
+/* ----------------------------------------------- */
+/* MAIN CONTAINER  */
+/* ----------------------------------------------- */
+
+/* CANCEL DEFAULT PADDING ON MAIN COLUMN */
+.main {
+  padding: 0px;
+}
+
+@media (min-width: 768px) {
+  .main {
+    padding-right: 40px;
+    padding-left: 40px;
+    overflow-x: hidden;
+  }
+}
+
+/* ----------------------------------------------- */
+/* FOOTER STYLING  */
+/* ----------------------------------------------- */
+ .footer{
+     position: absolute;
+     bottom: 0;
+     width: 100%;
+     /* Set the fixed height of the footer here */
+     height: 40px;
+     background-color: #1c75bf;
+ }
+/* ----------------------------------------------- */
 /* ERROR MESSAGES */
-
+/* ----------------------------------------------- */
 #error_explanation {
     color: red;
     ul {
@@ -177,162 +152,4 @@ h3 {
         margin: 0 0 15px 0;
     }
 }
-
-
-
-
-/* ----------------------------------------------- */
-/* HEADER */
-/* ----------------------------------------------- */
-
-header {
-    background-color: #9ECEC6;
-}
-
-#logo{
-    float: left;
-}
-
-.main-nav{
-    font-weight: 300;
-    float: right;
-    list-style: none;
-    margin-bottom: 0;
-}
-
-.main-nav li{
-     margin-left: 30px;
-     display: inline-block;
-     padding: 8px 0;
-     border-bottom: 3px solid transparent;
-}
-
-
-.main-nav li:hover{
-    border-bottom: 3px solid #e67e22;
-}
-
-.mobile-nav-icon{
-    display: none;
-    float: right;
-    color: #e67e22;
-    cursor: pointer;
-}
-
-/* ----------------------------------------------- */
-/* FOOTER */
-/* ----------------------------------------------- */
-
-
-
-/* ----------------------------------------------- */
-/* PRELOGIN HOME PAGE */
-/* ----------------------------------------------- */
-
-section.prelogin-home{
-   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('sunset-lg.jpg');
-   background-size: cover;
-   background-position: center;
-   height: 92vh;
-}
-
-.home-greet{
-    color: #FFF;
-    margin-bottom: 20px;
-}
-
-.home-desc{
-    color: #FFF;
-    text-align: justify;
-    margin-bottom: 50px;
-}
-
-.home-sign{
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-.login-container{
-    width: 70%;
-    margin: 0 auto;
-    color: #fff;
-    
-    .login-label{
-        font-size: 80%;
-    }
-    
-    h2 { margin-bottom: 20px;}
-    
-    a:hover{
-        border: none;
-        color: #cf6d17;
-    }
-    
-    .btn{
-        margin: 20px auto 0 auto;
-        display: block;
-    }
-}
-
-/* ----------------------------------------------- */
-/* POSTLOGIN NAV & HOMEPAGE*/
-/* ----------------------------------------------- */
-.main-nav ul{
-    padding: 1%;
-    background-color: #9ECEC6;
-    margin-top: 11px;
-    position: absolute;
-    display: none;
-    
-    li{
-        margin: 0;
-    }
-}
-
-.dropdown:hover{
-    ul{
-        display: block;
-    }
-}
-
-.post-login-option .row .col{
-    border: 2px solid;
-    
-    .btn{
-        margin-top: 20px;
-    }
-}
-
-
-.view-home{
-    text-align: center;
-    
-    .view-score{
-           width: 100%;
-    }
-}
-.create-home{
-    .create-score{
-           width: 100%;
-    }
-    
-    text-align: center;
-}
-
-
-.search-home{
-    .search-score{
-           width: 100%;
-    }
-    
-    text-align: center;
-    
-    
-}
-
-
-
-
-
-
 

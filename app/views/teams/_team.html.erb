@@ -1,24 +1,31 @@
-<div class ="team-list" id="team_<%=team.id%>">
- <div class= "boxin1"><%= team.name %></div>
- <div class= "boxin2"><%= team.win %></div>
- <div class= "boxin2"><%= team.loss %></div>
- <div class= "boxin2"><%= team.tie %></div>
- <div class= "boxin2">
-    <% total_games = team.win.to_i + team.loss.to_i + team.tie.to_i %>
+<div class="row team-div" id="team_<%=team.id%>">
+    <div class="col-xs-3 team-div-1"> <%= team.name %> </div>
+    
+    <div class="col-xs-2 team-div-2" id="win_<%=team.id%>"> <%= team.win %> </div>
+    <div class="col-xs-2 team-div-2" id="loss_<%=team.id%>"> <%= team.loss %>  </div>
+    <div class="col-xs-2 team-div-2" id="tie_<%=team.id%>"> <%= team.tie %> </div>
+    
+    <div class="col-xs-1 team-div-2">
+     <%= team.win + team.loss + team.tie %>
+       
+    </div>
+    
+    <div class="col-xs-1 team-div-2">
+      <% total_games = team.win.to_i + team.loss.to_i + team.tie.to_i %>
     <% if total_games == 0 %>
      <%= "N/A" %>
     <% else %>
      <%= (team.win.to_i/(total_games).to_f*100).round(2) %><%="%"%>
     <% end %>
- </div>
- 
-<% if @scoreboard.user == current_user %> 
- <span class= "boxin3"><%= link_to "Edit", edit_scoreboard_team_path(@scoreboard, team), :data => {:disable_with => "..."}, remote: true, class: "btn btn-primary" %> </span>
- <span class= "boxin3"><%= link_to "Del", scoreboard_team_path(@scoreboard, team), remote: true, method: :delete, class: "btn btn-primary" %> </span>
-<% end %>                                                                                                                             
-
+    </div>
+    
+    <div class="col-xs-1 team-setting">
+         <%= link_to(scoreboard_team_path(@scoreboard, team), remote: true, method: :delete, data: {confirm: "Are you sure you want to take this irreversible action?"}) do %>
+             <i class="fa fa-trash-o fa-lg" aria-hidden="true"></i> 
+        <% end %>
+    </div>
+    
 </div>
-  
    
    
    

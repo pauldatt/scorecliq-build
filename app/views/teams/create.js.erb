@@ -1,5 +1,5 @@
 <% if @team.save %> 
-$(".all-teams").append("<%= j render "team", team: @team %>"); 
+$(".team-list").append("<%= j render "team", team: @team %>"); 
 $("#new-team-entry")[0].reset();
 <% else %>
 $("#modal-errors").html("<%= j render partial: "team_errors" %>");

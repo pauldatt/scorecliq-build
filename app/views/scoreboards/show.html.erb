@@ -1,55 +1,12 @@
-<div class= "score-show-contain">
- 
-<div class="div-show-left">
- <%= link_to "My Scoreboards", scoreboards_path , class: 'btn btn-primary back-my-score' %>
- <div class="member-list">
-  <%= render 'followingmodal' %>
-    
-  <%= render 'pictures/editphoto' %>
-    
-   <%= social_share_button_tag %>
-    
-</div>
-  
-   <div class="show-filler-div"> 
-    <div class="score-app-options">
-      <ul class="score-options-menu">
-       <li class= "score-options-div">Score Options</li>
-       <li class= "add-new-team-button btn btn-primary orig">Add New team</li>
-       <li class= "edit-teams-button btn btn-primary orig"> Edit/Delete Teams</li>
-       <li class= "orig">
-         <%= link_to "Reset Teams", deleteteams_scoreboard_path(@scoreboard), class: 'reset-score-button btn btn-primary',:data => {:confirm => 'Are you sure? This action cannot be reversed'} %> 
-       </li>
-       <li class= "finish-adding-team-button btn btn-primary"> Finish Adding Teams</li>
-       <li class= "finish-edit-team-button btn btn-primary"> Finish Edit/Del</li>
-      </ul>
-    </div>
-    
-    <div class= "schedule-app-options">
-      <ul class="schedule-options-menu">
-       <li class= "schedule-options-div">Schedule Options</li>
-       <li class= "orig2 btn btn-primary" id="add-match"> Add Match to Schedule </li>
-       <li class= "edit-schedule-button btn btn-primary orig2"> Edit/Delete Schedules</li>
-       <li class= "orig2">
-         <%= link_to "Reset Schedules", deleteschedules_scoreboard_path(@scoreboard), class: 'reset-schedule-button btn btn-primary',:data => {:confirm => 'Are you sure? This action cannot be reversed'} %>   
-       </li>
-       <li class= "finish-edit-schedule-button btn btn-primary"> Finish Edit/Del</li>
-      </ul>
-     
-    </div>
-    
-   </div>
- </div>
- 
- <h3 class="score-title">
-  <%= @scoreboard.name_of_scoreboard %> <%= link_to "Delete Photo", [@pictureable, @picture], method: :delete, data: {confirm: "Are you sure you want to delete your picture!"}, class: "btn btn-primary" %>
- </h3>
- 
- <div class= "prof-bio">
-   <div class="score-prof">
-  </div>
- <div>
- 
+
+<h3> Name: <%= @scoreboard.name_of_scoreboard %> </h3>
+
+<!--GO BACK TO MY SCOREBOARDS PAGE BUTTON -->
+<br>
+<%= link_to " Back to My Scoreboards", scoreboards_path , class: 'btn btn-primary back-my-score' %>
+
+<!--THE DIV FOR THE PROFILE PICTURE -->
+<br>
      <div>
        <% if @picture.picture.url.present? %>
          <div id="pictureplacement">
@@ -59,152 +16,90 @@
            <%= render 'pictures/uploadphoto' %>
         <% end %>  
      </div>
-   </div> 
- 
-   
-   <div class="s-labels">
-    <h4 class="s-creator">Admin:</h4> 
-    <h4 class="s-org"> Organization:</h4>
-    <h4 class="s-sport">Sport/Activity:</h4>
-    <h4 class="s-location">Location:</h4>
-   </div>
-   
-   <div class="bios-labels">
-    <h4 class="b-creator">
-      <%= link_to "#{@scoreboard.user.name}", user_path(@scoreboard.user) %>
-    </h4>
-    <h4 class="b-org"> 
-      <%=@scoreboard.name_of_organization %>
-     </h4>
-    <h4 class="b-sport">
-      <%=@scoreboard.name_of_activity %>
-     </h4>
-    <h4 class="b-location"><%= @scoreboard.cities %> <%= @scoreboard.states%>, <%= @scoreboard.country %></h4>
-   </div>
-   
-   
- </div>
+     
+<!--THE DELETE/EDIT BUTTON FOR THE PROFILE PICTURE -->
+<br>
+<div>
+<%= render 'pictures/editphoto' %>
+<%= link_to "Delete Photo", [@pictureable, @picture], method: :delete, data: {confirm: "Are you sure you want to delete your picture!"}, class: "btn btn-primary" %>
+</div>
+<br>
+
+
+<!--THE FOLLOW AND INVITE BUTTONS -->
+<div>
  <% if current_user.favourite_scoreboards.include?(@scoreboard) %>
-  <%= link_to "unfollow", favourite_scoreboard_path(@scoreboard, type: "unfavourite"), method: :delete, class: 'btn btn-primary un-follow' %>
+  <%= link_to "unfollow", favourite_scoreboard_path(@scoreboard, type: "unfavourite"), method: :delete, class: 'btn btn-primary' %>
  <% else %>
-  <%= link_to "follow", favourite_scoreboard_path(@scoreboard, type: "favourite"), method: :post, class: 'btn btn-primary un-follow' %>
- <% end %>
- 
- <% if @scoreboard.user == current_user %>
- <%= link_to "Invite", new_invitation_path(scoreboard_id: @scoreboard.id), class: 'btn btn-primary invite-btn' %>
+  <%= link_to "follow", favourite_scoreboard_path(@scoreboard, type: "favourite"), method: :post, class: 'btn btn-primary' %>
  <% end %>
 
-<% if @scoreboard.user %>
-<div class="statuscontent">
+ <% if @scoreboard.user == current_user %>
+ <%= link_to "Invite", new_invitation_path(scoreboard_id: @scoreboard.id), class: 'btn btn-primary' %>
+ <% end %>
+</div>
+
+<br> 
+
+<!--THE SCOREBOARD STATUS -->
+<h3> STATUS</h3>
+<div>
+ 
+ <% if @scoreboard.user %>
+<div>
  <%= render 'statusedit' %>
 </div>
 <% end %>
 
 <% if @scoreboard.status.content.present? && @scoreboard.user != current_user %>
-<div class="statuscontent">
+<div>
  <%= @scoreboard.status.content %>
  </div>
 <% end %>
 
 <% if @scoreboard.status.content.present? == false && @scoreboard.user != current_user %>
-<div class="statuscontent">
+<div>
  <p>No status</p>
  </div>
 <% end %>
 
+</div>
 
+<!--THE BIO OF THE SCOREBOARD -->
+<br>
+<div>
+ <h4>ADMIN: <%= link_to "#{@scoreboard.user.name}", user_path(@scoreboard.user) %> </h4>
+ <h4>ORGANIZATION: <%=@scoreboard.name_of_organization %> </h4>
+ <h4>SPORT/ACTIVITY: <%=@scoreboard.name_of_activity %></h4>
+ <h4>LOCATION: <%= @scoreboard.cities %> <%= @scoreboard.states%>, <%= @scoreboard.country %> </h4>
+</div>
 
-
-
-
-<div class="score-app">
-  <span class= "score-app-button btn btn-primary"> Score </span>
-  <span class= "schedule-app-button btn btn-primary"> Schedules</span>
- <div class= "app-score-div">
-  
-  <div class= "app-header">
-     <div class="boxing"> Team Name </div>
-     <div class="boxing2"> Wins</div>
-     <div class="boxing2"> Losses </div>
-     <div class="boxing2"> Ties</div>
-     <div class="boxing2">Win %</div>
-  </div>
-  
-  <div class="all-teams"> 
-      <%= render @scoreboard.teams.reject(&:new_record?) %>
-  </div>
+<!--THE FOLLOWER LIST -->
+<br>
+<div class>
+  <%= render 'followingmodal' %>
     
-  <div class= "new-team-form">
-        <%= form_for [@scoreboard, @team], remote: true, :html => { :id => 'new-team-entry' } do |f| %>
-        <%= render 'teams/teamsform', :f => f %>
-        <%= f.submit "Add", :data => {:disable_with => "Saving..."}, class: "form-3 btn btn-primary" %>
-        <% end %>
-  </div> 
-     
- </div>
- 
- <div class= "app-schedule-div">
-    <div class="all-schedules"> 
-        <%= render @schedules %>
-        <%= will_paginate @schedules %>
-    </div>
- </div>
- 
+  <%= render 'pictures/editphoto' %>
+    
+   <%= social_share_button_tag %>
+    
 </div>
 
-<div class= "comment-section">
- 
-  <%= form_for [@scoreboard, @comment], :html => { :id => "new-comment-entry" } do |f| %> 
-       <%= render 'shared/error_messages', object: f.object %>
-       <%= f.text_area :body, class: "comment-field" %>
-       <%= f.hidden_field :parent_id %> 
-       <%= f.submit "Join the discussion...",:data => {:disable_with => "Uploading Comment..."}, class: " comment-button btn btn-primary" %>
-  <% end %>
-        
-  <%= nested_comments @scoreboard.comments.arrange(:order => "created_at DESC") %>
- </div>
- 
-  <!-- Below is the modal which is used to input the schedules.  -->
-  
- <div class="modal" id="match-modal">
-    <div class="modal-dialog">
-          <div class="modal-content">
-           
-             <div class="modal-header">
-              Note: Team matches are automatically sorted according to the date of match. 
-             </div>
-             
-             <div class="modal-body">
-                 <div class="schedule-save-message"> The match has been added to Schedules</div>
-                <%= form_for [@scoreboard, @schedule], remote: true, :html => { :id => 'new-schedule-entry' } do |f| %>
-                <%= render 'shared/error_messages', object: f.object %>
-                <%= render 'schedules/schedulesform', :f => f %>
-                <%= f.submit "Add", :data => {:disable_with => "Saving..."},  class: " schedule-submit-button btn btn-primary" %>
-                <% end %> 
-             </div>
-             
-             <div class="modal-footer">
-              Click anywhere to cancel
-             </div>
-             
-          </div>
-    </div>
-</div>
 
-  <div class="modal" id="error-message-modal">
-   <div class="modal-dialogue">
-    <div class="modal-content">
-     <div class="modal-header"> Error!</div>
-     <div class="modal-body" id="modal-errors">
-      
-     </div>
-     <div class="modal-footer"> Click Anywhere outside this box to cancel</div>
-    </div>
-   </div>
-  </div>
+
+
  
 
-</div>
+
+
+
+
+
+
+
+
+
+
 
 
 

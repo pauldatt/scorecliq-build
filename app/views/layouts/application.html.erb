@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title><%= yield(:title) %> | ScoreBoard App</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title><%= yield(:title) %> | Scorecliq</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <!--Google Font-->
-  <link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,300italic' rel='stylesheet' type='text/css'>
-  <!-- FONT AWESOME ICONS -->
-  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  <!--Font Awesome Icons -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
   <%= csrf_meta_tags %>
   <%= render 'layouts/shim' %>
 </head>
@@ -17,8 +17,16 @@
       <% flash.each do |message_type,  message| %>
         <div class="alert alert-<%= message_type %>"><%= message %></div>
       <% end %>
-      <%= yield %>
+      <div class="container-fluid">
+              <div class="row">
+                <%= render "layouts/sidenav" %>
+                <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+                  <%= yield %>
+                </div>
+              </div>
+      </div>
+      
    <!--<%= debug(params) if Rails.env.development? %>-->
-   <%= render 'layouts/footer' %>
+   <%= render "layouts/footer" %>
  </body>
 </html>
