@@ -1,5 +1,4 @@
 class PrivatesController < ApplicationController
-    
   def privatize
     @scoreboard = Scoreboard.find_by(params[:id])
     if @scoreboard.update_attributes(:private => "1")
@@ -21,5 +20,6 @@ class PrivatesController < ApplicationController
         flash[:notice] = "There was an error, please try again."
     end
   end
-    
+
 end
+

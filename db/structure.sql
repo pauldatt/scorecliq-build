@@ -1386,5 +1386,9 @@ INSERT INTO schema_migrations (version) VALUES ('20160415000346');
 
 INSERT INTO schema_migrations (version) VALUES ('20160415011705');
 
+<<<<<<< HEAD
 INSERT INTO schema_migrations (version) VALUES ('20160428005130');
+=======
+INSERT INTO schema_migrations (version) VALUES ('20160426134550');
+>>>>>>> origin/master
 

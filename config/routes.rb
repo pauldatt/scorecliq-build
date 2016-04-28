@@ -12,8 +12,7 @@ Rails.application.routes.draw do
   get    'team'    => 'scoreboards#teams'
   patch  'private' => 'privates#privatize'
   patch  'unprivate'=> 'privates#unprivatize'
-  
-  
+
   
   resources :users do
       resources :pictures, only: [:create, :update, :destroy]
