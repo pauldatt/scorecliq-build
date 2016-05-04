@@ -14,9 +14,9 @@
 //= require jquery.purr
 //= require best_in_place
 //= require best_in_place.purr
-//= require jquery.turbolinks
 //= require jquery_ujs
 //= require jquery-ui
+//= require jquery.turbolinks
 //= require bootstrap
 //= require turbolinks
 //= require social-share-button

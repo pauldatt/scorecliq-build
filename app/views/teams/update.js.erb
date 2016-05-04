@@ -1,7 +1,6 @@
-$("#edit_team_<%=@team.id%>").hide();
-$("#team_<%=@team.id%>").html("<%= j render partial: 'team', locals: {team: @team} %>");
-$("#team_<%=@team.id%>").show();
-if($('.finish-edit-team-button').is(':visible')){
-$(".boxin3").show();
-}
+$("#edit_team_<%=@team.id%>").remove();
+$("#team_<%=@team.id%>").replaceWith("<%= j render partial: 'team', locals: {team: @team} %>");
+$(".team-div, .team-create, .clear-teams-btn").removeClass("team-disable");
+
+
 

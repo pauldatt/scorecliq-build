@@ -1,2 +1,10 @@
-   $("#team_<%=@team.id%>").hide();
-   $("#team_<%=@team.id%>").after("<%= j render 'teamedit'%>");
+ $(".team-div, .team-create, .clear-teams-btn").addClass("team-disable");
+ $(".new-team-form").hide();
+ 
+
+if(!$('#team_<%=@team.id%>').hasClass('disabled')){
+    $('#team_<%=@team.id%>').addClass('disabled');
+    $("#team_<%=@team.id%>").hide();
+    $("#team_<%=@team.id%>").before("<%= j render 'teamedit'%>");
+  }
+ 

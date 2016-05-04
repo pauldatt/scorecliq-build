@@ -1,8 +1,21 @@
-<%= form_for [@scoreboard, @team], remote: true do |f| %> 
 
- <%= render 'teams/teamsform', :f => f %>
-            
- <%= f.submit "update",:data => {:disable_with => "Updating..."}, class: " form-3 btn btn-primary" %>
-                
-<% end %>
+ <%= form_for [@scoreboard, @team], remote: true do |f| %> 
+ 
+     <div class="row team-edit-form">
+        <div class="col-xs-4 edit-team-1"><%= @team.name %></div>
+               
 
+        <div class="col-xs-2 edit-team-2"><%= f.number_field :win, min: 0, max: 9999, class: "form-control", placeholder: "0"  %></div>
+               
+
+        <div class="col-xs-2 edit-team-2"><%= f.number_field :loss, min: 0, max: 9999, class: "form-control", placeholder: "0" %></div>
+           
+        <div class="col-xs-2 edit-team-2"><%= f.number_field :tie, min: 0, max: 9999, class: "form-control", placeholder: "0" %></div>
+  
+        <div class="col-xs-2 edit-team-3"> <%= f.submit "Done", :data => {:disable_with => "Saving..."}, class: "btn btn-primary" %></div>
+     </div>
+ <% end %>
+
+ 
+
+ 

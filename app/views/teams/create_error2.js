@@ -1,0 +1,1 @@
+alert("You cannot have more than 100 teams for 1 league page. Please create another league page or delete teams!");

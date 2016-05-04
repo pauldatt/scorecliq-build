@@ -43,6 +43,9 @@ Rails.application.routes.draw do
    resources :comments
    resources :teams do 
        resources :team_members
+       member do
+           patch :update_name
+       end
    end
    resources :team_matches
    resources :schedules 

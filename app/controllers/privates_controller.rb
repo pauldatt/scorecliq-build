@@ -21,6 +21,5 @@ class PrivatesController < ApplicationController
     end
   end
 
-  
-  
 end
+
