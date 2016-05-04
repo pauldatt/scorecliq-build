@@ -28,6 +28,7 @@ class User < ActiveRecord::Base
   
   has_many :sent_requests, through: :requests, source: :scoreboard, dependent: :destroy
   
+  
   #each user can manage many scoreboards
   has_many :managers
   

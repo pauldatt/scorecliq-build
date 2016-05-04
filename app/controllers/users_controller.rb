@@ -7,6 +7,7 @@ class UsersController < ApplicationController
   end
   
   def show
+    @scoreboard = Scoreboard.find_by(params[:scoreboard_id])
     @user = User.find(params[:id])
     @pictureable = @user
     @picture =  @pictureable.picture || @pictureable.build_picture

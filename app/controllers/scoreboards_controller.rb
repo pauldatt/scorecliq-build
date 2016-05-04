@@ -22,9 +22,11 @@ class ScoreboardsController < ApplicationController
  
 
  # Read
+ 
  def show 
   @selected = true
   @scoreboard = Scoreboard.find_by_id(params[:id])
+  @requests = Request.where(:scoreboard_id => @scoreboard.id)
   @pictureable = @scoreboard
   @picture =  @pictureable.picture || @pictureable.build_picture
   @status =  @scoreboard.status || @scoreboard.build_status
