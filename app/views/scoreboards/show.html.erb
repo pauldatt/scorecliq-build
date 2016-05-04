@@ -81,25 +81,87 @@
   <%= render 'pictures/editphoto' %>
     
    <%= social_share_button_tag %>
-   
-   <% if @scoreboard.private == true %>
-     <%= link_to "public", unprivate_path, :method => "patch" %>
-   <% else %>
-      <%= link_to "private", private_path, :method => 'patch' %>
-   <% end %>
-    
-</div>
+</div> 
 
+<!--BELOW IS THE CODE FOR THE PRIVATE/PUBLIC AND REQUESTED FEATURE(AUTOMATIC FAVOURITING SCOREBOARDS)-->
 
+<!-- ONLY the ADMIN of the scoreboard can toggle between private and public -->
+<% if @scoreboard.user == current_user %> 
+<p>Private/Public</p>
+  <% if @scoreboard.privatization == true %>
+     <%= link_to "public", unprivate_path(:id => @scoreboard.id), :method => 'put' %> 
+<% else %>
+     <%= link_to "private", private_path(:id => @scoreboard.id), :method => 'put' %>
+  <% end %>
+<% end %>
 
+<br></br>
 
+<% if @scoreboard.privatization == true %> <!--The private/public and request code is in between the privatization code-->
 
- 
+ <!-- @request are all the specific requests made for that scoreboard as an array []-->
+<% if @scoreboard.user == current_user %>
+   <p>Pending notifications for users who have requested to be a part of the scoreboard:</p>
+    <% @scoreboard.pending_requests.each do |user| %>
+       <%= user.name %>
+       <%= link_to "Accept", request_to_join_accept_path(:scoreboard_id => @scoreboard.id, :user_id => user.id), :method => 'put' %> |
+       <%= link_to "Decline", request_to_join_delete_path(:scoreboard_id => @scoreboard.id, :user_id => user.id), :method => 'delete' %>
+    <% end %>
+     <% if current_user == @scoreboard.user %>
+        <% @scoreboard.accepted_requests.each do |user| %>
+         <%= user.name %>
+         <!--the block validates for uniqueness and makes the scoreboard part of the user's favourite scoreboard array-->
+          <% if user.favourite_scoreboards.include?(@scoreboard) == false %>
+             <% user.favourite_scoreboards << @scoreboard %>
+          <% end %>
+         <p>Approved</p>
+     <% end %>
+ <% end %>
+<% end %>
+<br></br>
 
+<!--The request to join ELSE statement only runs if sent_requests array DOESN'T include @scoreboard -->
+<% if current_user.sent_requests.include?(@scoreboard) %> 
+  <% if @scoreboard.accepted_requests.include?(current_user) %>
+    <p>Request is Approved</p>
+  <% end %>
+  <% if @scoreboard.pending_requests.include?(current_user) %>
+    <p>Request is Pending</p>
+  <% end %>
+<% else %> <!--the else statement runs saying that if the array doesn't include the scoreboard but its private -->
+  <% if @scoreboard.privatization == true && @scoreboard.user != current_user  %>
+    <%= link_to "Request to join", request_to_join_path(:scoreboard_id => @scoreboard.id), :method => "post" %>
+  <% end %>
+<% end %>
 
+<!--The scoreboards that you have sent the requests to as an array [] only available, only available to the CURRENT USER-->
+<% if current_user %>
+ <p>The scoreboards you have sent the requests to:</p> 
+  <% current_user.sent_requests.each do |scoreboard| %>
+   <%= scoreboard.name_of_scoreboard %>
+ <% end %>
+<% end %>
+<br></br>
 
+<!--The users that have requested to be a part of that scoreboard as an array [], only avaiable to the ADMIN of the scoreboard -->
+<% if current_user == @scoreboard.user %>
+ <p>Users who have requested to be a part of this scorebaord:</p>
+  <% @scoreboard.requested_by.each do |user| %>
+  <%= user.name %>
+ <% end %>
+<% end %>
+<% end %>
 
-
+<!--this makes the user a follower automatically if they requested to join but the scoreboard was made public-->
+<% if @scoreboard.pending_requests.any? %> 
+ <% if @scoreboard.privatization == false %>
+   <% @scoreboard.pending_requests.each do |user| %>
+    <% if user.favourite_scoreboards.include?(@scoreboard) == false %>
+      <% user.favourite_scoreboards << @scoreboard %>
+    <% end %>
+  <% end %>
+ <% end %>
+<% end %>
 
 
 

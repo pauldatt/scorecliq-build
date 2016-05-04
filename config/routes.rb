@@ -10,9 +10,11 @@ Rails.application.routes.draw do
   get    'home'    => 'static_pages#home'
   get    'search'  => 'search#index', as: :search
   get    'team'    => 'scoreboards#teams'
-  patch  'private' => 'privates#privatize'
-  patch  'unprivate'=> 'privates#unprivatize'
-  
+  put  'private' => 'privates#privatize'
+  put  'unprivate'=> 'privates#unprivatize'
+  post   'request_to_join' => 'requests#create'
+  put  'request_to_join_accept' => 'requests#accept'
+  delete 'request_to_join_delete' => 'requests#delete'
   
   resources :users do
       resources :pictures, only: [:create, :update, :destroy]
@@ -50,6 +52,7 @@ Rails.application.routes.draw do
   end
   
   resources :invitations, only: [:new, :create]
+  
   
 
   # The priority is based upon order of creation: first created -> highest priority.

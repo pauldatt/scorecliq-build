@@ -1,7 +1,7 @@
 class PrivatesController < ApplicationController
   def privatize
-    @scoreboard = Scoreboard.find_by(params[:id])
-    if @scoreboard.update_attributes(:private => "1")
+    @scoreboard = Scoreboard.find(params[:id])
+    if @scoreboard.update_attributes(:privatization => "1")
         redirect_to @scoreboard
         flash[:notice] = "The scoreboard #{@scoreboard.name_of_scoreboard} is now private"
     else
@@ -11,8 +11,8 @@ class PrivatesController < ApplicationController
   end
   
   def unprivatize
-    @scoreboard = Scoreboard.find_by(params[:id])
-    if @scoreboard.update_attributes(:private => "0")
+    @scoreboard = Scoreboard.find(params[:id])
+    if @scoreboard.update_attributes(:privatization => "0")
         redirect_to @scoreboard
         flash[:notice] = "The scoreboard #{@scoreboard.name_of_scoreboard} is now public"
     else

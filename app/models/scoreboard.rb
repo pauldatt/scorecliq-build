@@ -44,6 +44,10 @@ class Scoreboard < ActiveRecord::Base
   
   has_many :requested_by, through: :requests, source: :user, dependent: :destroy
   
+  has_many :pending_requests, -> { where(requests: {approved: false}) }, through: :requests, source: :user, dependent: :destroy
+  
+  has_many :accepted_requests, -> { where(requests: {approved: true}) }, through: :requests, source: :user, dependent: :destroy
+  
   #each scoreboard could have managers(admins)
   has_many :managers
   

@@ -31,7 +31,7 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     assert_select "a[href=?]", logout_path #destroys sessions
     assert_select "a[href=?]", search_path # search_path
     assert_select "a[href=?]", edit_user_path(@user) # changings setting for the user
-    assert_select "a[href=?]", conversations_path #conversation_path
+    # assert_select "a[href=?]", conversations_path #conversation_path
     delete logout_path # the code below simulates a user clicking logout
     assert_not is_logged_in?
     assert_redirected_to root_url # Simulates a user clicking logout in a second window
