@@ -2,8 +2,9 @@
 @import "bootstrap";
 
 // COLOR VARIABLES 
-// background-color: #30373B;
-// background-color: #455a69;
+// background-color of main nav: ##1c75bf;
+// background-color of side nave: #455a69;
+// button-color: #058eae
 
 /* ----------------------------------------------- */
 /* VARIABLES, MIXINS, BUTTONS   */
@@ -61,7 +62,7 @@ body {
 .main-nav{
     background-color: #1c75bf; /* CHANGE THIS TO CHANGE BACKGROUND COLOR OF MAIN NAV */
     box-shadow: 0 8px 6px -6px #999;
-    z-index: 800;
+    z-index: 50;
     color: $cliq-white;
     
     a {
@@ -96,7 +97,7 @@ body {
         top: 51px;
         bottom: 0;
         left: 0;
-        z-index: 1000;
+        z-index: 70;
         display: block; /*** shows this element on screens bigger than 768 px */
         padding: 20px;
         overflow-x: hidden;
@@ -131,6 +132,35 @@ body {
   }
 }
 
+/* ----------------------------------------------- */
+/* CUSTOM JQUERY DIALOG CONFIRMATION  */
+/* ----------------------------------------------- */
+#dialog-confirm{
+    .modal-header{
+        text-align: center;
+        font-size: 120%;
+        padding: 1%;
+        background-color: #1c75bf;
+        color: #fff;
+    }
+    .modal-body{
+        text-align: center;
+        font-weight: 600;
+        padding: 5%;
+        background-color: #efefef;
+        color: #555;
+    }
+    .modal-footer{
+        padding: 1%;
+        .btn{
+            color: #fff;
+        }
+        .unconfirm{
+            background-color: #d83434;
+        }
+    }
+    
+}
 /* ----------------------------------------------- */
 /* FOOTER STYLING  */
 /* ----------------------------------------------- */

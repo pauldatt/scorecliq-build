@@ -1,14 +1,30 @@
 <div class="row team-div" id="team_<%=team.id%>">
-    <div class="col-xs-3 team-div-1"> <%= team.name %> </div>
     
-    <div class="col-xs-2 team-div-2" id="win_<%=team.id%>"> <%= team.win %> </div>
-    <div class="col-xs-2 team-div-2" id="loss_<%=team.id%>"> <%= team.loss %>  </div>
-    <div class="col-xs-2 team-div-2" id="tie_<%=team.id%>"> <%= team.tie %> </div>
+   <%= link_to (scoreboard_team_path(@scoreboard, team)) do %>
+      <div class="col-xs-4 team-div-1"> <%= team.name %> </div>
+   <% end %>
     
-    <div class="col-xs-1 team-div-2">
-     <%= team.win + team.loss + team.tie %>
+    <% if (current_user == @scoreboard.user) %>
+         <%= link_to (edit_scoreboard_team_path(@scoreboard, team)), remote: true, class: "team-edit-link" do %>
+           <div class="col-xs-6 team-data">
+            <div class="row">
+                <div class="col-xs-4 team-div-2"><%= team.win %> </div>
+                <div class="col-xs-4 team-div-2"><%= team.loss %> </div>
+                <div class="col-xs-4 team-div-2"><%= team.tie %></div>
+            </div>
+           </div>
+        <% end %>
+    <% else %>
+    
+       <div class="col-xs-6">
+        <div class="row">
+            <div class="col-xs-4 team-div-2"><%= team.win %> </div>
+            <div class="col-xs-4 team-div-2"><%= team.loss %> </div>
+            <div class="col-xs-4 team-div-2"><%= team.tie %></div>
+        </div>
+       </div>
        
-    </div>
+     <% end %>
     
     <div class="col-xs-1 team-div-2">
       <% total_games = team.win.to_i + team.loss.to_i + team.tie.to_i %>
@@ -20,7 +36,7 @@
     </div>
     
     <div class="col-xs-1 team-setting">
-         <%= link_to(scoreboard_team_path(@scoreboard, team), remote: true, method: :delete, data: {confirm: "Are you sure you want to take this irreversible action?"}) do %>
+         <%= link_to(scoreboard_team_path(@scoreboard, team), remote: true, method: :delete, data: {confirm: "Delete this team?"}) do %>
              <i class="fa fa-trash-o fa-lg" aria-hidden="true"></i> 
         <% end %>
     </div>
