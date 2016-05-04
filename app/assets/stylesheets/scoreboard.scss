@@ -14,7 +14,7 @@
 // The labels for the standings chart
 .standing-labels{
     color: #efefef;
-    margin-top: 20px;
+    margin: 20px 0 1% 0;
     font-size: 120%;
     font-weight: 300;
     .standing-1{
@@ -32,7 +32,7 @@
 
 // the individual team divs 
 .team-div{
-    margin-top: 1%;
+    margin-bottom: 1%;
     font-weight: 500;
     :nth-child(n+2){
         text-align: center;
@@ -40,6 +40,9 @@
     .team-div-1{
         padding: 1%;
         border: solid 2px;
+    }
+    .team-div-1:hover{
+        background-color: #058eae;
     }
     .team-div-2{
         padding: 1%;
@@ -53,23 +56,54 @@
             color: #f90012;
         }
     }
+    .col-xs-6{
+        padding-right: 0;
+        padding-left: 0;
+        height: 100%;
+        .row .col-xs-4{
+            padding: 2% 1%;
+        }
+    }
+    // this option is only available to admin/owner
+    a{
+        color: inherit;
+        .team-data:hover{
+            background-color: #058eae;
+        }
+    }
 }
 
+// THIS DISABLES THE DIVS IF THEY HAVE THE CLASS!
+.team-disable{
+     pointer-events: none;
+     opacity: 0.4;
+}
+
+// The new team entry form
 .new-team-form{
     margin-top: 1%;
     display: none;
     
     .new-team-1, .new-team-2{
         padding: 0;
-        text-align: center;
+        input{
+            text-align: center;
+        }
     }
     
-    .new-team-3 .btn {
-        width: 100%;
+    .new-team-3{
+        padding: 0 1%;
+        
+        .btn {
+            padding: 12% 8%;
+             font-size: 80%;
+             width: 100%;
+             }
+    
     }
     
     
-    .col-xs-1{
+    .new-team-4{
         text-align: center;
         padding-top: 0.5%;
         .fa{
@@ -80,6 +114,39 @@
             color: #d83434;
         }
     }
-    
-   
 }
+
+// the team edit form
+.team-edit-form{
+     margin-bottom: 1%;
+    
+    .edit-team-1{
+        font-weight: 500;
+        padding: 1%;
+        border: solid 2px;
+    }
+    .edit-team-2{
+        padding: 0;
+        height: 100%;
+        input{
+            padding: 8%;
+            text-align: center;
+            height: 100%;
+        }
+    }
+    .edit-team-3{
+        .btn{
+            padding: 7%;
+        }
+    }
+}
+
+/* ----------------------------------------------- */
+/* TEAM SHOW PAGE  */
+/* ----------------------------------------------- */
+
+.team-show-header{
+    padding-bottom: 1%;
+    border-bottom: solid 1px #555;
+}
+

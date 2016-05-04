@@ -1,0 +1,1 @@
+alert("error! Try refreshing the page! Sometimes, blank form fields can cause this error");

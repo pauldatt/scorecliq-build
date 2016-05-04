@@ -1,6 +1,6 @@
-<%= form_for [@scoreboard, @team], remote: true, :html => { :id => 'new-team-entry' } do |f| %>
+<%= form_for [@scoreboard, @team], remote: true, html: { id: 'new-team-entry', autocomplete: "off" } do |f| %>
         
-        <div class="col-xs-3 new-team-1"><%= f.text_field :name, required: true, class: "team-name-field form-control", placeholder: "Enter name"  %></div>
+        <div class="col-xs-4 new-team-1"><%= f.text_field :name, required: true, maxlength: 30, class: "team-name-field form-control", placeholder: "Enter name"  %></div>
                
 
         <div class="col-xs-2 new-team-2"><%= f.number_field :win, min: 0, max: 3333, class: "form-control", placeholder: "0"  %></div>
@@ -10,9 +10,9 @@
            
         <div class="col-xs-2 new-team-2"><%= f.number_field :tie, min: 0, max: 3333, class: "form-control", placeholder: "0" %></div>
   
-        <div class="col-xs-2 new-team-3"> <%= f.submit "Add", :data => {:disable_with => "Saving..."}, class: "btn btn-primary" %></div>
+        <div class="col-xs-1 new-team-3"> <%= f.submit "Add", :data => {:disable_with => "Saving..."}, class: "btn btn-primary" %></div>
         
-        <div class="col-xs-1"> <i class="fa fa-times-circle hide-team-new" aria-hidden="true"></i> </div>
+        <div class="col-xs-1 new-team-4"> <i class="fa fa-times-circle hide-team-new" aria-hidden="true"></i> </div>
         
 <% end %>
 

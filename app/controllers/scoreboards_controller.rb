@@ -64,7 +64,7 @@ class ScoreboardsController < ApplicationController
  def deleteteams
     @scoreboard = Scoreboard.find_by_id(params[:id])
     @scoreboard.teams.delete_all
-    flash[:success] = "The Scoreboard has been reset to default."
+    flash[:success] = "All teams have been deleted. We hope you're happy with your decision."
     redirect_to scoreboard_teams_path(@scoreboard)
  end
  

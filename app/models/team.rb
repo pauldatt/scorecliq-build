@@ -3,7 +3,7 @@ class Team < ActiveRecord::Base
   
   belongs_to :scoreboard
   
-  validates :name, presence: true, length: { maximum: 34 }
+  validates :name, presence: true, length: { maximum: 30 }
   validates :scoreboard_id, presence: true
   
   # each team could have many members(users) through team members, this gives us all the members associated with a team
@@ -21,8 +21,9 @@ class Team < ActiveRecord::Base
   private
   
   def auto_fill_team
+    
     if self.win.blank?
-      self.win ="0"
+      self.win = "0"
     end
     
     if self.loss.blank?

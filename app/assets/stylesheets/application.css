@@ -14,5 +14,6 @@
  *= require jquery-ui
  *= require social-share-button
  *= require_self
+ *= require jquery-ui/dialog
  */
  
