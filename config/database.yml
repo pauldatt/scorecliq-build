@@ -2,9 +2,10 @@ default: &default
       adapter: postgresql
       encoding: unicode
       pool: 5
-      username: kdhatt # same name for a superuser
-      password: otohime # same password for the database owner. 
+      username: <%= ENV['USERNAME'] %> # same name for a superuser
+      password: <%= ENV['PASSWORD'] %> # same password for the database owner. 
       host: <%= ENV['IP'] %> # config the hba_file and fix the template 1.
+      # testing git ingore
   
 development:
   <<: *default
