@@ -19,7 +19,7 @@
 
 /config/initializers/01_dev_config_vars.rb
 /public/uploads
-
+/db/seeds.rb
 
 
 # Ignore application configuration
