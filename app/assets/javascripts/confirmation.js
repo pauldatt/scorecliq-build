@@ -31,12 +31,12 @@ $(document).ready(function(){
           };
 });
 
-//Custom alert box NEED TO FIX THIS!!!!!!
+//Custom alert box 
 
 $(document).ready(function(){
   
   window.alert = function (message) {
-     html = "<div class=\"modal\" id=\"dialog-confirm\">\n<div class=\"modal-dialog\">\n<div class=\"modal-content\">\n<div class=\"modal-header\">\n       <p> ERROR! <p>\n</div>\n<div class=\"modal-body\">\n   <p> " + message + " <p>\n</div>\n<div class=\"modal-footer\">\n   <a data-dismiss=\"modal\" class=\"btn unconfirm\">CLOSE</a>\n </div>\n</div>\n</div>\n</div>";
+     html = "<div class=\"modal\" id=\"dialog-confirm\">\n<div class=\"modal-dialog\">\n<div class=\"modal-content\">\n<div class=\"modal-header\">\n       <p> ALERT! <p>\n</div>\n<div class=\"modal-body\">\n   <p> " + message + " <p>\n</div>\n<div class=\"modal-footer\">\n   <a data-dismiss=\"modal\" class=\"btn unconfirm\">CLOSE</a>\n </div>\n</div>\n</div>\n</div>";
      $(html).modal();
   };
   

@@ -15,7 +15,9 @@ Rails.application.routes.draw do
   post   'request_to_join' => 'requests#create'
   put  'request_to_join_accept' => 'requests#accept'
   delete 'request_to_join_delete' => 'requests#delete'
-  
+  put   'assign_captain'        => 'team_members#assign'
+  put  'unassign_captain'      => 'team_members#unassign'
+   
   resources :users do
       resources :pictures, only: [:create, :update, :destroy]
   end
@@ -42,7 +44,11 @@ Rails.application.routes.draw do
     end
    resources :comments
    resources :teams do 
-       resources :team_members
+       resources :team_members do 
+           member do
+               post :add 
+           end
+       end
        member do
            patch :update_name
        end
@@ -55,7 +61,6 @@ Rails.application.routes.draw do
   end
   
   resources :invitations, only: [:new, :create]
-  
   
 
   # The priority is based upon order of creation: first created -> highest priority.

@@ -58,6 +58,15 @@ class User < ActiveRecord::Base
     SecureRandom.urlsafe_base64
   end
   
+  #the search method for displaying followers
+  def self.search(search)
+    if search
+      self.where("name ILIKE ?", "%#{search}%")
+    else
+      self.all
+    end
+  end
+  
   # Remembers a user in the database for use in sessions.
   def remember
     self.remember_token = User.new_token # this method defined above generates a random token

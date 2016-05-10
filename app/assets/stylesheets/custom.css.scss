@@ -5,30 +5,7 @@
 // background-color of main nav: ##1c75bf;
 // background-color of side nave: #455a69;
 // button-color: #058eae
-
-/* ----------------------------------------------- */
-/* VARIABLES, MIXINS, BUTTONS   */
-/* ----------------------------------------------- */
-
 $cliq-white: #EFEFEF;
-
-.btn{
-    text-transform: uppercase;
-   
-}
-
-.btn-primary{
-    background-color: #058eae;
-    color: $cliq-white;
-}
-
-.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open > .dropdown-toggle.btn-primary {
-    background: #216273;
-}
-
-
-
-
 
 /* ----------------------------------------------- */
 /* SOME UNIVERSAL STYLING */
@@ -54,6 +31,23 @@ body {
     margin-right: 0;
 }
 
+/* ----------------------------------------------- */
+/* VARIABLES, MIXINS, BUTTONS   */
+/* ----------------------------------------------- */
+
+.btn{
+    text-transform: uppercase;
+   
+}
+
+.btn-primary{
+    background-color: #058eae;
+    color: $cliq-white;
+}
+
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open > .dropdown-toggle.btn-primary {
+    background: #216273;
+}
 
 /* ----------------------------------------------- */
 /* TOP HEADER STYLING */
@@ -74,7 +68,7 @@ body {
 /** DROPDOWN STYLING **/
 
 .nav .dropdown ul{
-    background-color: #455a69;
+    background-color: #253341;
     color: $cliq-white;
     
     a{
@@ -133,8 +127,21 @@ body {
 }
 
 /* ----------------------------------------------- */
-/* CUSTOM JQUERY DIALOG CONFIRMATION  */
+/* General and CUSTOM JQUERY DIALOG CONFIRMATION  */
 /* ----------------------------------------------- */
+.modal-content{
+    .modal-header{
+        text-align: center;
+        font-size: 120%;
+        padding: 2%;
+        background-color: #1c75bf;
+        color: #fff;
+    }
+    .modal-body{
+        background-color: #efefef;
+    }
+}
+
 #dialog-confirm{
     .modal-header{
         text-align: center;

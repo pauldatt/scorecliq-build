@@ -1,0 +1,28 @@
+<% if @followers.any? %>  
+
+        <% @followers.each do |follower| %>
+            <div class="row member-follower-div" id="follower_<%=follower.id%>">
+                <div class="col-xs-10 col-sm-5 member-prof-link">
+                    <%= link_to follower.name, user_path(follower.id) %>
+                </div>
+                <div class="col-xs-2 col-sm-1 member-add">
+                    <%= link_to (add_scoreboard_team_team_member_path(@scoreboard,@team, follower)), method: :post, remote: true, :data => {:disable_with => ".."} do %>
+                        <i class="fa fa-plus-square fa-lg" aria-hidden="true"></i>
+                    <% end %>
+                </div>
+            </div>
+        <% end %> 
+        
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 new-member-pages">
+                <%= will_paginate @followers %>
+            </div>
+        </div>
+        
+<% else %>
+    <div class="row">
+      <div class="col-xs-12 col-sm-6">
+        <h3>No members are available. </h3>
+      </div>
+    </div>
+<% end %>

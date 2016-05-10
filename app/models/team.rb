@@ -8,7 +8,11 @@ class Team < ActiveRecord::Base
   
   # each team could have many members(users) through team members, this gives us all the members associated with a team
   has_many :team_members
-  has_many :members, through: :team_members, source: :user, dependent: :destroy
+  has_many :members, through: :team_members, source: :user, dependent: :destroy 
+  
+  #the following code differentiates between captains and normal users 
+  has_many :captains, -> { where(team_members: {captain: true}) }, through: :team_members, source: :user, dependent: :destroy
+  has_many :non_captains, -> { where(team_members: {captain: false}) }, through: :team_members, source: :user, dependent: :destroy
   
   #self reference with the teams to create team_matches. Each team acts as a facing team or an opposing team.
   has_many :facing_teams, class_name: "TeamMatch", foreign_key: "home_team_id" #the facing_team is acting as the home_team

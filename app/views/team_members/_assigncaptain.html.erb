@@ -1,0 +1,41 @@
+<div class="modal fade" id="captain-modal" tabindex="-1" >
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        ASSIGN A TEAM CAPTAIN
+      </div>
+      <div class="modal-body">
+        <% if @team_members.any? %>  
+          <div class="container-fluid">
+            <!--first show the captain-->
+            
+                <!--then show the rest of the members which a new captain can be selected from-->
+                <% @team_members.each do |member| %>
+                 
+                      <div class="row member-div">
+                          <div class="col-xs-8 col-sm-8 member-prof-link">
+                              <%= link_to member.name, user_path(member.id) %>
+                          </div>
+                          
+                          <div class="col-xs-4 col-sm-4 cap-assign">
+                            <% if @team.captains.include?(member) %>
+                                <%= link_to "unassign", unassign_captain_path(:scoreboard_id => @scoreboard.id, :team_id => @team.id, :member_id => member.id), :method => 'put' %>
+                            <% else %>
+                                <%= link_to "Assign", assign_captain_path(:scoreboard_id => @scoreboard.id, :team_id => @team.id, :member_id => member.id), class: "btn btn-primary", :method => 'put' %>
+                            <% end %>
+                          </div>
+                      </div>
+                 
+                <% end %> 
+          </div>
+        <% else %>
+          <h4>Please add team members to this team before assigning a captain. </h4>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary modal-close" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
