@@ -4,7 +4,7 @@ favourite_scoreboards:
   user: divjot # divjot_id is equal to divjot.id
   scoreboard: scoreboard_a # scoreboard_id is equal to scoreboard_a.id
   
-  # imagine divjot favourited scoreboard_a, 
-  # in the favourites tables, you have user_id of divjot and scoreboard_id of scoreboard_a
+# imagine divjot favourited scoreboard_a, 
+# in the favourites tables, you have user_id of divjot and scoreboard_id of scoreboard_a
   
   

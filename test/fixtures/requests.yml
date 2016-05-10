@@ -1,11 +1,10 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  user_id: 1
-  scoreboard_id: 1
+request_a:
+  user: divjot
+  scoreboard: scoreboard_a
   approved: false
 
-two:
-  user_id: 1
-  scoreboard_id: 1
-  approved: false
+# imagine divjot requested scoreboard_a, 
+# in the requests table, you have user_id of divjot and scoreboard_id of scoreboard_a
+

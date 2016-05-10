@@ -8,30 +8,30 @@
 <div>
 
 <% if params[:search].present? %>
-<% if @scoreboard_search.present? %>
-<% @scoreboard_search.each do |scoreboard_search| %>
-    <%= div_for scoreboard_search, :class => "inner-disp" do %> 
-        Scoreboard: <%= link_to "#{scoreboard_search.name_of_scoreboard}", scoreboard_path(scoreboard_search.id) %><br>
-        Organization: <%= scoreboard_search.name_of_organization %><br>
-        Activity: <%= scoreboard_search.name_of_activity %><br>
-        state: <%= scoreboard_search.states %><br>
-        Admin: <%= link_to "#{scoreboard_search.user.name}", user_path(scoreboard_search.user.id)  %>
-        <% if scoreboard_search.user.picture.present? %>
-        pic: <%= image_tag scoreboard_search.user.picture.picture.url %>
-        <% else %>
-        <%= image_tag("blank-prof.jpg", class: "user-prof") %>
-        <% end %>
-        <% if current_user.admin? && scoreboard_search.user != current_user %>
-           <%= link_to "delete", scoreboard_search.user , method: :delete, data: {confirm: "Are you sure you want to delete User"} %>
+    <% if @scoreboard_search.present? %>
+    <% @scoreboard_search.each do |scoreboard_search| %>
+        <%= div_for scoreboard_search, :class => "inner-disp" do %> 
+            Scoreboard: <%= link_to "#{scoreboard_search.name_of_scoreboard}", scoreboard_path(scoreboard_search.id) %><br>
+            Organization: <%= scoreboard_search.name_of_organization %><br>
+            Activity: <%= scoreboard_search.name_of_activity %><br>
+            state: <%= scoreboard_search.states %><br>
+            Admin: <%= link_to "#{scoreboard_search.user.name}", user_path(scoreboard_search.user.id)  %>
+                <% if scoreboard_search.user.picture.present? %>
+                  pic: <%= image_tag scoreboard_search.user.picture.picture.url %>
+                <% else %>
+                  <%= image_tag("blank-prof.jpg", class: "user-prof") %>
+                <% end %>
+            <% if current_user.admin? && scoreboard_search.user != current_user %>
+               <%= link_to "delete", scoreboard_search.user , method: :delete, data: {confirm: "Are you sure you want to delete User"} %>
+            <% end %>
         <% end %>
     <% end %>
-<% end %>
-
-<%= will_paginate @scoreboard_search, :page_links => true %>
-
-<% else %>
-
-No results found, please try again.
-
-<% end %>
+    
+    <%= will_paginate @scoreboard_search, :page_links => true %>
+    
+    <% else %>
+    
+    No results found, please try again.
+    
+    <% end %>
 <% end %>

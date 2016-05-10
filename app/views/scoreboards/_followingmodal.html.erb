@@ -8,12 +8,19 @@
       </div>
       <div class="modal-body">
       <ul>
-        <% @scoreboard.favourited_by.each do |user| %>
+       <% @scoreboard.favourited_by.each do |user| %>
         <% if user == @scoreboard.user %>
-         <button type="button" class="btn btn-default" id="admin">Admin: <%= link_to "#{user.name}", user_path(user) %>
+           <button type="button" class="btn btn-default" id="admin">Admin: <%= link_to "#{user.name}", user_path(user) %>
         <% else %>
-        <li><%= link_to "#{user.name}", user_path(user) %><p></li>
-        <% end %>
+             <li><%= link_to "#{user.name}", user_path(user) %><p></li>
+            <% if @scoreboard.user == current_user %>
+               <% if @scoreboard.managed_by.include?(user) %>
+                  <p><%= link_to "Unassign Admin", unassign_manager_path(:scoreboard_id => @scoreboard.id, :user_id => user.id), :method => 'delete' %></p>
+               <% else %>
+                  <p><%= link_to "Admin", assign_manager_path(:scoreboard_id => @scoreboard.id, :user_id => user.id), :method => 'post' %></p>
+               <% end %>
+            <% end %>
+          <% end %>
         <% end %>
       </ul>
       </div>

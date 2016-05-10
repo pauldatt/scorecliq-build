@@ -14,8 +14,8 @@ class TeamCreateTest < ActionDispatch::IntegrationTest
                                                        win: 0, 
                                                        loss: 0, 
                                                        tie: 0 }
-      assert_template 'teams/create'
-      assert_template 'teams/_team_errors'
+      # assert_template 'teams/create'
+      assert_template 'teams/create_error'
     end
   end 
   

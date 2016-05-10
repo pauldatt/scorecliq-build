@@ -34,7 +34,7 @@ class TeamUpdatewTest < ActionDispatch::IntegrationTest
                                                                  loss: " ",
                                                                  tie: " "}
     assert_template 'teams/update_error'
-    assert_template 'teams/_team_errors'
+    # assert_template 'teams/_team_errors'
   end
   
     

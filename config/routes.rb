@@ -10,12 +10,14 @@ Rails.application.routes.draw do
   get    'home'    => 'static_pages#home'
   get    'search'  => 'search#index', as: :search
   get    'team'    => 'scoreboards#teams'
-  put  'private' => 'privates#privatize'
-  put  'unprivate'=> 'privates#unprivatize'
-  post   'request_to_join' => 'requests#create'
-  put  'request_to_join_accept' => 'requests#accept'
+  put  'private'   => 'privates#privatize'
+  put  'unprivate' => 'privates#unprivatize'
+  post   'request_to_join'        => 'requests#create'
+  put  'request_to_join_accept'   => 'requests#accept'
   delete 'request_to_join_delete' => 'requests#delete'
-  
+  post 'assign_manager'           => 'managers#create'
+  delete 'unassign_manager'       => 'managers#delete'
+
   resources :users do
       resources :pictures, only: [:create, :update, :destroy]
   end

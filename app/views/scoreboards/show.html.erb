@@ -89,9 +89,9 @@
 <% if @scoreboard.user == current_user %> 
 <p>Private/Public</p>
   <% if @scoreboard.privatization == true %>
-     <%= link_to "public", unprivate_path(:id => @scoreboard.id), :method => 'put' %> 
+     <%= link_to "public", unprivate_path(:scoreboard_id => @scoreboard.id), :method => 'put' %> 
 <% else %>
-     <%= link_to "private", private_path(:id => @scoreboard.id), :method => 'put' %>
+     <%= link_to "private", private_path(:scoreboard_id => @scoreboard.id), :method => 'put' %>
   <% end %>
 <% end %>
 
@@ -163,6 +163,12 @@
  <% end %>
 <% end %>
 
+ <br></br>
+
+<p>The users that are managing the scoreboard:</p>
+<% @scoreboard.managed_by.limit(2).each do |user| %>
+<%= user.name %>
+<% end %>
 
 
 

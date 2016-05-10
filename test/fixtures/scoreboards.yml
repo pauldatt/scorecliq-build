@@ -9,6 +9,7 @@ scoreboard_a:
   cities: Guelph
   created_at: <%= 10.minutes.ago %>
   user: divjot
+  privatization: true
 
 scoreboard_b:
   name_of_scoreboard: MyString

@@ -18,7 +18,7 @@ class StatusUpdateTest < ActionDispatch::IntegrationTest
   
   test "unsuccessful update of the status" do
     xhr :patch, scoreboard_status_path(@scoreboard, @status), status: {content: "a" * 300}
-    #test for validation
+    #test for validation(the message should appear). not exactly sure how to test for that
   end
   
 end

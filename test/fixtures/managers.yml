@@ -1,9 +1,5 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  user_id: 1
-  scoreboard: 
-
-two:
-  user_id: 1
-  scoreboard: 
+manager_a:
+  user: divjot
+  scoreboard: scoreboard_a

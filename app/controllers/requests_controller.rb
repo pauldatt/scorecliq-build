@@ -1,4 +1,7 @@
 class RequestsController < ApplicationController
+    
+    before_action :logged_in_user, only: [:create, :accept, :delete]
+    
     def create #sending a request
         @scoreboard = Scoreboard.find(params[:scoreboard_id])
         # we don't need to pass in the user_id param because we are building it with current_user
@@ -20,7 +23,7 @@ class RequestsController < ApplicationController
             flash[:notice] = "Request Accepted"
             redirect_to @scoreboard
         else
-            flash[:notice] = "nothing"
+            flash[:notice] = "An error occured, please try again."
             redirect_to @scoreboard
         end
     end
