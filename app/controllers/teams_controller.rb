@@ -12,6 +12,8 @@ class TeamsController < ApplicationController
     @selected = true
     @scoreboard = Scoreboard.find(params[:scoreboard_id])
     @team = Team.find(params[:id])
+    @team_captains = @team.captains
+    @team_members = @team.members
    end
    
     

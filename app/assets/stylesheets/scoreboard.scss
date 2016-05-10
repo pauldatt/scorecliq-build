@@ -150,3 +150,209 @@
     border-bottom: solid 1px #555;
 }
 
+.assign-captain-btn{
+    margin-left: 40px;
+}
+
+// The div for team value headings
+.show-standing-labels{
+    color: #efefef;
+    margin-top: 20px;
+    font-size: 130%;
+    font-weight: 300;
+    text-align: center;
+    .show-standing-1{
+        background-color: #253341;
+        padding: 1%;
+        border: solid 2px #253341;
+        border-right: solid 2px #efefef;
+        
+    }
+    .show-standing-2{
+        background-color: #253341;
+        padding: 1%;
+        border: solid 2px #253341;
+        border-right: solid 2px #efefef;
+    }
+    :last-child{
+        border-right: solid 2px #253341;
+    }
+}
+
+// the div for team values
+.show-standing-values{
+    color: #555;
+    font-size: 130%;
+    font-weight: 300;
+    text-align: center;
+    .standing-value-1{
+        padding: 2% 1%;
+        border: solid 2px;
+        border-top: 0;
+    }
+    .standing-value-2{
+        padding: 2% 1%;
+        border: solid 2px;
+        border-left: 0;
+        border-top: 0;
+    }
+    
+}
+
+// the header row which includes the button
+.team-members-header{
+    margin-top: 20px;
+    
+    .team-member-label{
+    color: #efefef;
+    background-color: #253341;
+    text-align: center;
+    padding: 1%;
+    font-size: 120%;
+    }
+    .add-team-member-btn{
+        .btn{
+        margin-top: 8%;
+        }
+        
+        .dropdown-menu{
+            background-color: #058eae;
+           li a{
+                color: #fff;
+            }
+        }
+    } 
+
+}
+
+// the list of team members
+.team-member-list{
+    margin-top: 20px;
+    font-size: 140%;
+    text-align: center;
+    min-height: 100px;
+    
+    .team-member-div{
+        margin-bottom: 1%;
+        
+        .team-member-name{
+            border-bottom: solid 2px #555;
+            text-align: left;
+            font-size: 100%;
+            a{
+                color: #555;
+                font-weight: 700;
+            }
+        }
+        .team-member-message{
+            border-bottom: solid 2px #555;
+        }
+        .remove-team-member{
+            border-bottom: solid 2px #555;
+            .fa{
+                color: #F90012;
+            }
+            .fa:hover{
+                color: #d83434;
+            }
+        }
+    }
+}
+
+
+
+/* ----------------------------------------------- */
+/* NEW TEAM MEMBERS ADD PAGE   */
+/* ----------------------------------------------- */
+
+.new-team-member-header{
+    padding-bottom: 1%;
+    border-bottom: solid 1px #555;
+}
+
+.new-member-field{
+    margin-top: 10px;
+    
+    input{
+        width: 100%;
+    }
+}
+
+.new-member-org-head{
+    margin-top: 20px;
+    
+    .org-list-header{
+    color: #efefef;
+    background-color: #253341;
+    text-align: center;
+    padding: 1%;
+    font-size: 120%;
+    }
+}
+
+.new-member-org-list{
+    margin-top: 10px;
+    
+    .member-follower-div{
+        margin-bottom: 10px;
+        font-size: 140%;
+        text-align: center;
+        
+        .member-prof-link{
+            border-bottom: solid 2px #555;
+            text-align: left;
+            font-size: 100%;
+            a{
+                color: #555;
+                font-weight: 700;
+            }
+        }
+        .member-add{
+            border-bottom: solid 2px #555;
+            .fa{
+                color: #058eae;
+            }
+            .fa:hover{
+                color: #216273;
+            }
+        }
+    }
+}
+
+.new-member-pages{
+   div .pagination{
+        margin: 0;
+    }
+    ul{
+       li a{
+            background-color: #253341;
+            color: #efefef;
+        }
+        .disabled a{
+            background-color: #253341;
+            color: #efefef;
+        }
+    }
+}
+
+// captain modal
+#captain-modal .member-div{
+     padding: 1%;
+     border-bottom: solid 2px #555;
+    .member-prof-link{
+        text-align: left;
+        font-size: 100%;
+        a{
+            color: #555;
+            font-weight: 700;
+        }
+    }
+    
+    .cap-assign{
+        text-align: right;
+            .btn{
+                font-size: 70%;
+                color: #efefef;
+             }
+        } 
+}

@@ -2,12 +2,73 @@
     <%= @team.name %>
 </h2>
 
+<%= link_to "Back to Teams", scoreboard_teams_path(@scoreboard), class: "btn btn-primary" %>
 
-<%= form_for [@scoreboard, @team], :url => update_name_scoreboard_team_path(@scoreboard,@team) do |f| %>
-     <div class="col-xs-4"><%= f.text_field :name, required: true, maxlength: 30, class: "team-name-field form-control", placeholder: "Enter name"  %></div>
 
-     <div class="col-xs-1"> <%= f.submit "Update", :data => {:disable_with => "Saving..."}, class: "btn btn-primary" %></div>
-     
-<% end %>
-<br></br>
 
+<div class="row show-standing-labels">
+    <div class="col-xs-3 show-standing-1">
+        WIN
+    </div>
+    <div class="col-xs-3 show-standing-2">
+        LOSS
+    </div>
+    <div class="col-xs-3 show-standing-2">
+        TIE
+    </div>
+    <div class="col-xs-3 show-standing-2">
+        W %
+    </div>
+</div>
+
+<div class="row show-standing-values">
+    <div class="col-xs-3 standing-value-1">
+        <%= @team.win %>
+    </div>
+    <div class="col-xs-3 standing-value-2">
+        <%= @team.loss %>
+    </div>
+    <div class="col-xs-3 standing-value-2">
+        <%= @team.tie %>
+    </div>
+    <div class="col-xs-3 standing-value-2">
+        <% total_games = @team.win.to_i + @team.loss.to_i + @team.tie.to_i %>
+        <% if total_games == 0 %>
+         <%= "N/A" %>
+        <% else %>
+         <%= (@team.win.to_i/(total_games).to_f*100).round(2) %>%
+        <% end %>
+    </div>
+</div>
+
+<div class="row team-members-header">
+    <div class="col-xs-10 col-sm-6 btn-group team-member-label">
+        TEAM MEMBERS
+    </div>
+    <div class="col-xs-2 col-sm-1  add-team-member-btn">
+       <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+         <i class="fa fa-cog" aria-hidden="true"></i>
+         <span class="caret"></span>
+       </button>
+       <ul class="dropdown-menu dropdown-menu-right">
+            <li><%= link_to "ADD MEMBER", new_scoreboard_team_team_member_path(@scoreboard, @team) %></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#" data-toggle="modal" data-target="#captain-modal">ASSIGN CAPTAIN</a></li>
+       </ul>
+    </div>
+</div>
+
+<div class="team-member-list">
+    <% if @team_members.any? %>
+      <%= render "team_member" %>
+    <% else %> 
+      <div class="row no-team-members">
+          <div class="col-sm-6 col-xs-12">
+              Currently, there are no team members listed for this team. 
+          </div>
+      </div>
+    <% end %>
+</div>
+
+
+<%= render 'team_members/assigncaptain' %>

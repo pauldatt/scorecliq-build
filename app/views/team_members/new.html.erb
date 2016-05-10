@@ -1,0 +1,36 @@
+<h2 class="new-team-member-header"> <%= @team.name %> </h2>
+
+<%= link_to "Back to Team Page", scoreboard_team_path(@scoreboard, @team), class: "btn btn-primary" %>
+
+
+<%= form_tag(new_scoreboard_team_team_member_path, :method => "get", id: "member-search-form", autocomplete: "off") do %>
+<div class="row new-member-field">
+    <div class="col-xs-12 col-sm-6">
+        <%= text_field_tag :search, params[:search], placeholder: "Filter Members by Name", class:"form-control" %>
+    </div>
+</div>
+<% end %>
+
+
+<div class="row new-member-org-head">
+    <div class="col-xs-12 col-sm-6 org-list-header">
+        LIST OF ORGANIZATION MEMBERS
+    </div>
+</div>
+
+<div class="row new-member-org-list">
+    <%= render "team_members/addmembers" %>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+ 
