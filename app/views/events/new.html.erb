@@ -1,0 +1,30 @@
+<div class="score-contain">
+      <h1 class="score-header-form"></h1>
+      <div class="score-form">
+         
+        <h2>Create New Event</h2>
+          
+         <%= form_for [@scoreboard, @event] do |f| %>
+         
+         <%= render 'shared/error_messages', object: f.object %>
+        
+        <%= f.label :event_name %>
+        <%= f.text_field :event_name, class: "form-control"  %>
+              
+        <%= f.label :event_date %>
+        <%= f.date_select :event_date, class: "form-control" %>
+              
+        <%= f.label :event_time %>
+        <%= f.time_select :event_time, class: "form-control" %>
+        
+        <%= f.label :notes %>
+        <%= f.text_field :notes, class: "form-control" %>
+    
+         
+         <%= f.submit "Create", :data => {:disable_with => "Creating Event..."}, class: "btn btn-primary" %>
+         
+         <% end %>
+    
+      </div>
+  </div>
+</div>

@@ -3,6 +3,10 @@ $(document).ready(function(){
    $('.alert').delay(3000).slideUp(500);
 });
 
+$(document).ready(function(){
+    $(".best_in_place").best_in_place();
+});
+
 //search queries
 $(document).ready(function(){
    $("#member-search-form input").keyup(function() {

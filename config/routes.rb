@@ -15,8 +15,8 @@ Rails.application.routes.draw do
   post   'request_to_join'        => 'requests#create'
   put  'request_to_join_accept'   => 'requests#accept'
   delete 'request_to_join_delete' => 'requests#delete'
-  put   'assign_captain'        => 'team_members#assign'
-  put  'unassign_captain'      => 'team_members#unassign'
+  put   'assign_captain'          => 'team_members#assign'
+  put  'unassign_captain'         => 'team_members#unassign'
   post 'assign_manager'           => 'managers#create'
   delete 'unassign_manager'       => 'managers#delete'
 
@@ -26,26 +26,24 @@ Rails.application.routes.draw do
   resources :account_activations, only: [:edit]
   resources :password_resets,     only: [:new, :create, :edit, :update]
   resources :conversations, only: [:index, :show, :destroy] do
-   member do
-    post :reply
-    post :restore
-    post :mark_as_read
-   end
-   
-   collection do
-      delete :empty_trash
-   end
+    member do
+     post :reply
+     post :restore
+     post :mark_as_read
+    end
+    collection do
+       delete :empty_trash
+    end
   end
   resources :messages, only: [:new, :create]
   resources :scoreboards do 
-   member do
+    member do
       post :favourite
       delete :favourite
       get :deleteteams
       get :deleteschedules
     end
-   resources :comments
-   resources :teams do 
+    resources :teams do 
        resources :team_members do 
            member do
                post :add 
@@ -54,14 +52,18 @@ Rails.application.routes.draw do
        member do
            patch :update_name
        end
+    end
+    resources :comments
+    resources :events
+    resources :team_matches
+    resources :schedules 
+    resources :pictures, only: [:create, :update, :destroy]
+    resources :statuses, only: [:create, :update]
+    resources :events
+    resources :categories do 
+        resources :documents
+    end
    end
-   resources :team_matches
-   resources :schedules 
-   resources :pictures, only: [:create, :update, :destroy]
-   resources :statuses, only: [:create, :update]
-   resources :events
-  end
-  
   resources :invitations, only: [:new, :create]
   
 
@@ -119,4 +121,6 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+  
+  
 end

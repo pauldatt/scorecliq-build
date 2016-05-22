@@ -1,34 +1,33 @@
+<%= f.label :Name_of_your_scoreboard %>
+<%= f.text_field :name_of_scoreboard, class: "form-control"  %>
+      
+<%= f.label :Name_of_your_organization %>
+<%= f.text_field :name_of_organization, class: "form-control" %>
+      
+<%= f.label :Name_of_your_sport_or_activity %>
+<%= f.text_field :name_of_activity, class: "form-control" %>
+ 
+         
+<%= f.label :Country %>
+<div id="country">
+  <%= f.select :country, country, :selected => "Germany" %>
+</div>
 
-         <%= f.label :Name_of_your_scoreboard %>
-         <%= f.text_field :name_of_scoreboard, class: "form-control"  %>
-               
-         <%= f.label :Name_of_your_organization %>
-         <%= f.text_field :name_of_organization, class: "form-control" %>
-               
-         <%= f.label :Name_of_your_sport_or_activity %>
-         <%= f.text_field :name_of_activity, class: "form-control" %>
-          
-                  
-         <%= f.label :Country %>
-         <div id="country">
-           <%= f.select :country, country, :selected => "Germany" %>
-         </div>
-         
-         <%= f.label :State_or_province %>
-         <div id="canadian_provinces">
-         <%= f.select :states, canadian_provinces, :selected => "Ontario" %>
-         </div>
-         
-         <div id="american_states">
-         <%= f.select :states, american_states, :selected => "California" %>
-         </div>
-         
-         <div id="other_states">
-         <%= f.text_field :states, placeholder: "Enter your state/province" %>
-         </div>
-         
-         <%= f.label :City_or_town %>
-         <%= f.text_field :cities, placeholder: "Enter your city or town" %>
+<%= f.label :State_or_province %>
+<div id="canadian_provinces">
+<%= f.select :states, canadian_provinces, :selected => "Ontario" %>
+</div>
+
+<div id="american_states">
+<%= f.select :states, american_states, :selected => "California" %>
+</div>
+
+<div id="other_states">
+<%= f.text_field :states, placeholder: "Enter your state/province" %>
+</div>
+
+<%= f.label :City_or_town %>
+<%= f.text_field :cities, placeholder: "Enter your city or town" %>
                   
                   
                   

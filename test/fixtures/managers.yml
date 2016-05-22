@@ -1,5 +1,17 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-manager_a:
-  user: divjot
+#fixtures for a scoreboard that is managed by 3 users. scoreboard_a is managed by 3 users
+managed_a:
+  user: divjot #the scoreboard_a belongs to divjot as well, we can write a test as if its the owner you can't be the manager
   scoreboard: scoreboard_a
+
+#fixtures for a scoreboard that is managed by 2 users. scoreboard_b is managed by 2 users
+
+managed_c:
+  user: divjot
+  scoreboard: scoreboard_b
+
+managed_d:
+  user: sukh
+  scoreboard: scoreboard_b
+  

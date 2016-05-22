@@ -30,6 +30,38 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
+-- Name: categories; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE categories (
+    id integer NOT NULL,
+    name character varying,
+    scoreboard_id integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: categories_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE categories_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: categories_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE categories_id_seq OWNED BY categories.id;
+
+
+--
 -- Name: comments; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -62,6 +94,39 @@ CREATE SEQUENCE comments_id_seq
 --
 
 ALTER SEQUENCE comments_id_seq OWNED BY comments.id;
+
+
+--
+-- Name: documents; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE documents (
+    id integer NOT NULL,
+    file_name character varying,
+    file character varying,
+    category_id integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: documents_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE documents_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: documents_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE documents_id_seq OWNED BY documents.id;
 
 
 --
@@ -702,7 +767,21 @@ ALTER SEQUENCE users_id_seq OWNED BY users.id;
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY categories ALTER COLUMN id SET DEFAULT nextval('categories_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY comments ALTER COLUMN id SET DEFAULT nextval('comments_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY documents ALTER COLUMN id SET DEFAULT nextval('documents_id_seq'::regclass);
 
 
 --
@@ -832,11 +911,27 @@ ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regcl
 
 
 --
+-- Name: categories_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY categories
+    ADD CONSTRAINT categories_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: comments_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY comments
     ADD CONSTRAINT comments_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: documents_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY documents
+    ADD CONSTRAINT documents_pkey PRIMARY KEY (id);
 
 
 --
@@ -984,6 +1079,13 @@ ALTER TABLE ONLY users
 
 
 --
+-- Name: index_categories_on_scoreboard_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_categories_on_scoreboard_id ON categories USING btree (scoreboard_id);
+
+
+--
 -- Name: index_comments_on_ancestry; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -1002,6 +1104,13 @@ CREATE INDEX index_comments_on_scoreboard_id ON comments USING btree (scoreboard
 --
 
 CREATE INDEX index_comments_on_user_id ON comments USING btree (user_id);
+
+
+--
+-- Name: index_documents_on_category_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_documents_on_category_id ON documents USING btree (category_id);
 
 
 --
@@ -1245,6 +1354,22 @@ ALTER TABLE ONLY comments
 
 
 --
+-- Name: fk_rails_5dc791345d; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY documents
+    ADD CONSTRAINT fk_rails_5dc791345d FOREIGN KEY (category_id) REFERENCES categories(id);
+
+
+--
+-- Name: fk_rails_72809e25b9; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY categories
+    ADD CONSTRAINT fk_rails_72809e25b9 FOREIGN KEY (scoreboard_id) REFERENCES scoreboards(id);
+
+
+--
 -- Name: fk_rails_c0774e81d7; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -1388,5 +1513,7 @@ INSERT INTO schema_migrations (version) VALUES ('20160415011705');
 
 INSERT INTO schema_migrations (version) VALUES ('20160426134550');
 
-INSERT INTO schema_migrations (version) VALUES ('20160428005130');
+INSERT INTO schema_migrations (version) VALUES ('20160519013903');
+
+INSERT INTO schema_migrations (version) VALUES ('20160519021310');
 

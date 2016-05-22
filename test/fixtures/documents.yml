@@ -1,6 +1,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-team_member_a:
-  team: team_a
-  user: divjot
-  captain: false
+one:
+  file: MyString
+  category_id: 
+
+two:
+  file: MyString
+  category_id: 

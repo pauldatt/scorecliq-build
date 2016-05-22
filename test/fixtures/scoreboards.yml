@@ -19,6 +19,8 @@ scoreboard_b:
   country: Canada
   cities: Guelph
   created_at: <%= 10.minutes.ago %>
+  user: divjot
+  privatization: true
 
 mid_recent:
   name_of_scoreboard: MyString

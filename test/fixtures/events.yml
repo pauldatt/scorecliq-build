@@ -1,15 +1,17 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-one:
-  event_name: 
+#scoreboard_a has 2 events as if now. event_a and event_b. If you do a post request 
+#the number of of event will increase and if you do a delete request the number of events
+# will decrease
+event_a:
+  event_name: MyString
   event_date: 2016-04-14
   event_time: 2016-04-14 22:39:02
   notes: MyString
-  scoreboard_id: 
+  scoreboard: scoreboard_a
 
-two:
-  event_name: 
+event_b:
+  event_name: MyString
   event_date: 2016-04-14
   event_time: 2016-04-14 22:39:02
   notes: MyString
-  scoreboard_id: 
+  scoreboard: scoreboard_a

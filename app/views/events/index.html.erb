@@ -1,1 +1,14 @@
 <p>events index page</p>
+<%= link_to "create events", new_scoreboard_event_path(@scoreboard, @event) %>
+
+<div>
+    
+<% @events.each do |swaggin| %>
+  <div> <%= swaggin.event_name %>
+   <%= swaggin.event_date %>
+   <%= swaggin.event_time %> 
+   <%= swaggin.notes %>
+   </div>
+<% end %>
+
+</div>
