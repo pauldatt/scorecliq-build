@@ -1354,6 +1354,22 @@ ALTER TABLE ONLY invitations
 
 
 --
+-- Name: fk_rails_46e62c5a8c; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY categories
+    ADD CONSTRAINT fk_rails_46e62c5a8c FOREIGN KEY (scoreboard_id) REFERENCES scoreboards(id);
+
+
+--
+-- Name: fk_rails_590ffe0a26; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY documents
+    ADD CONSTRAINT fk_rails_590ffe0a26 FOREIGN KEY (category_id) REFERENCES categories(id);
+
+
+--
 -- Name: fk_rails_a458e0adcb; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -1362,23 +1378,7 @@ ALTER TABLE ONLY teams
 
 
 --
--- Name: fk_rails_5dc791345d; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY documents
-    ADD CONSTRAINT fk_rails_5dc791345d FOREIGN KEY (category_id) REFERENCES categories(id);
-
-
---
--- Name: fk_rails_72809e25b9; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY categories
-    ADD CONSTRAINT fk_rails_72809e25b9 FOREIGN KEY (scoreboard_id) REFERENCES scoreboards(id);
-
-
---
--- Name: fk_rails_c0774e81d7; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: fk_rails_b6395324fa; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY comments
@@ -1520,6 +1520,8 @@ INSERT INTO schema_migrations (version) VALUES ('20160415000346');
 INSERT INTO schema_migrations (version) VALUES ('20160415011705');
 
 INSERT INTO schema_migrations (version) VALUES ('20160426134550');
+
+INSERT INTO schema_migrations (version) VALUES ('20160428005130');
 
 INSERT INTO schema_migrations (version) VALUES ('20160519013903');
 
