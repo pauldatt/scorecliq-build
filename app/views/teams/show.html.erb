@@ -1,5 +1,8 @@
 <h2 class="team-show-header">
     <%= @team.name %>
+    <% if manager_or_owner?(@scoreboard, current_user) %>
+       <i class="fa fa-pencil-square-o pull-right" aria-hidden="true" data-toggle="modal" data-target="#namemodal"></i>
+    <% end %>
 </h2>
 
 <%= link_to "Back to Teams", scoreboard_teams_path(@scoreboard), class: "btn btn-primary" %>
@@ -44,17 +47,21 @@
     <div class="col-xs-10 col-sm-6 btn-group team-member-label">
         TEAM MEMBERS
     </div>
-    <div class="col-xs-2 col-sm-1  add-team-member-btn">
-       <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-         <i class="fa fa-cog" aria-hidden="true"></i>
-         <span class="caret"></span>
-       </button>
-       <ul class="dropdown-menu dropdown-menu-right">
-            <li><%= link_to "ADD MEMBER", new_scoreboard_team_team_member_path(@scoreboard, @team) %></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#" data-toggle="modal" data-target="#captain-modal">ASSIGN CAPTAIN</a></li>
-       </ul>
-    </div>
+    <% if (manager_or_owner?(@scoreboard, current_user))||(current_user == @captain) %>
+        <div class="col-xs-2 col-sm-1  add-team-member-btn">
+           <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+             <i class="fa fa-cog" aria-hidden="true"></i>
+             <span class="caret"></span>
+           </button>
+           <ul class="dropdown-menu dropdown-menu-right">
+                <li><%= link_to "ADD MEMBER", new_scoreboard_team_team_member_path(@scoreboard, @team) %></li>
+                <% if manager_or_owner?(@scoreboard, current_user) %>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="#" data-toggle="modal" data-target="#captain-modal">ASSIGN CAPTAIN</a></li>
+                <% end %>
+           </ul>
+        </div>
+    <% end %>
 </div>
 
 <div class="team-member-list">
@@ -69,5 +76,8 @@
     <% end %>
 </div>
 
+<% if manager_or_owner?(@scoreboard, current_user) %>
+ <%= render 'namechange' %>
+<% end %>
 
 <%= render 'team_members/assigncaptain' %>

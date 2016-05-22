@@ -1,9 +1,10 @@
 <h2 class="team-header"> TEAMS/STANDINGS </h2>
 
-<span class="btn btn-primary team-create">Create Team </span>
-
-<%= link_to "Clear Teams", deleteteams_scoreboard_path(@scoreboard), class: "btn btn-primary clear-teams-btn reset-link", :data => {:confirm => "Are you absolutely sure you want to delete all teams?"} %>
-
+<% if manager_or_owner?(@scoreboard, current_user) %>
+    <span class="btn btn-primary team-create">Create Team </span>
+    <!--NOTE: this delete method works with javascript already, therefore no need to refresh it with custom validations-->
+    <%= link_to "Delete All Teams", deleteteams_scoreboard_path(@scoreboard),method: :delete, class: "btn btn-danger clear-teams-btn", :data => {:confirm => "Are you absolutely sure you want to delete all teams?"} %>
+<% end %>
 
 <!--Added 11 columns for labels because the team objects will have a 12th column for settings cog-->
 <div class="row standing-labels">

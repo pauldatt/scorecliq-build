@@ -15,11 +15,11 @@ class Team < ActiveRecord::Base
   has_many :non_captains, -> { where(team_members: {captain: false}) }, through: :team_members, source: :user, dependent: :destroy
   
   #self reference with the teams to create team_matches. Each team acts as a facing team or an opposing team.
-  has_many :facing_teams, class_name: "TeamMatch", foreign_key: "home_team_id" #the facing_team is acting as the home_team
-  has_many :home_teams, through: :facing_teams, source: :home_team, dependent: :destroy
+  has_many :first_team, class_name: "TeamMatch", foreign_key: "team_a_id", dependent: :destroy #the facing_team is acting as the home_team
+  has_many :team_a, through: :first_team, source: :team_a
   
-  has_many :opposing_teams, class_name: "TeamMatch", foreign_key: "away_team_id" #the opposing team is acting as the away team
-  has_many :away_teams, through: :opposing_teams, source: :away_team, dependent: :destroy
+  has_many :second_team, class_name: "TeamMatch", foreign_key: "team_b_id", dependent: :destroy #the opposing team is acting as the away team
+  has_many :team_b, through: :second_teams, source: :team_b
   
   
   private

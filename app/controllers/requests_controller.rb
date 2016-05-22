@@ -8,10 +8,10 @@ class RequestsController < ApplicationController
         @request = current_user.requests.build(scoreboard_id: @scoreboard.id, approved: "false") #we just did a post request so we can fetch these params
         if @request.save
             redirect_to @scoreboard
-            flash[:notice] = "Request sent"
+            flash[:success] = "Request sent"
         else
             redirect_to @scoreboard
-            flash[:notice] = "unable to send request"
+            flash[:danger] = "unable to send request"
         end
     end
     
@@ -20,11 +20,19 @@ class RequestsController < ApplicationController
         @user = User.find(params[:user_id])
         @request = Request.where(:scoreboard_id => @scoreboard.id, :user_id => @user.id).first
         if @request.update_attributes(:approved => "true")
-            flash[:notice] = "Request Accepted"
-            redirect_to @scoreboard
+            if @user.favourite_scoreboards.include?(@scoreboard) == false
+             @scoreboard.favourited_by << @user
+            end
+            @request.destroy
+            respond_to do |format|
+                format.html {redirect_to scoreboard_path(@scoreboard)}
+                format.js
+            end
         else
-            flash[:notice] = "An error occured, please try again."
-            redirect_to @scoreboard
+            respond_to do |format|
+                format.html {redirect_to @scoreboard}
+                format.js   {render action: "accept_error" }
+            end
         end
     end
     
@@ -34,8 +42,10 @@ class RequestsController < ApplicationController
         @user = User.find(params[:user_id])
         @request = Request.where(:scoreboard_id => @scoreboard.id, :user_id => @user.id).last
         @request.destroy
-        flash[:notice] = "Request Declined"
-        redirect_to @scoreboard
+        respond_to do |format|
+            format.html {redirect_to @scoreboard }
+            format.js   
+        end
     end
         
     

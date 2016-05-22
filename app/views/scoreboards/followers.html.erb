@@ -1,0 +1,17 @@
+<h2 class="follower-page-header">
+    MEMBER LIST
+</h2>
+
+<%= link_to "Back to Profile", scoreboard_path(@scoreboard), class: "btn btn-primary" %>
+
+<%= form_tag(followers_scoreboard_path, :method => "get", id: "follower-search-form", autocomplete: "off") do %>
+<div class="row new-admin-field">
+    <div class="col-xs-12 col-sm-6">
+        <%= text_field_tag :search, params[:search], placeholder: "Filter Members by Name",maxlength: 30, class:"form-control" %>
+    </div>
+</div>
+<% end %>
+
+<div class="follower-org-list">
+    <%= render "follower" %>
+</div>

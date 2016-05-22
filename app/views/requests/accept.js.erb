@@ -1,0 +1,2 @@
+$("#request_<%=@user.id%>").slideUp(300, function(){ $(this).remove();});
+$(".request-approve").text("Join Request: <%= @scoreboard.requested_by.count %>");

@@ -1,12 +1,19 @@
 class TeamMembersController < ApplicationController
-    before_action :logged_in_user, only: [:new, :add, :destroy, :assign, :unassign]
+    before_action :mass_unassign, only: :assign
+    before_action :allowed,       only: :new
+    require 'will_paginate/array' 
     
     def new 
         @selected = true
         @scoreboard = Scoreboard.find(params[:scoreboard_id])
         @team = Team.find(params[:team_id])
         @team_members = @team.members
-        @followers = @scoreboard.favourited_by.search(params[:search]).paginate(page: params[:page], per_page: 50)
+        if (@team_members.any?)
+           @fags = @scoreboard.favourited_by.where("users.id NOT IN (?)", @team_members.pluck(:id)).search(params[:search]).sort_by{ |a| a.name.downcase }
+        else
+           @fags = @scoreboard.favourited_by.search(params[:search]).sort_by{ |a| a.name.downcase }
+        end
+        @followers = @fags.paginate(page: params[:page], per_page: 50)
     end
     
     def add
@@ -14,7 +21,7 @@ class TeamMembersController < ApplicationController
         @user = User.find(params[:id])
         @team = Team.find(params[:team_id])
         @team_member = @team.team_members.build(user_id: @user.id)
-        if (@team.members.count < 51)
+        if (@team.members.count < 30)
             if @team_member.save
                 respond_to do |format|
                     format.html { redirect_to scoreboard_team_path(@scoreboard, @team)}
@@ -57,11 +64,37 @@ class TeamMembersController < ApplicationController
         @team = Team.find(params[:team_id])
         @user = User.find(params[:member_id])
         @scoreboard = Scoreboard.find(params[:scoreboard_id])
-        @team_member = TeamMember.where(:team_id => @team.id, :user_id => @user.id).last
+        @team_member = TeamMember.where(:team_id => @team.id, :user_id => @user.id).first
         @team_member.update_attributes(:captain => "false")
+<<<<<<< HEAD
         flash[:danger] = "Captain Removed"
+=======
+        flash[:success] = "Captain Unassigned"
+>>>>>>> origin/profile-design
         redirect_to scoreboard_team_path(@scoreboard, @team)
     end
     
+    
+    private
+    
+    def allowed
+        @scoreboard = Scoreboard.find(params[:scoreboard_id])
+        @team = Team.find(params[:team_id])
+        @captain = @team.captains.first
+        if !(manager_or_owner?(@scoreboard, current_user)||(current_user == @captain))
+            flash[:danger] = "Only the owner, admins or the captain can access the page"
+            redirect_to scoreboard_team_path(@scoreboard, @team)
+        end
+    end
+    
+    def mass_unassign
+        @team = Team.find(params[:team_id])
+        @user = User.find(params[:member_id])
+        @captains = TeamMember.where(team_id: @team.id, captain: true)
+        @captains.each do |c|
+            c.captain = false
+            c.save
+        end
+    end
     
 end

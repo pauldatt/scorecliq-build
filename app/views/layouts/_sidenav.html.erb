@@ -21,7 +21,14 @@
                   <span class="glyphicon glyphicon-chevron-left"></span> Dashboard
                   <%  end %>
               </li>
-              <li><%= link_to "Scoreboard Profile", scoreboard_path(@scoreboard) %></li>
+              <li>
+                <%= link_to scoreboard_path(@scoreboard) do %>
+                  League Profile
+                  <% if (manager_or_owner?(@scoreboard, current_user))&&(@scoreboard.requests.any?) %>
+                      <i class="fa fa-circle request-notice" aria-hidden="true"></i>
+                  <% end %>
+                <% end %>
+              </li>
               <li><%= link_to "Teams", scoreboard_teams_path(@scoreboard) %></li>
               <li><%= link_to "Team Matches", scoreboard_team_matches_path(@scoreboard) %></li>
               <li><%= link_to "Documents", scoreboard_categories_path(@scoreboard) %></li>

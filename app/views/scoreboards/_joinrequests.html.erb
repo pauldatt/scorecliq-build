@@ -1,0 +1,30 @@
+<div class="modal fade" id="requestmodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Following Users Have Requested to Join:</h4>
+      </div>
+      <div class="modal-body requests">
+        <div class="container-fluid">
+            <h5 class="req-error">Error! Please refresh page and try again!</h5>
+            <% @scoreboard.pending_requests.each do |user| %>
+                <div class="row request-div" id="request_<%=user.id%>">
+                    <div class="col-xs-6 req-name">
+                        <%= user.name %>
+                    </div>
+                    <div class="col-xs-3 req-acc">
+                        <%= link_to "Accept", request_to_join_accept_path(:scoreboard_id => @scoreboard.id, :user_id => user.id), :method => 'put',remote: true, data: {disable_with: "..."}, class: "btn btn-primary" %>
+                    </div>
+                    <div class="col-xs-3 req-dec">
+                        <%= link_to "Decline", request_to_join_delete_path(:scoreboard_id => @scoreboard.id, :user_id => user.id), :method => 'delete',remote: true, data: {disable_with: "..."}, class: "btn btn-danger" %>
+                    </div>
+                </div>
+            <% end %>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

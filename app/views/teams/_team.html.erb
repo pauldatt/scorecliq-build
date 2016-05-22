@@ -4,7 +4,7 @@
       <div class="col-xs-4 team-div-1"> <%= team.name %> </div>
    <% end %>
     
-    <% if (current_user == @scoreboard.user) %>
+    <% if manager_or_owner?(@scoreboard, current_user) %>
          <%= link_to (edit_scoreboard_team_path(@scoreboard, team)), remote: true, class: "team-edit-link" do %>
            <div class="col-xs-6 team-data">
             <div class="row">
@@ -34,13 +34,14 @@
      <%= (team.win.to_i/(total_games).to_f*100).round(2) %><%="%"%>
     <% end %>
     </div>
-    
-    <div class="col-xs-1 team-setting">
-         <%= link_to(scoreboard_team_path(@scoreboard, team), remote: true, method: :delete, data: {confirm: "Delete this team?"}) do %>
-             <i class="fa fa-trash-o fa-lg" aria-hidden="true"></i> 
-        <% end %>
-    </div>
-    
+    <% if manager_or_owner?(@scoreboard, current_user) %>
+        <div class="col-xs-1 team-setting">
+             <%= link_to(scoreboard_team_path(@scoreboard, team), remote: true, method: :delete, data: {confirm: "Delete this team?"}) do %>
+                 <i class="fa fa-trash-o fa-lg" aria-hidden="true"></i> 
+            <% end %>
+        </div>
+    <% end %>
+
 </div>
    
    

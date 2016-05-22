@@ -1,5 +1,6 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import 'bootstrap-datetimepicker';
 
 // COLOR VARIABLES 
 // background-color of main nav: ##1c75bf;
@@ -190,3 +191,29 @@ body {
     }
 }
 
+//modal error messages 
+#errormodalbody{
+    .error-div{
+        border-bottom: solid 1px red;
+        padding: 1%;
+        color: red;
+    }
+}
+
+/* ----------------------------------------------- */
+/* DATEPICKER */
+/* ----------------------------------------------- */
+
+.datepicker thead{
+    :first-child:second-child{
+        background-color: #253341;
+    }
+    .dow{
+        background-color: #1c76bf;
+        color: #efefef;
+        border-radius: 0;
+    }
+}
+
+// if you dont want to display the old and new month's dates
+// // .datepicker table tr td.old, .datepicker table tr td.new { visibility: hidden; }

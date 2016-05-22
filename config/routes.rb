@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   put  'unassign_captain'         => 'team_members#unassign'
   post 'assign_manager'           => 'managers#create'
   delete 'unassign_manager'       => 'managers#delete'
-
+  
   resources :users do
       resources :pictures, only: [:create, :update, :destroy]
   end
@@ -40,8 +40,10 @@ Rails.application.routes.draw do
     member do
       post :favourite
       delete :favourite
-      get :deleteteams
-      get :deleteschedules
+      delete :deleteteams
+      get :followers
+      get :admins
+      delete :deletematches
     end
     resources :teams do 
        resources :team_members do 
@@ -54,16 +56,15 @@ Rails.application.routes.draw do
        end
     end
     resources :comments
-    resources :events
-    resources :team_matches
-    resources :schedules 
-    resources :pictures, only: [:create, :update, :destroy]
-    resources :statuses, only: [:create, :update]
-    resources :events
     resources :categories do 
         resources :documents
     end
-   end
+   resources :team_matches
+   resources :pictures, only: [:create, :update, :destroy]
+   resources :statuses, only: [:create, :update]
+   resources :events
+  end
+  
   resources :invitations, only: [:new, :create]
   
 

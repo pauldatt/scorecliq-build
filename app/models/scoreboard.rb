@@ -24,9 +24,6 @@ class Scoreboard < ActiveRecord::Base
   #allows you to access the users associated with the favourited scoreboards
   has_many :favourited_by, through: :favourites, source: :user, dependent: :destroy #the source user would look for foreign key user_id
   
-  #each scoreboard can have many schedules on it 
-  has_many :schedules, dependent: :destroy
-  
   #The scoreboard thats created last shows up first
   default_scope -> { order(created_at: :desc) }
   

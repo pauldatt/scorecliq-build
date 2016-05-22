@@ -1,0 +1,18 @@
+<%= form_for @team, :url => update_name_scoreboard_team_path(@scoreboard,@team) do |f| %>
+  <div class="modal fade" id="namemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Team Name Change</h4>
+        </div>
+        <div class="modal-body">
+               <%= f.text_field :name, maxlength:30, class: "form-control" %>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+           <%= f.submit "Save Changes", :data => {:disable_with => "Saving..."}, class: "btn btn-primary" %>
+        </div>
+      </div>
+    </div>
+  </div>
+ <% end %>

@@ -1,0 +1,29 @@
+<% if @followers.any? %>  
+
+        <% @followers.each do |follower| %>
+            <div class="row admin-follower-div">
+                <div class="col-xs-10 col-sm-4 member-prof-link">
+                    <%= link_to follower.name, user_path(follower.id) %>
+                </div>
+                <% if @scoreboard.user == current_user %>
+                    <div class="col-xs-2 col-sm-2 admin-assign">
+                        <%= link_to "ASSIGN", assign_manager_path(:scoreboard_id => @scoreboard.id, :user_id => follower.id), :method => 'post',data: {confirm: "Note: Only make trusted members Admin. Please check the guides for further tips. Continue?"}, class: "btn btn-primary" %>
+                    </div>
+                <% end %>
+            </div>
+        <% end %> 
+        
+        <!--css for pages exists the same as members from the new team member page -->
+         <div class="row">
+            <div class="col-xs-12 col-sm-6 new-member-pages">
+                <%= will_paginate @followers %>
+            </div>
+        </div>
+        
+<% else %>
+    <div class="row">
+      <div class="col-xs-12 col-sm-6">
+        <h3>No members are available. </h3>
+      </div>
+    </div>
+<% end %>

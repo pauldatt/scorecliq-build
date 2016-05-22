@@ -2,16 +2,27 @@
     <div class="row team-member-div" id="member_<%=member.id%>">
         <div class="col-sm-5 col-xs-8 team-member-name">
             <%= link_to member.name, user_path(member.id) %>
+             <% if @team.captains.include?(member) %>
+               (Capt.)
+             <% end %>
         </div>
         <div class="col-sm-1 col-xs-2 team-member-message">
             <%= link_to "#" do %>
                <i class="fa fa-envelope" aria-hidden="true"></i>
             <% end %> 
         </div>
-        <div class="col-sm-1 col-xs-2 remove-team-member">
-             <%= link_to(scoreboard_team_team_member_path(team_id: @team.id, user_id: member.id), method: :delete, data: {confirm: "Remove This Member?"}) do %>
-               <i class="fa fa-times-circle" aria-hidden="true"></i> 
-             <% end %>
-        </div>
+        <% if (manager_or_owner?(@scoreboard, current_user))||(current_user == @captain) %>
+            <div class="col-sm-1 col-xs-2 remove-team-member">
+               <% if @team.captains.include?(member) %>
+                   <%= link_to(scoreboard_team_team_member_path(team_id: @team.id, user_id: member.id), method: :delete, data: {confirm: "Remove Captain from Team? This team will no longer have a captain."}) do %>
+                   <i class="fa fa-times-circle" aria-hidden="true"></i> 
+                 <% end %>
+              <% else %>
+                 <%= link_to(scoreboard_team_team_member_path(team_id: @team.id, user_id: member.id), method: :delete, data: {confirm: "Remove This Member?"}) do %>
+                   <i class="fa fa-times-circle" aria-hidden="true"></i> 
+                 <% end %>
+              <% end %>
+            </div>
+        <% end %>
     </div>
 <% end %>
