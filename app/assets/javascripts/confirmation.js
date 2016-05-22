@@ -13,7 +13,8 @@ $(document).ready(function(){
     $.rails.confirmed = function(link) {
       link.removeAttr('data-confirm');
       if(link.hasClass("reset-link")){
-         window.location.replace("" + link.attr('href') + "");
+         return confirm($(this).attr('data-confirm'));
+        // window.location.replace("" + link.attr('href') + "");
       } else {
           return link.trigger('click.rails');
       }

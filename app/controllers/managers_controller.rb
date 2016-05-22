@@ -8,15 +8,15 @@ def create
     @manager = @scoreboard.managers.build(:scoreboard_id => @scoreboard.id, :user_id => @user.id)
     if (@scoreboard.managed_by.count < 2)
         if @manager.save 
-            redirect_to @scoreboard
-            flash[:notice] = "#{@user.name} was assigned as a manager"
+            redirect_to admins_scoreboard_path(@scoreboard)
+            flash[:success] = "#{@user.name} was assigned as a manager"
         else
             redirect_to @scoreboard
-            flash[:notice] = "nothing happened"
+            flash[:success] = "nothing happened"
         end
     else
-        redirect_to @scoreboard
-        flash[:notice] = "You cannot assign more than 2 admins for a scoreboard"
+        redirect_to admins_scoreboard_path(@scoreboard)
+        flash[:danger] = "You cannot assign more than 2 admins for a scoreboard"
     end
 end
 
@@ -25,8 +25,8 @@ end
         @scoreboard = Scoreboard.find(params[:scoreboard_id])
         @manager = Manager.where(:scoreboard_id => @scoreboard.id, :user_id => @user.id).last
         @manager.destroy
-        flash[:notice] = "#{@user.name} was deleted as a manager"
-        redirect_to @scoreboard
+        flash[:success] = "#{@user.name} was deleted as a manager"
+        redirect_to admins_scoreboard_path(@scoreboard)
     end
         
     

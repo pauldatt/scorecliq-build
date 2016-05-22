@@ -26,6 +26,8 @@ gem 'pg_search'
 gem 'figaro'
 gem 'pg',             '0.17.1'
 gem 'newrelic_rpm'
+gem 'momentjs-rails', '>= 2.9.0'
+gem 'bootstrap3-datetimepicker-rails', '~> 4.17.37'
 
 group :development, :test do
   gem 'byebug',      '3.4.0'

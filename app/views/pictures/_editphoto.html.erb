@@ -1,7 +1,6 @@
 <div>
   <%= form_for([@pictureable, @picture], html: {multipart: true}) do |f| %>
    <%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png', id: "files", class: "hidden" %>
-    <label for="files" class="btn user-edit-photo">Edit Pic</label>
      <div class="modal fade" id="picmodal" tabindex="-1" role="dialog" aria-labelledby="picmodal" aria-hidden="true"> 
         <div class="modal-dialog">
           <div class="modal-content">
@@ -21,4 +20,6 @@
       </div>
   <% end %>
 </div>
+
+
         

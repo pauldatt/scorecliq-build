@@ -1,0 +1,12 @@
+<% @admins.each do |admin| %> 
+  <div class="row admin">
+             <div class="col-xs-10 admin-name">
+                <%= link_to admin.name, user_path(admin) %>
+             </div>
+             <div class="col-xs-2 admin-msg">
+                  <%= link_to "#" do %>
+                     <i class="fa fa-envelope" aria-hidden="true"></i>
+                  <% end %> 
+              </div>
+  </div>
+<% end %>

@@ -1,178 +1,176 @@
-<h3> Name: <%= @scoreboard.name_of_scoreboard %> </h3>
+<h3 class="score-profile-header"> <%= @scoreboard.name_of_scoreboard %> </h3>
 
-<!--GO BACK TO MY SCOREBOARDS PAGE BUTTON -->
-<br>
-<%= link_to " Back to My Scoreboards", scoreboards_path , class: 'btn btn-primary back-my-score' %>
-
-<!--THE DIV FOR THE PROFILE PICTURE -->
-<br>
-     <div>
-       <% if @picture.picture.url.present? %>
-         <div id="pictureplacement">
-           <%= image_tag @picture.picture.url %>
-         </div>
-        <% else %>
-           <%= render 'pictures/uploadphoto' %>
-        <% end %>  
+<div class="row score-prof-info">
+   <div class="col-xs-12 col-sm-3 score-prof-pic">
+         <% if @picture.picture.url.present? %>
+            <div class="dropdown">
+               <%= link_to "#", class: "prof-dropdown" , data: {:toggle => "dropdown"}, role: "button", aria: {:expanded => "false"} do %>
+                   <%= image_tag @picture.picture.url, class: "prof-default img-thumbnail" %>
+               <% end %>
+               <% if manager_or_owner?(@scoreboard, current_user) %>
+                  <ul class="dropdown-menu">
+                     <li><%= link_to "Upload","#", id: "score-prof-upload" %> </li>
+                     <li role="separator" class="divider"></li>
+                     <li> <%= link_to "Remove", [@pictureable, @picture], method: :delete, data: {confirm: "Are you sure you want to delete your picture!"} %></li>
+                     <li role="separator" class="divider"></li>
+                     <li><%= link_to "Cancel", "#" %></li>
+                  </ul>
+               <% end %>
+            </div>
+         <% else %>
+            <div class="dropdown">
+               <%= link_to "#", class: "prof-dropdown" , data: {:toggle => "dropdown"}, role: "button", aria: {:expanded => "false"} do %>
+                   <%= image_tag "blank-prof.jpg", class: "prof-default img-thumbnail " %>
+               <% end %>
+               <% if manager_or_owner?(@scoreboard, current_user) %>
+               <ul class="dropdown-menu">
+                  <li><%= link_to "Upload","#", id: "score-prof-upload" %> </li>
+                  <li role="separator" class="divider"></li>
+                  <li><%= link_to "Cancel", "#" %></li>
+               </ul>
+               <% end %>
+            </div>
+         <% end %>
      </div>
-     
-<!--THE DELETE/EDIT BUTTON FOR THE PROFILE PICTURE -->
-<br>
-<div>
-<%= render 'pictures/editphoto' %>
-<%= link_to "Delete Photo", [@pictureable, @picture], method: :delete, data: {confirm: "Are you sure you want to delete your picture!"}, class: "btn btn-primary" %>
-</div>
-<br>
-
-
-<!--THE FOLLOW AND INVITE BUTTONS -->
-<div>
- <% if current_user.favourite_scoreboards.include?(@scoreboard) %>
-  <%= link_to "unfollow", favourite_scoreboard_path(@scoreboard, type: "unfavourite"), method: :delete, class: 'btn btn-primary' %>
- <% else %>
-  <%= link_to "follow", favourite_scoreboard_path(@scoreboard, type: "favourite"), method: :post, class: 'btn btn-primary' %>
- <% end %>
-
- <% if @scoreboard.user == current_user %>
- <%= link_to "Invite", new_invitation_path(scoreboard_id: @scoreboard.id), class: 'btn btn-primary' %>
- <% end %>
-</div>
-
-<br> 
-
-<!--THE SCOREBOARD STATUS -->
-<h3> STATUS</h3>
-<div>
- 
- <% if @scoreboard.user %>
-<div>
- <%= render 'statusedit' %>
-</div>
-<% end %>
-
-<% if @scoreboard.status.content.present? && @scoreboard.user != current_user %>
-<div>
- <%= @scoreboard.status.content %>
- </div>
-<% end %>
-
-<% if @scoreboard.status.content.present? == false && @scoreboard.user != current_user %>
-<div>
- <p>No status</p>
- </div>
-<% end %>
-
-</div>
-
-<!--THE BIO OF THE SCOREBOARD -->
-<br>
-<div>
- <h4>ADMIN: <%= link_to "#{@scoreboard.user.name}", user_path(@scoreboard.user) %> </h4>
- <h4>ORGANIZATION: <%=@scoreboard.name_of_organization %> </h4>
- <h4>SPORT/ACTIVITY: <%=@scoreboard.name_of_activity %></h4>
- <h4>LOCATION: <%= @scoreboard.cities %> <%= @scoreboard.states%>, <%= @scoreboard.country %> </h4>
-</div>
-
-<!--THE FOLLOWER LIST -->
-<br>
-<div class>
-  <%= render 'followingmodal' %>
-    
-  <%= render 'pictures/editphoto' %>
-    
-   <%= social_share_button_tag %>
-</div> 
-
-<!--BELOW IS THE CODE FOR THE PRIVATE/PUBLIC AND REQUESTED FEATURE(AUTOMATIC FAVOURITING SCOREBOARDS)-->
-
-<!-- ONLY the ADMIN of the scoreboard can toggle between private and public -->
-<% if @scoreboard.user == current_user %> 
-<p>Private/Public</p>
-  <% if @scoreboard.privatization == true %>
-     <%= link_to "public", unprivate_path(:scoreboard_id => @scoreboard.id), :method => 'put' %> 
-<% else %>
-     <%= link_to "private", private_path(:scoreboard_id => @scoreboard.id), :method => 'put' %>
-  <% end %>
-<% end %>
-
-<br></br>
-
-<% if @scoreboard.privatization == true %> <!--The private/public and request code is in between the privatization code-->
-
- <!-- @request are all the specific requests made for that scoreboard as an array []-->
-<% if @scoreboard.user == current_user %>
-   <p>Pending notifications for users who have requested to be a part of the scoreboard:</p>
-    <% @scoreboard.pending_requests.each do |user| %>
-       <%= user.name %>
-       <%= link_to "Accept", request_to_join_accept_path(:scoreboard_id => @scoreboard.id, :user_id => user.id), :method => 'put' %> |
-       <%= link_to "Decline", request_to_join_delete_path(:scoreboard_id => @scoreboard.id, :user_id => user.id), :method => 'delete' %>
-    <% end %>
-     <% if current_user == @scoreboard.user %>
-        <% @scoreboard.accepted_requests.each do |user| %>
-         <%= user.name %>
-         <!--the block validates for uniqueness and makes the scoreboard part of the user's favourite scoreboard array-->
-          <% if user.favourite_scoreboards.include?(@scoreboard) == false %>
-             <% user.favourite_scoreboards << @scoreboard %>
+   
+   <div class="col-xs-6 col-sm-7 score-prof-bio">
+      <h4> Owner: <%= link_to @scoreboard.user.name, user_path(@scoreboard.user) %></h4>
+      <h4> Club Name: <%= @scoreboard.name_of_organization %></h4>
+      <h4> Sport/Activity: <%= @scoreboard.name_of_activity %> </h4>
+      <h4> Location: <%= @scoreboard.country %> </h4>
+      <% if @scoreboard.privatization == true %> 
+      <h4> Access: Private </h4>
+      <% else %>
+      <h4> Access: Public</h4>
+      <% end %>
+   </div>
+   
+   <div class="col-xs-6 col-sm-2 score-prof-options">
+      <% if @scoreboard.user != current_user %>
+       <% if @scoreboard.privatization == false %>
+          <% if current_user.favourite_scoreboards.include?(@scoreboard) %>
+             <%= link_to "unfollow", favourite_scoreboard_path(@scoreboard, type: "unfavourite"), method: :delete, class: 'btn btn-primary pull-right' %>
+          <% else %>
+             <%= link_to "follow", favourite_scoreboard_path(@scoreboard, type: "favourite"), method: :post, class: 'btn btn-primary pull-right' %>
           <% end %>
-         <p>Approved</p>
-     <% end %>
- <% end %>
-<% end %>
-<br></br>
-
-<!--The request to join ELSE statement only runs if sent_requests array DOESN'T include @scoreboard -->
-<% if current_user.sent_requests.include?(@scoreboard) %> 
-  <% if @scoreboard.accepted_requests.include?(current_user) %>
-    <p>Request is Approved</p>
-  <% end %>
-  <% if @scoreboard.pending_requests.include?(current_user) %>
-    <p>Request is Pending</p>
-  <% end %>
-<% else %> <!--the else statement runs saying that if the array doesn't include the scoreboard but its private -->
-  <% if @scoreboard.privatization == true && @scoreboard.user != current_user  %>
-    <%= link_to "Request to join", request_to_join_path(:scoreboard_id => @scoreboard.id), :method => "post" %>
-  <% end %>
-<% end %>
-
-<!--The scoreboards that you have sent the requests to as an array [] only available, only available to the CURRENT USER-->
-<% if current_user %>
- <p>The scoreboards you have sent the requests to:</p> 
-  <% current_user.sent_requests.each do |scoreboard| %>
-   <%= scoreboard.name_of_scoreboard %>
- <% end %>
-<% end %>
-<br></br>
-
-<!--The users that have requested to be a part of that scoreboard as an array [], only avaiable to the ADMIN of the scoreboard -->
-<% if current_user == @scoreboard.user %>
- <p>Users who have requested to be a part of this scorebaord:</p>
-  <% @scoreboard.requested_by.each do |user| %>
-  <%= user.name %>
- <% end %>
-<% end %>
-<% end %>
-
-<!--this makes the user a follower automatically if they requested to join but the scoreboard was made public-->
-<% if @scoreboard.pending_requests.any? %> 
- <% if @scoreboard.privatization == false %>
-   <% @scoreboard.pending_requests.each do |user| %>
-    <% if user.favourite_scoreboards.include?(@scoreboard) == false %>
-      <% user.favourite_scoreboards << @scoreboard %>
+       <% end %>
+      <% end %>
+      
+       <% if manager_or_owner?(@scoreboard, current_user) %>
+           <%= link_to "Invite", new_invitation_path(:scoreboard_id => @scoreboard.id), class: "btn btn-primary pull-right" %>
+           <% if @scoreboard.user == current_user %>
+               <% if @scoreboard.privatization == true %>
+                    <%= link_to " Make Public", unprivate_path(:scoreboard_id => @scoreboard.id), :method => 'put',data: {confirm: "Making the page public will allow anyone to become a member and view league content. Continue?"}, class: "btn btn-primary pull-right priv-toggle" %> 
+               <% else %>
+                    <%= link_to "Make Private", private_path(:scoreboard_id => @scoreboard.id), :method => 'put',data: {confirm: "Making the page private will require approval from admins to become a member and league content is restricted to members only. Continue?"}, class: "btn btn-primary pull-right priv-toggle" %>
+               <% end %>
+           <% end %>
+      <% end %>
+      
+    <!--The algorithm for requests -->
+    <% if @scoreboard.privatization == true %>
+      <% if current_user.favourite_scoreboards.include?(@scoreboard) %>
+          <% if @scoreboard.user != current_user %>
+             <%= link_to "unfollow", favourite_scoreboard_path(@scoreboard, type: "unfavourite"), method: :delete, class: 'btn btn-primary pull-right' %>
+          <% else %>
+             <%= link_to "follow", favourite_scoreboard_path(@scoreboard, type: "favourite"), method: :post, class: 'btn btn-primary pull-right' %>
+          <% end %>
+       <% end %>
+         <% if current_user.sent_requests.include?(@scoreboard) %> 
+            <% if @scoreboard.pending_requests.include?(current_user) %>
+              <%= link_to "Request Pending", "#", class: "btn btn-primary disabled" %>
+            <% end %>
+         <% end %>
+        <% if !current_user.favourite_scoreboards.include?(@scoreboard) %> <!--if its not included in the favourtie scoreboard array -->
+         <% if !@scoreboard.pending_requests.include?(current_user) %> <!-- it won't be part of pending request array if it's accepted -->
+          <% if @scoreboard.user != current_user %> <!-- you cannot own the scoreboard -->
+            <%= link_to "Request to join", request_to_join_path(:scoreboard_id => @scoreboard.id), :method => "post", class: "btn btn-primary" %>
+          <% end %>
+        <% end %>
+       <% end %>
     <% end %>
-  <% end %>
- <% end %>
+     
+      <% if manager_or_owner?(@scoreboard, current_user)&&(@scoreboard.requests.any?) %>
+         <button type="button" class="btn btn-danger pull-right request-approve" data-toggle="modal" data-target="#requestmodal">Join Requests: <%= @scoreboard.requested_by.count %></button> 
+      <% end %>
+   </div>
+</div>
+
+
+<div class="row score-stats">
+   <div class="col-xs-4 col-md-3 share-div">
+      <h4> SHARE THIS PAGE</h4>
+      
+      <div class="media-icons">
+         <%= social_share_button_tag %>
+      </div>
+      
+   </div>
+   <div class="col-xs-8 col-md-7 status-div">
+      <h4> STATUS </h4>
+      <div class="score-status" <% if @scoreboard.user %> id="admin-status" <% end %>>
+         <% if manager_or_owner?(@scoreboard, current_user) %>
+             <%= render 'statusedit' %>
+         <% end %>
+          
+         <% if @scoreboard.status.content.present? && !(manager_or_owner?(@scoreboard,current_user)) %>
+            <%= @scoreboard.status.content %>
+         <% end %>
+         
+         <% if @scoreboard.status.content.present? == false && !(manager_or_owner?(@scoreboard,current_user)) %>
+            There is no status available!
+         <% end %>
+      </div>
+    </div>
+</div>
+
+<div class="row">
+   <div class="col-xs-12 col-sm-6 admin-panel">
+      <h4>
+         ADMINS 
+         <% if current_user == @scoreboard.user %>
+            <%= link_to admins_scoreboard_path(@scoreboard), class: "pull-right" do %> 
+               <i class="fa fa-cog fa-lg" aria-hidden="true"></i>
+            <% end %>
+         <% end %>
+      </h4>
+      
+      <div class="admin-divs">
+         <div class="row admin">
+             <div class="col-xs-10 admin-name">
+                <%= link_to @scoreboard.user.name, user_path(@scoreboard.user) %>(owner)
+             </div>
+             <div class="col-xs-2 admin-msg">
+                  <%= link_to "#" do %>
+                     <i class="fa fa-envelope" aria-hidden="true"></i>
+                  <% end %> 
+              </div>
+         </div>
+         <% if @admins.any? %>
+            <%= render 'profileadmins' %>
+         <% end %>
+      </div>
+   </div>
+   
+   <div class="col-xs-12 col-sm-4 follower-panel">
+      <h4>FOLLOWERS</h4>
+
+      <div class= "follower-info">
+         <% if @scoreboard.favourited_by.any? %>
+            This league has <%= @scoreboard.favourited_by.count %> followers. <br>
+            <%= link_to "View Followers", followers_scoreboard_path(@scoreboard), class: "btn btn-primary" %>
+         <% else %>
+            Currently, there are no followers!
+         <% end %>
+      </div>
+      
+   </div>
+</div>
+
+<% if @scoreboard.user == current_user %>
+<%= render 'joinrequests' %>
 <% end %>
-
- <br></br>
-
-<p>The users that are managing the scoreboard:</p>
-<% @scoreboard.managed_by.limit(2).each do |user| %>
-<%= user.name %>
-<% end %>
-
-
-
-
+<%= render "pictures/uploadphoto" %>
 
 
 

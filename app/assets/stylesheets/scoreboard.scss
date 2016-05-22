@@ -7,9 +7,7 @@
     border-bottom: solid 1px #555;
 }
 
-.clear-teams-btn{
-    margin-left: 40px;
-}
+
 
 // The labels for the standings chart
 .standing-labels{
@@ -148,6 +146,12 @@
 .team-show-header{
     padding-bottom: 1%;
     border-bottom: solid 1px #555;
+    .fa{
+        color: #058eae;
+    }
+    .fa:hover{
+        color: #216273;
+    }
 }
 
 .assign-captain-btn{
@@ -336,23 +340,354 @@
 }
 
 // captain modal
-#captain-modal .member-div{
-     padding: 1%;
-     border-bottom: solid 2px #555;
-    .member-prof-link{
-        text-align: left;
-        font-size: 100%;
-        a{
-            color: #555;
-            font-weight: 700;
+#captain-modal{ 
+     .member-div{
+         padding: 1%;
+         border-bottom: solid 2px #555;
+        .member-prof-link{
+            text-align: left;
+            font-size: 100%;
+            a{
+                color: #555;
+                font-weight: 700;
+            }
+        }
+        .cap-assign{
+            text-align: right;
+                .btn{
+                    font-size: 70%;
+                    color: #efefef;
+                 }
+            }
+     }
+    .modal-footer{
+        .modal-close{
+            background-color: #d83434;
+        }
+    }
+}
+
+/* ----------------------------------------------- */
+/* SCOREBOARD PROFILE PAGE   */
+/* ----------------------------------------------- */
+
+// best-place error
+.purr {
+  position: fixed;
+  top: 40px;
+  right: 100px;
+  width: 250px;
+  padding: 20px;
+  background-color: #FCC;
+  color: #555;
+  border: solid 2px #C66;
+  &:first-letter { text-transform: uppercase; }
+}
+
+.score-profile-header{
+    border-radius: 10px;
+    padding: 2%;
+    background-color: #253341;
+    color: #efefef;
+    text-align: center;
+}
+
+.score-prof-info{
+    .score-prof-pic{
+        padding-left: 0;
+         .prof-default{
+             width: 170px;
+             height: 170px;
+             border: 3px solid #253341;
+         }
+         .dropdown-menu{
+             li{
+                  font-size: 90%;
+             }
+         }
+    }
+    
+    .score-prof-bio{
+        padding-left: 0;
+        h4{
+            margin-bottom: 3%;
+        }
+        :last-child{
+            margin-bottom: 0;
         }
     }
     
-    .cap-assign{
+    .score-prof-options{
         text-align: right;
+        
+        .btn-primary{
+            width: 115px;
+            font-size: 70%;
+            margin-bottom: 2%;
+        }
+        .priv-toggle{
+            margin-bottom: 2%;
+        }
+        .btn-danger{
+            width: 115px;
+            font-size: 70%;
+        }
+    }
+}
+
+.score-stats{
+    margin-top: 2%;
+    
+    .share-div{
+        padding-left: 0;
+        h4{
+            border-radius: 10px;
+            padding: 5%;
+            background-color: #253341;
+            color: #efefef;
+            text-align: center;
+            margin-bottom: 10px;
+            margin-top: 0;
+        }
+       .media-icons{
+           padding: 2%;
+           border: 2px solid #253341;
+           border-radius: 10px;
+           height: 78px;
+           margin-bottom: 10px;
+       }
+       .btn{
+           font-size: 70%;
+       }
+    }
+    .status-div{
+        h4{
+            border-radius: 10px;
+            padding: 2%;
+            background-color: #253341;
+            color: #efefef;
+            text-align: center;
+            margin-top: 0;
+        }
+        .score-status{
+            width: 100%;
+            border-radius: 10px;
+            height: 78px;
+            padding: 2%;
+            text-align: center;
+            border: 2px solid #253341;
+        }
+        
+        #admin-status:hover{
+            border-color: #058eae;
+            cursor: pointer;
+        }
+    }
+}
+
+.admin-panel{
+        margin-top: 10px;
+        padding-left: 0;
+         h4{
+            border-radius: 10px;
+            padding: 2%;
+            background-color: #253341;
+            color: #efefef;
+            text-align: center;
+            margin: 0;
+        }
+        .admin-divs{
+            padding: 1%;
+          .admin{
+             margin-top: 1%;
+             font-size: 140%;
+             .admin-name{
+                  border-bottom: solid 2px #555;
+                  text-align: left;
+                    a{
+                        color: #555;
+                        font-weight: 700;
+                    }
+                }
+                .admin-msg{
+                    border-bottom: solid 2px #555;
+                }
+           }
+        }
+}
+
+.follower-panel{
+        margin-top: 10px;
+        padding-left: 0;
+        h4{
+            border-radius: 10px;
+            padding: 2%;
+            background-color: #253341;
+            color: #efefef;
+            text-align: center;
+            margin: 0;
+            margin-bottom: 10px;
+        }
+        .follower-info{
+            border: solid 3px #253341;
+            border-radius: 10px;
+            padding: 2%;
+            font-size: 140%;
+            text-align: center;
             .btn{
                 font-size: 70%;
-                color: #efefef;
-             }
-        } 
+            }
+        }
+}
+
+// request to join modal
+#requestmodal{
+    .requests{
+        max-height: 300px;
+        overflow-y: auto;
+        .req-error{
+            display: none;
+            text-align: center;
+            color: #c12e2a;
+            border: solid 2px #c12e2a;
+            padding: 1%;
+        }
+        .request-div{
+            border-bottom: solid 2px #555;
+            padding: 1%;
+            margin-top: 1%;
+            
+            .req-name{
+                font-size: 110%;
+                text-align: left;
+            }
+            .btn{
+                font-size: 60%;
+            }
+        }
+    }
+}
+
+//request notice
+.request-notice{
+    color: #c12e2a;
+}
+
+/* ----------------------------------------------- */
+/* SCOREBOARD ADMIN OPTIONS PAGE  */
+/* ----------------------------------------------- */
+.admin-page-header{
+     padding-bottom: 1%;
+     border-bottom: solid 1px #555;
+}
+
+.admin-current-header{
+    margin-top: 20px;
+    color: #efefef;
+    background-color: #253341;
+    text-align: center;
+    padding: 1%;
+    font-size: 120%;
+}
+
+#admin-search-form{ margin-top: 10px; }
+
+.admin-select-header{
+    margin-top: 20px;
+    color: #efefef;
+    background-color: #253341;
+    text-align: center;
+    padding: 1%;
+    font-size: 120%;
+}
+
+.admin-list{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    .admin-div{
+        margin-bottom: 10px;
+        font-size: 140%;
+        text-align: center;
+        .admin-prof-link{
+             border-bottom: solid 2px #555;
+             text-align: left;
+             font-size: 100%;
+              a{
+                color: #555;
+                font-weight: 700;
+              }
+        }
+        .admin-remove{
+            border-bottom: solid 2px #555;
+            text-align: right;
+            .fa{ color: #f90012; }
+            .fa:hover{ color: #216273; }
+        }
+    }
+}
+
+.admin-org-list{
+    margin-top: 10px;
+
+    .admin-follower-div{
+        margin-bottom: 10px;
+        font-size: 145%;
+        text-align: center;
+        
+        .member-prof-link{
+            border-bottom: solid 2px #555;
+            text-align: left;
+            a{
+                color: #555;
+                font-weight: 700;
+            }
+        }
+        .admin-assign{
+            border-bottom: solid 2px #555;
+            text-align: right;
+            .btn{
+                font-size: 45%;
+            }
+        }
+    }
+}
+
+/* ----------------------------------------------- */
+/* SCOREBOARD FOLLOWERS PAGE  */
+/* ----------------------------------------------- */
+
+.follower-page-header{
+       padding-bottom: 1%;
+       border-bottom: solid 1px #555;
+}
+
+#follower-search-form{ margin-top: 10px; }
+
+.follower-org-list{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    .follower-div{
+        margin-bottom: 10px;
+        font-size: 140%;
+        text-align: center;
+        .follower-prof-link{
+             border-bottom: solid 2px #555;
+             text-align: left;
+             font-size: 100%;
+              a{
+                color: #555;
+                font-weight: 700;
+              }
+        }
+        .follower-msg{
+            border-bottom: solid 2px #555;
+            text-align: right;
+        }
+        .follower-del{
+            border-bottom: solid 2px #555;
+            text-align: right;
+            .fa{ color: #f90012; }
+            .fa:hover{ color: #216273; }
+        }
+    }
 }

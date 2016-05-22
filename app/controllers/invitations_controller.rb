@@ -3,6 +3,7 @@ class InvitationsController < ApplicationController
     before_action :logged_in_user, only: [:new, :create]
     
     def new
+        @selected = true
         @scoreboard = Scoreboard.find(params[:scoreboard_id])
         @invitation= Invitation.new 
         @invitations = []

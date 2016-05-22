@@ -1,0 +1,38 @@
+<% if @followers.any? %>  
+
+        <% @followers.each do |follower| %>
+            <div class="row follower-div" id="follower_<%=follower.id%>">
+                <div class="col-xs-8 col-sm-5 follower-prof-link">
+                    <%= link_to follower.name, user_path(follower.id) %>
+                </div>
+                <div class="col-xs-2 col-sm-1 follower-msg">
+                    <%= link_to "#" do %>
+                        <i class="fa fa-envelope fa-lg" aria-hidden="true"></i>
+                    <% end %>
+                </div>
+                <!--restrict the div to only if its private.-->
+                <% if manager_or_owner?(@scoreboard, current_user) %>
+                    <div class="col-xs-2 col-sm-1 follower-del"> 
+                        <!--delete follower-->
+                         <%= link_to favourite_scoreboard_path(@scoreboard, :user_id => follower.id, type: "delfollower"), method: :delete do %>
+                            <i class="fa fa-times-circle fa-lg" aria-hidden="true"></i>
+                        <% end %>
+                    </div>
+                <% end %>
+            </div>
+        <% end %> 
+        
+        <!--css from new team member will apply here to the pages -->
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 new-member-pages">
+                <%= will_paginate @followers %>
+            </div>
+        </div>
+        
+<% else %>
+    <div class="row">
+      <div class="col-xs-12 col-sm-6">
+        <h3>No members are available. </h3>
+      </div>
+    </div>
+<% end %>

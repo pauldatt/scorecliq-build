@@ -1,10 +1,13 @@
-<p>Team Matches </p>
-   <% form_for [@scoreboard, @team], remote: true do |f| %>
-   <% render 'teams/teamsform', :f => f %>
-   <% f.submit "Add", :data => {:disable_with => "Saving..."}, class: "form-3 btn btn-primary" %>
-   <% end %>
+<h2 class="team-matches-header">TEAM MATCHES</h2>
+
+<% if manager_or_owner?(@scoreboard, current_user) %> 
+   <%= link_to "Add Matches", new_scoreboard_team_match_path(@scoreboard), class: "btn btn-primary" %>
+   
+   <%= link_to "Clear Matches", deletematches_scoreboard_path(@scoreboard),method: :delete, class: "btn btn-danger", :data => {:confirm => "Are you absolutely sure you want to delete all matches?"} %>
+<% end %>
 
 
-
-
+<div class="match-list">
+   <%= render 'match_list' %>
+</div>
 

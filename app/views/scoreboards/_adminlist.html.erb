@@ -1,0 +1,13 @@
+   
+    <% @admins.each do |admin| %>
+         <div class="row admin-div">
+            <div class="col-xs-10 col-sm-5 admin-prof-link">
+                <%= link_to admin.name, user_path(admin.id) %>
+            </div>
+            <div class="col-xs-2 col-sm-1 admin-remove">
+                <%= link_to (unassign_manager_path(:scoreboard_id => @scoreboard.id, :user_id => admin.id)), :method => 'delete',data: {confirm: "Unassign Admin?"} do %>
+                    <i class="fa fa-times-circle fa-lg" aria-hidden="true"></i>
+                <% end %>
+            </div>
+        </div>
+    <% end %>

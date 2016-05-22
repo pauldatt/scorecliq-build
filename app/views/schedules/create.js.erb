@@ -1,9 +1,0 @@
-<% if @schedule.save %>
-$("#schedule_errors").hide();
-$(".schedule-save-message").show().delay(3000).fadeOut();
-$('.all-schedules').load('<%=escape_javascript scoreboard_url(@schedule.scoreboard_id) %> .all-schedules');
-$("#new-schedule-entry")[0].reset();
-<% else %>
-$("#schedule_errors").hide();
-$("#new-schedule-entry").prepend("<%= j render partial: "schedule_errors" %>");
-<%end %>

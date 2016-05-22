@@ -1,0 +1,41 @@
+<% if @matches.present? %>
+    <% @matches.each do |game| %>   
+        <div class="row match-div">
+            <div class="col-xs-12 match-column">
+                <div class="date-div">
+                    <div class="month">
+                        <%= game.match_date.strftime('%^b') %>
+                    </div>
+                    <div class="day">
+                        <%= game.match_date.strftime('%d') %>
+                    </div>
+                    <div class="year">
+                        <%= game.match_date.strftime('%Y') %>
+                    </div>
+                </div>
+                <div class="info-div">
+                    <div class="time">
+                        Time: N/A
+                    </div>
+                    <div class="team-info clearfix">
+                        <div class="facing-teams">
+                            <div class="first-team">
+                               <%= game.team_a.name %>
+                            </div>
+                            <div class="second-team">
+                                <%= game.team_b.name %>
+                            </div>
+                        </div>
+                        <div class="match-score">
+                            score n/a
+                        </div>
+                    </div>
+                    <div class="location">
+                        Location: N/A
+                    </div>
+                </div>
+            </div>
+        </div>
+    <% end %>
+<% end %>       
+            

@@ -1,6 +1,0 @@
-$("#edit_schedule_<%=@schedule.id%>").hide();
-$("#schedule_<%=@schedule.id%>").html("<%= j render('schedule', schedule: @schedule) %>");
-$("#schedule_<%=@schedule.id%>").show();
-if($('.finish-edit-schedule-button').is(':visible')){
-$(".sched-buttons").show();
-}

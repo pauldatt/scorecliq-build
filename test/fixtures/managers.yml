@@ -1,5 +1,4 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
 manager_a:
   user: divjot
   scoreboard: scoreboard_a

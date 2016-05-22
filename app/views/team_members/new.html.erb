@@ -6,7 +6,7 @@
 <%= form_tag(new_scoreboard_team_team_member_path, :method => "get", id: "member-search-form", autocomplete: "off") do %>
 <div class="row new-member-field">
     <div class="col-xs-12 col-sm-6">
-        <%= text_field_tag :search, params[:search], placeholder: "Filter Members by Name", class:"form-control" %>
+        <%= text_field_tag :search, params[:search], placeholder: "Filter Members by Name",maxlength: 30, class:"form-control" %>
     </div>
 </div>
 <% end %>
@@ -14,7 +14,7 @@
 
 <div class="row new-member-org-head">
     <div class="col-xs-12 col-sm-6 org-list-header">
-        LIST OF ORGANIZATION MEMBERS
+        SELECT FROM CLUB MEMBERS
     </div>
 </div>
 

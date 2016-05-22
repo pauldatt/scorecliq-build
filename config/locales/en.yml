@@ -21,3 +21,10 @@
 
 en:
   hello: "Hello world"
+  
+en:
+  activerecord:
+    attributes:
+      team_match:
+        team_a_id: "First Team"
+        team_b_id: "Second Team"
