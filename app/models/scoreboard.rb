@@ -53,11 +53,8 @@ class Scoreboard < ActiveRecord::Base
   
   has_many :team_matches, dependent: :destroy
   
-<<<<<<< HEAD
   has_many :topics, dependent: :destroy
   
-=======
->>>>>>> origin/development
   # *************////// Below are all the validations on the scoreboard columns //////*************
   
   # Scoreboard information Validation
