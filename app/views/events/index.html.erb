@@ -1,5 +1,13 @@
-<p>events index page</p>
-<%= link_to "create events", new_scoreboard_event_path(@scoreboard, @event) %>
+<h2 class="events-header"> EVENTS </h2>
+
+<% if manager_or_owner?(@scoreboard, current_user) %> 
+   <%= link_to "CREATE EVENT", new_scoreboard_event_path(@scoreboard, @event), class: "btn btn-primary" %>
+   
+   <%= link_to "Clear Matches", deleteevents_scoreboard_path(@scoreboard),method: :delete, class: "btn btn-danger", :data => {:confirm => "Are you absolutely sure you want to delete all events?"} %>
+<% end %>
+
+
+
 
 <div>
     

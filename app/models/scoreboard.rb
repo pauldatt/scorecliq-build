@@ -49,13 +49,15 @@ class Scoreboard < ActiveRecord::Base
   
   has_many :managed_by, through: :managers, source: :user, dependent: :destroy
   
-  #each scoreboard has_many categories
   has_many :categories, dependent: :destroy
   
   has_many :team_matches, dependent: :destroy
   
+<<<<<<< HEAD
   has_many :topics, dependent: :destroy
   
+=======
+>>>>>>> origin/development
   # *************////// Below are all the validations on the scoreboard columns //////*************
   
   # Scoreboard information Validation

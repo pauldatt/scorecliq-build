@@ -44,6 +44,7 @@ Rails.application.routes.draw do
       get    :followers
       get    :admins
       delete :deletematches
+      delete :deleteevents
     end
     resources :teams do 
        resources :team_members do 

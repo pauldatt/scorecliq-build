@@ -103,6 +103,15 @@ class ScoreboardsController < ApplicationController
     flash[:success]= "All matches have been deleted. We hope you're happy with your decision"
     redirect_to scoreboard_team_matches_path(@scoreboard)
   end
+  
+  def deleteevents
+    @scoreboard = Scoreboard.find(params[:id])
+    @scoreboard.events.each do |event|
+     event.destroy
+    end
+    flash[:success]= "All events have been deleted. We hope you're happy with your decision"
+    redirect_to scoreboard_events_path(@scoreboard)
+  end
  
  def favourite 
   type = params[:type]

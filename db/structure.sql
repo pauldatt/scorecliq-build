@@ -139,6 +139,7 @@ CREATE TABLE events (
     event_date date,
     event_time time without time zone,
     notes character varying,
+    location character varying,
     scoreboard_id integer,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
@@ -1416,30 +1417,47 @@ ALTER TABLE ONLY statuses
 
 
 --
+<<<<<<< HEAD
 -- Name: fk_rails_4852c26570; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY comments
     ADD CONSTRAINT fk_rails_4852c26570 FOREIGN KEY (scoreboard_id) REFERENCES scoreboards(id);
+=======
+-- Name: fk_rails_383ba8ca21; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY events
+    ADD CONSTRAINT fk_rails_383ba8ca21 FOREIGN KEY (scoreboard_id) REFERENCES scoreboards(id);
 
 
 --
--- Name: fk_rails_5dc791345d; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY documents
-    ADD CONSTRAINT fk_rails_5dc791345d FOREIGN KEY (category_id) REFERENCES categories(id);
-
-
---
--- Name: fk_rails_72809e25b9; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: fk_rails_46e62c5a8c; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY categories
-    ADD CONSTRAINT fk_rails_72809e25b9 FOREIGN KEY (scoreboard_id) REFERENCES scoreboards(id);
+    ADD CONSTRAINT fk_rails_46e62c5a8c FOREIGN KEY (scoreboard_id) REFERENCES scoreboards(id);
+>>>>>>> origin/development
 
 
 --
+-- Name: fk_rails_590ffe0a26; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY documents
+    ADD CONSTRAINT fk_rails_590ffe0a26 FOREIGN KEY (category_id) REFERENCES categories(id);
+
+
+--
+-- Name: fk_rails_a458e0adcb; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY teams
+    ADD CONSTRAINT fk_rails_a458e0adcb FOREIGN KEY (scoreboard_id) REFERENCES scoreboards(id);
+
+
+--
+<<<<<<< HEAD
 -- Name: fk_rails_9a8dfeae2a; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -1449,6 +1467,9 @@ ALTER TABLE ONLY topics
 
 --
 -- Name: fk_rails_c0774e81d7; Type: FK CONSTRAINT; Schema: public; Owner: -
+=======
+-- Name: fk_rails_b6395324fa; Type: FK CONSTRAINT; Schema: public; Owner: -
+>>>>>>> origin/development
 --
 
 ALTER TABLE ONLY comments
@@ -1480,6 +1501,7 @@ ALTER TABLE ONLY events
 
 
 --
+<<<<<<< HEAD
 -- Name: fk_rails_ef360605de; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -1489,6 +1511,9 @@ ALTER TABLE ONLY schedules
 
 --
 -- Name: fk_rails_fd5160626c; Type: FK CONSTRAINT; Schema: public; Owner: -
+=======
+-- Name: fk_rails_f3dcdab9aa; Type: FK CONSTRAINT; Schema: public; Owner: -
+>>>>>>> origin/development
 --
 
 ALTER TABLE ONLY teams
@@ -1590,6 +1615,8 @@ INSERT INTO schema_migrations (version) VALUES ('20160415000346');
 INSERT INTO schema_migrations (version) VALUES ('20160415011705');
 
 INSERT INTO schema_migrations (version) VALUES ('20160426134550');
+
+INSERT INTO schema_migrations (version) VALUES ('20160428005130');
 
 INSERT INTO schema_migrations (version) VALUES ('20160519013903');
 

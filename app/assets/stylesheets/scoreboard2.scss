@@ -21,6 +21,7 @@
 .new-match-header{
     padding-bottom: 1%;
     border-bottom: solid 1px #555;
+    a{ text-decoration: none; }
 }
 
 .match-success{
@@ -35,7 +36,7 @@
     #first-team-field{
         margin-bottom: 10px;
     }
-    .time-select{
+    .match-time-select{
         select{
              display: inline-block;
              height: 35px;
@@ -65,8 +66,6 @@
     .match-div{
         margin-top: 10px;
         border-radius: 5px;
-        border: solid 1px #555;
-        width: 90%;
         .match-column{
             padding: 0;
             .date-div{
@@ -83,10 +82,11 @@
                 .year{ font-size: 85%; }
             }
             .info-div{
-                width: 90%;
+                width: 80%;
                 text-align: center;
                 float: left;
                 height: 77px;
+                border-right: 1px solid #555;
                 .time{
                     font-size: 90%;
                     background-color: #253341;
@@ -110,6 +110,19 @@
                     .match-score{
                         width: 20%;
                         float: left;
+                        a{
+                            text-decoration: none;
+                            color: #555;
+                        }
+                        .score{
+                            height: 41px;
+                            overflow: auto;
+                        }
+                        #score-change:hover{
+                            cursor: pointer;
+                            background-color: #216273;
+                            color: #efefef;
+                        }
                     }
                 }
                 .location{
@@ -118,6 +131,58 @@
                     color: #efefef;
                 }
             }
+            .match-delete{
+                text-align: center;
+                padding-top: 31px;
+                width: 10%;
+                float: left;
+                .fa{
+                    font-size: 178%;
+                    color: #F90012;
+                }
+                .fa:hover{
+                    color: #d83434;
+                }
+            }
         }
      }
 }
+
+// match edit modal 
+#match-edit-modal{
+    .labels{
+        margin-bottom: 10px;
+        text-align: center;
+    }
+    .team-label{
+        border: 2px solid #253341;
+        color: #efefef;
+        padding: 1%;
+        background-color: #1c75bf;
+    }
+    .score-label{
+        padding: 1%;
+        background-color: #253341;
+        color: #efefef;
+    }
+}
+
+/* ----------------------------------------------- */
+/* EVENTS PAGE  */
+/* ----------------------------------------------- */
+
+.events-header{
+       padding-bottom: 1%;
+       border-bottom: solid 1px #555;
+}
+
+/* ----------------------------------------------- */
+/* NEW EVENTS PAGE  */
+/* ----------------------------------------------- */
+
+.new-events-header{
+     padding-bottom: 1%;
+     border-bottom: solid 1px #555;
+     a{ text-decoration: none; }
+}
+

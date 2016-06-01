@@ -5,6 +5,7 @@ class CreateEvents < ActiveRecord::Migration
       t.date :event_date
       t.time :event_time
       t.string :notes
+      t.string :location
       t.references :scoreboard, index: true
 
       t.timestamps null: false

@@ -1,0 +1,4 @@
+$(".modal-backdrop").remove();
+$('.edit-match').html("<%= j render partial: 'edit_score' %>");
+$("#match-edit-modal").modal('show');
+$("#match-edit-modal").find(".score-field").focus();
