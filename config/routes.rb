@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   put  'unassign_captain'         => 'team_members#unassign'
   post 'assign_manager'           => 'managers#create'
   delete 'unassign_manager'       => 'managers#delete'
-  
+
   resources :users do
       resources :pictures, only: [:create, :update, :destroy]
   end
