@@ -8,6 +8,7 @@
    <%= swaggin.event_date %>
    <%= swaggin.event_time %> 
    <%= swaggin.notes %>
+   <%= link_to "delete", scoreboard_event_path(@scoreboard, swaggin), method: :delete, confirm: {data: "are you sure"} %>
    </div>
 <% end %>
 

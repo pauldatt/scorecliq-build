@@ -7,6 +7,10 @@ class EventTest < ActiveSupport::TestCase
     @event = @scoreboard.events.build(event_name: "event_name", event_date: Date.parse("20160225"), event_time: "2016-04-14 22:39:02", notes: "Notea",  )
   end
   
+  test "should be valid" do 
+    assert @event.valid?
+  end
+  
   test "event name must be present" do 
     @event.event_name = " "
     assert_not @event.valid?
@@ -31,6 +35,5 @@ class EventTest < ActiveSupport::TestCase
     @event.notes = "a" * 141
     assert_not @event.valid?
   end
-  
   
 end

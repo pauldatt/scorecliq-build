@@ -1,9 +1,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
-  scoreboard_id: 
+category_a:
+  name: category_one
+  scoreboard: scoreboard_a
 
-two:
-  name: MyString
-  scoreboard_id: 
+category_b:
+  name: category_two
+  scoreboard: scoreboard_b 

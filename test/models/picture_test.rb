@@ -7,6 +7,10 @@ class PictureTest < ActiveSupport::TestCase
     @picture = @pictureable.build_picture(picture: "picture")
   end
   
+  test "pictureable valid" do 
+    assert @picture.valid?
+  end
+  
   test "pictureable type must be present" do
     @picture.pictureable_type = nil
     assert_not @picture.valid?
@@ -23,5 +27,6 @@ class PictureTest < ActiveSupport::TestCase
     end
   end
   
+  #test for different types of pictures files that can be uploaded
   
 end

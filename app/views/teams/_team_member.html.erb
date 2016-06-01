@@ -18,7 +18,7 @@
                    <i class="fa fa-times-circle" aria-hidden="true"></i> 
                  <% end %>
               <% else %>
-                 <%= link_to(scoreboard_team_team_member_path(team_id: @team.id, user_id: member.id), method: :delete, data: {confirm: "Remove This Member?"}) do %>
+                 <%= link_to(scoreboard_team_team_member_path(@scoreboard, @team, member), method: :delete, data: {confirm: "Remove This Member?"}) do %>
                    <i class="fa fa-times-circle" aria-hidden="true"></i> 
                  <% end %>
               <% end %>

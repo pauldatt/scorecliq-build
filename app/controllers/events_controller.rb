@@ -25,7 +25,8 @@ class EventsController < ApplicationController
         end
     end
     
-    def update 
+    def update
+        @scoreboard = Scoreboard.find(params[:scoreboard_id])
         @event = Event.find(params[:id])
         @event.update_attributes(event_params)
         if @event.update
@@ -35,11 +36,12 @@ class EventsController < ApplicationController
         end
     end
     
-    def delete 
+    def destroy
+        @scoreboard = Scoreboard.find(params[:scoreboard_id])
         @event = Event.find(params[:id])
         @event.destroy
-        flash[:notice] = "destroyed successfully"
-        redirect_to @event
+        flash[:success] = "destroyed successfully"
+        redirect_to scoreboard_events_path(@scoreboard)
     end
     
     private 

@@ -3,6 +3,7 @@ class ScoreboardsController < ApplicationController
  before_action :logged_in_user, only: [:new, :create, :show, :index]
  before_action :correct_user, only: [:destroy, :edit, :update]
  before_action :scoreboard_owner, only: [:admins]
+ 
  require 'will_paginate/array'
 
  

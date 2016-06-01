@@ -22,7 +22,7 @@ class FavouriteInterfaceTest < ActionDispatch::IntegrationTest
     end
   end
   
-  test 'user should unfavourite a scoreboard' do
+  test 'user should UNfavourite a scoreboard' do
     assert_difference('@user.favourite_scoreboards.count', 0) do
       delete favourite_scoreboard_path(@scoreboard, type: "unfavourite")
       assert_redirected_to @scoreboard
@@ -30,7 +30,7 @@ class FavouriteInterfaceTest < ActionDispatch::IntegrationTest
     end
   end
   
-  test 'user associated with the scoreboard count should decrease to 0' do
+  test 'user associated with the scoreboard count should decrease by 1' do
     assert_difference('@user.favourite_scoreboards.count', 0) do
       delete favourite_scoreboard_path(@scoreboard, type: "unfavourite")
     end
@@ -43,5 +43,6 @@ class FavouriteInterfaceTest < ActionDispatch::IntegrationTest
       assert_equal "You unfollowed scoreboard: #{@scoreboard.name_of_scoreboard}", flash[:success]
     end
   end
+  
   
 end

@@ -17,13 +17,12 @@ class TeamMatchesController < ApplicationController
         @team_match = @scoreboard.team_matches.build(match_params)
         if @team_match.save 
             respond_to do |format|
-                flash.now[:notice] = 'Swag has been created.'
-                format.html {redirect_to scoreboard_team_matches_path(@scoreboard)}
+                format.html {redirect_to new_scoreboard_team_match_path(@scoreboard)}
                 format.js  
            end
         else
             respond_to do |format|
-                format.html {redirect_to new_scoreboard_team_matches_path(@scoreboard)}
+                format.html {redirect_to new_scoreboard_team_match_path(@scoreboard)}
                 format.js { render action: "match_error" } 
            end
         end

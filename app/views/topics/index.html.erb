@@ -1,0 +1,7 @@
+<h1>Create Topic</h1>
+<%= link_to "create new topic", new_scoreboard_topic_path(@scoreboard) %>
+
+<% @topic.each do |topic| %> <br></br>
+<%= link_to topic.subject %> 
+<%= link_to 'delete', scoreboard_topic_path(@scoreboard, topic), method: :delete, data: {confirm: "Are you sure"} %>
+<% end %>

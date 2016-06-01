@@ -1,6 +1,8 @@
 class TeamMembersController < ApplicationController
+    before_action :logged_in_user
     before_action :mass_unassign, only: :assign
     before_action :allowed,       only: :new
+    
     require 'will_paginate/array' 
     
     def new 
@@ -42,7 +44,7 @@ class TeamMembersController < ApplicationController
     end 
     
     def destroy
-       @user = User.find(params[:user_id])
+       @user = User.find(params[:id])
        @team = Team.find(params[:team_id])
        @scoreboard = Scoreboard.find(params[:scoreboard_id])
        @team.members.delete(@user)
@@ -66,11 +68,7 @@ class TeamMembersController < ApplicationController
         @scoreboard = Scoreboard.find(params[:scoreboard_id])
         @team_member = TeamMember.where(:team_id => @team.id, :user_id => @user.id).first
         @team_member.update_attributes(:captain => "false")
-<<<<<<< HEAD
         flash[:danger] = "Captain Removed"
-=======
-        flash[:success] = "Captain Unassigned"
->>>>>>> origin/profile-design
         redirect_to scoreboard_team_path(@scoreboard, @team)
     end
     

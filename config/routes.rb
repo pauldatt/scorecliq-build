@@ -38,11 +38,11 @@ Rails.application.routes.draw do
   resources :messages, only: [:new, :create]
   resources :scoreboards do 
     member do
-      post :favourite
+      post   :favourite
       delete :favourite
       delete :deleteteams
-      get :followers
-      get :admins
+      get    :followers
+      get    :admins
       delete :deletematches
     end
     resources :teams do 
@@ -63,6 +63,7 @@ Rails.application.routes.draw do
    resources :pictures, only: [:create, :update, :destroy]
    resources :statuses, only: [:create, :update]
    resources :events
+   resources :topics
   end
   
   resources :invitations, only: [:new, :create]

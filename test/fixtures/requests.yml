@@ -1,10 +1,15 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 request_a:
-  user: divjot
+  user: divjot 
   scoreboard: scoreboard_a
   approved: false
 
+request_b: #sukh owns scoreboard_a, therefore, he cannot make request to scoreboard_b. He makes a request to scoreboard_a
+  user: divjot
+  scoreboard: scoreboard_b
+  approved: false
+  
 # imagine divjot requested scoreboard_a, 
 # in the requests table, you have user_id of divjot and scoreboard_id of scoreboard_a
 

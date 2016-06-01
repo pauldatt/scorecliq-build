@@ -1,17 +1,19 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  home_team: MyString
-  away_team: MyString
+team_match_a:
   match_date: 2016-04-15
   match_time: 2016-04-15 01:17:05
   location: MyString
   score: MyString
+  scoreboard: scoreboard_a
+  team_a: team_a
+  team_b: team_b
 
-two:
-  home_team: MyString
-  away_team: MyString
+team_match_b:
   match_date: 2016-04-15
   match_time: 2016-04-15 01:17:05
   location: MyString
   score: MyString
+  scoreboard: scoreboard_a
+  team_a: team_a
+  team_b: team_b

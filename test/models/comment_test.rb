@@ -9,6 +9,10 @@ class CommentTest < ActiveSupport::TestCase
     @comment = @scoreboard.comments.new(:body => "whatever", :user_id => @user.id, :scoreboard_id => @scoreboard.id)
   end
   
+  test "comment valid" do 
+    assert @comment.valid?
+  end
+  
   test "comment presence must be true" do
     @comment.body = " "
     assert_not @comment.valid?

@@ -43,7 +43,6 @@ class Scoreboard < ActiveRecord::Base
   
   has_many :pending_requests, -> { where(requests: {approved: false}) }, through: :requests, source: :user, dependent: :destroy
   
-  has_many :accepted_requests, -> { where(requests: {approved: true}) }, through: :requests, source: :user, dependent: :destroy
   
   #each scoreboard could have managers(admins)
   has_many :managers
@@ -52,6 +51,10 @@ class Scoreboard < ActiveRecord::Base
   
   #each scoreboard has_many categories
   has_many :categories, dependent: :destroy
+  
+  has_many :team_matches, dependent: :destroy
+  
+  has_many :topics, dependent: :destroy
   
   # *************////// Below are all the validations on the scoreboard columns //////*************
   

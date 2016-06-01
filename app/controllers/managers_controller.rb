@@ -16,8 +16,9 @@ def create
         end
     else
         redirect_to admins_scoreboard_path(@scoreboard)
-        flash[:danger] = "You cannot assign more than 2 admins for a scoreboard"
+        flash[:danger] = "You cannot assign more than 2 admins to a scoreboard"
     end
+end
 
     def delete 
         @user = User.find(params[:user_id])

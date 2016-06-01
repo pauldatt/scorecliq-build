@@ -34,4 +34,7 @@ class TeamTest < ActiveSupport::TestCase
     @team.scoreboard_id = nil
     assert_not @team.valid?
   end
+  
+  #write all the associated destroyed tests. Teams has many team matches
+  
 end

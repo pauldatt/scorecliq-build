@@ -67,13 +67,8 @@ class ScoreboardTest < ActiveSupport::TestCase
       end
     end
     
-    test "associated schedules should be destroyed if scoreboard is destroyed" do
-      @scoreboard.save
-      @scoreboard.schedules.create!(team1: "abc", team2: "ded", detail: "notimportant", 
-                                    match_date: "feb 25th,1993", match_time: "anytime")
-      assert_difference"Schedule.count", -1 do
-        @scoreboard.destroy
-      end
-    end
+    #write all the associated destroyed tests with the scoreboard
+    
+    
   
 end
