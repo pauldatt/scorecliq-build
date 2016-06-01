@@ -1,6 +1,6 @@
 <% if @matches.present? %>
     <% @matches.each do |game| %>   
-        <div class="row match-div">
+        <div class="row match-div clearfix" id="match_<%= game.id %>">
             <div class="col-xs-12 match-column">
                 <div class="date-div">
                     <div class="month">
@@ -15,7 +15,11 @@
                 </div>
                 <div class="info-div">
                     <div class="time">
-                        Time: N/A
+                        <% if game.match_time.present? %>
+                          Time: <%= game.match_time.to_s(:time)%>
+                        <% else %>
+                          Time: N/A
+                        <% end %>
                     </div>
                     <div class="team-info clearfix">
                         <div class="facing-teams">
@@ -27,15 +31,52 @@
                             </div>
                         </div>
                         <div class="match-score">
-                            score n/a
+                            <% if manager_or_owner?(@scoreboard, current_user) %>
+                                 <%= link_to edit_scoreboard_team_match_path(@scoreboard, game), remote: true do %>
+                                    <% if game.score.present? %>
+                                      <div class="score" id="score-change"> <%= game.score %></div>
+                                    <% else %>
+                                      <div class="score" id="score-change"> Score: N/A</div>
+                                     <% end %>
+                                 <% end %>
+                            
+                            <% else %>
+                                 <% if game.score.present? %>
+                                      <div class="score"> <%= game.score %></div>
+                                 <% else %>
+                                      <div class="score"> Score: N/A</div>
+                                 <% end %>
+                            <% end %>
                         </div>
                     </div>
                     <div class="location">
-                        Location: N/A
+                          <% if game.location.present? %>
+                            Location: <%= game.location %>
+                          <% else %>
+                            Location: N/A
+                           <% end %>
                     </div>
                 </div>
+    <% if manager_or_owner?(@scoreboard, current_user) %>
+        <%= link_to scoreboard_team_match_path(@scoreboard, game), method: :delete,data: {confirm: "Are you sure you want to delete this match?"}, remote: true do %>
+                <div class="match-delete">
+                    <i class="fa fa-times-circle" aria-hidden="true"></i>
+                </div>
+        <% end %>
+    <% end %> 
             </div>
         </div>
     <% end %>
 <% end %>       
             
+<!--css from new team member will apply here to the pages -->
+<div class="row">
+    <div class="col-xs-12 new-member-pages">
+        <%= will_paginate @matches %>
+    </div>
+</div>
+
+
+<div class="edit-match">
+    <!--this div is where the modal for score change is rendered. do not remove-->
+</div>

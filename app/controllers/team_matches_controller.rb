@@ -1,8 +1,12 @@
 class TeamMatchesController < ApplicationController
+    before_action :allowed,       only: :new
+    require 'will_paginate/array'
+    
     def index
         @selected = true
         @scoreboard = Scoreboard.find(params[:scoreboard_id])
-        @matches = @scoreboard.team_matches.order("match_date DESC")
+        @teams = @scoreboard.teams 
+        @matches = @scoreboard.team_matches.order("match_date DESC").paginate(page: params[:page], per_page: 5)
     end
     
     def new
@@ -17,7 +21,6 @@ class TeamMatchesController < ApplicationController
         @team_match = @scoreboard.team_matches.build(match_params)
         if @team_match.save 
             respond_to do |format|
-                flash.now[:notice] = 'Swag has been created.'
                 format.html {redirect_to scoreboard_team_matches_path(@scoreboard)}
                 format.js  
            end
@@ -29,7 +32,33 @@ class TeamMatchesController < ApplicationController
         end
     end
     
+    def edit
+        @scoreboard = Scoreboard.find(params[:scoreboard_id])
+        @match = TeamMatch.find(params[:id])
+    end
+    
+    def update
+        @scoreboard = Scoreboard.find(params[:scoreboard_id])
+        @match = TeamMatch.find(params[:id])
+        respond_to do |format|
+          if @match.update_attributes(match_params)
+                format.html {redirect_to scoreboard_team_matches_path(@scoreboard)}
+                format.js
+            else
+                format.html {redirect_to scoreboard_team_matches_path(@scoreboard)}
+                format.js { render action: "update_error" }
+          end
+        end
+    end
+    
     def destroy
+        @scoreboard = Scoreboard.find(params[:scoreboard_id])
+        @match = TeamMatch.find(params[:id])
+        @match.destroy
+        respond_to do |format|
+            format.html { redirect_to scoreboard_team_matches_path(@scoreboard) }
+            format.js
+        end            
     end
 
     
@@ -37,6 +66,14 @@ class TeamMatchesController < ApplicationController
     
     def match_params
      params.require(:team_match).permit(:team_a_id, :team_b_id, :match_date, :match_time, :location, :score, :scoreboard_id)
+    end
+    
+    def allowed
+        @scoreboard = Scoreboard.find(params[:scoreboard_id])
+        if !(manager_or_owner?(@scoreboard, current_user))
+            flash[:danger] = "Only the owner or admin can access this page"
+            redirect_to scoreboard_team_matches_path(@scoreboard)
+        end
     end
     
 end

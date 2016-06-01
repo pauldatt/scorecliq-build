@@ -139,6 +139,7 @@ CREATE TABLE events (
     event_date date,
     event_time time without time zone,
     notes character varying,
+    location character varying,
     scoreboard_id integer,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
@@ -1354,6 +1355,14 @@ ALTER TABLE ONLY invitations
 
 
 --
+-- Name: fk_rails_383ba8ca21; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY events
+    ADD CONSTRAINT fk_rails_383ba8ca21 FOREIGN KEY (scoreboard_id) REFERENCES scoreboards(id);
+
+
+--
 -- Name: fk_rails_46e62c5a8c; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -1407,14 +1416,6 @@ ALTER TABLE ONLY comments
 
 ALTER TABLE ONLY scoreboards
     ADD CONSTRAINT fk_rails_d233927ac7 FOREIGN KEY (user_id) REFERENCES users(id);
-
-
---
--- Name: fk_rails_e9d827dc89; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY events
-    ADD CONSTRAINT fk_rails_e9d827dc89 FOREIGN KEY (scoreboard_id) REFERENCES scoreboards(id);
 
 
 --

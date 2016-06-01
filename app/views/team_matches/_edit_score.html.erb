@@ -1,0 +1,39 @@
+<%= form_for [@scoreboard, @match], html: { autocomplete: "off" }, remote: true do |f| %>    
+    <div class="modal" id="match-edit-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Match Score</h4>
+          </div>
+          <div class="modal-body">
+            <div class="container-fluid">
+                <div class="row labels">
+                    <div class="col-xs-12 team-label">
+                        <%= @match.team_a.name %>
+                    </div>
+                    <div class="col-xs-12 versus">
+                        VS
+                    </div>
+                    <div class="col-xs-12 team-label">
+                        <%= @match.team_b.name %>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-4 score-label"> Score: </div>
+                    <div class="col-xs-8">
+                        <%= f.text_field :score, required: true, maxlength: 25, class: "form-control score-field" %>
+                    </div>
+                </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            <%= f.submit "Save", :data => {:disable_with => "Saving..."}, class: "btn btn-primary" %>
+          </div>
+        </div>
+      </div>
+    </div>
+<% end %> 
+
+
+

@@ -83,6 +83,7 @@ class TeamsController < ApplicationController
    
    def destroy
      @team = Team.find(params[:id])
+     @scoreboard = Scoreboard.find(params[:scoreboard_id])
      @team.destroy
        respond_to do |format|
          format.html {redirect_to scoreboard_teams_path(@scoreboard)}
