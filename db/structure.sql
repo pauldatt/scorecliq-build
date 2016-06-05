@@ -514,9 +514,7 @@ CREATE TABLE schedules (
     detail text,
     scoreboard_id integer,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
-    match_date date,
-    match_time character varying
+    updated_at timestamp without time zone NOT NULL
 );
 
 
@@ -701,8 +699,7 @@ CREATE TABLE teams (
     tie integer,
     scoreboard_id integer,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
-    win_percentage integer
+    updated_at timestamp without time zone NOT NULL
 );
 
 
@@ -1550,8 +1547,6 @@ INSERT INTO schema_migrations (version) VALUES ('20150717231902');
 
 INSERT INTO schema_migrations (version) VALUES ('20150927064023');
 
-INSERT INTO schema_migrations (version) VALUES ('20150927144239');
-
 INSERT INTO schema_migrations (version) VALUES ('20151001052443');
 
 INSERT INTO schema_migrations (version) VALUES ('20151015143455');
@@ -1567,8 +1562,6 @@ INSERT INTO schema_migrations (version) VALUES ('20151102170716');
 INSERT INTO schema_migrations (version) VALUES ('20151120064847');
 
 INSERT INTO schema_migrations (version) VALUES ('20151209160720');
-
-INSERT INTO schema_migrations (version) VALUES ('20151216222801');
 
 INSERT INTO schema_migrations (version) VALUES ('20151220193756');
 
