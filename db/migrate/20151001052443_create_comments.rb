@@ -4,11 +4,11 @@ class CreateComments < ActiveRecord::Migration
       t.text :body
       t.text :reply
       t.references :user, index: true
-      t.references :scoreboard, index: true
+      t.references :topic, index: true
 
       t.timestamps null: false
     end
     add_foreign_key :comments, :users
-    add_foreign_key :comments, :scoreboards
+    add_foreign_key :comments, :topics
   end
 end
