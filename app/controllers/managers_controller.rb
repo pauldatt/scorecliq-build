@@ -12,11 +12,11 @@ def create
             flash[:success] = "#{@user.name} was assigned as a manager"
         else
             redirect_to @scoreboard
-            flash[:success] = "nothing happened"
+            flash[:success] = "Admin Assign Unsuccessful. Please try again."
         end
     else
         redirect_to admins_scoreboard_path(@scoreboard)
-        flash[:danger] = "You cannot assign more than 2 admins to a scoreboard"
+        flash[:danger] = "You cannot assign more than 2 admins for a scoreboard"
     end
 end
 
@@ -25,7 +25,7 @@ end
         @scoreboard = Scoreboard.find(params[:scoreboard_id])
         @manager = Manager.where(:scoreboard_id => @scoreboard.id, :user_id => @user.id).last
         @manager.destroy
-        flash[:success] = "#{@user.name} was deleted as a manager"
+        flash[:success] = "#{@user.name} was removed as a manager"
         redirect_to admins_scoreboard_path(@scoreboard)
     end
         

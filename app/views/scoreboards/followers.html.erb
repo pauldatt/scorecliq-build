@@ -1,8 +1,11 @@
 <h2 class="follower-page-header">
+    <%= link_to scoreboard_path(@scoreboard) do %>
+     <i class="fa fa-arrow-circle-o-left" aria-hidden="true"></i>
+   <% end %>
     MEMBER LIST
 </h2>
 
-<%= link_to "Back to Profile", scoreboard_path(@scoreboard), class: "btn btn-primary" %>
+
 
 <%= form_tag(followers_scoreboard_path, :method => "get", id: "follower-search-form", autocomplete: "off") do %>
 <div class="row new-admin-field">

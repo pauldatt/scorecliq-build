@@ -146,10 +146,11 @@
 .team-show-header{
     padding-bottom: 1%;
     border-bottom: solid 1px #555;
-    .fa{
+    a{ text-decoration: none; }
+    .fa-edit{
         color: #058eae;
     }
-    .fa:hover{
+    .fa-edit:hover{
         color: #216273;
     }
 }
@@ -272,6 +273,7 @@
 .new-team-member-header{
     padding-bottom: 1%;
     border-bottom: solid 1px #555;
+    a { text-decoration: none; }
 }
 
 .new-member-field{
@@ -580,6 +582,7 @@
 .admin-page-header{
      padding-bottom: 1%;
      border-bottom: solid 1px #555;
+     a{ text-decoration: none; }
 }
 
 .admin-current-header{
@@ -660,6 +663,7 @@
 .follower-page-header{
        padding-bottom: 1%;
        border-bottom: solid 1px #555;
+       a { text-decoration: none; }
 }
 
 #follower-search-form{ margin-top: 10px; }
