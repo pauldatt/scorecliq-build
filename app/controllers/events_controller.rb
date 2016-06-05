@@ -1,10 +1,12 @@
 class EventsController < ApplicationController
     before_action :logged_in_user
+    before_action :fix_time,   only: [:create, :update]
+    require 'will_paginate/array'
     
     def index
         @selected = true
         @scoreboard = Scoreboard.find(params[:scoreboard_id])
-        @events = @scoreboard.events
+        @events = @scoreboard.events.order("event_date DESC").paginate(page: params[:page], per_page: 5)
     end
     
     def new 
@@ -16,23 +18,36 @@ class EventsController < ApplicationController
     def create 
         @scoreboard = Scoreboard.find(params[:scoreboard_id])
         @event = @scoreboard.events.build(event_params)
-        if @event.save
-            redirect_to scoreboard_events_path(@scoreboard)
-            flash[:success] = "event has manifested"
+        if @event.save 
+            respond_to do |format|
+                format.html {redirect_to scoreboard_events_path(@scoreboard)}
+                format.js  
+           end
         else
-            redirect_to scoreboard_events_path(@scoreboard)
-            flash[:danger] = "event are in a struggle"
+            respond_to do |format|
+                format.html {redirect_to new_scoreboard_events_path(@scoreboard)}
+                format.js { render action: "event_error" } 
+           end
         end
+    end
+    
+    def edit
+        @scoreboard = Scoreboard.find(params[:scoreboard_id])
+        @event = Event.find(params[:id])
+        @selected = true
     end
     
     def update
         @scoreboard = Scoreboard.find(params[:scoreboard_id])
         @event = Event.find(params[:id])
-        @event.update_attributes(event_params)
-        if @event.update
-            flash[:success] = "updated successfully"
-        else
-            flash[:danger] = "did not update successfully"
+        respond_to do |format|
+            if @event.update_attributes(event_params)
+                format.html {redirect_to scoreboard_events_path(@scoreboard)}
+                format.js 
+            else
+                format.html {redirect_to edit_scoreboard_event_path(@scoreboard)}
+                format.js { render action: "event_error" }
+            end
         end
     end
     
@@ -40,14 +55,26 @@ class EventsController < ApplicationController
         @scoreboard = Scoreboard.find(params[:scoreboard_id])
         @event = Event.find(params[:id])
         @event.destroy
-        flash[:success] = "destroyed successfully"
-        redirect_to scoreboard_events_path(@scoreboard)
+        respond_to do |format|
+            format.html { redirect_to scoreboard_events_path(@scoreboard) }
+            format.js
+        end     
+    end
+    
+    def fix_time
+        if params[:event]["event_time(4i)"].blank? && params[:event]["event_time(5i)"].blank?
+            params[:event]['event_time(1i)'] = ""
+            params[:event]['event_time(2i)'] = ""
+            params[:event]['event_time(3i)'] = ""
+            params[:event]['event_time(4i)'] = ""
+            params[:event]['event_time(5i)'] = ""
+        end
     end
     
     private 
             
         def event_params
-            params.require(:event).permit(:event_name, :event_date, :event_time, :notes)
+            params.require(:event).permit(:event_name, :event_date, :event_time, :location, :notes)
         end
 
 end

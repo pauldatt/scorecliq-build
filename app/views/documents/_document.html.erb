@@ -1,0 +1,18 @@
+<div class="row document-div" id="document_<%=document.id %>">
+    
+     <div class="col-xs-8 col-sm-5 document-name">
+            <%= document.file_name %>
+     </div>
+        <div class="col-xs-2 col-sm-1 document-load">
+            <%= link_to document.file_url do %>
+                <i class="fa fa-download fa-lg" aria-hidden="true"></i>
+            <% end %>
+        </div>
+        <% if manager_or_owner?(@scoreboard, current_user) %>
+        <div class="col-xs-2 col-sm-1 document-del"> 
+             <%= link_to scoreboard_category_document_path(@scoreboard, @category, document ), method: :delete,remote: true, data: {confirm: "Are you sure you want to delete this document?"} do %>
+                <i class="fa fa-trash-o fa-lg" aria-hidden="true"></i>
+            <% end %>
+        </div>
+        <% end %>
+</div>

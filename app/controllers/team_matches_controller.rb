@@ -6,7 +6,16 @@ class TeamMatchesController < ApplicationController
         @selected = true
         @scoreboard = Scoreboard.find(params[:scoreboard_id])
         @teams = @scoreboard.teams 
-        @matches = @scoreboard.team_matches.order("match_date DESC").paginate(page: params[:page], per_page: 5)
+        if (params[:selected_team].present?)
+             team_id = params[:selected_team]
+             @selection = "List all Matches"
+             @games = @scoreboard.team_matches.order("match_date DESC").paginate(page: params[:page], per_page: 15)
+             @matches = @games.has_team(team_id)
+        else
+            @selection = "Search for Matches by Team"
+            @matches = @scoreboard.team_matches.order("match_date DESC").paginate(page: params[:page], per_page: 15)
+        end
+        
     end
     
     def new
@@ -19,14 +28,16 @@ class TeamMatchesController < ApplicationController
     def create
         @scoreboard = Scoreboard.find(params[:scoreboard_id])
         @team_match = @scoreboard.team_matches.build(match_params)
+        @team_match.match_time = nil if params[:team_match]["match_time(4i)"].blank? && 
+        params[:team_match]["match_time(5i)"].blank?
         if @team_match.save 
             respond_to do |format|
-                format.html {redirect_to new_scoreboard_team_match_path(@scoreboard)}
+                format.html {redirect_to scoreboard_team_matches_path(@scoreboard)}
                 format.js  
            end
         else
             respond_to do |format|
-                format.html {redirect_to new_scoreboard_team_match_path(@scoreboard)}
+                format.html {redirect_to new_scoreboard_team_matches_path(@scoreboard)}
                 format.js { render action: "match_error" } 
            end
         end
@@ -75,5 +86,7 @@ class TeamMatchesController < ApplicationController
             redirect_to scoreboard_team_matches_path(@scoreboard)
         end
     end
+    
+        
     
 end

@@ -19,7 +19,7 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
   test "login with valid information followed by logout" do
     get root_path
     assert_template 'static_pages/home'
-    post login_path, session: { email: @user.email, password: 'password' }
+    post login_path, session: { email: @user.email, password: 'password1' }
     
     
     assert is_logged_in?

@@ -1,0 +1,54 @@
+<% @events.each do |event| %>
+   <div class="row event-div clearfix" id="event_<%=event.id%>">
+       <div class="col-xs-12 event-column">
+           <div class="date-div">
+                <div class="month">
+                    <%= event.event_date.strftime('%^b') %>
+                </div>
+                <div class="day">
+                    <%= event.event_date.strftime('%d') %>
+                </div>
+                <div class="year">
+                    <%= event.event_date.strftime('%Y') %>
+                </div>
+            </div>
+            <div class="info-div">
+                <div class="event-name">
+                    <%= event.event_name %>
+                </div>
+                <div class="secondary">
+                    Location: <%= event.location %> <br>
+                    Time: 
+                    <% if event.event_time.present? %>
+                      <%= event.event_time.to_s(:time) %> 
+                    <% else %>
+                      N/A
+                    <% end %>
+                    <br>
+                    Notes: <%= event.notes %>
+                </div>
+            </div>
+        <% if manager_or_owner?(@scoreboard, current_user) %>
+            <div class="setting-icons">
+                <div class="event-edit">
+                <%= link_to edit_scoreboard_event_path(@scoreboard, event) do %>
+                    <i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i>
+                <% end %>
+                </div>
+                <div class="event-delete">
+                <%= link_to scoreboard_event_path(@scoreboard, event), method: :delete,data: {confirm: "Are you sure you want to delete this event?"}, remote: true do %>
+                    <i class="fa fa-trash-o fa-lg" aria-hidden="true"></i>
+                <% end %>
+                </div>
+            </div>
+        <% end %>
+       </div>
+   </div>
+<% end %>
+
+<!--css from new team member will apply here to the pages -->
+<div class="row">
+    <div class="col-xs-12 new-member-pages">
+        <%= will_paginate @matches %>
+    </div>
+</div>

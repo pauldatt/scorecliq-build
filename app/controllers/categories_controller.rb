@@ -4,7 +4,8 @@ class CategoriesController < ApplicationController
     def index 
         @selected = true 
         @scoreboard = Scoreboard.find(params[:scoreboard_id])
-        @category = @scoreboard.categories
+        @category = Category.new
+        @categories = @scoreboard.categories
         @document = Document.new
     end
     
@@ -19,23 +20,35 @@ class CategoriesController < ApplicationController
        @scoreboard = Scoreboard.find(params[:scoreboard_id])
        @category = @scoreboard.categories.build(category_params)
        if @category.save 
-           flash[:notice] = "created successfully"
+           flash[:success] = "A Category has been created."
            redirect_to scoreboard_categories_path(@scoreboard)
        else
-           flash[:notice] = "not created"
+           flash[:danger] = "Category could not be created successfully."
            redirect_to scoreboard_categories_path(@scoreboard)
        end
     end
     
+    def show
+        @scoreboard = Scoreboard.find(params[:scoreboard_id])
+        @category = @scoreboard.categories.find(params[:id])
+        @document = Document.new
+        @documents = @category.documents
+        @selected = true
+    end
+    
+    def edit
+        @scoreboard = Scoreboard.find(params[:scoreboard_id])
+        @category = @scoreboard.categories.find(params[:id])
+    end
+    
     def update 
         @scoreboard = Scoreboard.find(params[:scoreboard_id])
-        @category = @scoreboard.category.find(params[:id])
-        @category.update_attributes(category_params)
-        if @category.update 
-            flash[:success] = "updated successfully"
+        @category = @scoreboard.categories.find(params[:id])
+        if  @category.update_attributes(category_params)
+            flash[:success] = "Category name changed"
             redirect_to scoreboard_categories_path(@scoreboard)
         else
-            flash[:danger] = "could not update"
+            flash[:danger] = "Category name change unsuccessful"
             redirect_to scoreboard_categories_path(@scoreboard)
         end
     end

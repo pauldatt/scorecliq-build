@@ -1,19 +1,13 @@
+<!--this page has the same css as the new page because it is the exact same -->
 <h2 class="new-events-header">
     <%= link_to scoreboard_events_path(@scoreboard) do %>
         <i class="fa fa-arrow-circle-o-left" aria-hidden="true"></i>
     <% end %>
-    CREATE NEW EVENT
+    EDIT EVENT
 </h2>
 
 <div class="row">
-  <div class="col-xs-12 col-sm-6">
-     <h4 class="event-success">Event has been added to Event List.</h4>
-  </div>
-</div>
-
-
-<div class="row">
-  <%= form_for [@scoreboard, @event], remote: true, html: {id: "new-event-entry", :autocomplete => "off"} do |f| %>
+  <%= form_for [@scoreboard, @event],remote: true, html: { :autocomplete => "off"} do |f| %>
   <div class= "col-xs-12 col-sm-6  event-form">
     <div class="form-group">
        <%= f.label :event_name %>
@@ -22,14 +16,14 @@
     
     <div class="form-group">
       <%= f.label :Select_Date_of_Event %>
-      <%= f.text_field :event_date, id: "event-datepicker", class: "form-control" %>
+      <%= f.text_field :event_date, id: 'event-edit', class: "form-control" %>
     </div>
     
     <h4 class="event-optional"> Optional Info</h4>
     
      <div class="form-group">
       <%= f.label :Location_of_Event %>
-      <%= f.text_field :location,maxlength: 50, class: "form-control" %>
+      <%= f.text_field :location, maxlength: 50, class: "form-control" %>
     </div>
     
     <div class="form-group event-time-select">
@@ -44,15 +38,9 @@
     
    
     
-    <%= f.submit "Create Event", :data => {:disable_with => "Creating Event..."}, class: "btn btn-primary" %>
+    <%= f.submit "Create Event", :data => {:disable_with => "Updating Event..."}, class: "btn btn-primary" %>
   </div>
   <% end %>
 </div>
 
 <%= render 'shared/error_modal' %>
-
-
-         
-    
-          
-   

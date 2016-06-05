@@ -1,0 +1,10 @@
+<div class="container-fluid">
+    <% @event.errors.full_messages.each do |msg| %>
+    <div class="row error-div">
+        <div class="col-xs-12">
+            <%= msg %>
+        </div>
+    </div>
+   <% end %>
+   </ul>
+</div>

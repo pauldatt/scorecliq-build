@@ -6,6 +6,10 @@ class FavouriteTest < ActiveSupport::TestCase
     @favourite = Favourite.new(user_id: 1, scoreboard_id: 3)
   end
   
+  test "favourite should be valid" do 
+    assert @favourite.valid?
+  end
+  
   test "should be valid" do
     assert @favourite.valid?
   end

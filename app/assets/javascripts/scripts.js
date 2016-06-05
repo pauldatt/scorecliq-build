@@ -102,3 +102,15 @@ $(document).ready(function() {
    $('#datepicker').datetimepicker({format: 'LL'});
 });
 
+//BELOW IS THE CODE FOR EVENTS 
+$(document).ready(function() {
+   $('#event-datepicker').datetimepicker({format: 'LL'});
+});
+
+//the code for edit events 
+$(document).ready(function() {
+   $('#event-edit').datetimepicker({format: 'DD/MM/YYYY'});
+});
+
+
+
