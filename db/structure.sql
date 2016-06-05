@@ -70,9 +70,10 @@ CREATE TABLE comments (
     body text,
     reply text,
     user_id integer,
-    scoreboard_id integer,
+    topic_id integer,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    ancestry character varying
 );
 
 
@@ -1132,10 +1133,17 @@ CREATE INDEX index_categories_on_scoreboard_id ON categories USING btree (scoreb
 
 
 --
--- Name: index_comments_on_scoreboard_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_comments_on_ancestry; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
-CREATE INDEX index_comments_on_scoreboard_id ON comments USING btree (scoreboard_id);
+CREATE INDEX index_comments_on_ancestry ON comments USING btree (ancestry);
+
+
+--
+-- Name: index_comments_on_topic_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_comments_on_topic_id ON comments USING btree (topic_id);
 
 
 --
@@ -1406,6 +1414,14 @@ ALTER TABLE ONLY statuses
 
 
 --
+-- Name: fk_rails_3a0203406f; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY comments
+    ADD CONSTRAINT fk_rails_3a0203406f FOREIGN KEY (topic_id) REFERENCES topics(id);
+
+
+--
 -- Name: fk_rails_5c53ff8eb6; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -1430,11 +1446,11 @@ ALTER TABLE ONLY categories
 
 
 --
--- Name: fk_rails_c8da2966f1; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: fk_rails_883c9ddfc1; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY comments
-    ADD CONSTRAINT fk_rails_c8da2966f1 FOREIGN KEY (scoreboard_id) REFERENCES scoreboards(id);
+    ADD CONSTRAINT fk_rails_883c9ddfc1 FOREIGN KEY (user_id) REFERENCES users(id);
 
 
 --
@@ -1443,14 +1459,6 @@ ALTER TABLE ONLY comments
 
 ALTER TABLE ONLY scoreboards
     ADD CONSTRAINT fk_rails_ccc702719b FOREIGN KEY (user_id) REFERENCES users(id);
-
-
---
--- Name: fk_rails_cfb83059d5; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY comments
-    ADD CONSTRAINT fk_rails_cfb83059d5 FOREIGN KEY (user_id) REFERENCES users(id);
 
 
 --
