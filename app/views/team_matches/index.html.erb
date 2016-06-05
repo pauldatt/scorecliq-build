@@ -8,10 +8,12 @@
 
 
 <%= form_tag(scoreboard_team_matches_path, :method => "get", id: "match-search-form", autocomplete: "off") do %>
-   <div class="row new-member-field">
-       <div class="col-xs-12 col-sm-6">
-           <%= select_tag "teams", options_from_collection_for_select(@teams, "id", "name"), prompt: "Select something", class:"form-control" %>
-           <%= submit_tag 'Filter' %>
+   <div class="row match-selection-field">
+       <div class="col-xs-8 col-sm-4 team-dropdown">
+           <%= select_tag :selected_team, options_from_collection_for_select(@teams, :id, :name), prompt: "#{@selection}", class:"form-control" %>
+       </div>
+       <div class="col-xs-4 col-sm-2 team-filter-btn">
+          <%= submit_tag 'Filter', class: "btn btn-primary" %>
        </div>
    </div>
 <% end %>

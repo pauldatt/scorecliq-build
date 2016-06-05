@@ -67,8 +67,76 @@ class ScoreboardTest < ActiveSupport::TestCase
       end
     end
     
-    #write all the associated destroyed tests with the scoreboard
+    test "associated comments should be destroyed if scoreboard is destroyed" do 
+      @scoreboard.save
+      @scoreboard.comments.create!(body: "abc", reply: "def")
+      assert_difference"Comment.count", -1 do 
+        @scoreboard.destroy
+      end
+    end
     
+    test "associated favourites should be destroyed" do 
+      @scoreboard.save
+      @scoreboard.favourites.create!(user_id: 1)
+      assert_difference"Favourite.count", -1 do 
+        @scoreboard.destroy
+      end
+    end
     
+    test "associated picture must be destroyed" do 
+      @scoreboard.save
+      @scoreboard.build_picture(picture: "abc.jpg", pictureable_type: "scoreboard")
+      assert_difference"Picture.count", -1 do 
+        @scoreboard.destroy
+      end
+    end
+    
+    #status is already built when you save a scoreboard.
+    test "associated status must be destroyed" do 
+      @scoreboard.save
+      assert_difference"Status.count", -1 do 
+        @scoreboard.destroy
+      end
+    end
+    
+    test "associated events must be destroyed" do 
+      @scoreboard.save
+      @scoreboard.events.create!(event_name: "abc", event_date: "2016-04-15", event_time: "2016-04-14 22:39:02", notes: "notes", location: "location")
+      assert_difference"Event.count", -1 do 
+        @scoreboard.destroy
+      end
+    end
+    
+    test "associated requests must be destroyed" do 
+      @scoreboard.save
+      @scoreboard.requests.create!(user_id: 1)
+      assert_difference"Request.count", -1 do 
+        @scoreboard.destroy
+      end
+    end
+    
+    test "associated managers must be destroyed" do 
+      @scoreboard.save
+      @scoreboard.managers.create!(user_id: 1)
+      assert_difference"Manager.count", -1 do 
+        @scoreboard.destroy
+      end
+    end
+    
+    test "associated categories must be destroyed" do 
+      @scoreboard.save
+      @scoreboard.categories.create!(name: "name")
+      assert_difference"Category.count", -1 do 
+        @scoreboard.destroy
+      end
+    end
+    
+    test "associated topics must be destroyed" do 
+      @scoreboard.save
+      @scoreboard.topics.create!(subject: "subject")
+      assert_difference"Topic.count", -1 do 
+        @scoreboard.destroy
+      end
+    end
   
 end

@@ -21,8 +21,8 @@ scoreboard_b:
   created_at: <%= 10.minutes.ago %>
   user: divjot
   privatization: true
-
-mid_recent:
+  
+scoreboard_c:
   name_of_scoreboard: MyString
   name_of_organization: MyString
   name_of_activity: MyStrings
@@ -30,16 +30,10 @@ mid_recent:
   country: Canada
   cities: Guelph
   created_at: <%= 10.minutes.ago %>
-
-least_recent:
-  name_of_scoreboard: MyString
-  name_of_organization: MyString
-  name_of_activity: MyString
-  states: Ontario
-  country: Canada
-  cities: Guelph
-  created_at: <%= 3.years.ago %>
+  user: sukh
+  privatization: true  
   
+
 most_recent:
   name_of_scoreboard: MyString
   name_of_organization: MyString
@@ -48,6 +42,4 @@ most_recent:
   country: Canada
   cities: Guelph
   created_at: <%= Time.zone.now %>
-
-
   

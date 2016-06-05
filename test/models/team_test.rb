@@ -1,9 +1,11 @@
 require 'test_helper'
 
 class TeamTest < ActiveSupport::TestCase
+  
   def setup
     @scoreboard = scoreboards(:scoreboard_a)
     @team = @scoreboard.teams.build(name: "teama", win: 1, loss: 0, tie: 0)
+    @user = users(:divjot)
   end
   
   test "should be valid" do
@@ -35,6 +37,14 @@ class TeamTest < ActiveSupport::TestCase
     assert_not @team.valid?
   end
   
-  #write all the associated destroyed tests. Teams has many team matches
+  
+  test "associated team members must be destroyed" do 
+    @team.save
+    @team.team_members.create!(user_id: @user.id)
+    assert_difference("TeamMember.count", -1) do 
+      @team.destroy
+    end
+    
+  end
   
 end

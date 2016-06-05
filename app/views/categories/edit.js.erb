@@ -1,0 +1,4 @@
+$(".modal-backdrop").remove();
+$('.edit-category').html("<%= j render partial: 'category_edit' %>");
+$("#category-update-modal").modal('show');
+$("#category-update-modal").find(".name-field").focus();

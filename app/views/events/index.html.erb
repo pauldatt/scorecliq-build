@@ -3,21 +3,13 @@
 <% if manager_or_owner?(@scoreboard, current_user) %> 
    <%= link_to "CREATE EVENT", new_scoreboard_event_path(@scoreboard, @event), class: "btn btn-primary" %>
    
-   <%= link_to "Clear Matches", deleteevents_scoreboard_path(@scoreboard),method: :delete, class: "btn btn-danger", :data => {:confirm => "Are you absolutely sure you want to delete all events?"} %>
+   <%= link_to "Clear Events", deleteevents_scoreboard_path(@scoreboard),method: :delete, class: "btn btn-danger", :data => {:confirm => "Are you absolutely sure you want to delete all events?"} %>
 <% end %>
 
 
 
 
-<div>
-    
-<% @events.each do |swaggin| %>
-  <div> <%= swaggin.event_name %>
-   <%= swaggin.event_date %>
-   <%= swaggin.event_time %> 
-   <%= swaggin.notes %>
-   <%= link_to "delete", scoreboard_event_path(@scoreboard, swaggin), method: :delete, confirm: {data: "are you sure"} %>
-   </div>
-<% end %>
-
+<div class="event-list">
+    <%= render 'event_list' %>
 </div>
+

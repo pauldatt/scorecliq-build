@@ -93,7 +93,12 @@ class ScoreboardsControllerTest < ActionController::TestCase
         assert_not flash.empty?
         assert_template 'static_pages/home'
     end
-
+    
+    test "restricted access to admin page for owners only" do 
+        log_in_as(@user) #log in as divjot, who does NOT own scoreboard_c, therefore, you should get an error.
+        get admins_scoreboard_path(@scoreboard)
+        assert "Access is restricted to owners only.", flash[:danger]
+    end
     
 end
 

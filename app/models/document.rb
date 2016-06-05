@@ -2,7 +2,7 @@ class Document < ActiveRecord::Base
   belongs_to :category
   mount_uploader :file, FileUploader
   
-  validates :file_name, presence: true
+  validates :file_name, presence: true, length: {maximum: 30}
   validates :file, presence: true
   validate :file_size
   

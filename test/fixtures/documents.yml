@@ -1,9 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 document_a:
-  file: MyString
+  file_name: string
+  file: gorilla.doc
   category: category_a
 
 document_b:
-  file: MyString
+  file_name: string
+  file: gorilla.doc
   category: category_a 

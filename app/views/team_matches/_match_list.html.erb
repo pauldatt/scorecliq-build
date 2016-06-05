@@ -58,11 +58,11 @@
                     </div>
                 </div>
     <% if manager_or_owner?(@scoreboard, current_user) %>
-        <%= link_to scoreboard_team_match_path(@scoreboard, game), method: :delete,data: {confirm: "Are you sure you want to delete this match?"}, remote: true do %>
                 <div class="match-delete">
-                    <i class="fa fa-times-circle" aria-hidden="true"></i>
+                <%= link_to scoreboard_team_match_path(@scoreboard, game), method: :delete,data: {confirm: "Are you sure you want to delete this match?"}, remote: true do %>
+                    <i class="fa fa-trash-o" aria-hidden="true"></i>
+                <% end %>
                 </div>
-        <% end %>
     <% end %> 
             </div>
         </div>

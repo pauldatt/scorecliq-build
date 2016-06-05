@@ -1,0 +1,22 @@
+<%= form_for [@scoreboard, @category], html: { :autocomplete => "off"} do |f| %>  
+    <div class="modal fade" id="categorymodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title" id="myModalLabel">Create Document Category</h4>
+          </div>
+          <div class="modal-body">
+            <h4>
+                Note: Once you create a category, you can add documents to it. Pick relevant name for categories, eg.
+                Score, League Rules, Misc, etc.
+            </h4>
+            <%= f.text_field :name, class: "form-control",maxlength:40, placeholder: "Type Category Name"  %>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            <%= f.submit "Create", :data => {:disable_with => "Creating Category..."}, class: "btn btn-primary" %>
+          </div>
+        </div>
+      </div>
+    </div>
+<% end %>

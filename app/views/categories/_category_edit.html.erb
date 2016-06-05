@@ -1,0 +1,22 @@
+<%= form_for [@scoreboard, @category], html: { :autocomplete => "off"} do |f| %>  
+    <div class="modal" id="category-update-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title" id="myModalLabel">Update Document Category Name</h4>
+          </div>
+          <div class="modal-body">
+            <h4>
+                Note: Please pick relevant name for your documents for clarity or you could name it whatever 
+                you like. We shouldn't be telling you what to do. 
+            </h4>
+            <%= f.text_field :name, class: "form-control name-field",maxlength:40, placeholder: "Type Category Name"  %>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            <%= f.submit "Update", :data => {:disable_with => "Updating Category..."}, class: "btn btn-primary" %>
+          </div>
+        </div>
+      </div>
+    </div>
+<% end %>

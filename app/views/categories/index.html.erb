@@ -1,17 +1,11 @@
-<h4>THIS PAGE HOLDS DOCUMENTS AND CATEGORIES</h4>
+<h2 class="documents-header">DOCUMENTS</h2>
 
-<%= link_to "create category", new_scoreboard_category_path(@scoreboard) %>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#categorymodal">Create Category</button>
 
-<% @category.each do |category| %> <br></br>
-<%= category.name %>
-<%= link_to 'upload documents', new_scoreboard_category_document_path(@scoreboard, category.id) %> |
-<%= link_to "delete", scoreboard_category_path(:scoreboard_id => @scoreboard.id, :id => category.id), method: :delete, data: {confirm: "are you sure"} %> ||
-<% category.documents.each do |doc| %>
-    <%= doc.file_name %>
-    <%= link_to "download", doc.file_url %> |
-    <%= link_to "delete", scoreboard_category_document_path(@scoreboard, @category, doc ), method: :delete, data: {confirm: "are you sure"} %> ||
-<% end %>
+<div class="category-list">
+    <%= render 'categorylist' %>
+</div>
 
-<% end %>
+<%= render 'categoryform' %>
 
 

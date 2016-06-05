@@ -42,9 +42,12 @@ class User < ActiveRecord::Base
   validates :email, presence: true, length: { maximum: 255 },
                     format: { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false }
+    
   
-  has_secure_password
-  validates :password, length: { minimum: 6 }, allow_blank: true
+   VALID_PASSWORD_REGEX =  /\A(?=.*[a-z\A-Z])(?=.*[0-9]).{8,}\z/
+   has_secure_password
+   validates :password, length: { minimum: 8 }, allow_blank: true,
+                      format: { with: VALID_PASSWORD_REGEX, :message => "must include one number and one letter" }
   
   # Returns the hash digest of the given string
   def User.digest(string) # (string) is a user object
