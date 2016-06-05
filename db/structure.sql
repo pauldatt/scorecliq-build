@@ -72,8 +72,7 @@ CREATE TABLE comments (
     user_id integer,
     scoreboard_id integer,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
-    ancestry character varying
+    updated_at timestamp without time zone NOT NULL
 );
 
 
@@ -1133,13 +1132,6 @@ CREATE INDEX index_categories_on_scoreboard_id ON categories USING btree (scoreb
 
 
 --
--- Name: index_comments_on_ancestry; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE INDEX index_comments_on_ancestry ON comments USING btree (ancestry);
-
-
---
 -- Name: index_comments_on_scoreboard_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -1406,91 +1398,91 @@ CREATE TRIGGER tsvectorupdate BEFORE INSERT OR UPDATE ON scoreboards FOR EACH RO
 
 
 --
--- Name: fk_rails_1269f469ee; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY invitations
-    ADD CONSTRAINT fk_rails_1269f469ee FOREIGN KEY (scoreboard_id) REFERENCES scoreboards(id);
-
-
---
--- Name: fk_rails_383ba8ca21; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY events
-    ADD CONSTRAINT fk_rails_383ba8ca21 FOREIGN KEY (scoreboard_id) REFERENCES scoreboards(id);
-
-
---
--- Name: fk_rails_46e62c5a8c; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY categories
-    ADD CONSTRAINT fk_rails_46e62c5a8c FOREIGN KEY (scoreboard_id) REFERENCES scoreboards(id);
-
-
---
--- Name: fk_rails_590ffe0a26; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY documents
-    ADD CONSTRAINT fk_rails_590ffe0a26 FOREIGN KEY (category_id) REFERENCES categories(id);
-
-
---
--- Name: fk_rails_a458e0adcb; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY teams
-    ADD CONSTRAINT fk_rails_a458e0adcb FOREIGN KEY (scoreboard_id) REFERENCES scoreboards(id);
-
-
---
--- Name: fk_rails_b6395324fa; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY comments
-    ADD CONSTRAINT fk_rails_b6395324fa FOREIGN KEY (user_id) REFERENCES users(id);
-
-
---
--- Name: fk_rails_bcdd7ed2e3; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY topics
-    ADD CONSTRAINT fk_rails_bcdd7ed2e3 FOREIGN KEY (scoreboard_id) REFERENCES scoreboards(id);
-
-
---
--- Name: fk_rails_cc9712d921; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY schedules
-    ADD CONSTRAINT fk_rails_cc9712d921 FOREIGN KEY (scoreboard_id) REFERENCES scoreboards(id);
-
-
---
--- Name: fk_rails_cfcff7dc74; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY comments
-    ADD CONSTRAINT fk_rails_cfcff7dc74 FOREIGN KEY (scoreboard_id) REFERENCES scoreboards(id);
-
-
---
--- Name: fk_rails_d233927ac7; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY scoreboards
-    ADD CONSTRAINT fk_rails_d233927ac7 FOREIGN KEY (user_id) REFERENCES users(id);
-
-
---
--- Name: fk_rails_f3dcdab9aa; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: fk_rails_05dc5df04b; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY statuses
-    ADD CONSTRAINT fk_rails_f3dcdab9aa FOREIGN KEY (scoreboard_id) REFERENCES scoreboards(id);
+    ADD CONSTRAINT fk_rails_05dc5df04b FOREIGN KEY (scoreboard_id) REFERENCES scoreboards(id);
+
+
+--
+-- Name: fk_rails_5c53ff8eb6; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY events
+    ADD CONSTRAINT fk_rails_5c53ff8eb6 FOREIGN KEY (scoreboard_id) REFERENCES scoreboards(id);
+
+
+--
+-- Name: fk_rails_5dc791345d; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY documents
+    ADD CONSTRAINT fk_rails_5dc791345d FOREIGN KEY (category_id) REFERENCES categories(id);
+
+
+--
+-- Name: fk_rails_72809e25b9; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY categories
+    ADD CONSTRAINT fk_rails_72809e25b9 FOREIGN KEY (scoreboard_id) REFERENCES scoreboards(id);
+
+
+--
+-- Name: fk_rails_c8da2966f1; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY comments
+    ADD CONSTRAINT fk_rails_c8da2966f1 FOREIGN KEY (scoreboard_id) REFERENCES scoreboards(id);
+
+
+--
+-- Name: fk_rails_ccc702719b; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY scoreboards
+    ADD CONSTRAINT fk_rails_ccc702719b FOREIGN KEY (user_id) REFERENCES users(id);
+
+
+--
+-- Name: fk_rails_cfb83059d5; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY comments
+    ADD CONSTRAINT fk_rails_cfb83059d5 FOREIGN KEY (user_id) REFERENCES users(id);
+
+
+--
+-- Name: fk_rails_d580c79ff2; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY topics
+    ADD CONSTRAINT fk_rails_d580c79ff2 FOREIGN KEY (scoreboard_id) REFERENCES scoreboards(id);
+
+
+--
+-- Name: fk_rails_e591b9340a; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY invitations
+    ADD CONSTRAINT fk_rails_e591b9340a FOREIGN KEY (scoreboard_id) REFERENCES scoreboards(id);
+
+
+--
+-- Name: fk_rails_ef360605de; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY schedules
+    ADD CONSTRAINT fk_rails_ef360605de FOREIGN KEY (scoreboard_id) REFERENCES scoreboards(id);
+
+
+--
+-- Name: fk_rails_fd5160626c; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY teams
+    ADD CONSTRAINT fk_rails_fd5160626c FOREIGN KEY (scoreboard_id) REFERENCES scoreboards(id);
 
 
 --
@@ -1585,11 +1577,11 @@ INSERT INTO schema_migrations (version) VALUES ('20160415011705');
 
 INSERT INTO schema_migrations (version) VALUES ('20160426134550');
 
-INSERT INTO schema_migrations (version) VALUES ('20160428005130');
-
 INSERT INTO schema_migrations (version) VALUES ('20160519013903');
 
 INSERT INTO schema_migrations (version) VALUES ('20160519021310');
 
 INSERT INTO schema_migrations (version) VALUES ('20160531021059');
+
+INSERT INTO schema_migrations (version) VALUES ('20160605022036');
 

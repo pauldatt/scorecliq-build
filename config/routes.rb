@@ -19,7 +19,8 @@ Rails.application.routes.draw do
   put  'unassign_captain'         => 'team_members#unassign'
   post 'assign_manager'           => 'managers#create'
   delete 'unassign_manager'       => 'managers#delete'
-
+  get 'loaderio-41c4a8be5e447a78b471318d4041990a.html' => "loaders#show"
+  
   resources :users do
       resources :pictures, only: [:create, :update, :destroy]
   end
