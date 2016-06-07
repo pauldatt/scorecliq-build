@@ -37,7 +37,7 @@ class Scoreboard < ActiveRecord::Base
   has_many :events, dependent: :destroy
   
   #each scoreboard could be requested_by many users
-  has_many :requests
+  has_many :requests, dependent: :destroy
   
   has_many :requested_by, through: :requests, source: :user, dependent: :destroy
   
@@ -45,7 +45,7 @@ class Scoreboard < ActiveRecord::Base
   
   
   #each scoreboard could have managers(admins)
-  has_many :managers
+  has_many :managers, dependent: :destroy
   
   has_many :managed_by, through: :managers, source: :user, dependent: :destroy
   

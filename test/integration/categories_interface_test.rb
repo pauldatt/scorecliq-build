@@ -10,25 +10,23 @@ class CategoriesInterfaceTest < ActionDispatch::IntegrationTest
   end
   
   test "successfully creation of a category" do 
-  get new_scoreboard_category_path(@scoreboard) 
     assert_difference("@scoreboard.categories.count", 1) do 
       post scoreboard_categories_path(@scoreboard), category: {name: "category"}
-      assert_equal "created successfully", flash[:notice] 
+      assert_equal "Category has been created.", flash[:success] 
     end
   end
   
   test "UNsuccessful creating of a category" do 
-  get new_scoreboard_category_path(@scoreboard) 
     assert_no_difference("@scoreboard.categories.count") do 
       post scoreboard_categories_path(@scoreboard), category: {name: "  "}
-      assert_equal "not created", flash[:notice] 
+      assert_equal "Category could not be created successfully.", flash[:danger] 
     end
   end
   
   test "successfully deleting a category" do 
     assert_difference("@scoreboard.categories.count", -1) do 
       delete scoreboard_category_path(@scoreboard, @category)
-      assert_equal "deleted successfully", flash[:success] 
+      assert_equal "Category was deleted successfully", flash[:success] 
     end
   end
   

@@ -18,7 +18,7 @@ class TeamMatchupInterfaceTest < ActionDispatch::IntegrationTest
                                                                       location:    "abcdef", 
                                                                       score:       "abcd" }
       end                                                                
-    assert_redirected_to new_scoreboard_team_match_path(@scoreboard)
+    assert_redirected_to scoreboard_team_matches_path(@scoreboard)
   end
     
   test "UNsuccessfully creating a team_match and @scoreboard.team_matches does not change" do 

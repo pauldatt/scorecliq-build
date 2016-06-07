@@ -20,7 +20,7 @@ class CategoriesController < ApplicationController
        @scoreboard = Scoreboard.find(params[:scoreboard_id])
        @category = @scoreboard.categories.build(category_params)
        if @category.save 
-           flash[:success] = "A Category has been created."
+           flash[:success] = "Category has been created."
            redirect_to scoreboard_categories_path(@scoreboard)
        else
            flash[:danger] = "Category could not be created successfully."
@@ -57,7 +57,7 @@ class CategoriesController < ApplicationController
         @scoreboard = Scoreboard.find(params[:scoreboard_id])
         @category = Category.find(params[:id])
         @category.destroy
-        flash[:success] = "deleted successfully"
+        flash[:success] = "Category was deleted successfully"
         redirect_to scoreboard_categories_path(@scoreboard)
     end
         

@@ -15,7 +15,6 @@ class EventInterfaceTest < ActionDispatch::IntegrationTest
                                                                 event_time:  "22:39:02",
                                                                 notes:       "abcdef"}
         assert_redirected_to scoreboard_events_path(@scoreboard)                                                     
-        assert_equal "event has manifested", flash[:success]                                           
     end
    end
    
@@ -25,8 +24,7 @@ class EventInterfaceTest < ActionDispatch::IntegrationTest
                                                                 event_date:  Date.parse("20160225"),
                                                                 event_time:  "  ",
                                                                 notes:       "a" * 141}
-        assert_redirected_to scoreboard_events_path(@scoreboard)                                                      
-        assert_equal "event are in a struggle", flash[:danger]                                           
+        assert_redirected_to new_scoreboard_event_path(@scoreboard)                                                      
     end
    end
    
@@ -34,7 +32,6 @@ class EventInterfaceTest < ActionDispatch::IntegrationTest
     assert_difference("@scoreboard.events.count", -1) do 
      delete scoreboard_event_path(@scoreboard, @event)
      assert_redirected_to scoreboard_events_path(@scoreboard)
-     assert_equal "destroyed successfully",  flash[:success]                                       
     end
    end
  

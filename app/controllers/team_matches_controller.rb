@@ -37,7 +37,7 @@ class TeamMatchesController < ApplicationController
            end
         else
             respond_to do |format|
-                format.html {redirect_to new_scoreboard_team_matches_path(@scoreboard)}
+                format.html {redirect_to new_scoreboard_team_match_path(@scoreboard)}
                 format.js { render action: "match_error" } 
            end
         end

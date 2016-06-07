@@ -25,7 +25,7 @@ class EventsController < ApplicationController
            end
         else
             respond_to do |format|
-                format.html {redirect_to new_scoreboard_events_path(@scoreboard)}
+                format.html {redirect_to new_scoreboard_event_path(@scoreboard)}
                 format.js { render action: "event_error" } 
            end
         end

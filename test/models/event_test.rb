@@ -17,17 +17,12 @@ class EventTest < ActiveSupport::TestCase
   end
   
   test "event name cannot be more than 30 characters in length" do 
-    @event.event_name = "a" * 31
+    @event.event_name = "a" * 51
     assert_not @event.valid?
   end
   
   test "event_date must be present" do 
     @event.event_date = " "
-    assert_not @event.valid?
-  end
-  
-  test "event_time must be present" do 
-    @event.event_time = " "
     assert_not @event.valid?
   end
   
