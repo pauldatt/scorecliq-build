@@ -4,7 +4,7 @@ class Scoreboard < ActiveRecord::Base
   
   # the method that build the association with the status as soon as it is saved
   def associate_status
-      self.build_status(:content => "Click here to upload Status")
+      self.build_status(:content => "Click here to upload league Status")
   end
   
   # *************////// Below are all the association with the scoreboards //////*************
