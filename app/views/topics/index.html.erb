@@ -1,7 +1,15 @@
-<h1>Create Topic</h1>
-<%= link_to "create new topic", new_scoreboard_topic_path(@scoreboard) %>
+<h2 class="topics-header">DICUSSION TOPICS</h2>
 
-<% @topic.each do |topic| %> <br></br>
-<%= link_to topic.subject %> 
-<%= link_to 'delete', scoreboard_topic_path(@scoreboard, topic), method: :delete, data: {confirm: "Are you sure"} %>
-<% end %>
+<%= link_to "Create Topic", new_scoreboard_topic_path(@scoreboard), class: "btn btn-primary" %>
+
+<div class="topic-list">
+    <div class="topic-label row">
+        <div class="col-xs-9 col-sm-10 label-1">
+            Topic Name
+        </div>
+        <div class="col-xs-2 col-sm-1 label-1 lab-2">
+            Posts
+        </div>
+    </div>
+    <%= render @topics %>
+</div>

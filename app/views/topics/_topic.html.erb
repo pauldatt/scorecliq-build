@@ -1,0 +1,24 @@
+<div class="row topic-div" id="topic_<%= topic.id %>">
+    <div class="col-xs-9 col-sm-10 topic-info">
+    <%= link_to scoreboard_topic_path(@scoreboard, topic) do %>
+        <div class="topic-name">
+            <%= topic.subject %>
+        </div>
+    <% end %>
+        <div class="topic-creator">
+            Created by:
+            <%= topic.user.name %>
+        </div>
+    </div>
+    <div class="col-xs-2 col-sm-1 comments-count">
+        <div><%= topic.comments.count %></div>
+    </div>
+    <div class="col-xs-1">
+        <div class="topic-del">
+            <%= link_to scoreboard_topic_path(@scoreboard, topic), method: :delete, data: {confirm: "Are you sure you want to delete this topic? This will also delete all of its content."} do %>
+            <i class="fa fa-trash-o fa-lg" aria-hidden="true"></i>
+            <% end %>
+        </div>
+    </div>
+</div>
+

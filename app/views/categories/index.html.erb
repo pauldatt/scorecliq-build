@@ -1,11 +1,16 @@
 <h2 class="documents-header">DOCUMENTS</h2>
 
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#categorymodal">Create Category</button>
+<% if manager_or_owner?(@scoreboard, current_user) %>
+   <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#categorymodal">Create Category</button>
+<% end %>
+
 
 <div class="category-list">
     <%= render 'categorylist' %>
 </div>
 
-<%= render 'categoryform' %>
+<% if manager_or_owner?(@scoreboard, current_user) %>
+   <%= render 'categoryform' %>
+<% end %>
 
 

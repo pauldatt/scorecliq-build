@@ -1,17 +1,23 @@
-<div class=" comment-div"> 
- <p> Posted by <%= link_to "#{comment.user.name}", comment.user %>
-   <%= time_ago_in_words(comment.created_at) %> ago
-   
- </p>
- <div class="comment-body" id="comment-<%= comment.id %>">
-  <% if comment.parent.present? %>
-  <p>@the parent user</p> 
-  <% end %>
-  <%= comment.body %>
-  <%= link_to "Reply", new_scoreboard_comment_path(@scoreboard, comment, parent_id: comment.id, js: true), remote: true %> |
-  <% if (current_user == comment.user) || (current_user == @scoreboard.user) %>
-  <%= link_to "Delete", scoreboard_comment_path(@scoreboard, comment), :data => {:confirm => 'Delete Message?'}, method: :delete %>
-  <% end %>
+<div class=" comment-div" id="comment_<%=comment.id%>"> 
+ <div class="row">
+      <div class="col-xs-12 comment-name">
+       <%= comment.user.name %>
+       <span class="pull-right">4 weeks ago</span>
+      </div>
+ </div>
+ 
+ <div class="comment-info">
+      <div class="prof-pic">
+       profile-pic
+      </div>
+      <div class="comment-content">
+           <div class="comment-body">
+            this comment is alright
+           </div>
+           <div class="comment-set">
+            Reply | Del
+           </div>
+      </div>
  </div>
 </div>
 

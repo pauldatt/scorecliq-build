@@ -1,0 +1,10 @@
+<h2 class="topic-show-header">
+    <%= link_to scoreboard_topics_path(@scoreboard) do %>
+     <i class="fa fa-arrow-circle-o-left" aria-hidden="true"></i>
+    <% end %>
+    <%= @topic.subject %>
+</h2>
+
+<div class="comment-list">
+    <%= render @topic.comments %>
+</div>

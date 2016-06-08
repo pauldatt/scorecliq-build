@@ -1,20 +1,30 @@
-<div class="score-contain">
-      <h1 class="score-header-form"></h1>
-      <div class="score-form">
-         
-        <h2>Create New Topic</h2>
-          
-         <%= form_for [@scoreboard, @topic] do |f| %>
-         
-         <%= render 'shared/error_messages', object: f.object %>
-        
-        <%= f.label :subject %>
-        <%= f.text_field :subject, class: "form-control"  %>
-              
-         <%= f.submit "Create", :data => {:disable_with => "Creating Event..."}, class: "btn btn-primary" %>
-         
-         <% end %>
-    
-      </div>
-  </div>
+<h2 class="new-topic-header">
+    <%= link_to scoreboard_topics_path(@scoreboard) do %>
+     <i class="fa fa-arrow-circle-o-left" aria-hidden="true"></i>
+    <% end %>
+    CREATE TOPIC
+</h2>
+
+<div class="row topic-form">
+    <div class="col-xs-12 col-sm-6">
+        <%= form_for [@scoreboard, @topic] do |f| %>
+            <div class="form-group">
+                <%= f.label :Topic_Name %>
+                <%= f.text_field :subject, class: "form-control"  %>
+            </div>
+            
+            <%= f.fields_for :comments do |c| %>
+                <div class="form-group">
+                    <%= c.label :Your_Comment %>
+                    <%= c.text_area :body, class: "form-control" %>
+                    <%= c.hidden_field :user_id, :value => current_user.id %>
+                </div>
+            <% end %>
+            
+             <%= f.submit "Create", :data => {:disable_with => "Creating Topic..."}, class: "btn btn-primary form-control" %>
+        <% end %>
+    </div>
+
+     
 </div>
+

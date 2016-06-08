@@ -388,3 +388,96 @@
         }
     }
 }
+
+/* ----------------------------------------------- */
+/* TOPIC SHOW PAGE */
+/* ----------------------------------------------- */
+
+.topics-header{
+     padding-bottom: 1%;
+     border-bottom: solid 1px #555;
+}
+
+.topic-list{
+    margin-top: 10px;
+    .topic-label{
+        padding: 0;
+        margin-bottom: 10px;
+        .label-1{
+             background-color: #253341;
+             padding: 1%;
+             color: #efefef;
+             font-size: 120%;
+        }
+        .lab-2{ border-left: 1px solid #efefef; }
+    }
+    .topic-div{
+        margin-bottom: 10px;
+        border: 2px solid #555;
+        .topic-info{
+            padding: 0;
+            a{
+                color: #efefef;
+                text-decoration: none;
+               .topic-name{
+                    background-color: #1c75bf;
+                    font-size: 140%;
+                    padding: 1%;
+                }
+                .topic-name:hover{ background-color: #058eae; }
+            }
+        }
+        .comments-count{ 
+            padding: 0;
+            background-color: #253341;
+            height: 66px;  
+            div{
+              text-align: center;
+              font-size: 120%;
+              margin-top: 20px;
+              color: #efefef;
+            }
+        }
+        .topic-del{
+            text-align: center;
+            margin-top: 20px;
+        }
+    } 
+}
+
+/* ----------------------------------------------- */
+/* TOPIC NEW PAGE */
+/* ----------------------------------------------- */
+.new-topic-header{
+     padding-bottom: 1%;
+     border-bottom: solid 1px #555;
+     a{ text-decoration: none; }
+}
+
+/* ----------------------------------------------- */
+/* TOPIC SHOW PAGE */
+/* ----------------------------------------------- */
+
+.topic-show-header{
+     padding-bottom: 1%;
+     border-bottom: solid 1px #555;
+     a{ text-decoration: none; }
+}
+
+.comment-div{
+    margin-bottom: 5px;
+    .comment-name{
+        background-color: #1c75bf;
+        color: #efefef;
+        padding: 1%;
+    }
+    .comment-info{
+        height: 70px;
+        .prof-pic{
+            height: 100%;
+            width: 10%;
+            float: left;
+            background-color: #253341;
+        }
+    }
+}
