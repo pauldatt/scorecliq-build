@@ -7,14 +7,14 @@ class CategoryTest < ActiveSupport::TestCase
     @category = @scoreboard.categories.build(name: "abcdef")
   end
   
+  test "category should be valid" do 
+    @category.name = " "
+    assert_not @category.valid?
+  end
   
-  test "destroying associated documents when categories is destroyed" do 
-    example_file = fixture_file_upload('/files/gorilla.doc')
-    @category.save
-    @category.documents.create!(file_name: "abc", file: example_file )
-    assert_difference("Document.count", -1) do 
-      @category.destroy
-    end
+  test "category name must be present" do 
+    @category.name = " "
+    assert_not @category.valid?
   end
   
 end

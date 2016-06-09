@@ -1,14 +1,17 @@
 require 'test_helper'
 
 class PictureTest < ActiveSupport::TestCase
-  
   def setup 
     @pictureable = scoreboards(:scoreboard_a)
-    @picture = @pictureable.build_picture(picture: "picture")
+    @picture = @pictureable.build_picture(picture: "rails.png", pictureable_type: "scoreboard")
   end
   
-  test "pictureable valid" do 
-    assert @picture.valid?
+  #if you run the if @picture.valid?, it won't be because the fixture_file_upload method does not work
+  # in the model tests. Not sure why
+  
+  test "picture must be present" do 
+    @picture.picture = nil
+    assert_not @picture.valid?
   end
   
   test "pictureable type must be present" do

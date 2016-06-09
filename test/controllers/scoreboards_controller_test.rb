@@ -97,8 +97,16 @@ class ScoreboardsControllerTest < ActionController::TestCase
     
     test "restricted access to admin page for owners only" do 
         log_in_as(@second_user) #log in as divjot, who does NOT own scoreboard_c, therefore, you should get an error.
-        get :admins, scoreboard_id: @scoreboard_c.id
-        # assert "Access is restricted to owners only.", flash[:danger]
+        get :admins, id: @scoreboard_c.id
+        assert_template 'scoreboards/admins'
+        assert flash.empty?
+    end
+    
+     test "restricted access to admin page for owners only, it should be redirected if not the owner" do 
+        log_in_as(@user) #log in as divjot, who does NOT own scoreboard_c, therefore, you should get an error.
+        get :admins, id: @scoreboard_c.id
+        assert_redirected_to @scoreboard_c
+        assert_equal "Access is restricted to owners only.", flash[:danger]
     end
     
 end

@@ -9,13 +9,15 @@ class PicturePostTest < ActionDispatch::IntegrationTest
   
   test 'successfully post of a picture, pictureable as scoreboard' do
       log_in_as(@user)
-      post scoreboard_pictures_path(@scoreboard), picture: {picture: "blank-prof.jpg"}
+      picture = fixture_file_upload('test/fixtures/rails.png', 'image/png')
+      post scoreboard_pictures_path(@scoreboard), picture: {picture: picture}
       assert_equal "Uploaded Successfully", flash[:success]
   end
   
   test 'successful post of a picture, pictureable as user' do
       log_in_as(@user)
-      post user_pictures_path(@user), picture: {picture: "blank-prof.jpg"}
+      picture = fixture_file_upload('test/fixtures/rails.png', 'image/png')
+      post user_pictures_path(@user), picture: {picture: picture}
       assert_equal "Uploaded Successfully", flash[:success]
   end
   

@@ -5,6 +5,7 @@ class ScoreboardCreateTest < ActionDispatch::IntegrationTest
   def setup
     ActionMailer::Base.deliveries.clear
     @user = users(:divjot) #you must let the user log in for the tests to be valid
+    @scoreboard = scoreboards(:scoreboard_a)
   end
   
   test "invalid creation of the scoreboard with failing validations" do

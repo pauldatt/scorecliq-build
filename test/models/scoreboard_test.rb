@@ -83,14 +83,6 @@ class ScoreboardTest < ActiveSupport::TestCase
       end
     end
     
-    test "associated picture must be destroyed" do 
-      @scoreboard.save
-      @scoreboard.build_picture(picture: "abc.jpg", pictureable_type: "scoreboard")
-      assert_difference"Picture.count", -1 do 
-        @scoreboard.destroy
-      end
-    end
-    
     #status is already built when you save a scoreboard.
     test "associated status must be destroyed" do 
       @scoreboard.save

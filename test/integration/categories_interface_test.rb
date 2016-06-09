@@ -30,4 +30,13 @@ class CategoriesInterfaceTest < ActionDispatch::IntegrationTest
     end
   end
   
+  test "destroying associated documents when categories is destroyed" do 
+    # in the document.yml file, both documents belong to category_a
+    # therefore, if the category is destroyed, there will be nothing in the database.
+    # Document.count will change by 2
+    assert_difference("Document.count", -2) do 
+      @category.destroy
+    end
+  end
+  
 end

@@ -2,9 +2,10 @@ class Picture < ActiveRecord::Base
      belongs_to :pictureable, polymorphic: true
      mount_uploader :picture, PictureUploader 
      
-     validate :picture_size
+     validates :picture, presence: true
      validates :pictureable_id, presence: true
      validates :pictureable_type, presence: true
+     validate  :picture_size
      
 end
 

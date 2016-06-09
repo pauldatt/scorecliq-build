@@ -116,21 +116,6 @@ class UserTest < ActiveSupport::TestCase
       end
     end
     
-    test "associated managers must be destroyed if user is destroyed" do 
-      @user.save
-      @user.managers.create!(scoreboard_id: @scoreboard.id)
-      assert_difference"Manager.count", -1 do 
-        @user.destroy
-      end
-    end
-    
-     test "associated picture must be destroyed if user is destroyed" do 
-      @user.save
-      @user.build_picture(picture: "abc.jpg", pictureable_type: "user")
-      assert_difference"Picture.count", -1 do 
-        @user.destroy
-      end
-     end
     
     test "associated team members must be destroyed if user is destroyed" do 
     @user.save

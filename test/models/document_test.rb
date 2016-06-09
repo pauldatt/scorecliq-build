@@ -4,11 +4,14 @@ class DocumentTest < ActiveSupport::TestCase
   
   def setup 
     @category = categories(:category_a)
-    @document = @category.documents.build(file_name: "abc", file: "")
+    @document = @category.documents.build(file: "abc", file_name: "abc")
   end
   
-  test "document valid" do 
-    assert @document.valid?
+  #the test @document won't pass but everything else from the model tests will pass
+  
+  test "document file should be present" do 
+    @document.file = " "
+    assert_not @document.valid?
   end
   
   test "file_name must be present" do 

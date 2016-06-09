@@ -135,8 +135,7 @@ class ScoreboardsController < ApplicationController
    flash[:success] = "You unfollowed scoreboard: #{@scoreboard.name_of_scoreboard}"
   
    
-    
-   
+
   elsif type == "unfav-index"
    @scoreboard = Scoreboard.find(params[:id])
    current_user.favourite_scoreboards.delete(@scoreboard)
@@ -157,7 +156,7 @@ private
  def scoreboard_params
   params.require(:scoreboard).permit(:name_of_scoreboard, :name_of_organization, 
                  :name_of_activity, :cities, :states, :country) # make sure the name of the parameters match with 
-                                    # the exact names written in the scoreboard model.
+                                                                # the exact names written in the scoreboard model.
  end
  
  

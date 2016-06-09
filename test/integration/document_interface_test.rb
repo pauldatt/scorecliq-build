@@ -11,17 +11,18 @@ class DocumentInterfaceTest < ActionDispatch::IntegrationTest
   end
   
   test "successfully posting a document" do 
+    doc = fixture_file_upload('test/fixtures/rails.doc', 'file/doc')
     assert_difference("@category.documents.count", 1) do 
       post scoreboard_category_documents_path(@scoreboard, @category), document: {file_name: "randomname",
-                                                                                  file: "kjnkjn.doc" }
+                                                                                  file: doc }
       
     end
   end
   
   test "UNsuccessful posting of a document" do 
     assert_no_difference("@category.documents.count") do 
-      post scoreboard_category_documents_path(@scoreboard, @category), document: {file_name: "jbjbjb",
-                                                                                  file: "kjnkjn.doc" }
+      post scoreboard_category_documents_path(@scoreboard, @category), document: {file_name: " ",
+                                                                                  file: " " }
     end
   end
   

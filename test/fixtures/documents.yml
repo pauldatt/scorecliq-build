@@ -2,10 +2,10 @@
 
 document_a:
   file_name: string
-  file: gorilla.doc
+  file: rails.doc
   category: category_a
 
 document_b:
   file_name: string
-  file: gorilla.doc
+  file: rails.doc
   category: category_a 
