@@ -20,7 +20,7 @@
 /config/initializers/01_dev_config_vars.rb
 /public/uploads
 /db/seeds.rb
-
+/public/loaderio-41c4a8be5e447a78b471318d4041990a.txt
 
 # Ignore application configuration
 /config/application.yml
