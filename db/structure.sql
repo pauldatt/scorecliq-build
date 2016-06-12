@@ -1367,6 +1367,22 @@ ALTER TABLE ONLY categories
 
 
 --
+-- Name: fk_rails_9031cc962f; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY comments
+    ADD CONSTRAINT fk_rails_9031cc962f FOREIGN KEY (topic_id) REFERENCES topics(id);
+
+
+--
+-- Name: fk_rails_c9bc211bd2; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY comments
+    ADD CONSTRAINT fk_rails_c9bc211bd2 FOREIGN KEY (user_id) REFERENCES users(id);
+
+
+--
 -- Name: fk_rails_ccc702719b; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -1501,4 +1517,8 @@ INSERT INTO schema_migrations (version) VALUES ('20160519021310');
 INSERT INTO schema_migrations (version) VALUES ('20160531021059');
 
 INSERT INTO schema_migrations (version) VALUES ('20160605022036');
+
+INSERT INTO schema_migrations (version) VALUES ('20160612031547');
+
+INSERT INTO schema_migrations (version) VALUES ('20160612032104');
 
