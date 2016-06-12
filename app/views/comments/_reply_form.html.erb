@@ -1,9 +1,11 @@
-<div class= "comment-reply-form">
-<%= form_for [scoreboard, comment] do |f| %> 
-        <%= render 'shared/error_messages', object: f.object %>
-        <%= f.text_area :body, class: "comment-field" %>
-        <%= f.hidden_field :parent_id %>   
-        <%= f.submit "Reply", class: " comment-button btn btn-primary" %>
+<div class= "row comment-reply-form">
+<%= form_for [@scoreboard, @topic, @comment ], :html => { :id => "new-reply-entry" } do |f| %> 
+        <div class="col-xs-12">
+             <%= f.text_area :body, class: "comment-field form-control" %>
+             <%= f.hidden_field :parent_id %>
+             <button type="button" class="btn btn-danger hide-reply-form pull-right">Cancel</button>
+             <%= f.submit "Reply", class: "btn btn-primary pull-right" %>
+        </div>
 <% end %>
 </div>
 

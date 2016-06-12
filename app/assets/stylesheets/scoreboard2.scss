@@ -371,8 +371,8 @@
         .document-del{
             border-bottom: solid 2px #555;
             text-align: right;
-            .fa{ color: #f90012; }
-            .fa:hover{ color: #216273; }
+            .fa{ color: #555; }
+            .fa:hover{ color: #d83434; }
         }
     }
 }
@@ -387,4 +387,132 @@
             color: red;
         }
     }
+}
+
+/* ----------------------------------------------- */
+/* TOPIC SHOW PAGE */
+/* ----------------------------------------------- */
+
+.topics-header{
+     padding-bottom: 1%;
+     border-bottom: solid 1px #555;
+}
+
+.topic-list{
+    margin-top: 10px;
+    .topic-label{
+        padding: 0;
+        margin-bottom: 10px;
+        .label-1{
+             background-color: #253341;
+             padding: 1%;
+             color: #efefef;
+             font-size: 120%;
+        }
+        .lab-2{ border-left: 1px solid #efefef; }
+    }
+    .topic-div{
+        margin-bottom: 10px;
+        border: 2px solid #555;
+        .topic-info{
+            padding: 0;
+            a{
+                color: #efefef;
+                text-decoration: none;
+               .topic-name{
+                    background-color: #1c75bf;
+                    font-size: 140%;
+                    padding: 1%;
+                }
+                .topic-name:hover{ background-color: #058eae; }
+            }
+        }
+        .comments-count{ 
+            padding: 0;
+            background-color: #253341;
+            height: 66px;  
+            div{
+              text-align: center;
+              font-size: 120%;
+              margin-top: 20px;
+              color: #efefef;
+            }
+        }
+        .topic-del{
+            text-align: center;
+            margin-top: 20px;
+            .fa{ color: #555; }
+            .fa:hover{ color: #d83434; }
+        }
+    } 
+}
+
+/* ----------------------------------------------- */
+/* TOPIC NEW PAGE */
+/* ----------------------------------------------- */
+.new-topic-header{
+     padding-bottom: 1%;
+     border-bottom: solid 1px #555;
+     a{ text-decoration: none; }
+}
+
+/* ----------------------------------------------- */
+/* TOPIC SHOW PAGE */
+/* ----------------------------------------------- */
+
+.topic-show-header{
+     padding-bottom: 1%;
+     border-bottom: solid 1px #555;
+     a{ text-decoration: none; }
+}
+
+.post-comment{ margin-bottom: 5px; }
+
+.new-comment-form{
+    display: none;
+    margin-bottom: 5px;
+    .comment-form-content{
+        padding: 0;
+        .hide-comment{ margin-left: 5px; }
+        .btn{ margin-top: 5px; }
+    }
+}
+
+.comment-reply-form{
+    margin-bottom: 5px;
+    margin-left: 73px;
+    .hide-reply-form{ margin-left: 5px;}
+    .btn { margin-top: 5px; }
+}
+
+.comment-div{
+    margin-bottom: 5px;
+    .comment-name{
+        background-color: #253341;
+        color: #efefef;
+        padding: 1%;
+        .time-ago{ font-size: 80%; }
+    }
+    .prof-pic{
+       padding: 0; 
+    }
+    .comment-body{
+        min-height: 50px;
+        border-bottom: 1px solid #555;
+    }
+    .comment-settings{
+        .fa{color: #555; }
+        .fa:hover{color: #d83434; }
+    }
+    
+}
+
+.nested-comment{
+    margin-left: 77px;
+    .comment-name{ background-color: #1c75bf; }
+    
+}
+
+.nested-comment .nested-comment{
+    margin-left: 0;
 }

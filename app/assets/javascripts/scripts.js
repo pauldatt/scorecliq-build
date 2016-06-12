@@ -112,5 +112,40 @@ $(document).ready(function() {
    $('#event-edit').datetimepicker({format: 'DD/MM/YYYY'});
 });
 
+//BELOW IS THE CODE FOR TOPICS AND COMMENTS 
+$(document).ready(function(){ 
+    
+    $(".post-comment").click(function(){
+      $("#new-comment-entry")[0].reset();
+      $(".new-comment-form").show();
+    });
+    
+    $(".hide-comment").click(function(){
+      $(".new-comment-form").hide();
+    });
+    
+
+    $('.comment-list').on('click', '.hide-reply-form', function() {
+    $(".comment-reply-form").hide();
+    });
+});
+
+// $(document).ready(function(){ 
+//   if ($('#infinite-scrolling').size() > 0) {
+//     return $(window).on('scroll', function() {
+//       var more_posts_url;
+//       more_posts_url = $('.pagination .next_page a').attr('href');
+//       if (more_posts_url && $(window).scrollTop() > $(document).height() - $(window).height() - 60) {
+//         $('.pagination').html('<img src="/assets/ajax-loader.gif" alt="Loading..." title="Loading..." />');
+//         $.getScript(more_posts_url);
+//       }
+//       return;
+//     });
+//   }
+// });
+
+  
+
+
 
 

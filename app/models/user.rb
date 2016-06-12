@@ -2,6 +2,9 @@ class User < ActiveRecord::Base
   # each user can creare many scoreboards
   has_many :scoreboards, dependent: :destroy
   
+  #each user can have many topics
+  has_many :topics, dependent: :destroy
+  
   # each user can create comments to a scoreboard
   has_many :comments, dependent: :destroy
   

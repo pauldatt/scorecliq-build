@@ -124,6 +124,10 @@ class ScoreboardsController < ApplicationController
   elsif type == "unfavourite"
    @scoreboard = Scoreboard.find(params[:id])
    current_user.favourite_scoreboards.delete(@scoreboard)
+   if @scoreboard.managed_by.include?(current_user)
+    @manager = Manager.where(:scoreboard_id => @scoreboard.id, :user_id => current_user.id).last
+    @manager.destroy
+   end
    redirect_to @scoreboard
    flash[:success] = "You unfollowed scoreboard: #{@scoreboard.name_of_scoreboard}"
    
@@ -131,20 +135,16 @@ class ScoreboardsController < ApplicationController
    @scoreboard = Scoreboard.find(params[:id])
    @user = User.find(params[:user_id])
    @user.favourite_scoreboards.delete(@scoreboard)
+   if @scoreboard.managed_by.include?(@user)
+      @manager = Manager.where(:scoreboard_id => @scoreboard.id, :user_id => @user.id).last
+      @manager.destroy
+   end
    redirect_to followers_scoreboard_path(@scoreboard)
-   flash[:success] = "You unfollowed scoreboard: #{@scoreboard.name_of_scoreboard}"
-  
-   
-
-  elsif type == "unfav-index"
-   @scoreboard = Scoreboard.find(params[:id])
-   current_user.favourite_scoreboards.delete(@scoreboard)
-   redirect_to scoreboards_path
-   flash[:success] = "You unfollowed scoreboard: #{@scoreboard.name_of_scoreboard}"
-   
+   flash[:success] = "#{@user.name} was removed from #{@scoreboard.name_of_scoreboard}"
   else
+
    redirect_to @scoreboard
-   flash[:notice] = "No action"
+   flash[:danger] = "An error occured. Please try again."
   end
  end
  

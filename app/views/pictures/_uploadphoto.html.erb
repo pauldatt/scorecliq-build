@@ -6,7 +6,7 @@
           <div class="modal-content">
             <div class="modal-header" style="text-align: center">Selected Image</div>
              <div class="modal-body">
-             <%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png', id: "files" %>
+             <%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png', id: "files", class: "hidden" %>
              <div class="upload-preview" style="text-align: center">
                <img id="image" /></img>
              </div>

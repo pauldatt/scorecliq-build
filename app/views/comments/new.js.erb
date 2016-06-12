@@ -1,2 +1,3 @@
 $(".comment-reply-form").hide();
 $("#comment-<%=@comment.parent_id %>").after("<%= j render('reply_form', scoreboard: @scoreboard, comment: @comment) %>");
+

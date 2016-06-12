@@ -1,18 +1,42 @@
-<div class=" comment-div"> 
- <p> Posted by <%= link_to "#{comment.user.name}", comment.user %>
-   <%= time_ago_in_words(comment.created_at) %> ago
-   
- </p>
- <div class="comment-body" id="comment-<%= comment.id %>">
-  <% if comment.parent.present? %>
-  <p>@the parent user</p> 
-  <% end %>
-  <%= comment.body %>
-  <%= link_to "Reply", new_scoreboard_comment_path(@scoreboard, comment, parent_id: comment.id, js: true), remote: true %> |
-  <% if (current_user == comment.user) || (current_user == @scoreboard.user) %>
-  <%= link_to "Delete", scoreboard_comment_path(@scoreboard, comment), :data => {:confirm => 'Delete Message?'}, method: :delete %>
-  <% end %>
+<div class=" comment-div" id="comment-<%=comment.id%>"> 
+ <div class="row">
+      <div class="col-xs-12 comment-name">
+       <%= comment.user.name %> <%= comment.id %>
+       <span class=" time-ago pull-right"><%= time_ago_in_words(comment.created_at) %> ago</span>
+      </div>
  </div>
+ 
+ <div class="row">
+  <div class="col-xs-2 col-sm-1  prof-pic">
+      <div class="thumbnail">
+           <%= image_tag @scoreboard.picture.picture.url , class: "prof-default img-responsive" %>
+      </div>
+  </div>
+  
+  <div class="col-xs-10 col-sm-11">
+       <div class="row">
+            <div class="col-xs-12 comment-body">
+             <%= comment.body %>
+            </div>
+            <div class="col-xs-12 comment-settings">
+             <span class="pull-right">
+               <%= link_to "Reply", new_scoreboard_topic_comment_path(@scoreboard,@topic, comment, parent_id: comment.id, js: true), remote: true %>
+               
+             <% if manager_or_owner?(@scoreboard, current_user) %> 
+             |
+              <%= link_to scoreboard_topic_comment_path(@scoreboard, @topic, comment), method: :delete ,data: {confirm: "Are you sure you want to delete this comment? All replies will be deleted as well."} do %>
+                <i class="fa fa-trash-o" aria-hidden="true"></i> 
+              <% end %>
+             <% end %>
+             </span>
+            </div>
+       </div>
+  </div>
+ </div>
+</div>
+
+<div class="nested-comment">
+    <%= render comment.children if comment.has_children? %>
 </div>
 
     

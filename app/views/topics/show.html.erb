@@ -1,0 +1,24 @@
+<h2 class="topic-show-header">
+    <%= link_to scoreboard_topics_path(@scoreboard) do %>
+     <i class="fa fa-arrow-circle-o-left" aria-hidden="true"></i>
+    <% end %>
+    <%= @topic.subject %>
+</h2>
+
+<button type="button" class="btn btn-primary post-comment">Post Comment</button>
+
+<div class="row new-comment-form">
+    <%= form_for [@scoreboard,@topic, @comment], :html => { :id => "new-comment-entry" } do |f| %> 
+       <div class="col-xs-12 comment-form-content">
+          <%= f.text_area :body, class: "comment-field form-control" %>
+          <button type="button" class="btn btn-danger hide-comment pull-right">Cancel</button>
+          <%= f.submit "Post",:data => {:disable_with => "..."}, class: "btn btn-primary pull-right" %>
+       </div>
+  <% end %>
+</div>
+
+<div class="comment-list">
+    <%= render @comments %>
+    
+    <%= will_paginate @comments %>
+</div>
