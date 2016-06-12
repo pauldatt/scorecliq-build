@@ -4,28 +4,29 @@ before_action :logged_in_user, only: [:new, :create, :destroy]
 
 def new
  @scoreboard = Scoreboard.find(params[:scoreboard_id])
- @comment = @scoreboard.comments.new  :parent_id => params[:parent_id]
+ @topic = Topic.find(params[:topic_id])
+ @comment = @topic.comments.new  :parent_id => params[:parent_id]
 end
 
 def create
  @scoreboard = Scoreboard.find(params[:scoreboard_id])
- @comment = @scoreboard.comments.build(comment_params)
- respond_to do |format|
+ @topic = Topic.find(params[:topic_id])
+ @comment = @topic.comments.build(comment_params)
   if @comment.save
-    format.html { redirect_to scoreboard_url(@comment.scoreboard_id) }
+     redirect_to scoreboard_topic_path(@scoreboard,@topic)
+     flash[:success] = "Comment posted successfully"
   else
-   format.html { 
-    redirect_to scoreboard_url(@comment.scoreboard_id)
+    redirect_to scoreboard_topic_path(@scoreboard,@topic)
     flash[:danger] = 'Comment cannot be blank and must be less than 140 characters'
-   }
   end
- end
 end
 
 def destroy
+ @scoreboard = Scoreboard.find(params[:scoreboard_id])
+ @topic = Topic.find(params[:topic_id])
  @comment = Comment.find(params[:id])
  @comment.destroy
- redirect_to scoreboard_url(@comment.scoreboard_id)
+ redirect_to scoreboard_topic_path(@scoreboard, @topic)
 end
 
 

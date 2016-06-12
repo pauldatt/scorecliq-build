@@ -28,6 +28,9 @@ class TopicsController < ApplicationController
     def show
         @scoreboard = Scoreboard.find(params[:scoreboard_id])
         @topic = Topic.find(params[:id])
+        @tools = @topic.comments.no_ancestry
+        @comments = @tools.paginate(page: params[:page], per_page: 15)
+        @comment = @topic.comments.build
         @selected = true
     end
     

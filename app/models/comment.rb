@@ -8,8 +8,10 @@ class Comment < ActiveRecord::Base
   
   
   validates :body, presence: true, length: { maximum: 140 }
-  validates :user_id, :presence => true
+  # validates :user_id, :presence => true
 
+  scope :no_ancestry, -> { where(ancestry: nil) }
+  
 end
 
 

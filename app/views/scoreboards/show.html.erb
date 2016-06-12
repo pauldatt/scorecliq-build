@@ -4,7 +4,7 @@
    <div class="col-xs-12 col-sm-3 score-prof-pic">
          <% if @picture.picture.url.present? %>
             <div class="dropdown">
-               <%= link_to "#", class: "prof-dropdown" , data: {:toggle => "dropdown"}, role: "button", aria: {:expanded => "false"} do %>
+                  <%= link_to "#", class: "prof-dropdown" , data: {:toggle => "dropdown"}, role: "button", aria: {:expanded => "false"} do %>
                    <%= image_tag @picture.picture.url, class: "prof-default img-thumbnail" %>
                <% end %>
                <% if manager_or_owner?(@scoreboard, current_user) %>
@@ -20,7 +20,7 @@
          <% else %>
             <div class="dropdown">
                <%= link_to "#", class: "prof-dropdown" , data: {:toggle => "dropdown"}, role: "button", aria: {:expanded => "false"} do %>
-                   <%= image_tag "blank-prof.jpg", class: "prof-default img-thumbnail " %>
+                   <%= image_tag "blank-prof.jpg", class: "prof-default img-thumbnail" %>
                <% end %>
                <% if manager_or_owner?(@scoreboard, current_user) %>
                <ul class="dropdown-menu">

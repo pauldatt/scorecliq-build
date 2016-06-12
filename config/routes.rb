@@ -56,7 +56,6 @@ Rails.application.routes.draw do
            patch :update_name
        end
     end
-    resources :comments
     resources :categories do 
         resources :documents
     end
@@ -64,7 +63,9 @@ Rails.application.routes.draw do
    resources :pictures, only: [:create, :update, :destroy]
    resources :statuses, only: [:create, :update]
    resources :events
-   resources :topics
+   resources :topics do
+     resources :comments
+   end
   end
   
   resources :invitations, only: [:new, :create]
