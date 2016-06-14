@@ -12,7 +12,7 @@ class DocumentsController < ApplicationController
             flash[:success] = "Document uploaded successfully."
             redirect_to scoreboard_category_path(@scoreboard, @category) 
         else
-            flash[:danger] = "Failed.Please check accepted file formats and try again."
+            flash[:danger] = "Failed to Upload. Please check accepted file formats and try again."
             redirect_to scoreboard_category_path(@scoreboard, @category) 
         end
     end

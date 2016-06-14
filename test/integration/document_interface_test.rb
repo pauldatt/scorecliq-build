@@ -15,17 +15,34 @@ class DocumentInterfaceTest < ActionDispatch::IntegrationTest
     assert_difference("@category.documents.count", 1) do 
       post scoreboard_category_documents_path(@scoreboard, @category), document: {file_name: "randomname",
                                                                                   file: doc }
-      
+      assert_equal "Document uploaded successfully.", flash[:success]
     end
   end
   
-  test "UNsuccessful posting of a document" do 
+  test "unsuccessful posting of a document with a BLANK FILE NAME" do 
     assert_no_difference("@category.documents.count") do 
       post scoreboard_category_documents_path(@scoreboard, @category), document: {file_name: " ",
                                                                                   file: " " }
+      assert_equal "Please try again. File name can't be blank.", flash[:danger]
     end
   end
   
+   test "unsuccessful posting of a document with a BLANK DOCUMENT" do 
+    assert_no_difference("@category.documents.count") do 
+      post scoreboard_category_documents_path(@scoreboard, @category), document: {file_name: "filename",
+                                                                                  file: " " }
+      assert_equal "Please try again. You must select a document for upload.", flash[:danger]
+    end
+  end
+  
+  test "unsuccessful posting of a document with a WRONG DOC TYPE" do 
+    wrong_doc = fixture_file_upload('test/fixtures/rails.jpg', 'file/doc')
+    assert_no_difference("@category.documents.count") do 
+      post scoreboard_category_documents_path(@scoreboard, @category), document: {file_name: "filename",
+                                                                                  file: wrong_doc }
+      assert_equal "Failed to Upload. Please check accepted file formats and try again.", flash[:danger]
+    end
+  end
   
   
   

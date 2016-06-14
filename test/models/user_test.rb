@@ -91,14 +91,6 @@ class UserTest < ActiveSupport::TestCase
       @user.destroy
     end
   end
-  
-   test "associated comments should be destroyed if user is destroyed" do 
-      @user.save
-      @user.comments.create!(body: "abc", reply: "def")
-      assert_difference"Comment.count", -1 do 
-        @user.destroy
-      end
-    end
     
     test "associated favourites should be destroyed if user is destroyed" do 
       @user.save

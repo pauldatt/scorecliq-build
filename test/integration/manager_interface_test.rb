@@ -23,7 +23,7 @@ class ManagerInterfaceTest < ActionDispatch::IntegrationTest
    assert_no_difference('@scoreboard_2.managed_by.count') do
      post assign_manager_path(:scoreboard_id => @scoreboard_2.id, :user_id => @user.id) 
      assert_redirected_to admins_scoreboard_path(@scoreboard_2)
-     assert_equal "You cannot assign more than 2 admins to a scoreboard", flash[:danger]
+     assert_equal "You cannot assign more than 2 admins for a scoreboard", flash[:danger]
    end
  end
  
@@ -32,7 +32,7 @@ class ManagerInterfaceTest < ActionDispatch::IntegrationTest
   assert_difference('@scoreboard.managed_by.count', -1) do
      delete unassign_manager_path(:scoreboard_id => @scoreboard.id, :user_id => @user.id)
      assert_redirected_to admins_scoreboard_path(@scoreboard)
-     assert_equal "#{@user.name} was deleted as a manager", flash[:success]
+     assert_equal "#{@user.name} was removed as a manager", flash[:success]
    end
  end
 

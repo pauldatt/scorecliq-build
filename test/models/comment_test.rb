@@ -4,9 +4,9 @@ class CommentTest < ActiveSupport::TestCase
   
   def setup 
     @user = users(:divjot)
-    @scoreboard = scoreboards(:scoreboard_a)
+    @topic = topics(:topic_a)
     
-    @comment = @scoreboard.comments.new(:body => "whatever", :user_id => @user.id, :scoreboard_id => @scoreboard.id)
+    @comment = @topic.comments.build(:body => "whatever", :topic_id => @topic.id, :user_id => @user.id)
   end
   
   test "comment valid" do 

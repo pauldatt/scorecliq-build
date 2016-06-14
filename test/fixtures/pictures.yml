@@ -7,4 +7,7 @@ picture_a:
 picture_b:
   picture: blank-prof.jpg
   pictureable: divjot (User)
-  
+
+picture_c:
+  picture: blank-prof.jpg
+  pictureable: lana (User)

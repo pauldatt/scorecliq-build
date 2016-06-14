@@ -15,9 +15,6 @@ class Scoreboard < ActiveRecord::Base
   # each scoreboard has_many teams
   has_many :teams, dependent: :destroy
   
-  # each scoreboard has_many comments
-  has_many :comments, dependent: :destroy
-  
   # sets up the relationship with the favourites(join) table
   has_many :favourites, dependent: :destroy
  

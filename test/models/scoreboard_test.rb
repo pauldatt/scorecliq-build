@@ -67,14 +67,6 @@ class ScoreboardTest < ActiveSupport::TestCase
       end
     end
     
-    test "associated comments should be destroyed if scoreboard is destroyed" do 
-      @scoreboard.save
-      @scoreboard.comments.create!(body: "abc", reply: "def")
-      assert_difference"Comment.count", -1 do 
-        @scoreboard.destroy
-      end
-    end
-    
     test "associated favourites should be destroyed" do 
       @scoreboard.save
       @scoreboard.favourites.create!(user_id: 1)
