@@ -516,3 +516,14 @@
 .nested-comment .nested-comment{
     margin-left: 0;
 }
+
+#comment-page{
+    .pagination{ width: 100%;}
+    .comment-load{ 
+        padding: 1%;
+        border-radius: 10px;
+        background-color: #253341; 
+        color: #efefef;
+    }
+}
+

@@ -17,8 +17,11 @@
   <% end %>
 </div>
 
-<div class="comment-list">
+<div id="comment-list">
     <%= render @comments %>
-    
-    <%= will_paginate @comments %>
 </div>
+
+<div id="comment-page">
+    <%= will_paginate @comments  %>
+</div>
+

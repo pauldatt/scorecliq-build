@@ -9,7 +9,11 @@
  <div class="row">
   <div class="col-xs-2 col-sm-1  prof-pic">
       <div class="thumbnail">
-           <%= image_tag @scoreboard.picture.picture.url , class: "prof-default img-responsive" %>
+       <% if comment.user.picture.present? %>
+          <%= image_tag comment.user.picture.url, class: "prof-default img-responsive" %>
+       <% else %>
+          <%= image_tag "blank-prof.jpg", class: "prof-default img-responsive" %>
+       <% end %>
       </div>
   </div>
   

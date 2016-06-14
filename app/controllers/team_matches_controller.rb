@@ -9,11 +9,11 @@ class TeamMatchesController < ApplicationController
         if (params[:selected_team].present?)
              team_id = params[:selected_team]
              @selection = "List all Matches"
-             @games = @scoreboard.team_matches.order("match_date DESC").paginate(page: params[:page], per_page: 15)
+             @games = @scoreboard.team_matches.order("match_date DESC").paginate(page: params[:page], per_page: 10)
              @matches = @games.has_team(team_id)
         else
             @selection = "Search for Matches by Team"
-            @matches = @scoreboard.team_matches.order("match_date DESC").paginate(page: params[:page], per_page: 15)
+            @matches = @scoreboard.team_matches.order("match_date DESC").paginate(page: params[:page], per_page: 10)
         end
         
     end
