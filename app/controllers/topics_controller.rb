@@ -3,7 +3,7 @@ class TopicsController < ApplicationController
     def index 
         @selected = true
         @scoreboard = Scoreboard.find(params[:scoreboard_id])
-        @topics = @scoreboard.topics
+        @topics = @scoreboard.topics.paginate(page: params[:page], per_page: 15)
     end
     
     def new 
@@ -28,8 +28,8 @@ class TopicsController < ApplicationController
     def show
         @scoreboard = Scoreboard.find(params[:scoreboard_id])
         @topic = Topic.find(params[:id])
-        @tools = @topic.comments.no_ancestry
-        @comments = @tools.paginate(page: params[:page], per_page: 15)
+        @parentless = @topic.comments.no_ancestry
+        @comments = @parentless.paginate(page: params[:page], per_page: 15)
         @comment = @topic.comments.build
         @selected = true
     end

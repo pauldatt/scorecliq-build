@@ -2,7 +2,7 @@
 
 <div class="row score-prof-info">
    <div class="col-xs-12 col-sm-3 score-prof-pic">
-         <% if @picture.picture.url.present? %>
+         <% if @picture.picture.present? %>
             <div class="dropdown">
                   <%= link_to "#", class: "prof-dropdown" , data: {:toggle => "dropdown"}, role: "button", aria: {:expanded => "false"} do %>
                    <%= image_tag @picture.picture.url, class: "prof-default img-thumbnail" %>
