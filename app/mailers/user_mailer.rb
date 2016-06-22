@@ -19,19 +19,8 @@ class UserMailer < ApplicationMailer
     @user = user
     mail to: user.email, subject: "Password reset"
   end
-  
-  def send_invitation(scoreboard,email)
-    @scoreboard = scoreboard
-    mail to: email, subject: "Invitation"
-  end
      
 end
   
-  #def non_registered_invitation_email(scoreboard, invitation)
-     #@scoreboard = scoreboard
-     #@invitation = invitation
-     #mail to: invitation.recipient_email, subject: "Please sign up"
-  #end
-  
-#end
+
 

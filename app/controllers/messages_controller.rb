@@ -3,7 +3,7 @@ class MessagesController < ApplicationController
   #will need to be edited to reflect the authentication method we made 
   before_action :validate_message_length, only: [:create]
   
-  before_action :logged_in_user, only: [:create]
+  before_action :logged_in_user
   
   def new
   end

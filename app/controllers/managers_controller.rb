@@ -1,6 +1,6 @@
 class ManagersController < ApplicationController 
     
-before_action :logged_in_user, only: [:create, :delete]
+before_action :logged_in_user
 
 def create 
     @user = User.find(params[:user_id])

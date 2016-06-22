@@ -1,6 +1,6 @@
 class InvitationsController < ApplicationController
     before_action :pick_emails, only: :create
-    before_action :logged_in_user, only: [:new, :create]
+    before_action :logged_in_user
     
     def new
         @selected = true
@@ -15,7 +15,7 @@ class InvitationsController < ApplicationController
     def create
     @scoreboard = Scoreboard.find(params[:scoreboard_id])
      @emails.each do |email|
-     UserMailer.send_invitation(@scoreboard, email).deliver_now
+     InvitationMailer.send_invitation(@scoreboard, email).deliver_now
      end
      if @errors.empty?
       redirect_to new_invitation_path(scoreboard_id: @scoreboard.id)
