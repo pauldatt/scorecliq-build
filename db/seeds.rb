@@ -8,8 +8,8 @@
 
 # end
 
-User.create!(name:  "Kuljinder",
-             email: "div@gmail.ca",
+User.create!(name:  "Divjot",
+             email: "divjot@gmail.ca",
              password:              "foobar12",
              password_confirmation: "foobar12",
              activated: "true",
