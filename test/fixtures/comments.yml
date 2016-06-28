@@ -1,7 +1,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-# comment_a:
-#    body: myprecious
-#    user: divjot
-#    scoreboard: scoreboard_a
+comment_a:
+    body: myprecious
+    user: divjot
+    topic: topic_a
+    
+
    

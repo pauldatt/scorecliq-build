@@ -426,6 +426,7 @@ ALTER SEQUENCE requests_id_seq OWNED BY requests.id;
 
 
 --
+<<<<<<< HEAD
 -- Name: schedules; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -462,6 +463,8 @@ ALTER SEQUENCE schedules_id_seq OWNED BY schedules.id;
 
 
 --
+=======
+>>>>>>> origin/master
 -- Name: schema_migrations; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -842,13 +845,6 @@ ALTER TABLE ONLY requests ALTER COLUMN id SET DEFAULT nextval('requests_id_seq':
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY schedules ALTER COLUMN id SET DEFAULT nextval('schedules_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
---
-
 ALTER TABLE ONLY scoreboards ALTER COLUMN id SET DEFAULT nextval('scoreboards_id_seq'::regclass);
 
 
@@ -995,14 +991,6 @@ ALTER TABLE ONLY pictures
 
 ALTER TABLE ONLY requests
     ADD CONSTRAINT requests_pkey PRIMARY KEY (id);
-
-
---
--- Name: schedules_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
---
-
-ALTER TABLE ONLY schedules
-    ADD CONSTRAINT schedules_pkey PRIMARY KEY (id);
 
 
 --
@@ -1193,13 +1181,6 @@ CREATE INDEX index_requests_on_scoreboard_id ON requests USING btree (scoreboard
 --
 
 CREATE INDEX index_requests_on_user_id ON requests USING btree (user_id);
-
-
---
--- Name: index_schedules_on_scoreboard_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE INDEX index_schedules_on_scoreboard_id ON schedules USING btree (scoreboard_id);
 
 
 --
@@ -1462,8 +1443,6 @@ INSERT INTO schema_migrations (version) VALUES ('20151001052443');
 INSERT INTO schema_migrations (version) VALUES ('20151015143455');
 
 INSERT INTO schema_migrations (version) VALUES ('20151102170716');
-
-INSERT INTO schema_migrations (version) VALUES ('20151120064847');
 
 INSERT INTO schema_migrations (version) VALUES ('20151209160720');
 

@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
 
-before_action :logged_in_user, only: [:new, :create, :destroy]
+before_action :logged_in_user
 
 
 def new

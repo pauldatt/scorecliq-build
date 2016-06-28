@@ -1,6 +1,5 @@
 class RequestsController < ApplicationController
-    
-    before_action :logged_in_user, only: [:create, :accept, :delete]
+    before_action :logged_in_user
     
     def create #sending a request
         @scoreboard = Scoreboard.find(params[:scoreboard_id])

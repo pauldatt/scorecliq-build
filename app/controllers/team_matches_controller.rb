@@ -1,4 +1,5 @@
 class TeamMatchesController < ApplicationController
+    before_action :logged_in_user
     before_action :allowed,       only: :new
     require 'will_paginate/array'
     

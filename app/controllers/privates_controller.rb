@@ -1,6 +1,5 @@
 class PrivatesController < ApplicationController
-  
-  before_action :logged_in_user, only: [:privatize, :unprivatize]
+  before_action :logged_in_user
   
   def privatize
     @scoreboard = Scoreboard.find(params[:scoreboard_id])

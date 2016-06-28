@@ -1,5 +1,5 @@
 class TeamsController < ApplicationController
-  before_action :logged_in_user, only: [:create, :edit, :update, :destroy, :index]
+   before_action :logged_in_user
   
    def index 
     @selected = true
