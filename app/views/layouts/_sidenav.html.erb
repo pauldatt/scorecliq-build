@@ -10,11 +10,9 @@
             <li><%= link_to "My Scoreboards", scoreboards_path %></li>
             <li><%= link_to "Search", search_path %></li>
           </ul>
-        <% end %>
-          
-          <% if @selected %>
+        <% else %>
           <!--SOMEWHERE HERE MAKE SURE TO LIST THE NAME OF THE SCOREBOARD/TRUNCATED MAYBE to show that
-          you're viwing the menu options for that scoreboard & on mobile show on the top-->
+          you're viewing the menu options for that scoreboard & on mobile show on the top-->
            <ul class="nav nav-pills nav-stacked">
               <li>
                   <%= link_to(home_path) do %>
@@ -35,6 +33,6 @@
               <li><%= link_to "Events", scoreboard_events_path(@scoreboard) %></li>
               <li><%= link_to "Discussion", scoreboard_topics_path(@scoreboard) %></li>
            </ul>
-          <% end %>
+        <% end %>
 </div>
 <% end %>

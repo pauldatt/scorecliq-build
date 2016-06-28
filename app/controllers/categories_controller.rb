@@ -19,11 +19,16 @@ class CategoriesController < ApplicationController
     def create 
        @scoreboard = Scoreboard.find(params[:scoreboard_id])
        @category = @scoreboard.categories.build(category_params)
-       if @category.save 
-           flash[:success] = "Category has been created."
-           redirect_to scoreboard_categories_path(@scoreboard)
+       if (@scoreboard.categories.count < 10 )
+           if @category.save 
+               flash[:success] = "Category has been created."
+               redirect_to scoreboard_categories_path(@scoreboard)
+           else
+               flash[:danger] = "Category could not be created successfully."
+               redirect_to scoreboard_categories_path(@scoreboard)
+           end
        else
-           flash[:danger] = "Category could not be created successfully."
+           flash[:danger] = "Only 10 categories can be created per league."
            redirect_to scoreboard_categories_path(@scoreboard)
        end
     end

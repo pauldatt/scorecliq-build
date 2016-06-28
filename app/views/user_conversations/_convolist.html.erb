@@ -1,0 +1,31 @@
+<% @conversations.each do |convo| %>    
+    <div class="conversation-div clearfix">
+        <div class="convo-div">
+            <div class="convo-info">
+            <%= link_to user_conversation_path(current_user,convo) do %>    
+                <div class="convo-subject">
+                     <% if (convo.read == true) %>
+                        <i class="fa fa-circle" aria-hidden="true"></i>
+                     <% end %>
+                     <%= convo.subject %> 
+                </div>
+            <% end %>
+                <div class="last-msg"> <%= truncate(convo.messages.last.body, length: 80) %></div>
+            </div>
+            <div class="convo-with">
+                <div class="recipient"><%= convo.messages.last.user.name %></div>
+                <div class="convo-time"> <%= time_ago_in_words(convo.messages.last.created_at) %> ago </div>
+            </div>
+        </div>
+        <div class="convo-del">
+            <%= link_to deletion_user_conversation_path(current_user, convo), method: :put do %>
+                <i class="fa fa-trash-o fa-lg" aria-hidden="true"></i>
+            <% end %>
+        </div>
+    </div>
+<% end %>
+
+
+
+
+

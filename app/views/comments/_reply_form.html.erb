@@ -1,7 +1,7 @@
 <div class= "row comment-reply-form">
 <%= form_for [@scoreboard, @topic, @comment ], :html => { :id => "new-reply-entry" } do |f| %> 
         <div class="col-xs-12">
-             <%= f.text_area :body, class: "comment-field form-control" %>
+             <%= f.text_area :body, maxlength: 600, class: "comment-field form-control" %>
              <%= f.hidden_field :parent_id %>
              <button type="button" class="btn btn-danger hide-reply-form pull-right">Cancel</button>
              <%= f.submit "Reply", class: "btn btn-primary pull-right" %>

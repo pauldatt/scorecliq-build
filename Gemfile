@@ -17,7 +17,6 @@ gem 'turbolinks',              '2.3.0'
 gem 'jbuilder',                '2.2.3'
 gem 'sdoc',                    '0.4.0', group: :doc
 gem 'ancestry',                '~> 2.1.0'
-gem 'mailboxer'
 gem 'jquery-ui-rails'
 gem 'jquery-turbolinks',       '~> 2.1.0'
 gem 'best_in_place', '~> 3.0.1'
@@ -28,6 +27,7 @@ gem 'pg',             '0.17.1'
 gem 'newrelic_rpm'
 gem 'momentjs-rails', '>= 2.9.0'
 gem 'bootstrap3-datetimepicker-rails', '~> 4.17.37'
+
 
 group :development, :test do
   gem 'byebug',      '3.4.0'

@@ -11,8 +11,12 @@
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav nav-pills navbar-right">
             <% if logged_in? %>
-              <li><a href="#"><i class="fa fa-bell-o fa-lg" aria-hidden="true"></i></a></li>
-              <li><a href="#"><i class="fa fa-envelope-o fa-lg" aria-hidden="true"></i></a></li>
+              
+              <li>
+                <%= link_to user_conversations_path(current_user) do %>
+                 <i class="fa fa-envelope-o fa-lg" aria-hidden="true"></i>
+                <% end %>
+              </li>
               <li role="presentation" class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                       <i class="fa fa-user fa-lg" aria-hidden="true"></i>

@@ -10,7 +10,7 @@
 <div class="row new-comment-form">
     <%= form_for [@scoreboard,@topic, @comment], :html => { :id => "new-comment-entry" } do |f| %> 
        <div class="col-xs-12 comment-form-content">
-          <%= f.text_area :body, class: "comment-field form-control" %>
+          <%= f.text_area :body, maxlength: 600, class: "comment-field form-control" %>
           <button type="button" class="btn btn-danger hide-comment pull-right">Cancel</button>
           <%= f.submit "Post",:data => {:disable_with => "..."}, class: "btn btn-primary pull-right" %>
        </div>

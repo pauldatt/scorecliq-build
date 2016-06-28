@@ -24,6 +24,7 @@ body {
     /* Margin bottom by footer height */
     padding-bottom: 80px;
     color: #555;
+    
 }
 
 // THE BOOTSTRAP  SIDEGUTTER LENGTH REGULATED BY ROWS FOR COLUMNS IS CANCELLED FOR MAIN CONTAINER 
@@ -178,10 +179,10 @@ body {
 /* ERROR MESSAGES */
 /* ----------------------------------------------- */
 #error_explanation {
-    color: red;
-    ul {
+    .error-div {
         color: red;
-        margin: 0 0 15px 0;
+        padding: 1%;
+        border-bottom: solid 1px red;
     }
 }
 
@@ -211,3 +212,13 @@ body {
 
 // if you dont want to display the old and new month's dates
 // // .datepicker table tr td.old, .datepicker table tr td.new { visibility: hidden; }
+
+/* ----------------------------------------------- */
+/* GENERIC HEADER */
+/* ----------------------------------------------- */
+
+.generic-header{
+    padding-bottom: 1%;
+    border-bottom: solid 1px #555;
+}
+

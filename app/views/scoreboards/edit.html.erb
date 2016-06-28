@@ -1,18 +1,31 @@
-<div class="score-contain">
-      <h1 class="score-header-form"></h1>
-      <div class="score-form">
-       
-        <h1>Update your scoreboard.</h1>
+<h2 class="generic-header">UPDATE LEAGUE PAGE</h2>
 
-        <%= form_for(@scoreboard) do |f| %>
-      
-        <%= render 'shared/error_messages', object: f.object %>
-        
-        <%= render 'scoreboardform', :f => f %>
+<div class="row">
+    <div class="col-xs-12 col-sm-6">
+         <%= form_for(@scoreboard) do |f| %>
          
-        <%= f.submit "Update", :data => {:disable_with => "Updating..."} %>
-    
+         <%= render 'shared/error_messages', object: f.object %>
+         
+         <div class="form-group">
+             <%= f.label :Name_of_League_Page %>
+             <%= f.text_field :name_of_scoreboard, maxlength: 80, class: "form-control"  %>
+         </div>
+         
+         <div class="form-group">
+             <%= f.label :Name_of_your_organization %>
+             <%= f.text_field :name_of_organization, maxlength: 60, class: "form-control" %>
+         </div>
+         
+         <div class="form-group">
+              <%= f.label :Name_of_your_sport_or_activity %>
+              <%= f.text_field :name_of_activity, maxlength: 60, class: "form-control" %>
+         </div>
+        
+          <%= f.submit "Update", :data => {:disable_with => "Updating..."}, class: "btn btn-primary form-control" %>
+         
          <% end %>
-      </div>
-  </div>
+    </div>
 </div>
+
+
+    

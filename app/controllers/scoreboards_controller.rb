@@ -1,8 +1,8 @@
 class ScoreboardsController < ApplicationController
  
  before_action :logged_in_user, only: [:new, :create, :show, :index]
- before_action :correct_user, only: [:destroy, :edit, :update]
- before_action :scoreboard_owner, only: [:admins]
+ before_action :scoreboard_owner, only: [:destroy, :edit, :update, :admins]
+
  
  require 'will_paginate/array'
 
@@ -39,8 +39,8 @@ class ScoreboardsController < ApplicationController
  def followers
   @selected = true
   @scoreboard = Scoreboard.find(params[:id])
-  @fags = @scoreboard.favourited_by.search(params[:search]).sort_by{ |a| a.name.downcase }
-  @followers = @fags.paginate(page: params[:page], per_page: 50)
+  @users = @scoreboard.favourited_by.search(params[:search]).sort_by{ |a| a.name.downcase }
+  @followers = @users.paginate(page: params[:page], per_page: 50)
  end
  
  def admins
@@ -65,6 +65,7 @@ class ScoreboardsController < ApplicationController
  
  def edit
   @scoreboard = Scoreboard.find(params[:id])
+  @selected= true
  end
  
  def update
@@ -159,16 +160,11 @@ private
                                                                 # the exact names written in the scoreboard model.
  end
  
- 
-  def correct_user
-    @user = Scoreboard.find(params[:id]).user
-    redirect_to scoreboards_path unless current_user?(@user)
-  end
   
   def scoreboard_owner
    @scoreboard = Scoreboard.find(params[:id])
    if @scoreboard.user != current_user
-    flash[:danger] = "Access is restricted to owners only."
+    flash[:danger] = "Access is restricted to owner only."
     redirect_to @scoreboard
    end
   end

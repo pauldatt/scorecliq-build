@@ -14,10 +14,6 @@ class User < ActiveRecord::Base
   #allows you to access the favourite scoreboards associated with the user
   has_many :favourite_scoreboards, through: :favourites, source: :scoreboard, dependent: :destroy #each user can have many favourited scoreboards. 
                                                                              # many scoreboard_id for a single user
-  
-  #the mailboxer gem is being accessed by the following code
-  acts_as_messageable
-  
   #each user has one picture
   has_one :picture, as: :pictureable, dependent: :destroy
   
@@ -36,6 +32,12 @@ class User < ActiveRecord::Base
   has_many :managers, dependent: :destroy
   
   has_many :managed_scoreboards, through: :managers, source: :scoreboard, dependent: :destroy
+  
+  #following 3 lines of code are all for personal messaging 
+  has_many :user_conversations, dependent: :destroy
+  has_many :conversations, through: :user_conversations, dependent: :destroy
+  
+  has_many :messages, through: :conversations, dependent: :destroy
   
   attr_accessor :remember_token, :activation_token, :reset_token
   before_save   :downcase_email 
@@ -131,11 +133,6 @@ class User < ActiveRecord::Base
       self.activation_digest = User.digest(activation_token)
     end
     
-    
-    #this should work for the mailboxer gem to get email from the user 
-    def mailboxer_email(user)
-    return email 
-    end
     
 end
   

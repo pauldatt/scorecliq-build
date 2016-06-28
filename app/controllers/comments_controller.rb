@@ -2,6 +2,7 @@ class CommentsController < ApplicationController
 
 before_action :logged_in_user, only: [:new, :create, :destroy]
 
+
 def new
  @scoreboard = Scoreboard.find(params[:scoreboard_id])
  @topic = Topic.find(params[:topic_id])
@@ -17,7 +18,7 @@ def create
      flash[:success] = "Comment posted successfully"
   else
     redirect_to scoreboard_topic_path(@scoreboard,@topic)
-    flash[:danger] = 'Comment cannot be blank and must be less than 140 characters'
+    flash[:danger] = 'Comment cannot be blank and must be less than 600 characters'
   end
 end
 
@@ -31,6 +32,7 @@ end
 
 
 private
+ 
 
  def comment_params
   params.require(:comment).permit(:body, :parent_id).merge(user_id: current_user.id) #the merge function allows each comment ot be associated with the user

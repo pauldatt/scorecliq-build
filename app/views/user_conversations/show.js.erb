@@ -1,0 +1,8 @@
+$('.message-list').append('<%= j render @messages %>');
+
+<% if @messages.next_page %>
+    $('.pagination').replaceWith('<%= j will_paginate @messages %>');
+    $('.pagination').hide();
+<% else %>
+    $('.pagination, #load-messages').remove();
+<% end %>

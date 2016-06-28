@@ -1,0 +1,125 @@
+/* ----------------------------------------------- */
+/* This css files deals with everything to do with that isn't tied to a scoreboard  */
+/* ----------------------------------------------- */
+/* ----------------------------------------------- */
+/* NEW CONVERSATION PAGE  */
+/* ----------------------------------------------- */
+.new-conversation-header{
+    padding-bottom: 1%;
+    border-bottom: solid 1px #555;
+}
+
+.conversation-form{
+    .message-field{
+        height: 100px;
+        max-width: 100%;
+        max-height: 100px;
+    }
+}
+
+/* ----------------------------------------------- */
+/* CONVERSATION INDEX PAGE  */
+/* ----------------------------------------------- */
+
+.conversation-index-header{
+    padding-bottom: 1%;
+    border-bottom: solid 1px #555;
+}
+
+
+
+.conversation-list{
+    margin-top: 10px;
+    .conversation-div{
+        margin-top: 10px;
+        .convo-div{
+            width: 90%;
+            float: left;
+            border-bottom: solid 2px #555;
+            .convo-info{
+                width: 80%;
+                float: left;
+                a{
+                    text-decoration: none;
+                    .convo-subject{
+                        background-color: #1c75bf;
+                        color: #efefef;
+                        font-size: 16px;
+                        padding: 5px 3px;
+                        .fa{ color: #d83434; }
+                    }
+                    .convo-subject:hover{ background-color: #058eae; }
+                }
+                .last-msg{
+                    font-size: 11px;
+                    padding: 5px 2px;
+                }
+                
+            }
+            .convo-with{
+                width: 20%;
+                float: left;
+                color: #efefef;
+                .recipient{
+                    font-size: 13px;
+                    padding: 7px 5px;
+                    background-color: #253341;
+                    text-align: center;
+                }
+                .convo-time{
+                    font-size: 10px;
+                    padding: 6px 2px;
+                    color: #555;
+                    text-align: center;
+                }
+            }
+        }
+        .convo-del{
+            width: 10%;
+            float: left;
+            text-align: center;
+            padding-top: 27px;
+        }
+    }
+        
+}
+
+/* ----------------------------------------------- */
+/* CONVERSATION SHOW PAGE  */
+/* ----------------------------------------------- */
+
+.conversation-show-header{
+    padding-bottom: 1%;
+    border-bottom: solid 1px #555;
+    a{ text-decoration: none; }
+}
+
+.messages-form{
+    margin-bottom: 10px;
+    .message-content{
+        padding: 0;
+        .message-field{
+           margin-bottom: 10px;
+        }
+    }
+}
+
+.message-list{
+    margin-top: 10px;
+    .message-div{
+        border-bottom: 2px solid #555;
+        margin-bottom: 5px;
+        .msg-info{
+            padding: 1%;
+            color: #efefef;
+            font-size: 12px;
+            background-color: #1c75bf;
+            a{ 
+                color: #efefef;
+                text-decoration: none;
+            }
+            a:hover{ color: #253341; }
+        }
+        .msg-body{ padding: 1%; }
+    }
+}

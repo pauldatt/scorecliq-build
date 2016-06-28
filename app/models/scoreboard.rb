@@ -1,4 +1,5 @@
 class Scoreboard < ActiveRecord::Base
+
   # before_create method for status
   before_create :associate_status
   
@@ -55,9 +56,9 @@ class Scoreboard < ActiveRecord::Base
   # *************////// Below are all the validations on the scoreboard columns //////*************
   
   # Scoreboard information Validation
-  validates :name_of_scoreboard, presence: true, length: { maximum: 50 }
-  validates :name_of_organization, presence: true, length: { maximum: 50 } 
-  validates :name_of_activity, presence: true, length: { maximum: 50 }
+  validates :name_of_scoreboard, presence: true, length: { maximum: 80 }
+  validates :name_of_organization, presence: true, length: { maximum: 60 } 
+  validates :name_of_activity, presence: true, length: { maximum: 60 }
   validates :user_id, presence: true
   
    # *************////// Below is the search method for scoreboard and searching associations //////*************

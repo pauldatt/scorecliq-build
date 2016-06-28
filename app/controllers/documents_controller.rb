@@ -8,12 +8,17 @@ class DocumentsController < ApplicationController
         @scoreboard = Scoreboard.find(params[:scoreboard_id])
         @category = Category.find(params[:category_id])
         @document = @category.documents.build(document_params)
-        if @document.save
-            flash[:success] = "Document uploaded successfully."
-            redirect_to scoreboard_category_path(@scoreboard, @category) 
+        if (@category.documents.count < 25)
+            if @document.save
+                flash[:success] = "Document uploaded successfully."
+                redirect_to scoreboard_category_path(@scoreboard, @category) 
+            else
+                flash[:danger] = "Failed to Upload. Please check accepted file formats and try again."
+                redirect_to scoreboard_category_path(@scoreboard, @category) 
+            end
         else
-            flash[:danger] = "Failed to Upload. Please check accepted file formats and try again."
-            redirect_to scoreboard_category_path(@scoreboard, @category) 
+            flash[:danger] = "Only 25 documents can be uploaded per category."
+            redirect_to scoreboard_category_path(@scoreboard, @category)
         end
     end
     

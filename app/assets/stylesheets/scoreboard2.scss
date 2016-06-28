@@ -37,7 +37,7 @@
                 height: 77px;
                 border-right: 1px solid #555;
                 .time{
-                    font-size: 90%;
+                    font-size: 12px;
                     background-color: #253341;
                     color: #efefef;
                 }
@@ -75,7 +75,7 @@
                     }
                 }
                 .location{
-                    font-size: 90%;
+                    font-size: 12px;
                     background-color: #253341;
                     color: #efefef;
                 }
@@ -390,7 +390,7 @@
 }
 
 /* ----------------------------------------------- */
-/* TOPIC SHOW PAGE */
+/* TOPIC INDEX PAGE */
 /* ----------------------------------------------- */
 
 .topics-header{
@@ -426,6 +426,9 @@
                 }
                 .topic-name:hover{ background-color: #058eae; }
             }
+            .topic-creator a{ color: #1c75bf; }
+            .topic-creator a:hover { color: #058eae; }
+            
         }
         .comments-count{ 
             padding: 0;

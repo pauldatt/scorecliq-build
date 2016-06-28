@@ -1,0 +1,23 @@
+<h2 class="new-conversation-header">To: <%= @user.name %></h2>
+
+<div class="row conversation-form">
+  <%= form_for(@conversation) do |f| %>
+    <%= f.hidden_field :recipient_id, :value => @user.id %>
+    
+    <div class="col-xs-12 col-sm-6">
+        <%= f.fields_for :conversation do |convo| %>
+        <div class="form-group">
+            <%= convo.label :subject %>
+            <%= convo.text_field :subject, maxlength: 80, class: "form-control" %>
+        </div>
+            <%= convo.fields_for :messages do |msg| %>
+            <div class="form-group">
+                <%= msg.label :Your_message %>
+                <%= msg.text_area :body, maxlength: 600, class: "form-control message-field" %>
+            </div>
+            <% end %>
+        <% end %>
+    <%= f.submit "Send", class: "form-control btn btn-primary" %>
+    </div>
+  <% end %>
+</div>

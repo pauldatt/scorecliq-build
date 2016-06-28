@@ -37,7 +37,6 @@
       <h4> Owner: <%= link_to @scoreboard.user.name, user_path(@scoreboard.user) %></h4>
       <h4> Club Name: <%= @scoreboard.name_of_organization %></h4>
       <h4> Sport/Activity: <%= @scoreboard.name_of_activity %> </h4>
-      <h4> Location: <%= @scoreboard.country %> </h4>
       <% if @scoreboard.privatization == true %> 
       <h4> Access: Private </h4>
       <% else %>
@@ -78,7 +77,7 @@
        <% end %>
          <% if current_user.sent_requests.include?(@scoreboard) %> 
             <% if @scoreboard.pending_requests.include?(current_user) %>
-              <%= link_to "Request Pending", "#", class: "btn btn-primary disabled" %>
+              <%= link_to "Req. Pending", "#", class: "btn btn-primary disabled" %>
             <% end %>
          <% end %>
         <% if !current_user.favourite_scoreboards.include?(@scoreboard) %> <!--if its not included in the favourtie scoreboard array -->

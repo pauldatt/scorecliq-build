@@ -19,23 +19,21 @@ Rails.application.routes.draw do
   put  'unassign_captain'         => 'team_members#unassign'
   post 'assign_manager'           => 'managers#create'
   delete 'unassign_manager'       => 'managers#delete'
+  #delete this after 
+  delete 'swag'                   => 'user_conversations#swag'
+
   
   resources :users do
       resources :pictures, only: [:create, :update, :destroy]
+      resources :conversations, controller: "user_conversations" do 
+        member do
+          put :deletion
+        end
+        resources :messages 
+      end
   end
   resources :account_activations, only: [:edit]
   resources :password_resets,     only: [:new, :create, :edit, :update]
-  resources :conversations, only: [:index, :show, :destroy] do
-    member do
-     post :reply
-     post :restore
-     post :mark_as_read
-    end
-    collection do
-       delete :empty_trash
-    end
-  end
-  resources :messages, only: [:new, :create]
   resources :scoreboards do 
     member do
       post   :favourite

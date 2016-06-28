@@ -1,14 +1,34 @@
 <% provide(:title, "Sign-up") %>
+<h2 class="generic-header"> SIGN-UP!</h2>
 
-<section class="user-sign-up">
-    <div class="row">
-        <h2> Sign-up!</h2>
-    </div>
-    
-    <div class="row">
-        <div class="col span-1-of-3 box">
-            <%= render 'users/signupform' %>
-        </div>
-    </div>
-</section>
+<div class="row">
+    <div class="col-sm-8 col-md-6">
+        <%= form_for(@user) do |f| %>
+            <%= render 'shared/error_messages', object: f.object %>
+            <div class="form-group">
+             <%= f.label :name %>
+             <%= f.text_field :name, maxlength: 50, class: "form-control", placeholder: "First and last name." %>
+            </div>
+            
+            <div class="form-group">
+             <%= f.label :email %>
+             <%= f.text_field :email, maxlength: 255, class: "form-control", placeholder: "Enter a valid email address." %>
+            </div>
+            
+            <div class="form-group">
+             <%= f.label :password %>
+             <%= f.password_field :password, class: "form-control", placeholder: "Must be atleast 6 characters long." %>
+            </div>
+            
+            <div class="form-group">
+             <%= f.label :password_confirmation %>
+             <%= f.password_field :password_confirmation, class: "form-control" %> 
+            </div>
 
+            <%= f.submit "Sign-up",:data => {:disable_with => "Registering..."},  class: "btn btn-primary form-control" %>
+        <% end %> 
+    </div>
+</div>
+
+
+ 

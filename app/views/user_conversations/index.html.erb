@@ -1,0 +1,13 @@
+<h2 class="conversation-index-header">YOUR CONVERSATIONS</h2>
+
+<%= link_to "kill", swag_path ,method: :delete, class: "btn btn-danger" %>
+<div class="conversation-list">
+    <%= render "convolist" %>
+</div>
+
+<!--css from new team member will apply here to the pages -->
+<div class="row">
+    <div class="col-xs-12 new-member-pages">
+        <%= will_paginate @conversations %>
+    </div>
+</div>

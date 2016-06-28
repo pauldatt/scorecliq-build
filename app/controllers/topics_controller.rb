@@ -1,9 +1,10 @@
 class TopicsController < ApplicationController
+    before_action :logged_in_user
     
     def index 
         @selected = true
         @scoreboard = Scoreboard.find(params[:scoreboard_id])
-        @topics = @scoreboard.topics.paginate(page: params[:page], per_page: 15)
+        @topics = @scoreboard.topics.paginate(page: params[:page], per_page: 10)
     end
     
     def new 
@@ -21,7 +22,7 @@ class TopicsController < ApplicationController
             flash[:success] = "Topic created successfully."
         else
             redirect_to new_scoreboard_topic_path(@scoreboard)
-            flash[:danger] = "Error. Please refresh page and try again."
+            flash[:danger] = "Error. Please try again."
         end
     end
     

@@ -1,0 +1,28 @@
+<h3 class="conversation-show-header">
+    <%= link_to user_conversations_path(current_user) do %>
+        <i class="fa fa-arrow-circle-o-left" aria-hidden="true"></i>
+    <% end %>
+    <%= @conversation.subject %>
+</h3>
+
+<div class=" row messages-form">
+    <%= form_for [current_user,@conversation.conversation, @message] do |f| %> 
+       <div class="col-xs-12 message-content">
+          <%= f.text_area :body, maxlength: 600, class: "form-control message-field" %>
+          <%= f.submit "Add Message",:data => {:disable_with => "Sending..."}, class: "btn btn-primary pull-right" %>
+       </div>
+     <% end %>
+</div>
+
+<div class="message-list">
+    <%= render @messages %>
+</div>
+
+
+<div class="message-pagination">
+      <%= will_paginate @messages %>
+</div>
+
+<% if @messages.next_page %>
+    <div id="load-messages" class="btn btn-primary form-control">Load More Messages</div>
+<% end %>

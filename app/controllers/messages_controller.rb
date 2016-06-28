@@ -1,28 +1,37 @@
 class MessagesController < ApplicationController
-  #before_action :authenticate_user! same as the conversation controller. this
-  #will need to be edited to reflect the authentication method we made 
-  before_action :validate_message_length, only: [:create]
-  
-  before_action :logged_in_user, only: [:create]
-  
-  def new
-  end
-
-  def create
-    recipients = User.where(id: params['recipients'])
-    conversation = current_user.send_message(recipients, params[:message][:body], params[:message][:subject]).conversation
-    flash[:success] = "Message has been sent!"
-    redirect_to conversation_path(conversation)
-  end
-  
-  private
-  
-  def validate_message_length
-    if params[:message][:body].length > 10
-      flash[:success] ="Message length too long"
-      redirect_to new_message_path
+    before_action :logged_in_user
+    
+    def create
+     @conversation = Conversation.find(params[:conversation_id])
+     @message = @conversation.messages.build(message_params)
+      if @message.save
+         undeletion_unread
+         redirect_to :back
+         flash[:success] = "Message Sent Successfully"
+      else
+        redirect_to :back
+        flash[:danger] = 'Message must be between 1-600 characters'
+      end
     end
-  end
-  
-end
+    
+    private 
+    
+    def undeletion_unread
+        @conversation.user_conversations.each do |c|
+            if c.user != current_user
+                if c.deleted == true
+                    c.update_attributes(:deleted => "false")
+                end
+                if c.read == (false || nil )
+                    c.update_attributes(:read => "true")
+                end
+            end
+        end
+    end
+    
 
+    
+    def message_params
+        params.require(:message).permit(:body).merge(user_id: current_user.id) 
+    end
+end

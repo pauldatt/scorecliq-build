@@ -10,13 +10,13 @@
         <%= form_for [@scoreboard, @topic] do |f| %>
             <div class="form-group">
                 <%= f.label :Topic_Name %>
-                <%= f.text_field :subject, class: "form-control"  %>
+                <%= f.text_field :subject, maxlength: 80, class: "form-control"  %>
             </div>
             
             <%= f.fields_for :comments do |c| %>
                 <div class="form-group">
                     <%= c.label :Your_Comment %>
-                    <%= c.text_area :body, class: "form-control" %>
+                    <%= c.text_area :body, maxlength: 600, class: "form-control" %>
                     <%= c.hidden_field :user_id, :value => current_user.id %>
                 </div>
             <% end %>
