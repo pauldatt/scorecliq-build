@@ -140,7 +140,7 @@
                 <%= link_to @scoreboard.user.name, user_path(@scoreboard.user) %>(owner)
              </div>
              <div class="col-xs-2 admin-msg">
-                  <%= link_to "#" do %>
+                  <%= link_to new_user_conversation_path(@scoreboard.user) do %>
                      <i class="fa fa-envelope" aria-hidden="true"></i>
                   <% end %> 
               </div>

@@ -4,6 +4,7 @@ class UserConversationsController < ApplicationController
     
     def index
         @convos = current_user.user_conversations.where('deleted = ? OR deleted IS ?', false, nil).order("created_at DESC")
+        # @convos = current_user.user_conversations.where('deleted = ? OR deleted IS ?', false, nil).order("created_at DESC")
         @conversations = @convos.paginate(page: params[:page], per_page: 10)
     end
     

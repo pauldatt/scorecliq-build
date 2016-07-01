@@ -8,12 +8,50 @@
 
 # # end
 
-# # User.create!(name:  "khalesi",
-# #              email: "khalesi@gmail.com",
-# #              password:              "1dragons",
-# #              password_confirmation: "1dragons",
-# #              activated: "true",
-# #              admin: "true")
+Teams.create!(name: "team1",
+              win: 1,
+              loss: 2,
+              tie: 3,
+              scoreboard_id: 1000)
+
+# User.create!(name:  "khalesi",
+#              email: "khalesi@gmail.com",
+#              password:              "1dragons",
+#              password_confirmation: "1dragons",
+#              activated: "true",
+#              admin: "true")
+
+
+# User.create!(name:  "Arya",
+#              email: "Arya@gmail.com",
+#              password:              "1dragons",
+#              password_confirmation: "1dragons",
+#              activated: "true",
+#              admin: "true")
+
+
+# User.create!(name:  "Jon Snow",
+#              email: "Jonsnow@gmail.com",
+#              password:              "1dragons",
+#              password_confirmation: "1dragons",
+#              activated: "true",
+#              admin: "true")
+
+
+# User.create!(name:  "Sansa",
+#              email: "Sansa@gmail.com",
+#              password:              "1dragons",
+#              password_confirmation: "1dragons",
+#              activated: "true",
+#              admin: "true")
+
+
+# User.create!(name:  "Tyrion",
+#              email: "Tyrion@gmail.com",
+#              password:              "1dragons",
+#              password_confirmation: "1dragons",
+#              activated: "true",
+#              admin: "true")
 
 # 1.times do
 #     Message.create!(body: "this is a message",
@@ -24,23 +62,23 @@
 #                           this message is possibly by swag.this message is possibly by swag.this message is possibly by swag.this message is possibly by swag.this message is possibly by swag.
 #                           this message is possibly by swag.this message is possibly by swag.this message is possibly by swag.this message is possibly by swag.",
 #                     user_id: 6613,
-#                     conversation_id: 16)
+#                     conversation_id: 4)
                     
 #     Message.create!(body: "4",
 #                     user_id: 6613,
-#                     conversation_id: 16)
+#                     conversation_id: 4)
     
 #     Message.create!(body: "5",
 #                     user_id: 6613,
-#                     conversation_id: 16)
+#                     conversation_id: 4)
                     
 #     Message.create!(body: "6",
 #                     user_id: 6613,
-#                     conversation_id: 16)
+#                     conversation_id: 4)
                     
 #     Message.create!(body: "7",
 #                     user_id: 6613,
-#                     conversation_id: 16)
+#                     conversation_id: 4)
                     
 #     Message.create!(body: "8",
 #                     user_id: 6613,
@@ -148,4 +186,8 @@
 
 # end
 
+# users = User.all
+# users.each do |user| 
+#     Scoreboard.find_by(:id => 2).favourited_by << user
+# end
 
