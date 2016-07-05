@@ -36,7 +36,10 @@ Rails.application.configure do
   config.assets.digest = true
 
   # `config.assets.precompile` and `config.assets.version` have moved to config/initializers/assets.rb
-  # config.assets.precompile += %w( *.js *.css *.eot *.woff *.ttf *.svg )
+  config.assets.precompile += [
+        'twitter/bootstrap/glyphicons-halflings.png',
+        'twitter/bootstrap/glyphicons-halflings-white.png'
+      ]
   
   # Specifies the header that your server uses for sending files.
   # config.action_dispatch.x_sendfile_header = 'X-Sendfile' # for Apache
