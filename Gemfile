@@ -30,6 +30,7 @@ gem 'momentjs-rails', '>= 2.9.0'
 gem 'bootstrap3-datetimepicker-rails', '~> 4.17.37'
 gem 'dalli'
 gem 'memcachier'
+gem 'font_assets'
 
 group :development, :test do
   gem 'byebug',      '3.4.0'

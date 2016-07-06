@@ -1,3 +1,4 @@
+<% provide(:title, "Search") %>
 <div id="search">
 <%= form_tag search_path, :method => 'get' do %>
   <%= text_field_tag :search, params[:search], placeholder: "search for a scoreboard!" %>

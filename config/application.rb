@@ -25,5 +25,8 @@ module ScoreApp
     
     #SQL schema format
     config.active_record.schema_format = :sql
+    
+    config.font_assets.origin = '*'
+    
   end
 end
