@@ -30,6 +30,7 @@ class ScoreboardsController < ApplicationController
   @selected = true
   @scoreboard = Scoreboard.find_by_id(params[:id])
   @requests = Request.where(:scoreboard_id => @scoreboard.id)
+  @leagueprof = true
   @pictureable = @scoreboard
   @picture =  @pictureable.picture || @pictureable.build_picture
   @status =  @scoreboard.status || @scoreboard.build_status
@@ -57,8 +58,9 @@ class ScoreboardsController < ApplicationController
  
  
   def index
-   @owned_scoreboards = current_user.scoreboards.paginate(:page => params[:owned_page], :per_page => 5)
-   @followed_scoreboards= current_user.favourite_scoreboards.paginate(:page => params[:follow_page], :per_page => 5)
+   @owned_scoreboards = current_user.scoreboards
+   @followed_scoreboards= current_user.favourite_scoreboards
+   @mypages = true
   end
     
  #Update

@@ -22,9 +22,10 @@ class MessagesController < ApplicationController
                 if c.deleted == true
                     c.update_attributes(:deleted => "false")
                 end
-                if c.read == (false || nil )
-                    c.update_attributes(:read => "true")
-                end
+                c.update_attributes(:read => "true")
+            end
+            if c.user == current_user
+                c.touch
             end
         end
     end

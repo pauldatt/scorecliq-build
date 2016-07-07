@@ -1,0 +1,49 @@
+<h3 class="dash-header">
+    Welcome <%= current_user.name %>!
+</h3>
+
+<div class="row">
+    <div class="col-xs-12 col-sm-3 col-md-3 dash-options">
+        <div class="dash-plan">
+            <div class="plan-label">
+               Your Plan:
+            </div>
+            <div class="plan-type">
+                Individual
+            </div>
+            <div class="plan-button">
+                <%= link_to "Upgrade", "#", class: "btn btn-primary form-control" %>
+            </div>
+        </div>
+        <div class="dash-create">
+             <%= link_to new_scoreboard_path do %>
+                 <div class="create-link">
+                     Create a page for your league/club
+                 </div>
+            <% end %>
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-9 col-md-9 dash-info">
+        <div class="dash-generic-1">
+            <div class="generic-text">
+                Scorecliq has just been launched. Our goal is to tailor this application to suit
+                our customers needs. As with any new application, there are bugs in the code we may not have 
+                caught. Please help us make this application better for you by reporting bugs using our feedback form.
+            </div>
+            <div class="generic-link">
+                <%= link_to "Provide Feedback!", "#", class: "btn btn-primary" %>
+            </div>
+        </div>
+        <div class="dash-generic-2">
+            <div class="generic-text">
+                New to the site or too much information to take in all at once? We've all been there! 
+                We know using a new application can be overwhelming, therefore we have created a guide
+                for our beloved customers! If you are confused as to what you should be doing on this application
+                use our site guide to give yourself a hand!
+            </div>
+            <div class="generic-link">
+                <%= link_to "View Site Guide", "#", class: "btn btn-primary" %>
+            </div>
+        </div>
+    </div>
+</div>

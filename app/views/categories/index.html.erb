@@ -7,7 +7,19 @@
 
 
 <div class="category-list">
-    <%= render 'categorylist' %>
+    <% if @categories.any? %>
+       <%= render 'categorylist' %>
+    <% elsif manager_or_owner?(@scoreboard, current_user)%>
+      <div class="default-div">
+          There are no documents uploaded right now. In order to upload documents, you must
+          first use the "Create Category" button to create a category for the documents e.g Score, Waivers. Then, you may add documents
+          to the Category.
+      </div>
+   <% else %>
+       <div class="default-div">
+          No documents have been uploaded.  
+      </div>
+   <% end %>
 </div>
 
 <% if manager_or_owner?(@scoreboard, current_user) %>

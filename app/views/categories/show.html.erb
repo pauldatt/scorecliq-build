@@ -9,6 +9,17 @@
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#documentmodal">Upload Document</button>
 
 <div class="document-list">
-    <%= render @documents %>
+    <% if @documents.any? %>
+       <%= render @documents %>
+    <% elsif manager_or_owner?(@scoreboard, current_user)%>
+      <div class="default-div">
+          No documents have been added to <%= @category.name %>. Please use the "Upload Document" button 
+          to upload documents to this category. 
+      </div>
+   <% else %>
+       <div class="default-div">
+          No documents have been uploaded to <%= @category.name %>.  
+      </div>
+   <% end %>
 </div>
 <%= render 'documents/documentform' %>

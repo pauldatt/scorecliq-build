@@ -6,18 +6,20 @@
             <span class="sr-only">Toggle navigation</span>
             <a href="#"><i class="fa fa-bars fa-lg" aria-hidden="true"></i></a>
           </button>
-          <%= link_to "SCORECLIQ", home_path, class: "navbar-brand" %>
+          <%= link_to home_path do %>
+             <%= image_tag "logo.png", class: "navbar-brand" %>
+          <% end %>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav nav-pills navbar-right">
+          <ul class="nav nav-pills navbar-right custom-top">
             <% if logged_in? %>
               
-              <li>
+              <li <% if @convopage %> class="active" <%end%>>
                 <%= link_to user_conversations_path(current_user) do %>
                  <i class="fa fa-envelope-o fa-lg" aria-hidden="true"></i>
                 <% end %>
               </li>
-              <li role="presentation" class="dropdown">
+              <li role="presentation" class="dropdown <% if @userpage %> active <%end%>">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                       <i class="fa fa-user fa-lg" aria-hidden="true"></i>
                       <span class="caret"></span>

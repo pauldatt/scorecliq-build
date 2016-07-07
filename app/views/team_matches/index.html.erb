@@ -21,5 +21,16 @@
 
 
 <div class="match-list">
-   <%= render 'match_list' %>
+   <% if @matches.any? %>
+      <%= render 'match_list' %>
+   <% elsif manager_or_owner?(@scoreboard, current_user)%>
+      <div class="default-div">
+          There are no matches to show currently. If you have teams already created on the 
+          "Teams" page, you can create matches amongst the teams using the "Add Matches" button. 
+      </div>
+   <% else %>
+       <div class="default-div">
+          There are no matches available to be shown.  
+      </div>
+   <% end %>
 </div>

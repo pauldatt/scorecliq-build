@@ -1,11 +1,12 @@
 class UserConversationsController < ApplicationController
     before_action :logged_in_user
     before_action :validate_conversation, only: :create
+    before_action :conversation_security, only: :show
     
     def index
-        @convos = current_user.user_conversations.where('deleted = ? OR deleted IS ?', false, nil).order("created_at DESC")
-        # @convos = current_user.user_conversations.where('deleted = ? OR deleted IS ?', false, nil).order("created_at DESC")
+        @convos = current_user.user_conversations.where('deleted = ? OR deleted IS ?', false, nil).order("updated_at DESC")
         @conversations = @convos.paginate(page: params[:page], per_page: 10)
+        @convopage = true
     end
     
     def new 
@@ -14,6 +15,7 @@ class UserConversationsController < ApplicationController
         @user = User.find(params[:user_id])
         @conversation = @user.user_conversations.build
         @conversation.build_conversation.messages.build
+        @convopage = true
     end
     
     def create
@@ -29,9 +31,10 @@ class UserConversationsController < ApplicationController
     
     def show
         @conversation = UserConversation.find params[:id]
-        @conversation.update_attributes(:read => "false")
+        @conversation.update_columns(read: "false")
         @messages = @conversation.messages.order("created_at DESC").paginate(page: params[:page], per_page: 20)
         @message = Message.new
+        @convopage = true
         respond_to do |format|
             format.html
             format.js
@@ -47,14 +50,14 @@ class UserConversationsController < ApplicationController
         flash[:success] = "The conversation was successfully deleted."
     end
     
-    def swag
-        @conversations = UserConversation.all
-        @conversations.each do |d|
-            d.destroy
-        end
-        flash[:success] = "everyone gone"
-        redirect_to user_conversations_path(current_user)
-    end
+    # def swag
+    #     @conversations = UserConversation.all
+    #     @conversations.each do |d|
+    #         d.destroy
+    #     end
+    #     flash[:success] = "everyone gone"
+    #     redirect_to user_conversations_path(current_user)
+    # end
     
     private 
     
@@ -84,6 +87,12 @@ class UserConversationsController < ApplicationController
         end
     end
     
-        
-            
+    def conversation_security
+      @conversation = UserConversation.find params[:id]
+      if current_user != @conversation.user 
+          flash[:danger] = "Access Denied! You can't access other's messages."
+          redirect_to user_conversations_path(current_user)
+      end
+    end
+    
 end

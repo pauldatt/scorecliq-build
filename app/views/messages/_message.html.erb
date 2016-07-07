@@ -4,7 +4,7 @@
                <%= link_to message.user.name, user_path(message.user) %> says:
            </span>
            <span class="pull-right">
-               <%= message.created_at.strftime("%Y/%m/%d") %>
+               <%= message.created_at.strftime("%m/%d/%Y") %> | <%= message.created_at.strftime("%H:%M") %>
            </span>
        </div>
        <div class="col-xs-12 msg-body">

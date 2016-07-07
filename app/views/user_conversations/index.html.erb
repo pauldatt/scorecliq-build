@@ -1,8 +1,15 @@
-<h2 class="conversation-index-header">YOUR CONVERSATIONS</h2>
+<h2 class="conversation-index-header">YOUR MESSAGES</h2>
 
-<%= link_to "kill", swag_path ,method: :delete, class: "btn btn-danger" %>
 <div class="conversation-list">
-    <%= render "convolist" %>
+    <% if @conversations.any? %>
+        <%= render "convolist" %>
+    <% else %>
+        <div class="row default-div">
+            <div class="col-xs-12">
+                You don't have any messages at the moment. 
+            </div>
+        </div>
+    <% end %>
 </div>
 
 <!--css from new team member will apply here to the pages -->

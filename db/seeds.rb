@@ -21,6 +21,8 @@ Teams.create!(name: "team1",
 #              activated: "true",
 #              admin: "true")
 
+<<<<<<< HEAD
+=======
 
 # User.create!(name:  "Arya",
 #              email: "Arya@gmail.com",
@@ -53,6 +55,7 @@ Teams.create!(name: "team1",
 #              activated: "true",
 #              admin: "true")
 
+>>>>>>> origin/master
 # 1.times do
 #     Message.create!(body: "this is a message",
 #                     user_id: 1,
@@ -62,6 +65,25 @@ Teams.create!(name: "team1",
 #                           this message is possibly by swag.this message is possibly by swag.this message is possibly by swag.this message is possibly by swag.this message is possibly by swag.
 #                           this message is possibly by swag.this message is possibly by swag.this message is possibly by swag.this message is possibly by swag.",
 #                     user_id: 6613,
+<<<<<<< HEAD
+#                     conversation_id: 16)
+                    
+#     Message.create!(body: "4",
+#                     user_id: 6613,
+#                     conversation_id: 16)
+    
+#     Message.create!(body: "5",
+#                     user_id: 6613,
+#                     conversation_id: 16)
+                    
+#     Message.create!(body: "6",
+#                     user_id: 6613,
+#                     conversation_id: 16)
+                    
+#     Message.create!(body: "7",
+#                     user_id: 6613,
+#                     conversation_id: 16)
+=======
 #                     conversation_id: 4)
                     
 #     Message.create!(body: "4",
@@ -79,6 +101,7 @@ Teams.create!(name: "team1",
 #     Message.create!(body: "7",
 #                     user_id: 6613,
 #                     conversation_id: 4)
+>>>>>>> origin/master
                     
 #     Message.create!(body: "8",
 #                     user_id: 6613,
@@ -113,6 +136,25 @@ Teams.create!(name: "team1",
 #                     conversation_id: 16)
 # end
 
+#kjnkn
+# 30.times do 
+# Comment.create!(body: "kuljinder is skinny, enough said!",
+#                 user_id: 1,
+#                 topic_id: 40,)
+# Comment.create!(body: "Iskara lawrence is bae, bhabi a teri kuljinder.",
+#                 user_id: 1,
+#                 topic_id: 40,)
+# Comment.create!(body: "All the PRETTY girls are kuljinders bhabis, cause by deafult they belong to me",
+#                 user_id: 1,
+#                 topic_id: 40,)
+# Comment.create!(body: "Baneet is the LARGEST piece of shit ever",
+#                 user_id: 1,
+#                 topic_id: 40,)
+# Comment.create!(body: "Baneet is fat ugly and stinks. Still better than kuljinder",
+#                 user_id: 1,
+#                 topic_id: 40,)
+# end
+
 # #kjnkn
 # # 30.times do 
 # # Comment.create!(body: "kuljinder is skinny, enough said!",
@@ -144,6 +186,23 @@ Teams.create!(name: "team1",
 # #              admin: "true")
 
 # 200.times do              
+# Scoreboard.create!(name_of_scoreboard: "league of shadows",
+#                   name_of_organization: "Undeground assins",
+#                   name_of_activity: "Traning batman to protect gotham",
+#                   user_id: 1,
+#                   states: "NY",
+#                   country: "USA",
+#                   cities: "Gotham")
+
+# Scoreboard.create!(name_of_scoreboard: "X-men",
+#                   name_of_organization: "Mutants Unite",
+#                   name_of_activity: "Fighting Evil",
+#                   user_id: 1,
+#                   states: "NY",
+#                   country: "USA",
+#                   cities: "Gotham")
+
+# 100.times do              
 # Scoreboard.create!(name_of_scoreboard: "league of shadows",
 #                   name_of_organization: "Undeground assins",
 #                   name_of_activity: "Traning batman to protect gotham",

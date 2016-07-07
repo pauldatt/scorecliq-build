@@ -3,12 +3,14 @@ class TopicsController < ApplicationController
     
     def index 
         @selected = true
+        @leaguetalk = true
         @scoreboard = Scoreboard.find(params[:scoreboard_id])
         @topics = @scoreboard.topics.paginate(page: params[:page], per_page: 10)
     end
     
     def new 
         @selected = true
+        @leaguetalk = true 
         @scoreboard = Scoreboard.find(params[:scoreboard_id])
         @topic = Topic.new
         @comment = @topic.comments.build
@@ -33,6 +35,7 @@ class TopicsController < ApplicationController
         @comments = @parentless.paginate(page: params[:page], per_page: 15)
         @comment = @topic.comments.build
         @selected = true
+        @leaguetalk = true 
     end
     
     def destroy 

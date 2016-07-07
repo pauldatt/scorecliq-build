@@ -1,0 +1,42 @@
+<div class="search-div"> 
+<%= link_to scoreboard_path(league) do %>
+ <div class="row league-link">
+      <div class="col-xs-11 league-name">
+       <%= league.name_of_scoreboard %> 
+      </div>
+      <% if league.privatization == true %>
+        <div class="col-xs-1 league-private">
+           <i class="fa fa-lock pull-right" aria-hidden="true"></i>
+        </div>
+      <% end %>
+ </div>
+<% end %>
+ 
+ <div class="row">
+   <%= link_to scoreboard_path(league) do %>
+      <div class="col-xs-2 col-sm-2 col-md-1  league-pic">
+          <div class="thumbnail">
+           <% if league.picture.present? %>
+              <%= image_tag league.picture.picture.url, class: "prof-default img-responsive" %>
+           <% else %>
+              <%= image_tag "blank-prof.jpg", class: "prof-default img-responsive" %>
+           <% end %>
+          </div>
+      </div>
+   <% end %>
+  
+  <div class="col-xs-10 col-sm-10 col-md-11 league-info">
+       <div class="row">
+            <div class="col-xs-12 no-pad">
+             Org./Club: <%= league.name_of_organization %>
+            </div>
+            <div class="col-xs-12 no-pad">
+             Sport/Activity: <%= league.name_of_activity %>
+            </div>
+            <div class="col-xs-12 no-pad">
+             Admin: <%= link_to league.user.name, user_path(league.user) %>
+            </div>
+       </div>
+  </div>
+ </div>
+</div>

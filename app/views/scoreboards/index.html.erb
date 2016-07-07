@@ -1,37 +1,31 @@
-<% provide(:title, "League Profiles") %>
-<section class="scoreboard-view">
-    <div class="row">
-        
-        <div class="col span-1-of-2 box">
-            <h3>Scoreboards You Own</h3>
-            
-            <% if @owned_scoreboards.any? %>
-                  <%= render "ownedboards" %>
-            <% else %>
-                  <div class="no-own-index">
-                    <p>
-                       You don't own any Scoreboards. Do you want to create one
-                       for your organization or league? 
-                    </p>
-                   <%= link_to "Create New Scoreboard", new_scoreboard_path , class:"btn btn-full" %>
-                  </div>
-             <% end %>
-        </div>
-        
-        <div class="col span-1-of-2 box">
-            <h3>Scoreboards You Follow</h3>
-            
-            <% if @followed_scoreboards.any? %>
-                  <%= render "followedboards" %>
-            <% else %>
-                  <div class="no-follow-index">
-                     <p>
-                        You don't follow any Scoreboards. How about searching for 
-                        an organization you're a part of?
-                     </p>
-                     <%= link_to "Search for Scoreboards", search_path , class: "btn btn-full" %>
-                  </div>
-             <% end %> 
-        </div>
-    </div>
-</section>
+<h2 class="generic-header">MY LEAGUE PAGES</h2>
+
+<h4 class="pages-label"> OWNED PAGES </h3>
+
+<div class="owned-list">
+    <% if @owned_scoreboards.any? %>
+       <%= render 'ownedboards' %>
+    <% else %>
+       <div class="row">
+           <div class="col-xs-12 owned-default">
+               You don't own any league pages currently. If you would like to set up a page for your
+               league or club, please <%= link_to "create a new page.",new_scoreboard_path %>
+           </div>
+       </div>
+    <% end %>
+</div>
+
+<h4 class="pages-label"> FOLLOWED PAGES</h3>
+
+<div class="followed-list">
+    <% if @followed_scoreboards.any? %>
+        <%= render 'followedboards' %>
+    <% else %>
+          <div class="row">
+           <div class="col-xs-12 followed-default">
+               You don't follow any league pages currently. Please use the <%= link_to "search", search_path %> page to 
+               search for a league page for your organization/club. 
+           </div>
+       </div>
+    <% end %>
+</div>
