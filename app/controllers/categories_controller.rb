@@ -3,6 +3,7 @@ class CategoriesController < ApplicationController
     
     def index 
         @selected = true 
+        @leaguedocs = true
         @scoreboard = Scoreboard.find(params[:scoreboard_id])
         @category = Category.new
         @categories = @scoreboard.categories
@@ -11,6 +12,7 @@ class CategoriesController < ApplicationController
     
     def new 
         @selected = true
+        @leaguedocs = true
         @scoreboard = Scoreboard.find(params[:scoreboard_id])
         @category = Category.new
     end
@@ -39,6 +41,7 @@ class CategoriesController < ApplicationController
         @document = Document.new
         @documents = @category.documents
         @selected = true
+        @leaguedocs = true
     end
     
     def edit

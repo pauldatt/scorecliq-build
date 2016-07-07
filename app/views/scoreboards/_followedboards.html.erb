@@ -1,18 +1,19 @@
 <% @followed_scoreboards.each do |followed| %> 
 
- <div class= "follow-board-div clearfix">
-     <div class= "follow-label-group">
-         <div class= "follow-name-label">Name: <%= link_to followed.name_of_scoreboard, scoreboard_path(followed) %></div>
-         <div class= "follow-organization-label">Organization: <%= followed.name_of_organization %></div>
-         <div class= "follow-sport-label">Sport/Activity: <%= followed.name_of_activity %></div>
+ <div class="row followed-div">
+  <div class="col-xs-10 followed-content">
+    <%= link_to scoreboard_path(followed) do %>
+     <div class="score-name">
+       <%= followed.name_of_scoreboard %>
      </div>
-     
-      <%= link_to "Unfollow", favourite_scoreboard_path(followed, type: "unfav-index", remote: true), method: :delete, class: 'btn-s btn-full' %>
-      
+    <% end %>
+     <div class="score-org">
+       Organization: <%= followed.name_of_organization %>
+     </div>
+     <div class="score-activity">
+      Activity/Club: <%= followed.name_of_activity %>
+     </div>
+  </div>
  </div>
 
 <% end %> 
-
-<div class= "follow-pages">
-<%= will_paginate @followed_scoreboards, :param_name => 'follow_page' %> 
-</div>

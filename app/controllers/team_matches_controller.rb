@@ -5,6 +5,7 @@ class TeamMatchesController < ApplicationController
     
     def index
         @selected = true
+        @leaguematch = true
         @scoreboard = Scoreboard.find(params[:scoreboard_id])
         @teams = @scoreboard.teams 
         if (params[:selected_team].present?)
@@ -21,6 +22,7 @@ class TeamMatchesController < ApplicationController
     
     def new
        @selected = true
+       @leaguematch = true
        @scoreboard = Scoreboard.find(params[:scoreboard_id])
        @team_match = TeamMatch.new
        @teams = @scoreboard.teams

@@ -1,25 +1,73 @@
-
-<% provide(:title, "Home") %>
-
-<section class="post-login-option">
-    <div class="row">
-        <div class="col span-1-of-3 view-home">
-            <%= image_tag("my-img.jpg", class: "view-score") %>
-            <%= link_to "View Your Scoreboards", scoreboards_path , class: 'btn btn-full' %>
-
-        </div>
+<section class="home-img">
+    <div class="container-fluid">
+        <% flash.each do |message_type,  message| %>
+               <div class="alert alert-<%= message_type %>"><%= message %></div>
+        <% end %>
         
-        <div class="col span-1-of-3 create-home">
-            <%= image_tag("create-img.jpg", class: "create-score") %>
-            <%= link_to "Create New Scoreboard", new_scoreboard_path , class:"btn btn-full"%>
-
+        <div class="row home-header">
+            <div class="col-xs-12 col-sm-6 col-sm-offset-3 sub-content">
+                Scorecliq is a nice solution to all your problems in life. Don't
+                see that guru but instead use our solution. Some more meaningless
+                text to make it better.<br>
+                <a>
+                    <i class="fa fa-chevron-circle-down fa-2x" aria-hidden="true"></i>
+                </a>
+            </div>
         </div>
-        
-        <div class="col span-1-of-3 search-home">
-            <%= image_tag("search-img.jpg", class: "search-score") %>
-            <%= link_to "Search For Scoreboards",search_path , class:"btn btn-full"%>
+    </div>
+</section>
 
-            
+<section class="features">
+    <div class="container-fluid">
+        <h2 class="feature-head">
+             Check Out Our Features!
+        </h2>
+        
+        <div class="row">
+            <div class="col-xs-6 col-sm-4 col-md-4 feature-column">
+                <i class="fa fa-calendar-plus-o" aria-hidden="true"></i>
+                <h3>Swag Plus</h3>
+                <p>We do a lot of swag things. Here is an example
+                of this swag thing. I do it quite a bit. Are you sure
+                though? Yes 100%.</p>
+            </div>
+            <div class="col-xs-6 col-sm-4 col-md-4 feature-column">
+                 <i class="fa fa-calendar-plus-o" aria-hidden="true"></i>
+                <h3>Swag Plus</h3>
+                <p>We do a lot of swag things. Here is an example
+                of this swag thing. I do it quite a bit. Are you sure
+                though? Yes 100%.</p>
+            </div>
+            <div class="col-xs-6 col-sm-4 col-md-4 feature-column">
+                 <i class="fa fa-calendar-plus-o" aria-hidden="true"></i>
+                <h3>Swag Plus</h3>
+                <p>We do a lot of swag things. Here is an example
+                of this swag thing. I do it quite a bit. Are you sure
+                though? Yes 100%.</p>
+            </div>
+       
+        
+            <div class="col-xs-6 col-sm-4 col-md-4 feature-column">
+                 <i class="fa fa-calendar-plus-o" aria-hidden="true"></i>
+                <h3>Swag Plus</h3>
+                <p>We do a lot of swag things. Here is an example
+                of this swag thing. I do it quite a bit. Are you sure
+                though? Yes 100%.</p>
+            </div>
+            <div class="col-xs-6 col-sm-4 col-md-4 feature-column">
+                 <i class="fa fa-calendar-plus-o" aria-hidden="true"></i>
+                <h3>Swag Plus</h3>
+                <p>We do a lot of swag things. Here is an example
+                of this swag thing. I do it quite a bit. Are you sure
+                though? Yes 100%.</p>
+            </div>
+            <div class="col-xs-6 col-sm-4 col-md-4 feature-column">
+                 <i class="fa fa-calendar-plus-o" aria-hidden="true"></i>
+                <h3>Swag Plus</h3>
+                <p>We do a lot of swag things. Here is an example
+                of this swag thing. I do it quite a bit. Are you sure
+                though? Yes 100%.</p>
+            </div>
         </div>
     </div>
 </section>

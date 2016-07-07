@@ -5,12 +5,14 @@ class EventsController < ApplicationController
     
     def index
         @selected = true
+        @leagueevent = true
         @scoreboard = Scoreboard.find(params[:scoreboard_id])
         @events = @scoreboard.events.order("event_date DESC").paginate(page: params[:page], per_page: 5)
     end
     
     def new 
         @selected = true
+        @leagueevent = true 
         @scoreboard = Scoreboard.find(params[:scoreboard_id])
         @event = Event.new
     end
@@ -35,6 +37,7 @@ class EventsController < ApplicationController
         @scoreboard = Scoreboard.find(params[:scoreboard_id])
         @event = Event.find(params[:id])
         @selected = true
+        @leagueevent = true
     end
     
     def update

@@ -14,28 +14,24 @@
 </head>
  <body>
    <%= render 'layouts/header' %>
-
+    
+    <% if logged_in? %>
       <div class="container-fluid">
               <div class="row">
-                <%= render "layouts/sidenav" %>
-                
-              <% if logged_in? %>
-                <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-                    <% flash.each do |message_type,  message| %>
-                       <div class="alert alert-<%= message_type %>"><%= message %></div>
-                    <% end %>
-                  <%= yield %>
-                </div>
-              <% else %>
-                <div class="col-xs-12 main">
-                    <% flash.each do |message_type,  message| %>
-                       <div class="alert alert-<%= message_type %>"><%= message %></div>
-                    <% end %>
-                  <%= yield %>
-                </div>
-              <% end %>
+                    <%= render "layouts/sidenav" %>
+                    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+                        <% flash.each do |message_type,  message| %>
+                           <div class="alert alert-<%= message_type %>"><%= message %></div>
+                        <% end %>
+                      <%= yield %>
+                    </div>
               </div>
       </div>
+    <% else %>
+        <section class="pre-main">
+            <%= yield %>
+        </section>
+    <% end %>
       
    <!--<%= debug(params) if Rails.env.development? %>-->
    <%= render "layouts/footer" %>

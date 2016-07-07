@@ -7,6 +7,7 @@ class TeamMembersController < ApplicationController
     
     def new 
         @selected = true
+        @leagueteam = true
         @scoreboard = Scoreboard.find(params[:scoreboard_id])
         @team = Team.find(params[:team_id])
         @team_members = @team.members

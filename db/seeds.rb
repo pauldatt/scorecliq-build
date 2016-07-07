@@ -15,65 +15,65 @@
 #              activated: "true",
 #              admin: "true")
 
-1.times do
-    Message.create!(body: "this is a message",
-                    user_id: 1,
-                    conversation_id: 16)
+# 1.times do
+#     Message.create!(body: "this is a message",
+#                     user_id: 1,
+#                     conversation_id: 16)
     
-    Message.create!(body: "this message is possibly by swag.this message is possibly by swag.this message is possibly by swag.this message is possibly by swag.this message is possibly by swag.
-                          this message is possibly by swag.this message is possibly by swag.this message is possibly by swag.this message is possibly by swag.this message is possibly by swag.
-                          this message is possibly by swag.this message is possibly by swag.this message is possibly by swag.this message is possibly by swag.",
-                    user_id: 6613,
-                    conversation_id: 16)
+#     Message.create!(body: "this message is possibly by swag.this message is possibly by swag.this message is possibly by swag.this message is possibly by swag.this message is possibly by swag.
+#                           this message is possibly by swag.this message is possibly by swag.this message is possibly by swag.this message is possibly by swag.this message is possibly by swag.
+#                           this message is possibly by swag.this message is possibly by swag.this message is possibly by swag.this message is possibly by swag.",
+#                     user_id: 6613,
+#                     conversation_id: 16)
                     
-    Message.create!(body: "4",
-                    user_id: 6613,
-                    conversation_id: 16)
+#     Message.create!(body: "4",
+#                     user_id: 6613,
+#                     conversation_id: 16)
     
-    Message.create!(body: "5",
-                    user_id: 6613,
-                    conversation_id: 16)
+#     Message.create!(body: "5",
+#                     user_id: 6613,
+#                     conversation_id: 16)
                     
-    Message.create!(body: "6",
-                    user_id: 6613,
-                    conversation_id: 16)
+#     Message.create!(body: "6",
+#                     user_id: 6613,
+#                     conversation_id: 16)
                     
-    Message.create!(body: "7",
-                    user_id: 6613,
-                    conversation_id: 16)
+#     Message.create!(body: "7",
+#                     user_id: 6613,
+#                     conversation_id: 16)
                     
-    Message.create!(body: "8",
-                    user_id: 6613,
-                    conversation_id: 16)
+#     Message.create!(body: "8",
+#                     user_id: 6613,
+#                     conversation_id: 16)
                     
-    Message.create!(body: "9",
-                    user_id: 6613,
-                    conversation_id: 16)
+#     Message.create!(body: "9",
+#                     user_id: 6613,
+#                     conversation_id: 16)
                     
-    Message.create!(body: "10",
-                    user_id: 6613,
-                    conversation_id: 16)
+#     Message.create!(body: "10",
+#                     user_id: 6613,
+#                     conversation_id: 16)
     
-    Message.create!(body: "11",
-                    user_id: 6613,
-                    conversation_id: 16)
+#     Message.create!(body: "11",
+#                     user_id: 6613,
+#                     conversation_id: 16)
                     
-    Message.create!(body: "12",
-                    user_id: 6613,
-                    conversation_id: 16)
+#     Message.create!(body: "12",
+#                     user_id: 6613,
+#                     conversation_id: 16)
                     
-    Message.create!(body: "13",
-                    user_id: 6613,
-                    conversation_id: 16)
+#     Message.create!(body: "13",
+#                     user_id: 6613,
+#                     conversation_id: 16)
                     
-    Message.create!(body: "14",
-                    user_id: 6613,
-                    conversation_id: 16)
+#     Message.create!(body: "14",
+#                     user_id: 6613,
+#                     conversation_id: 16)
                     
-    Message.create!(body: "15",
-                    user_id: 6613,
-                    conversation_id: 16)
-end
+#     Message.create!(body: "15",
+#                     user_id: 6613,
+#                     conversation_id: 16)
+# end
 
 #kjnkn
 # 30.times do 
@@ -105,7 +105,7 @@ end
 #              activated: "true",
 #              admin: "true")
 
-200.times do              
+100.times do              
 Scoreboard.create!(name_of_scoreboard: "league of shadows",
                   name_of_organization: "Undeground assins",
                   name_of_activity: "Traning batman to protect gotham",

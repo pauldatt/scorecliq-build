@@ -2,6 +2,15 @@
 /* This css files deals with everything to do with that isn't tied to a scoreboard  */
 /* ----------------------------------------------- */
 /* ----------------------------------------------- */
+/* CUSTOM HOVER SIDEBAR AND HEADER  */
+/* ----------------------------------------------- */
+.custom-top > li > a:hover {  color: #1c75bf; }
+
+
+.custom-side > li > a:hover {  background-color: #428bca;}
+
+
+/* ----------------------------------------------- */
 /* NEW CONVERSATION PAGE  */
 /* ----------------------------------------------- */
 .new-conversation-header{
@@ -79,6 +88,8 @@
             float: left;
             text-align: center;
             padding-top: 27px;
+            .fa { color: #555; }
+            .fa:hover { color: #d83434; }
         }
     }
         
@@ -121,5 +132,130 @@
             a:hover{ color: #253341; }
         }
         .msg-body{ padding: 1%; }
+    }
+}
+
+/* ----------------------------------------------- */
+/* USER PROFILE PAGE */
+/* ----------------------------------------------- */
+
+.user-prof-header{
+    padding: 1%;
+    background-color: #253341;
+    color: #efefef;
+    border-radius: 10px;
+    text-align: center;
+}
+
+
+.empty-div{
+    height: 150px;
+}
+
+/* ----------------------------------------------- */
+/* DASHBOARD PAGE  */
+/* ----------------------------------------------- */
+
+.dash-header{
+    padding: 1%;
+    background-color: #253341;
+    color: #efefef;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.dash-options{
+    padding: 0;
+    .dash-plan{
+        .plan-label{
+            padding: 1%;
+            background-color: #253341;
+            color: #efefef;
+            font-size: 25px;
+            text-align: center;
+        }
+        .plan-type{
+            padding: 10px 1%;
+            background-color: #1c75bf;
+            color: #efefef;
+            font-size: 20px;
+            text-align: center;
+        }
+        .btn{
+            border-radius: 0;
+        }
+    }
+    .dash-create{
+        margin-top: 10px;
+        a{
+            text-decoration: none;
+            color: #efefef;
+            .create-link{
+                padding:  20px 1%;
+                background-color: #058eae;
+                font-size: 25px;
+                text-align: center;
+                border-radius: 10px;
+            }
+            .create-link:hover{
+                background-color: #216273;
+            }
+        }
+    }
+}
+
+.dash-info{
+    padding-right: 0;
+    .dash-generic-1, .dash-generic-2{
+        padding: 1%;
+        background-color: #253341;
+        color: #efefef;
+        font-size: 20px;
+        text-align: center;
+        border-radius: 10px;
+        .generic-link{
+            margin-top: 5px;
+        }
+    }
+    .dash-generic-2{
+        margin-top: 10px;
+    }
+}
+
+/* ----------------------------------------------- */
+/* SEARCH PAGE  */
+/* ----------------------------------------------- */
+
+.search-bar{
+    .search-field{
+        padding: 1%;
+    }
+    .search-submit{
+        padding: 1%;
+    }
+}
+
+.search-display{
+    margin-top: 10px;
+    .search-div{
+        border-bottom: 1px solid #555;
+        margin-bottom: 10px;
+        .league-link{
+            background-color: #1c75bf;
+            color: #efefef;
+            font-size: 18px;
+            .league-name{ padding: 1%; }
+            .league-private{ padding: 1%; }
+        }
+        .league-link:hover { background-color: #058eae; }
+        .league-pic{ 
+            padding-left: 0; 
+            padding-right: 0;
+            .thumbnail{ margin-bottom: 0; }
+        }
+        .league-info{ 
+            font-weight: 500; 
+            .no-pad{ padding-left: 0; }
+        }
     }
 }

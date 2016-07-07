@@ -3,15 +3,22 @@
 <%= link_to "Create Topic", new_scoreboard_topic_path(@scoreboard), class: "btn btn-primary" %>
 
 <div class="topic-list">
-    <div class="topic-label row">
-        <div class="col-xs-9 col-sm-10 label-1">
-            Topic Name
+    <% if @topics.any? %>
+        <div class="topic-label row">
+            <div class="col-xs-9 col-sm-10 label-1">
+                Topic Name
+            </div>
+            <div class="col-xs-2 col-sm-1 label-1 lab-2">
+                Posts
+            </div>
         </div>
-        <div class="col-xs-2 col-sm-1 label-1 lab-2">
-            Posts
-        </div>
-    </div>
-    <%= render @topics %>
+        <%= render @topics %>
+   <% else %>
+       <div class="default-div">
+          There are discussion topics to be shown. If you have a question for the league members or 
+          any other general inquiry, please use the "Create Topic" button to create a discussion topic. 
+      </div>
+   <% end %>
 </div>
 
 <!--css from new team member will apply here to the pages -->

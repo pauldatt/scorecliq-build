@@ -26,7 +26,22 @@
 </div>
 
 <div class="team-list">
-    <%= render @teams.reject(&:new_record?) %>
+    <% if @teams.any? %>
+       <%= render @teams.reject(&:new_record?) %>
+    <% elsif manager_or_owner?(@scoreboard, current_user) %>
+       <div class="row default-div">
+           <div class="col-xs-11">
+               Currently, there are no teams listed. You may add teams to your league page by 
+               using the "Add Team" button. 
+           </div>
+       </div>
+    <% else %>
+      <div class="row default-div">
+           <div class="col-xs-11">
+                No teams have been added to the league. Teams may be added to this page by the admins of the league. 
+           </div>
+       </div>
+    <% end %>
 </div>
 
 <div class="row new-team-form">

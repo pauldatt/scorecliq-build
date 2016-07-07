@@ -3,13 +3,16 @@ class TeamsController < ApplicationController
   
    def index 
     @selected = true
+    @leagueteam = true
     @scoreboard = Scoreboard.find(params[:scoreboard_id])
     @teams = @scoreboard.teams.sort_by{ |t| t.name.downcase }
     @team = @scoreboard.teams.new 
+    
    end
    
    def show
     @selected = true
+    @leagueteam = true
     @scoreboard = Scoreboard.find(params[:scoreboard_id])
     @team = Team.find(params[:id])
     @team_members = @team.members

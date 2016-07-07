@@ -10,6 +10,17 @@
 
 
 <div class="event-list">
-    <%= render 'event_list' %>
+    <% if @events.any? %>
+       <%= render 'event_list' %>
+    <% elsif manager_or_owner?(@scoreboard, current_user)%>
+      <div class="default-div">
+          There are no upcoming events. If you would like to schedule an event, please use the "Create Event" 
+          button. 
+      </div>
+   <% else %>
+       <div class="default-div">
+          There are no upcoming events. 
+      </div>
+   <% end %>
 </div>
 

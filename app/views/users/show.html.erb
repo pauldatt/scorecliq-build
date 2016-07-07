@@ -1,85 +1,53 @@
 <% provide(:title, @user.name) %>
 
-<section class="user-profile">
-    <div class="row">
-        <h2><%= @user.name %></h2>
-    </div>
-    
-    <div class="row">
-        <div class="col span-1-of-3">
-            
-            <div class="prof-pic">
-                <% if @picture.picture.url.present? %>
-                   <%= image_tag @picture.picture.url, class: "user-prof" %>
-                <% else %>
-                   <%= image_tag("blank-prof.jpg", class: "user-prof") %>
-                <% end %>  
+<h3 class="user-prof-header">
+    <%= @user.name %>
+</h3>
+
+<div class="row user-prof">
+    <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3">
+         <% if @user.picture.picture.present? %>
+          <div class="dropdown">
+                  <%= link_to "#", class: "prof-dropdown" , data: {:toggle => "dropdown"}, role: "button", aria: {:expanded => "false"} do %>
+                   <%= image_tag @user.picture.picture.url, class: "prof-default img-responsive" %>
+               <% end %>
+               <% if current_user == @user %>
+                  <ul class="dropdown-menu">
+                     <li><a id="score-prof-upload">Upload</a></li>
+                     <li role="separator" class="divider"></li>
+                     <li> <%= link_to "Remove", [@pictureable, @picture], method: :delete, data: {confirm: "Are you sure you want to delete your picture?"} %></li>
+                     <li role="separator" class="divider"></li>
+                     <li><a id="stub-dropdown"> Cancel</a></li>
+                  </ul>
+               <% end %>
             </div>
-                
-            <div class="prof-buttons">
-                <% if current_user != @user %>
-                   <%= link_to "Message", "#", class: "btn-s btn-full user-message" %>
-                <% end %>
-    
-                <% if current_user==@user %>
-                    <% if @picture.picture.url.present? %>
-                        <%= render 'pictures/editphoto' %>
-                        <%= link_to "Del Pic", [@pictureable, @picture], method: :delete, data: {confirm: "Are you sure you want to delete your picture!"}, class: "user-del-photo btn-s btn-full" %>
-                    <% else %>
-                        <%= render "pictures/uploadphoto" %>
-                    <% end %>
-                <% end %>
-             </div>
-        </div>
-        
-        <div class="col span-1-of-3 box user-owns">
-            <h3> Scoreboards <%= @user.name %> owns: </h3>
-            
-            <% if @owned_scoreboards.any? %>
-                  <%= render "userown" %>
-            <% else %>
-                 <p>
-                     <%= @user.name %> does not own any Scoreboards.
-                 <p>
-            <% end %>
-            
-        </div>
-        
-        <div class="col span-1-of-3 box user-follows">
-            <h3> Scoreboards <%= @user.name %> follows:</h3>
-            
-            <% if @followed_scoreboards.any? %>
-                  <%= render "userfollow" %>
-            <% else %>
-                  <p>
-                      <%= @user.name %> does not follow any Scoreboards.
-                  </p>
-            <% end %>
-        </div>
+         <% else %>
+          <div class="dropdown">
+               <%= link_to "#", class: "prof-dropdown" , data: {:toggle => "dropdown"}, role: "button", aria: {:expanded => "false"} do %>
+                   <%= image_tag "blank-prof.jpg", class: "prof-default img-responsive" %>
+               <% end %>
+               <% if current_user == @user %>
+               <ul class="dropdown-menu">
+                  <li><a id="score-prof-upload">Upload</a> </li>
+                  <li role="separator" class="divider"></li>
+                  <li><a id="stub-dropdown"> Cancel</a></li>
+               </ul>
+               <% end %>
+            </div>
+         <% end %>
     </div>
-</section>
-
-
-<!--Below is the Modal to Message User -->
-<div class="modal">
-    <div class="modal-dialog">
-          <div class="modal-content">
-           
-             <div class="modal-header">
-              
-             </div>
-             
-             <div class="modal-body">
-                
-             </div>
-             
-             <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-             </div>
-             
-          </div>
+    <div class="col-xs-6 col-sm-9 col-md-9 col-lg-9">
+        <% if current_user != @user %>
+          <%= link_to "Send Message", new_user_conversation_path(@user), class: "btn btn-primary pull-right" %>
+        <% end %>
     </div>
 </div>
+
+<div class="empty-div">
+    <!--this div is only for extra room for the dropdownmenu-->
+</div>
+
+<%= render "pictures/uploadphoto" %>
 
 
      

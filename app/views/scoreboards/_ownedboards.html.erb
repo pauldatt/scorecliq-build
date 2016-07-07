@@ -1,18 +1,29 @@
-
 <% @owned_scoreboards.each do |owned| %>
- <div class="owned-board-div clearfix">
-  <div class="owned-label-group">
-      <div class="owned-name-label"> Name: <%= link_to owned.name_of_scoreboard , scoreboard_path(owned) %> </div>
-      <div class="owned-organization-label"> Organization: <%= owned.name_of_organization %></div>
-      <div class="owned-sport-label"> Sport/Activity: <%= owned.name_of_activity %></div>
+ <div class="row owned-div clearfix">
+  <div class="col-xs-10 owned-content">
+    <%= link_to scoreboard_path(owned) do %>
+     <div class="score-name">
+       <%= owned.name_of_scoreboard %>
+     </div>
+    <% end %>
+     <div class="score-org">
+       Organization: <%= owned.name_of_organization %>
+     </div>
+     <div class="score-activity">
+      Activity/Club: <%= owned.name_of_activity %>
+     </div>
   </div>
-  <div class="owned-button-group">
-      <div> <%= link_to "Edit", edit_scoreboard_path(owned), class: "btn-s btn-full" %> </div>
-      <div> <%= link_to "Del", owned,  method: :delete, data: { confirm: "Are you sure you want to delete the scoreboard."}, class: "btn-s btn-full bottom-button" %></div>
+  <div class="col-xs-2 owned-options">
+     <div class="owned-edit">
+        <%= link_to edit_scoreboard_path(owned) do %>
+            <i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i>
+        <% end %>
+     </div>
+     <div class="owned-del">
+     <%= link_to  scoreboard_path(owned), method: :delete, data: { confirm: "Are you sure you want to delete the league page? All associated records will be deleted as well. This action is not reversible."} do %>
+         <i class="fa fa-trash-o fa-lg" aria-hidden="true"></i>
+     <% end %>
+     </div>
   </div>
  </div>
 <% end %>
-
-<div class="owned-pages">
-<%= will_paginate @owned_scoreboards, :param_name => 'owned_page',inner_window: 1, outer_window: 1 %>
-</div>

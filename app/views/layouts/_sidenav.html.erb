@@ -1,25 +1,25 @@
 <% if logged_in? %>
 <div class="col-sm-3 col-md-2 sidebar">
         <% if !@selected %>
-          <ul class="nav nav-pills nav-stacked">
-            <li class="active"> 
+          <ul class="nav nav-pills nav-stacked custom-side">
+            <li <% if @dash %> class="active" <%end%>> 
               <%= link_to( home_path) do %>
                Dashboard <span class="sr-only">(current)</span>
               <% end %>
             </li>
-            <li><%= link_to "My Scoreboards", scoreboards_path %></li>
-            <li><%= link_to "Search", search_path %></li>
+            <li <% if @mypages %> class="active" <%end%>><%= link_to "My League Pages", scoreboards_path %></li>
+            <li <% if @searchpage %> class="active" <%end%>><%= link_to "Search", search_path %></li>
           </ul>
         <% else %>
           <!--SOMEWHERE HERE MAKE SURE TO LIST THE NAME OF THE SCOREBOARD/TRUNCATED MAYBE to show that
           you're viewing the menu options for that scoreboard & on mobile show on the top-->
-           <ul class="nav nav-pills nav-stacked">
+           <ul class="nav nav-pills nav-stacked custom-side">
               <li>
                   <%= link_to(home_path) do %>
                   <span class="glyphicon glyphicon-chevron-left"></span> Dashboard
-                  <%  end %>
+                  <% end %>
               </li>
-              <li>
+              <li <%if @leagueprof%> class="active" <% end %>>
                 <%= link_to scoreboard_path(@scoreboard) do %>
                   League Profile
                   <% if (manager_or_owner?(@scoreboard, current_user))&&(@scoreboard.requests.any?) %>
@@ -27,11 +27,11 @@
                   <% end %>
                 <% end %>
               </li>
-              <li><%= link_to "Teams", scoreboard_teams_path(@scoreboard) %></li>
-              <li><%= link_to "Team Matches", scoreboard_team_matches_path(@scoreboard) %></li>
-              <li><%= link_to "Documents", scoreboard_categories_path(@scoreboard) %></li>
-              <li><%= link_to "Events", scoreboard_events_path(@scoreboard) %></li>
-              <li><%= link_to "Discussion", scoreboard_topics_path(@scoreboard) %></li>
+              <li <%if @leagueteam%> class="active" <% end %> ><%= link_to "Teams", scoreboard_teams_path(@scoreboard) %></li>
+              <li <%if @leaguematch%> class="active" <% end %> ><%= link_to "Team Matches", scoreboard_team_matches_path(@scoreboard) %></li>
+              <li <%if @leaguedocs%> class="active" <% end %> ><%= link_to "Documents", scoreboard_categories_path(@scoreboard) %></li>
+              <li <%if @leagueevent%> class="active" <% end %> ><%= link_to "Events", scoreboard_events_path(@scoreboard) %></li>
+              <li <%if @leaguetalk%> class="active" <% end %> ><%= link_to "Discussion", scoreboard_topics_path(@scoreboard) %></li>
            </ul>
         <% end %>
 </div>

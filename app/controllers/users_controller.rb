@@ -1,14 +1,13 @@
 class UsersController < ApplicationController
-  before_action :logged_in_user, only: [:index, :edit, :update, :show, :destroy, :home] # Each individual must sign up before they can see any profiles
+  before_action :logged_in_user, only: [:index, :edit, :update, :show, :destroy] # Each individual must sign up before they can see any profiles
   before_action :correct_user,   only: [:edit, :update]
   before_action :admin_user,     only: :destroy
   
-  def home
-  end
-  
+ 
   def show
     @scoreboard = Scoreboard.find_by(params[:scoreboard_id])
     @user = User.find(params[:id])
+    @userpage = true
     @pictureable = @user
     @picture =  @pictureable.picture || @pictureable.build_picture
     @owned_scoreboards = @user.scoreboards.paginate(:page => params[:user_own], :per_page => 10)
@@ -32,6 +31,7 @@ class UsersController < ApplicationController
   
   def edit
     @user = User.find(params[:id])
+    @userpage = true
   end
   
   def update

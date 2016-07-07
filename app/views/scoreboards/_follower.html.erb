@@ -6,7 +6,7 @@
                     <%= link_to follower.name, user_path(follower.id) %>
                 </div>
                 <div class="col-xs-2 col-sm-1 follower-msg">
-                    <%= link_to "#" do %>
+                    <%= link_to new_user_conversation_path(follower) do %>
                         <i class="fa fa-envelope fa-lg" aria-hidden="true"></i>
                     <% end %>
                 </div>
