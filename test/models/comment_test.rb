@@ -18,8 +18,8 @@ class CommentTest < ActiveSupport::TestCase
     assert_not @comment.valid?
   end
   
-  test "comment length must be less than 140 characters" do
-    @comment.body = "a" * 141
+  test "comment length must be less than 600 characters" do
+    @comment.body = "a" * 601
     assert_not @comment.valid?
   end
   

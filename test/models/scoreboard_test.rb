@@ -23,7 +23,7 @@ class ScoreboardTest < ActiveSupport::TestCase
     end
     
     test "name of scoreboard should be maximum of 50 characters" do
-      @scoreboard.name_of_scoreboard = "a" * 51
+      @scoreboard.name_of_scoreboard = "a" * 81
       assert_not @scoreboard.valid?
     end
     
@@ -34,7 +34,7 @@ class ScoreboardTest < ActiveSupport::TestCase
     end
     
     test "name of the organization should be maximum of 50 characters" do
-      @scoreboard.name_of_organization = "a" * 51
+      @scoreboard.name_of_organization = "a" * 61
       assert_not @scoreboard.valid?
     end
     
@@ -45,7 +45,7 @@ class ScoreboardTest < ActiveSupport::TestCase
     end
     
     test "name of activity should be at most 50 characters" do
-      @scoreboard.name_of_activity = "a" * 51
+      @scoreboard.name_of_activity = "a" * 61
       assert_not @scoreboard.valid?
     end
     

@@ -25,7 +25,7 @@ class TopicInterfaceTest < ActionDispatch::IntegrationTest
                                                          user_id: " ",
                                                          scoreboard_id: " "
       }
-      assert_equal "Error. Please refresh page and try again.", flash[:danger]
+      assert_equal "Error. Please try again.", flash[:danger]
     end
   end
   

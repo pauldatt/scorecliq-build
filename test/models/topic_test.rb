@@ -17,7 +17,7 @@ class TopicTest < ActiveSupport::TestCase
   end
   
   test "subject cannot be longer than 30 characters" do 
-    @topic.subject = "a" * 31
+    @topic.subject = "a" * 81
     assert_not @topic.valid?
   end
   

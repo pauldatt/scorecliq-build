@@ -17,7 +17,7 @@ class ScoreboardUpdateTest < ActionDispatch::IntegrationTest
                                                       name_of_organization: "b"*60,
                                                       name_of_activity: "c"*60,
                                                       scoreboard_id: " "}
-    assert_template 'scoreboards/edit'
+    assert_redirected_to @scoreboard
   end
     
                                                     

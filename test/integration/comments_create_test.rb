@@ -24,7 +24,7 @@ class CommentsCreateTest < ActionDispatch::IntegrationTest
         assert_no_difference("@topic.comments.count", 1) do 
             post scoreboard_topic_comments_path(@scoreboard, @topic), comment: {body: " ",
                                                                                 user_id: @user.id}
-            assert_equal "Comment cannot be blank and must be less than 140 characters", flash[:danger]                                                                 
+            assert_equal "Comment cannot be blank and must be less than 600 characters", flash[:danger]                                                                 
         end
     end
     

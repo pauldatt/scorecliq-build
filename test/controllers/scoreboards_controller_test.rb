@@ -55,8 +55,8 @@ class ScoreboardsControllerTest < ActionController::TestCase
         assert_no_difference('Scoreboard.count') do
             delete :destroy, id: @scoreboard.id
         end
-        assert flash.empty?
-        assert_redirected_to scoreboards_path
+        assert_not flash.empty?
+        assert_redirected_to @scoreboard
     end
     
     test "should redirect scoreboard if incorrect_user is updating scoreboard" do
@@ -64,14 +64,14 @@ class ScoreboardsControllerTest < ActionController::TestCase
         patch :update, id: @scoreboard, scoreboard: {name_of_scoreboard: @scoreboard.name_of_scoreboard, 
                                                     name_of_activity: @scoreboard.name_of_activity, 
                                                     name_of_organization: @scoreboard.name_of_organization }
-        assert flash.empty?
-        assert_redirected_to scoreboards_path
+        assert_not flash.empty?
+        assert_redirected_to @scoreboard
     end
     
     test "should redirect edit scoreboard action when incorrect_user" do
         log_in_as(@second_user)
         get :edit, id: @scoreboard.id
-        assert_redirected_to scoreboards_path
+        assert_redirected_to @scoreboard
     end
     
     
@@ -106,7 +106,7 @@ class ScoreboardsControllerTest < ActionController::TestCase
         log_in_as(@user) #log in as divjot, who does NOT own scoreboard_c, therefore, you should get an error.
         get :admins, id: @scoreboard_c.id
         assert_redirected_to @scoreboard_c
-        assert_equal "Access is restricted to owners only.", flash[:danger]
+        assert_equal "Access is restricted to owner only.", flash[:danger]
     end
     
 end
