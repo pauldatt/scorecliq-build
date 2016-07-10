@@ -568,6 +568,42 @@ ALTER SEQUENCE requests_id_seq OWNED BY requests.id;
 
 
 --
+-- Name: schedules; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE schedules (
+    id integer NOT NULL,
+    team1 character varying,
+    team2 character varying,
+    detail text,
+    scoreboard_id integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    match_date date,
+    match_time character varying
+);
+
+
+--
+-- Name: schedules_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE schedules_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: schedules_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE schedules_id_seq OWNED BY schedules.id;
+
+
+--
 -- Name: schema_migrations; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -588,9 +624,6 @@ CREATE TABLE scoreboards (
     user_id integer,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    states character varying,
-    country character varying,
-    cities character varying,
     tsv tsvector,
     privatization boolean DEFAULT false
 );
@@ -729,7 +762,8 @@ CREATE TABLE teams (
     tie integer,
     scoreboard_id integer,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    win_percentage integer
 );
 
 
@@ -975,6 +1009,13 @@ ALTER TABLE ONLY requests ALTER COLUMN id SET DEFAULT nextval('requests_id_seq':
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY schedules ALTER COLUMN id SET DEFAULT nextval('schedules_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY scoreboards ALTER COLUMN id SET DEFAULT nextval('scoreboards_id_seq'::regclass);
 
 
@@ -1153,6 +1194,14 @@ ALTER TABLE ONLY pictures
 
 ALTER TABLE ONLY requests
     ADD CONSTRAINT requests_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: schedules_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY schedules
+    ADD CONSTRAINT schedules_pkey PRIMARY KEY (id);
 
 
 --
@@ -1402,6 +1451,13 @@ CREATE INDEX index_requests_on_user_id ON requests USING btree (user_id);
 
 
 --
+-- Name: index_schedules_on_scoreboard_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_schedules_on_scoreboard_id ON schedules USING btree (scoreboard_id);
+
+
+--
 -- Name: index_scoreboards_on_tsv; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -1529,11 +1585,43 @@ ALTER TABLE ONLY comments
 
 
 --
+-- Name: fk_rails_1269f469ee; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY invitations
+    ADD CONSTRAINT fk_rails_1269f469ee FOREIGN KEY (scoreboard_id) REFERENCES scoreboards(id);
+
+
+--
+-- Name: fk_rails_383ba8ca21; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY events
+    ADD CONSTRAINT fk_rails_383ba8ca21 FOREIGN KEY (scoreboard_id) REFERENCES scoreboards(id);
+
+
+--
+-- Name: fk_rails_46e62c5a8c; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY categories
+    ADD CONSTRAINT fk_rails_46e62c5a8c FOREIGN KEY (scoreboard_id) REFERENCES scoreboards(id);
+
+
+--
 -- Name: fk_rails_47b6237a29; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY categories
     ADD CONSTRAINT fk_rails_47b6237a29 FOREIGN KEY (scoreboard_id) REFERENCES scoreboards(id);
+
+
+--
+-- Name: fk_rails_590ffe0a26; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY documents
+    ADD CONSTRAINT fk_rails_590ffe0a26 FOREIGN KEY (category_id) REFERENCES categories(id);
 
 
 --
@@ -1585,11 +1673,43 @@ ALTER TABLE ONLY statuses
 
 
 --
+-- Name: fk_rails_a458e0adcb; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY teams
+    ADD CONSTRAINT fk_rails_a458e0adcb FOREIGN KEY (scoreboard_id) REFERENCES scoreboards(id);
+
+
+--
+-- Name: fk_rails_a500cfff1c; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY comments
+    ADD CONSTRAINT fk_rails_a500cfff1c FOREIGN KEY (user_id) REFERENCES users(id);
+
+
+--
 -- Name: fk_rails_a5481060e5; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY messages
     ADD CONSTRAINT fk_rails_a5481060e5 FOREIGN KEY (conversation_id) REFERENCES conversations(id);
+
+
+--
+-- Name: fk_rails_bcdd7ed2e3; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY topics
+    ADD CONSTRAINT fk_rails_bcdd7ed2e3 FOREIGN KEY (scoreboard_id) REFERENCES scoreboards(id);
+
+
+--
+-- Name: fk_rails_cc9712d921; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY schedules
+    ADD CONSTRAINT fk_rails_cc9712d921 FOREIGN KEY (scoreboard_id) REFERENCES scoreboards(id);
 
 
 --
@@ -1601,6 +1721,22 @@ ALTER TABLE ONLY messages
 
 
 --
+-- Name: fk_rails_d233927ac7; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY scoreboards
+    ADD CONSTRAINT fk_rails_d233927ac7 FOREIGN KEY (user_id) REFERENCES users(id);
+
+
+--
+-- Name: fk_rails_d303e131ed; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY messages
+    ADD CONSTRAINT fk_rails_d303e131ed FOREIGN KEY (conversation_id) REFERENCES conversations(id);
+
+
+--
 -- Name: fk_rails_d909df6877; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -1609,11 +1745,35 @@ ALTER TABLE ONLY comments
 
 
 --
+-- Name: fk_rails_dbe1cda2af; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY messages
+    ADD CONSTRAINT fk_rails_dbe1cda2af FOREIGN KEY (user_id) REFERENCES users(id);
+
+
+--
+-- Name: fk_rails_dd0274f360; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY comments
+    ADD CONSTRAINT fk_rails_dd0274f360 FOREIGN KEY (topic_id) REFERENCES topics(id);
+
+
+--
 -- Name: fk_rails_e5dbc1d5b1; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY scoreboards
     ADD CONSTRAINT fk_rails_e5dbc1d5b1 FOREIGN KEY (user_id) REFERENCES users(id);
+
+
+--
+-- Name: fk_rails_f3dcdab9aa; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY statuses
+    ADD CONSTRAINT fk_rails_f3dcdab9aa FOREIGN KEY (scoreboard_id) REFERENCES scoreboards(id);
 
 
 --
@@ -1662,13 +1822,11 @@ INSERT INTO schema_migrations (version) VALUES ('20150626002132');
 
 INSERT INTO schema_migrations (version) VALUES ('20150701225546');
 
-INSERT INTO schema_migrations (version) VALUES ('20150717215031');
-
-INSERT INTO schema_migrations (version) VALUES ('20150717223353');
-
-INSERT INTO schema_migrations (version) VALUES ('20150717231902');
-
 INSERT INTO schema_migrations (version) VALUES ('20150927064023');
+
+INSERT INTO schema_migrations (version) VALUES ('20150927144239');
+
+INSERT INTO schema_migrations (version) VALUES ('20151001052443');
 
 INSERT INTO schema_migrations (version) VALUES ('20151015143455');
 
@@ -1680,13 +1838,19 @@ INSERT INTO schema_migrations (version) VALUES ('20151023082158');
 
 INSERT INTO schema_migrations (version) VALUES ('20151102170716');
 
+INSERT INTO schema_migrations (version) VALUES ('20151120064847');
+
 INSERT INTO schema_migrations (version) VALUES ('20151209160720');
+
+INSERT INTO schema_migrations (version) VALUES ('20151216222801');
 
 INSERT INTO schema_migrations (version) VALUES ('20151220193756');
 
 INSERT INTO schema_migrations (version) VALUES ('20160128031906');
 
 INSERT INTO schema_migrations (version) VALUES ('20160307212202');
+
+INSERT INTO schema_migrations (version) VALUES ('20160307235847');
 
 INSERT INTO schema_migrations (version) VALUES ('20160313172147');
 
@@ -1701,6 +1865,8 @@ INSERT INTO schema_migrations (version) VALUES ('20160415000346');
 INSERT INTO schema_migrations (version) VALUES ('20160415011705');
 
 INSERT INTO schema_migrations (version) VALUES ('20160426134550');
+
+INSERT INTO schema_migrations (version) VALUES ('20160428005130');
 
 INSERT INTO schema_migrations (version) VALUES ('20160519013903');
 
