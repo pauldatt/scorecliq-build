@@ -158,7 +158,7 @@ private
 
  def scoreboard_params
   params.require(:scoreboard).permit(:name_of_scoreboard, :name_of_organization, 
-                 :name_of_activity, :cities, :states, :country) # make sure the name of the parameters match with 
+                 :name_of_activity, :location) # make sure the name of the parameters match with 
                                                                 # the exact names written in the scoreboard model.
  end
  

@@ -66,7 +66,7 @@ class Scoreboard < ActiveRecord::Base
   include PgSearch
       
   pg_search_scope :search_by_scoreboard, 
-                    :against => [:name_of_scoreboard, :name_of_organization, :name_of_activity],
+                    :against => [:name_of_scoreboard, :name_of_organization, :name_of_activity, :location],
                     :using => {
                         :tsearch => {
                             tsvector_column: "tsv",

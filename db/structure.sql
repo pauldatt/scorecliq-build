@@ -588,11 +588,9 @@ CREATE TABLE scoreboards (
     user_id integer,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    states character varying,
-    country character varying,
-    cities character varying,
     tsv tsvector,
-    privatization boolean DEFAULT false
+    privatization boolean DEFAULT false,
+    location character varying
 );
 
 
@@ -1662,12 +1660,6 @@ INSERT INTO schema_migrations (version) VALUES ('20150626002132');
 
 INSERT INTO schema_migrations (version) VALUES ('20150701225546');
 
-INSERT INTO schema_migrations (version) VALUES ('20150717215031');
-
-INSERT INTO schema_migrations (version) VALUES ('20150717223353');
-
-INSERT INTO schema_migrations (version) VALUES ('20150717231902');
-
 INSERT INTO schema_migrations (version) VALUES ('20150927064023');
 
 INSERT INTO schema_migrations (version) VALUES ('20151015143455');
@@ -1717,4 +1709,6 @@ INSERT INTO schema_migrations (version) VALUES ('20160619194756');
 INSERT INTO schema_migrations (version) VALUES ('20160619195246');
 
 INSERT INTO schema_migrations (version) VALUES ('20160619200009');
+
+INSERT INTO schema_migrations (version) VALUES ('20160709225638');
 
