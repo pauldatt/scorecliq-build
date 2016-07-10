@@ -513,7 +513,7 @@
     
     .score-prof-bio{
         padding-left: 0;
-        h4{
+        h5{
             margin-bottom: 3%;
         }
         :last-child{
@@ -522,6 +522,7 @@
     }
     
     .score-prof-options{
+        .row .col-xs-12{ padding-right: 0; }
         text-align: right;
         
         .btn-primary{
@@ -605,7 +606,7 @@
             padding: 1%;
           .admin{
              margin-top: 1%;
-             font-size: 140%;
+             font-size: 15px;
              .admin-name{
                   border-bottom: solid 2px #555;
                   text-align: left;
@@ -613,11 +614,13 @@
                         color: #555;
                         font-weight: 700;
                     }
-                }
-                .admin-msg{
-                    border-bottom: solid 2px #555;
-                }
-           }
+                    .fa{ 
+                        font-size: 18px;
+                        color: #428bca;
+                    }
+                    .fa:hover{ color: #2a6496; }
+                    }
+            }
         }
 }
 
@@ -681,11 +684,6 @@
 /* ----------------------------------------------- */
 /* SCOREBOARD ADMIN OPTIONS PAGE  */
 /* ----------------------------------------------- */
-.admin-page-header{
-     padding-bottom: 1%;
-     border-bottom: solid 1px #555;
-     a{ text-decoration: none; }
-}
 
 .admin-current-header{
     margin-top: 20px;
@@ -712,24 +710,22 @@
     margin-bottom: 10px;
     .admin-div{
         margin-bottom: 10px;
-        font-size: 140%;
+        font-size: 14px;
         text-align: center;
         .admin-prof-link{
              border-bottom: solid 2px #555;
              text-align: left;
-             font-size: 100%;
               a{
                 color: #555;
                 font-weight: 700;
               }
         }
-        .admin-remove{
-            border-bottom: solid 2px #555;
-            text-align: right;
-            .fa{ color: #f90012; }
-            .fa:hover{ color: #216273; }
+        .fa{ 
+            font-size: 18px;
+            color: #f90012; 
         }
-    }
+        .fa:hover{ color: #216273; }
+        }
 }
 
 .admin-org-list{
@@ -737,7 +733,7 @@
 
     .admin-follower-div{
         margin-bottom: 10px;
-        font-size: 145%;
+        font-size: 14px;
         text-align: center;
         
         .member-prof-link{
@@ -747,12 +743,9 @@
                 color: #555;
                 font-weight: 700;
             }
-        }
-        .admin-assign{
-            border-bottom: solid 2px #555;
-            text-align: right;
-            .btn{
-                font-size: 45%;
+            .admin-assign{ 
+                font-size: 55%; 
+                color: #fff;
             }
         }
     }
@@ -762,11 +755,6 @@
 /* SCOREBOARD FOLLOWERS PAGE  */
 /* ----------------------------------------------- */
 
-.follower-page-header{
-       padding-bottom: 1%;
-       border-bottom: solid 1px #555;
-       a { text-decoration: none; }
-}
 
 #follower-search-form{ margin-top: 10px; }
 
@@ -777,24 +765,20 @@
         margin-bottom: 10px;
         font-size: 140%;
         text-align: center;
-        .follower-prof-link{
-             border-bottom: solid 2px #555;
-             text-align: left;
-             font-size: 100%;
-              a{
+        .follower{
+            border-bottom: solid 2px #555;
+            text-align: left;
+            font-size: 100%;
+            .follower-prof-link{
                 color: #555;
                 font-weight: 700;
-              }
-        }
-        .follower-msg{
-            border-bottom: solid 2px #555;
-            text-align: right;
-        }
-        .follower-del{
-            border-bottom: solid 2px #555;
-            text-align: right;
-            .fa{ color: #f90012; }
-            .fa:hover{ color: #216273; }
+            }
+            .links{
+                a{ text-decoration: none; }
+                 .follower-msg{ margin-right: 10px; }
+                .follower-del{ color: #f90012; }
+                .follower-del:hover{ color: #216273; }
+            }
         }
     }
 }

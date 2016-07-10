@@ -1,5 +1,5 @@
 <% provide(:title, "Admins") %>
-<h2 class="admin-page-header">
+<h2 class="generic-header">
     <%= link_to scoreboard_path(@scoreboard) do %>
      <i class="fa fa-arrow-circle-o-left" aria-hidden="true"></i>
     <% end %>
@@ -9,7 +9,7 @@
 
 <% if @admins.any? %>
     <div class="row">
-        <div class="col-xs-12 col-sm-6 admin-current-header">
+        <div class="col-xs-12 col-sm-8 admin-current-header">
             CURRENT ADMINS
         </div>
     </div>
@@ -21,14 +21,14 @@
 
 <%= form_tag(admins_scoreboard_path, :method => "get", id: "admin-search-form", autocomplete: "off") do %>
 <div class="row new-admin-field">
-    <div class="col-xs-12 col-sm-6">
+    <div class="col-xs-12 col-sm-8">
         <%= text_field_tag :search, params[:search], placeholder: "Filter Members by Name",maxlength: 30, class:"form-control" %>
     </div>
 </div>
 <% end %>
 
 <div class="row">
-        <div class="col-xs-12 col-sm-6 admin-select-header">
+        <div class="col-xs-12 col-sm-8 admin-select-header">
             SELECT ADMIN FROM MEMBERS
         </div>
 </div>
