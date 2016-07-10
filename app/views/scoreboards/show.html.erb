@@ -2,7 +2,7 @@
 <h4 class="score-profile-header"> <%= @scoreboard.name_of_scoreboard %> </h4>
 
 <div class="row score-prof-info">
-   <div class="col-xs-12 col-sm-3 score-prof-pic">
+   <div class="col-xs-8 col-sm-3  score-prof-pic">
          <% if @picture.picture.present? %>
             <div class="dropdown">
                   <%= link_to "#", class: "prof-dropdown" , data: {:toggle => "dropdown"}, role: "button", aria: {:expanded => "false"} do %>
@@ -34,71 +34,81 @@
          <% end %>
      </div>
    
-   <div class="col-xs-6 col-sm-7 score-prof-bio">
-      <h4> Owner: <%= link_to @scoreboard.user.name, user_path(@scoreboard.user) %></h4>
-      <h4> Club Name: <%= @scoreboard.name_of_organization %></h4>
-      <h4> Sport/Activity: <%= @scoreboard.name_of_activity %> </h4>
+   
+   <div class="col-xs-4 col-sm-2 col-sm-push-7 score-prof-options">
+      <div class="row">
+         <div class="col-xs-12">
+            <% if @scoreboard.user != current_user %>
+                <% if @scoreboard.privatization == false %>
+                   <% if current_user.favourite_scoreboards.include?(@scoreboard) %>
+                      <%= link_to "unfollow", favourite_scoreboard_path(@scoreboard, type: "unfavourite"), method: :delete, class: 'btn btn-primary pull-right' %>
+                   <% else %>
+                      <%= link_to "follow", favourite_scoreboard_path(@scoreboard, type: "favourite"), method: :post, class: 'btn btn-primary pull-right' %>
+                   <% end %>
+                <% end %>
+            <% end %>
+         </div>
+         
+         <div class="col-xs-12">
+            <% if manager_or_owner?(@scoreboard, current_user) %>
+              <%= link_to "Invite", new_invitation_path(:scoreboard_id => @scoreboard.id), class: "btn btn-primary pull-right" %>
+                  <% if @scoreboard.privatization == true %>
+                       <%= link_to " Make Public", unprivate_path(:scoreboard_id => @scoreboard.id), :method => 'put',data: {confirm: "Making the page public will allow anyone to become a member and view league content. Continue?"}, class: "btn btn-primary pull-right priv-toggle" %> 
+                  <% else %>
+                       <%= link_to "Make Private", private_path(:scoreboard_id => @scoreboard.id), :method => 'put',data: {confirm: "Making the page private will require approval from admins to become a member and league content is restricted to members only. Continue?"}, class: "btn btn-primary pull-right priv-toggle" %>
+                  <% end %>
+            <% end %>
+         </div>
+         
+         <!--The algorithm for requests -->
+         <div class="col-xs-12">
+             <% if @scoreboard.privatization == true %>
+                  <% if current_user.favourite_scoreboards.include?(@scoreboard) %>
+                      <% if @scoreboard.user != current_user %>
+                         <%= link_to "unfollow", favourite_scoreboard_path(@scoreboard, type: "unfavourite"), method: :delete, class: 'btn btn-primary pull-right' %>
+                      <% end %>
+                  <% end %>
+                  <% if current_user.sent_requests.include?(@scoreboard) %> 
+                     <% if @scoreboard.pending_requests.include?(current_user) %>
+                       <%= link_to "Req. Pending", "#", class: "btn btn-primary disabled" %>
+                     <% end %>
+                  <% end %>
+                 <% if !current_user.favourite_scoreboards.include?(@scoreboard) %> <!--if its not included in the favourtie scoreboard array -->
+                  <% if !@scoreboard.pending_requests.include?(current_user) %> <!-- it won't be part of pending request array if it's accepted -->
+                   <% if @scoreboard.user != current_user %> <!-- you cannot own the scoreboard -->
+                     <%= link_to "Request to join", request_to_join_path(:scoreboard_id => @scoreboard.id), :method => "post", class: "btn btn-primary" %>
+                   <% end %>
+                 <% end %>
+                <% end %>
+             <% end %>
+         </div>
+         
+         <div class="col-xs-12">
+           <% if manager_or_owner?(@scoreboard, current_user)&&(@scoreboard.requests.any?) %>
+             <button type="button" class="btn btn-danger pull-right request-approve" data-toggle="modal" data-target="#requestmodal">Join Requests: <%= @scoreboard.requested_by.count %></button> 
+           <% end %>
+         </div>
+         
+      </div>
+   </div>
+   
+   <div class="col-xs-12  col-sm-7 col-sm-pull-2 score-prof-bio">
+      <h5> Owner: <%= link_to @scoreboard.user.name, user_path(@scoreboard.user) %></h4>
+      <h5> Club Name: <%= @scoreboard.name_of_organization %></h4>
+      <h5> Sport/Activity: <%= @scoreboard.name_of_activity %> </h4>
       <% if @scoreboard.privatization == true %> 
-      <h4> Access: Private </h4>
+      <h5> Access: Private </h4>
       <% else %>
-      <h4> Access: Public</h4>
+      <h5> Access: Public</h4>
       <% end %>
    </div>
    
-   <div class="col-xs-6 col-sm-2 score-prof-options">
-      <% if @scoreboard.user != current_user %>
-       <% if @scoreboard.privatization == false %>
-          <% if current_user.favourite_scoreboards.include?(@scoreboard) %>
-             <%= link_to "unfollow", favourite_scoreboard_path(@scoreboard, type: "unfavourite"), method: :delete, class: 'btn btn-primary pull-right' %>
-          <% else %>
-             <%= link_to "follow", favourite_scoreboard_path(@scoreboard, type: "favourite"), method: :post, class: 'btn btn-primary pull-right' %>
-          <% end %>
-       <% end %>
-      <% end %>
-      
-       <% if manager_or_owner?(@scoreboard, current_user) %>
-           <%= link_to "Invite", new_invitation_path(:scoreboard_id => @scoreboard.id), class: "btn btn-primary pull-right" %>
-           <% if @scoreboard.user == current_user %>
-               <% if @scoreboard.privatization == true %>
-                    <%= link_to " Make Public", unprivate_path(:scoreboard_id => @scoreboard.id), :method => 'put',data: {confirm: "Making the page public will allow anyone to become a member and view league content. Continue?"}, class: "btn btn-primary pull-right priv-toggle" %> 
-               <% else %>
-                    <%= link_to "Make Private", private_path(:scoreboard_id => @scoreboard.id), :method => 'put',data: {confirm: "Making the page private will require approval from admins to become a member and league content is restricted to members only. Continue?"}, class: "btn btn-primary pull-right priv-toggle" %>
-               <% end %>
-           <% end %>
-      <% end %>
-      
-    <!--The algorithm for requests -->
-    <% if @scoreboard.privatization == true %>
-      <% if current_user.favourite_scoreboards.include?(@scoreboard) %>
-          <% if @scoreboard.user != current_user %>
-             <%= link_to "unfollow", favourite_scoreboard_path(@scoreboard, type: "unfavourite"), method: :delete, class: 'btn btn-primary pull-right' %>
-          <% else %>
-             <%= link_to "follow", favourite_scoreboard_path(@scoreboard, type: "favourite"), method: :post, class: 'btn btn-primary pull-right' %>
-          <% end %>
-       <% end %>
-         <% if current_user.sent_requests.include?(@scoreboard) %> 
-            <% if @scoreboard.pending_requests.include?(current_user) %>
-              <%= link_to "Req. Pending", "#", class: "btn btn-primary disabled" %>
-            <% end %>
-         <% end %>
-        <% if !current_user.favourite_scoreboards.include?(@scoreboard) %> <!--if its not included in the favourtie scoreboard array -->
-         <% if !@scoreboard.pending_requests.include?(current_user) %> <!-- it won't be part of pending request array if it's accepted -->
-          <% if @scoreboard.user != current_user %> <!-- you cannot own the scoreboard -->
-            <%= link_to "Request to join", request_to_join_path(:scoreboard_id => @scoreboard.id), :method => "post", class: "btn btn-primary" %>
-          <% end %>
-        <% end %>
-       <% end %>
-    <% end %>
-     
-      <% if manager_or_owner?(@scoreboard, current_user)&&(@scoreboard.requests.any?) %>
-         <button type="button" class="btn btn-danger pull-right request-approve" data-toggle="modal" data-target="#requestmodal">Join Requests: <%= @scoreboard.requested_by.count %></button> 
-      <% end %>
-   </div>
 </div>
 
 
+
 <div class="row score-stats">
-   <div class="col-xs-4 col-md-3 share-div">
+   <div class="col-xs-12 col-sm-3 col-md-3 share-div">
       <h4> SHARE THIS PAGE</h4>
       
       <div class="media-icons">
@@ -108,7 +118,7 @@
       </div>
       
    </div>
-   <div class="col-xs-8 col-md-7 status-div">
+   <div class="col-xs-12 col-sm-7 col-md-7 status-div">
       <h4> STATUS </h4>
       <div class="score-status" <% if @scoreboard.user %> id="admin-status" <% end %>>
          <% if manager_or_owner?(@scoreboard, current_user) %>
@@ -139,12 +149,11 @@
       
       <div class="admin-divs">
          <div class="row admin">
-             <div class="col-xs-10 admin-name">
-                <%= link_to @scoreboard.user.name, user_path(@scoreboard.user) %>(owner)
-             </div>
-             <div class="col-xs-2 admin-msg">
+             <div class="col-xs-12 admin-name">
+                  <%= link_to @scoreboard.user.name, user_path(@scoreboard.user) %>(owner)
+             
                   <%= link_to new_user_conversation_path(@scoreboard.user) do %>
-                     <i class="fa fa-envelope" aria-hidden="true"></i>
+                     <i class="fa fa-envelope pull-right" aria-hidden="true"></i>
                   <% end %> 
               </div>
          </div>

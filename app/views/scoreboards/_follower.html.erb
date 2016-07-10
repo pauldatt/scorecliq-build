@@ -2,23 +2,22 @@
 
         <% @followers.each do |follower| %>
             <div class="row follower-div" id="follower_<%=follower.id%>">
-                <div class="col-xs-8 col-sm-5 follower-prof-link">
-                    <%= link_to follower.name, user_path(follower.id) %>
-                </div>
-                <div class="col-xs-2 col-sm-1 follower-msg">
-                    <%= link_to new_user_conversation_path(follower) do %>
-                        <i class="fa fa-envelope fa-lg" aria-hidden="true"></i>
+                <div class="col-xs-12 col-sm-8 follower">
+                    <%= link_to follower.name, user_path(follower.id), class: "follower-prof-link" %>
+                    <span class='pull-right links'>
+                        <%= link_to new_user_conversation_path(follower) do %>
+                        <i class="fa fa-envelope follower-msg" aria-hidden="true"></i>
                     <% end %>
-                </div>
+                
                 <!--restrict the div to only if its private.-->
-                <% if manager_or_owner?(@scoreboard, current_user) %>
-                    <div class="col-xs-2 col-sm-1 follower-del"> 
-                        <!--delete follower-->
-                         <%= link_to favourite_scoreboard_path(@scoreboard, :user_id => follower.id, type: "delfollower"), method: :delete, data: {confirm: "Are you sure you want to remove this follower?"} do %>
-                            <i class="fa fa-times-circle fa-lg" aria-hidden="true"></i>
-                        <% end %>
-                    </div>
-                <% end %>
+                    <% if manager_or_owner?(@scoreboard, current_user) %>
+                            <!--delete follower-->
+                             <%= link_to favourite_scoreboard_path(@scoreboard, :user_id => follower.id, type: "delfollower"), method: :delete, data: {confirm: "Are you sure you want to remove this follower?"} do %>
+                                <i class="fa fa-times-circle fa-lg follower-del" aria-hidden="true"></i>
+                            <% end %>
+                    <% end %>
+                    </span>
+                </div>
             </div>
         <% end %> 
         
