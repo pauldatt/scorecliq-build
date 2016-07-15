@@ -9,6 +9,46 @@
     h4{ font-size: 12px;}
 }
 
+/********TEAM INDEX PAGE****************/
+.standing-labels{ font-size: 100%; }
+.team-div{ font-size: 12px; }
+.team-edit-form{ font-size: 12px;}
+
+/****** CATEGORIES INDEX PAGE **********/
+.category-list .category-div{
+    .cat-info{
+        a .category-name{ font-size: 18px; }
+    }
+    .cat-settings{ font-size: 13px; }
+}
+
+/******* DOCUMENT SHOW PAGE ************/
+.document-list .document-div{
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+/******* EVENTS INDEX PAGE ***************/
+.event-list .event-div{
+    .event-column{
+        .info-div{
+            .secondary{ font-size: 12px; }
+        }
+    }
+}
+
+/********* TOPIC INDEX PAGE **************/
+.topic-list{
+    .topic-div{
+        .topic-info{
+             a .topic-name{
+                 padding: 10px 1%;
+                font-size: 17px;
+            }
+        }
+    }
+}
+
    
 }
 
@@ -24,8 +64,34 @@
     .status-div{ padding-left: 0; }
 }
 
+/********* TEAM INDEX PAGE ********/
+.new-team-form{
+    .new-team-3{
+        .btn .button-text{ display: none;}
+        .fa {display: block; }
+    }
 }
 
+/*******TOPIC INDEX PAGE *********/
+.topic-list{
+    .topic-div{
+        .topic-info{
+             a .topic-name{
+                padding: 10px 1%;
+                font-size: 17px;
+            }
+            .topic-creator{ 
+                font-size: 12px; 
+                padding-top: 3px;
+            }
+        }
+    }
+}
+
+}
+
+/******* TEAM SHOW PAGE *******/
+.team-show-header{ font-size: 25px; }
 
 /* Small phones: from 0 to 480px */
 @media only screen and (max-width: 480px) {
@@ -90,6 +156,165 @@
         .fa{ font-size: 15px; }
     }
 }
+
+/********TEAM INDEX PAGE****************/
+.standing-labels{ font-size: 80%; }
+.team-div{ 
+    font-size: 10px; 
+    margin-bottom: 10px;
+}
+
+.team-edit-form{ 
+    font-size: 10px; 
+    .edit-team-3{
+        padding-top: 3px;
+        .btn{ font-size: 12px; }
+    }
+}
+
+.new-team-form{
+    font-size: 8px;
+    .new-team-3{
+        padding: 5px 1%;
+        .btn .button-text{ display: none;}
+        .fa {display: block; }
+    }
+    .new-team-4{ padding: 7px 1%; }
+}
+
+/***** ADD NEW TEAM MEMBER PAGE ********/
+.new-member-org-list{
+    .member-follower-div{ 
+        font-size: 12px; 
+        .fa{ font-size: 15px; }
+    }
+}
+
+/******** TEAM SHOW PAGE **********/
+.team-show-header{ font-size: 18px }
+
+.team-members-header .add-team-member-btn{
+    .btn{
+        font-size: 10px;
+        margin-top: 0;
+    }
+}
+
+#captain-modal .member-div .member-prof-link{
+    font-size: 10px;
+    .btn{ font-size: 7px;}
+}
+.show-standing-labels{ font-size: 15px; }
+
+.show-standing-values{ font-size: 15px; }
+
+.team-member-list{
+    .team-member-div .team-member-name{
+        font-size: 12px;
+        .links{ font-size: 15px; }
+    }
+}
+
+/********* TEAM MATCHES INDEX PAGE *************/
+.match-list .match-div{
+    .match-column{
+        .date-div{
+            width: 15%;
+            height: 71px;
+        }
+        .info-div{
+            width: 75%;
+            height: 71px;
+            .team-info{
+                .facing-teams{ font-size: 12px; }
+                .match-score{ 
+                    font-size: 10px; 
+                    .score { height: 35px; }
+                }
+            }
+        }
+        .match-delete{ height: 71px; }
+    }
+}
+/*********** NEW TEAM MATCH ***********/
+.match-success{ font-size: 13px;}
+
+/************CATEGORIES INDEX*********/
+.category-list .category-div{
+    .cat-info{
+        a .category-name{ 
+            font-size: 13px; 
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            padding: 3% 1%;
+        }
+        .category-content { font-size: 11px; }
+    }
+    .cat-settings{ font-size: 12px; }
+}
+/************* CATEGORY SHOW PAGE ********/
+.document-list .document-div{
+    font-size: 11px;
+    margin-bottom: 15px;
+    a{ font-size: 13px; }
+}
+/******* EVENTS INDEX PAGE ***************/
+.event-list .event-div{
+    .event-column{
+        .date-div{
+            height: 68px;
+            .month{ font-size: 10px; }
+            .day{ font-size: 13px; }
+            .year{ font-size: 10px; }
+        }
+        .info-div{
+            height: 68px;
+            .event-name{ font-size: 12px;}
+            .secondary{ font-size: 10px; }
+        }
+        .setting-icons{
+            height: 68px;
+            font-size: 13px;
+            .event-delete{ margin-top: 8px;}
+        }
+    }
+}
+
+/********** NEW EVENT PAGE ****************/
+.event-success{ font-size: 13px; }
+
+/*******TOPIC INDEX PAGE *********/
+.topic-list{
+    .topic-div{
+        .topic-info{
+             a .topic-name{
+                padding: 6px 1%;
+                font-size: 12px;
+            }
+            .topic-creator{ 
+                font-size: 10px; 
+                padding-top: 5px;
+            }
+        }
+        .no-pad{
+            padding: 0;
+            font-size: 10px;
+            .topic-del{ margin-top: 10px; }
+        }
+    }
+}
+/*************** TOPIC SHOW PAGE ****************/
+.comment-div{
+    .comment-name{ 
+        padding: 5px 1%;
+        font-size: 11px;
+        .time-ago{ font-size: 9px; }
+    }
+    .comment-body{ font-size: 11px; }
+}
+.comment-reply-form{ margin-left: 0; }
+.nested-comment{ margin-left: 20px; }
 
 }
 

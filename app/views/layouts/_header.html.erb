@@ -1,10 +1,9 @@
-
-<nav class="navbar navbar-fixed-top main-nav">
+<nav class="navbar navbar-fixed-top main-nav hidden-xs">
       <div class="container-fluid">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
             <span class="sr-only">Toggle navigation</span>
-            <a href="#"><i class="fa fa-bars fa-lg" aria-hidden="true"></i></a>
+            <a><i class="fa fa-bars fa-lg" aria-hidden="true"></i></a>
           </button>
           <%= link_to home_path do %>
              <%= image_tag "logo.png", class: "navbar-brand" %>
@@ -40,6 +39,100 @@
         </div>
       </div>
 </nav>
+
+
+<!--THE FOLLOW NAVBAR IS FOR THE MOBILE ONLY-->
+<nav class="navbar navbar-fixed-top main-nav visible-xs">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <% if logged_in? %>
+            <button type="button" class="navbar-toggle collapsed side-menu" data-toggle="collapse" data-target="#side-navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <a><i class="fa fa-bars fa-lg" aria-hidden="true"></i></a>
+            </button>
+            
+            <button type="button" class="navbar-toggle collapsed user-menu" data-toggle="collapse" data-target="#user-navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <a><i class="fa fa-user fa-lg" aria-hidden="true"></i></a>
+              <span class="caret"></span>
+             </button>
+            
+            <button type="button" class="navbar-toggle collapsed" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">User Conversation</span>
+                <%= link_to user_conversations_path(current_user) do %>
+                 <i class="fa fa-envelope-o fa-lg" aria-hidden="true"></i>
+                <% end %>
+            </button>
+          <% else %>
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar2" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <a><i class="fa fa-bars fa-lg" aria-hidden="true"></i></a>
+            </button>
+          <% end %>
+          <%= link_to home_path do %>
+             <%= image_tag "logo.png", class: "navbar-brand" %>
+          <% end %>
+        </div>
+        
+        <% if logged_in? %>
+        
+           <div id="user-navbar" class="navbar-collapse collapse">
+             <ul class="nav nav-pills nav-stacked custom-top">
+                  <li><%= link_to "Profile", user_path(current_user) %></li>
+                  <li><%= link_to "Settings", edit_user_path(current_user) %></li>
+                  <li><%= link_to "Log-out", logout_path, method: 'delete'%></li>
+             </ul>
+           </div>
+          
+          
+          <div id="side-navbar" class="navbar-collapse collapse">
+              <% if !@selected %>
+                <ul class="nav nav-pills nav-stacked custom-side">
+                    <li <% if @dash %> class="active" <%end%>> 
+                      <%= link_to( home_path) do %>
+                       Dashboard <span class="sr-only">(current)</span>
+                      <% end %>
+                    </li>
+                    <li <% if @mypages %> class="active" <%end%>><%= link_to "My League Pages", scoreboards_path %></li>
+                    <li <% if @searchpage %> class="active" <%end%>><%= link_to "Search", search_path %></li>
+                </ul>
+              <% else %>
+                <ul class="nav nav-pills nav-stacked custom-side">
+                    <li>
+                        <%= link_to(home_path) do %>
+                        <span class="glyphicon glyphicon-chevron-left"></span> Dashboard
+                        <% end %>
+                    </li>
+                    <li <%if @leagueprof%> class="active" <% end %>>
+                      <%= link_to scoreboard_path(@scoreboard) do %>
+                        League Profile
+                        <% if (manager_or_owner?(@scoreboard, current_user))&&(@scoreboard.requests.any?) %>
+                            <i class="fa fa-circle request-notice" aria-hidden="true"></i>
+                        <% end %>
+                      <% end %>
+                    </li>
+                    <li <%if @leagueteam%> class="active" <% end %> ><%= link_to "Teams", scoreboard_teams_path(@scoreboard) %></li>
+                    <li <%if @leaguematch%> class="active" <% end %> ><%= link_to "Team Matches", scoreboard_team_matches_path(@scoreboard) %></li>
+                    <li <%if @leaguedocs%> class="active" <% end %> ><%= link_to "Documents", scoreboard_categories_path(@scoreboard) %></li>
+                    <li <%if @leagueevent%> class="active" <% end %> ><%= link_to "Events", scoreboard_events_path(@scoreboard) %></li>
+                    <li <%if @leaguetalk%> class="active" <% end %> ><%= link_to "Discussion", scoreboard_topics_path(@scoreboard) %></li>
+                </ul>
+              <% end %>
+          </div>
+
+        <% else %>
+          <div id="navbar2" class="navbar-collapse collapse">
+              <ul class="nav nav-pills navbar-right custom-top">
+                 <li> <%= link_to "Home", root_path %> </li>
+                 <li> <%= link_to "Sign-Up", signup_path %></li>
+              </ul>
+          </div>
+        <% end %>
+        
+      </div>
+</nav>
+
+
 
  
            

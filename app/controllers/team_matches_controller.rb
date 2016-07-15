@@ -14,7 +14,7 @@ class TeamMatchesController < ApplicationController
              @games = @scoreboard.team_matches.order("match_date DESC").paginate(page: params[:page], per_page: 10)
              @matches = @games.has_team(team_id)
         else
-            @selection = "Search for Matches by Team"
+            @selection = "Search For Your Team"
             @matches = @scoreboard.team_matches.order("match_date DESC").paginate(page: params[:page], per_page: 10)
         end
         

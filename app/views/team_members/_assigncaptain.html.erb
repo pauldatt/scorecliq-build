@@ -9,17 +9,17 @@
             <div class="container-fluid">
                   <% @team_members.each do |member| %>
                         <div class="row member-div">
-                            <div class="col-xs-8 col-sm-8 member-prof-link">
+                            <div class="col-xs-12 member-prof-link">
                                 <%= link_to member.name, user_path(member.id) %>
                                  <% if @team.captains.include?(member) %>
                                     <i class="fa fa-copyright" aria-hidden="true"></i>
                                  <% end %>
-                            </div>
-                            <div class="col-xs-4 col-sm-4 cap-assign">
+                        
+            
                                <% if @team.captains.include?(member) %>
-                                  <%= link_to "Unassign", unassign_captain_path(:scoreboard_id => @scoreboard.id, :team_id => @team.id, :member_id => member.id), :method => 'put', class:"btn btn-primary" %>
+                                  <%= link_to "Unassign", unassign_captain_path(:scoreboard_id => @scoreboard.id, :team_id => @team.id, :member_id => member.id), :method => 'put', class:"btn btn-primary pull-right" %>
                                <% else %>
-                                   <%= link_to "Assign", assign_captain_path(:scoreboard_id => @scoreboard.id, :team_id => @team.id, :member_id => member.id), class: "btn btn-primary", :method => 'put' %>
+                                   <%= link_to "Assign", assign_captain_path(:scoreboard_id => @scoreboard.id, :team_id => @team.id, :member_id => member.id), class: "btn btn-primary pull-right", :method => 'put' %>
                                <% end %>
                             </div>
                         </div>

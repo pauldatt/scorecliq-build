@@ -5,6 +5,6 @@ class Topic < ActiveRecord::Base
   has_many   :comments, dependent: :destroy
   accepts_nested_attributes_for :comments
   
-  validates :subject, presence: true, length: {maximum: 80}
+  validates :subject, presence: true, length: {maximum: 70}
   
 end

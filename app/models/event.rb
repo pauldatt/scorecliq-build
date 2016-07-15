@@ -4,7 +4,7 @@ class Event < ActiveRecord::Base
   
   validates :event_name, presence: true, length: {maximum: 50}
   validates :event_date, presence: true
-  validates :notes, length: {maximum: 100}
+  validates :notes, length: {maximum: 60}
   validates :location, length: {maximum: 50}
   
 end

@@ -1,5 +1,5 @@
 <% provide(:title, @team.name) %>
-<h2 class="new-team-member-header">
+<h2 class="longer-header">
      <%= link_to scoreboard_team_path(@scoreboard, @team) do %>
      <i class="fa fa-arrow-circle-o-left" aria-hidden="true"></i>
      <% end %>
@@ -9,7 +9,7 @@
 
 <%= form_tag(new_scoreboard_team_team_member_path, :method => "get", id: "member-search-form", autocomplete: "off") do %>
 <div class="row new-member-field">
-    <div class="col-xs-12 col-sm-6">
+    <div class="col-xs-12 col-sm-8">
         <%= text_field_tag :search, params[:search], placeholder: "Filter Members by Name",maxlength: 30, class:"form-control" %>
     </div>
 </div>
@@ -17,7 +17,7 @@
 
 
 <div class="row new-member-org-head">
-    <div class="col-xs-12 col-sm-6 org-list-header">
+    <div class="col-xs-12 col-sm-8 org-list-header">
         SELECT FROM CLUB MEMBERS
     </div>
 </div>
