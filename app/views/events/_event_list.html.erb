@@ -17,7 +17,13 @@
                     <%= event.event_name %>
                 </div>
                 <div class="secondary">
-                    Location: <%= event.location %> <br>
+                    Location: 
+                    <% if event.location.present? %>
+                      <%= event.location %> 
+                    <% else %>
+                       N/A
+                    <% end %>
+                    <br>
                     Time: 
                     <% if event.event_time.present? %>
                       <%= event.event_time.to_s(:time) %> 
@@ -25,7 +31,12 @@
                       N/A
                     <% end %>
                     <br>
-                    Notes: <%= event.notes %>
+                    Notes: 
+                    <% if event.notes.present? %>
+                      <%= event.notes %> 
+                    <% else %>
+                       N/A
+                    <% end %>
                 </div>
             </div>
         <% if manager_or_owner?(@scoreboard, current_user) %>

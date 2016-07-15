@@ -10,9 +10,14 @@
            
         <div class="col-xs-2 new-team-2"><%= f.number_field :tie, min: 0, max: 3333, class: "form-control", placeholder: "0" %></div>
   
-        <div class="col-xs-1 new-team-3"> <%= f.submit "Add", :data => {:disable_with => "Saving..."}, class: "btn btn-primary" %></div>
+        <div class="col-xs-1 new-team-3">
+                 <%= button_tag(type: "submit",:data => {:disable_with => "..."}, class: "btn btn-primary") do %>
+                    <i class="fa fa-plus" aria-hidden="true"></i>
+                    <span class="button-text">ADD</span>
+                 <% end %>
+        </div>
         
-        <div class="col-xs-1 new-team-4"> <i class="fa fa-times-circle hide-team-new" aria-hidden="true"></i> </div>
+        <div class="col-xs-1 new-team-4"> <i class="fa fa-times-circle hide-team-new pull-right" aria-hidden="true"></i> </div>
         
 <% end %>
 

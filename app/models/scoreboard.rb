@@ -59,6 +59,7 @@ class Scoreboard < ActiveRecord::Base
   validates :name_of_scoreboard, presence: true, length: { maximum: 70 }
   validates :name_of_organization, presence: true, length: { maximum: 50 } 
   validates :name_of_activity, presence: true, length: { maximum: 45 }
+  validates :location, presence: true, length: { maximum: 50 }
   validates :user_id, presence: true
   
    # *************////// Below is the search method for scoreboard and searching associations //////*************

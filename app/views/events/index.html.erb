@@ -1,5 +1,5 @@
 <% provide(:title, "Events") %>
-<h2 class="events-header"> EVENTS </h2>
+<h2 class="generic-header"> EVENTS </h2>
 
 <% if manager_or_owner?(@scoreboard, current_user) %> 
    <%= link_to "CREATE EVENT", new_scoreboard_event_path(@scoreboard, @event), class: "btn btn-primary" %>

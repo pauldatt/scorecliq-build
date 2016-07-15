@@ -3,6 +3,25 @@ $(document).ready(function(){
   $('.alert').delay(3000).slideUp(500);
 });
 
+//MOBILE NAVIGATION
+$(document).ready(function(){ 
+  
+ 
+  $(".side-menu").click(function(){
+      if(  $("#user-navbar").is(":visible") == true ){
+          $('#user-navbar').collapse('hide');
+      }
+  });
+  
+   $(".user-menu").click(function(){
+      if(  $("#side-navbar").is(":visible") == true ){
+          $('#side-navbar').collapse('hide');
+      }
+  });
+  
+});
+
+
 //search queries for new members
 $(document).ready(function(){
    $("#member-search-form input").keyup(function() {
@@ -99,17 +118,17 @@ $(document).ready(function(){
 //BELOW IS THE CODE FOR TEAM MATCHES 
 
 $(document).ready(function() {
-   $('#datepicker').datetimepicker({format: 'LL'});
+  $('#datepicker').datetimepicker({format: 'LL'});
 });
 
 //BELOW IS THE CODE FOR EVENTS 
 $(document).ready(function() {
-   $('#event-datepicker').datetimepicker({format: 'LL'});
+  $('#event-datepicker').datetimepicker({format: 'LL'});
 });
 
 //the code for edit events 
 $(document).ready(function() {
-   $('#event-edit').datetimepicker({format: 'DD/MM/YYYY'});
+  $('#event-edit').datetimepicker({format: 'DD/MM/YYYY'});
 });
 
 //BELOW IS THE CODE FOR TOPICS AND COMMENTS 
@@ -117,17 +136,20 @@ $(document).ready(function(){
     
     $(".post-comment").click(function(){
       $("#new-comment-entry")[0].reset();
+      $(this).hide();
       $(".new-comment-form").show();
     });
     
     $(".hide-comment").click(function(){
       $(".new-comment-form").hide();
+      $(".post-comment").show();
     });
     
 
     $('.comment-list').on('click', '.hide-reply-form', function() {
-    $(".comment-reply-form").hide();
+        $(".comment-reply-form").hide();
     });
+     
 });
 
 

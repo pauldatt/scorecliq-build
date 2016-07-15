@@ -1,5 +1,5 @@
 <% provide(:title, "Team Matches") %>
-<h2 class="team-matches-header">TEAM MATCHES</h2>
+<h2 class="generic-header">TEAM MATCHES</h2>
 
 <% if manager_or_owner?(@scoreboard, current_user) %> 
    <%= link_to "Add Matches", new_scoreboard_team_match_path(@scoreboard), class: "btn btn-primary" %>

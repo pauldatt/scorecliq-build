@@ -5,11 +5,6 @@
 /* TEAM MATCHES  */
 /* ----------------------------------------------- */
 
-.team-matches-header{
-    padding-bottom: 1%;
-    border-bottom: solid 1px #555;
-}
-
 .match-list{
     margin-top: 20px;
     .match-div{
@@ -54,6 +49,11 @@
                         color: #efefef;
                         .first-team{
                             border-bottom: solid 1px #555;
+                        }
+                        .first-team, .second-team{
+                            white-space: nowrap;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
                         }
                     }
                     .match-score{
@@ -115,12 +115,6 @@
 /* NEW TEAM MATCHES  */
 /* ----------------------------------------------- */
 
-.new-match-header{
-    padding-bottom: 1%;
-    border-bottom: solid 1px #555;
-    a{ text-decoration: none; }
-}
-
 .match-success{
     display: none;
     padding: 2%;
@@ -181,11 +175,6 @@
 /* EVENTS PAGE  */
 /* ----------------------------------------------- */
 
-.events-header{
-       padding-bottom: 1%;
-       border-bottom: solid 1px #555;
-}
-
 .event-list{
     margin-top: 20px;
     .event-div{
@@ -217,11 +206,17 @@
                     padding: 1%;
                     background-color: #1c75bf;
                     color: #efefef;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
                 }
                 .secondary{
                     font-size: 85%;
                     font-weight: 600;
                     text-align: left;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
                 }
             }
             .setting-icons{
@@ -252,12 +247,6 @@
 /* ----------------------------------------------- */
 /* NEW EVENTS PAGE  */
 /* ----------------------------------------------- */
-
-.new-events-header{
-     padding-bottom: 1%;
-     border-bottom: solid 1px #555;
-     a{ text-decoration: none; }
-}
 
 .event-success{
     display: none;
@@ -295,11 +284,6 @@
 /* ----------------------------------------------- */
 /* CATEGORIES INDEX PAGE */
 /* ----------------------------------------------- */
-
-.documents-header{
-     padding-bottom: 1%;
-     border-bottom: solid 1px #555;
-}
 
 .category-list{
     margin-top: 10px;
@@ -346,33 +330,27 @@
 /* CATEGORIES SHOW PAGE */
 /* ----------------------------------------------- */
 
-.document-show-header{
-     padding-bottom: 1%;
-     border-bottom: solid 1px #555;
-     a{ text-decoration: none; }
-}
-
 .document-list{
     margin-top: 10px;
     .document-div{
         margin-bottom: 10px;
-        font-size: 140%;
         text-align: center;
         .document-name{
              border-bottom: solid 2px #555;
              text-align: left;
              font-size: 100%;
              font-weight: 700;
-        }
-        .document-load{
-            border-bottom: solid 2px #555;
-            text-align: right;
-        }
-        .document-del{
-            border-bottom: solid 2px #555;
-            text-align: right;
-            .fa{ color: #555; }
-            .fa:hover{ color: #d83434; }
+             .links{
+                 font-size: 140%;
+                 a{
+                     text-decoration: none;
+                    .del{
+                        color: #555;
+                        margin-left: 15px;
+                    }
+                    .del:hover{ color:  #d83434;}
+                 }
+             }
         }
     }
 }
@@ -392,11 +370,6 @@
 /* ----------------------------------------------- */
 /* TOPIC INDEX PAGE */
 /* ----------------------------------------------- */
-
-.topics-header{
-     padding-bottom: 1%;
-     border-bottom: solid 1px #555;
-}
 
 .topic-list{
     margin-top: 10px;
@@ -423,6 +396,9 @@
                     background-color: #1c75bf;
                     font-size: 140%;
                     padding: 1%;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
                 }
                 .topic-name:hover{ background-color: #058eae; }
             }
@@ -450,24 +426,10 @@
     } 
 }
 
-/* ----------------------------------------------- */
-/* TOPIC NEW PAGE */
-/* ----------------------------------------------- */
-.new-topic-header{
-     padding-bottom: 1%;
-     border-bottom: solid 1px #555;
-     a{ text-decoration: none; }
-}
 
 /* ----------------------------------------------- */
 /* TOPIC SHOW PAGE */
 /* ----------------------------------------------- */
-
-.topic-show-header{
-     padding-bottom: 1%;
-     border-bottom: solid 1px #555;
-     a{ text-decoration: none; }
-}
 
 .post-comment{ margin-bottom: 5px; }
 

@@ -1,5 +1,5 @@
 <% provide(:title, "Teams") %>
-<h2 class="team-header"> TEAMS/STANDINGS </h2>
+<h2 class="generic-header"> TEAMS/STANDINGS </h2>
 
 <% if manager_or_owner?(@scoreboard, current_user) %>
     <span class="btn btn-primary team-create">Create Team </span>
@@ -21,7 +21,7 @@
     <div class="col-xs-2 standing-2">
         TIE
     </div>
-    <div class="col-xs-1 standing-2">
+    <div class="col-sm-1 hidden-xs standing-2">
         W %
     </div>
 </div>
