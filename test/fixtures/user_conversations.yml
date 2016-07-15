@@ -1,13 +1,14 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  user_id: 1
-  conversation_id: 1
-  deleted: false
-  read: false
+# user_convo_one:
+#   user: divjot
+#   conversation: convo_one
+#   deleted: false
+#   read: false
 
-two:
-  user_id: 1
-  conversation_id: 1
-  deleted: false
-  read: false
+# user_convo_two:
+#   user: sukh
+#   conversation_id: convo_two
+#   deleted: false
+#   read: false
+

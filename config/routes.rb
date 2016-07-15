@@ -19,9 +19,6 @@ Rails.application.routes.draw do
   put  'unassign_captain'         => 'team_members#unassign'
   post 'assign_manager'           => 'managers#create'
   delete 'unassign_manager'       => 'managers#delete'
-  #delete this after 
-  delete 'swag'                   => 'user_conversations#swag'
-
   
   resources :users do
       resources :pictures, only: [:create, :update, :destroy]
@@ -67,7 +64,6 @@ Rails.application.routes.draw do
   end
   
   resources :invitations, only: [:new, :create]
-  
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

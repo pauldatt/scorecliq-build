@@ -1,7 +1,5 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  subject: MyString
-
-two:
-  subject: MyString
+convo_one:
+ subject: abc
+ 

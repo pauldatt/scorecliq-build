@@ -35,6 +35,7 @@ class User < ActiveRecord::Base
   
   #following 3 lines of code are all for personal messaging 
   has_many :user_conversations, dependent: :destroy
+ 
   has_many :conversations, through: :user_conversations, dependent: :destroy
   
   has_many :messages, through: :conversations, dependent: :destroy

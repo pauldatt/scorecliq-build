@@ -19,14 +19,13 @@ class UserConversationsController < ApplicationController
     end
     
     def create
-        redirect_to home_path unless current_user
-        
+         redirect_to home_path unless current_user
          @conversation = UserConversation.new conversation_params
          @conversation.user = current_user
          @conversation.conversation.messages.first.user = current_user
          @conversation.save!
          activate_unread
-         redirect_to user_conversation_path(current_user,@conversation)
+         redirect_to user_conversation_path(current_user, @conversation)
     end
     
     def show
@@ -49,15 +48,6 @@ class UserConversationsController < ApplicationController
         redirect_to user_conversations_path(current_user)
         flash[:success] = "The conversation was successfully deleted."
     end
-    
-    # def swag
-    #     @conversations = UserConversation.all
-    #     @conversations.each do |d|
-    #         d.destroy
-    #     end
-    #     flash[:success] = "everyone gone"
-    #     redirect_to user_conversations_path(current_user)
-    # end
     
     private 
     

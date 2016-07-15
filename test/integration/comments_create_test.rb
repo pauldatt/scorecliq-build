@@ -28,7 +28,7 @@ class CommentsCreateTest < ActionDispatch::IntegrationTest
         end
     end
     
-    test "succeccfull creation of replies" do 
+    test "valid creation of replies" do 
         assert_difference("@topic.comments.count", 1) do 
              post scoreboard_topic_comments_path(@scoreboard, @topic), comment: {body: "abc",
                                                                                  user_id: @user.id,

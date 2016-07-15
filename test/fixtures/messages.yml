@@ -1,11 +1,8 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  user_id: 
-  conversation_id: 
-  body: MyText
+message:
+  user: divjot
+  conversation: convo_one
+  body: this is a message
 
-two:
-  user_id: 
-  conversation_id: 
-  body: MyText
+
