@@ -27,7 +27,8 @@ class ScoreboardCreateTest < ActionDispatch::IntegrationTest
     assert_difference '@user.scoreboards.count', 1 do
       post scoreboards_path, scoreboard: {name_of_scoreboard: "abc",
                                           name_of_organization: "def",
-                                          name_of_activity: "ghi" }
+                                          name_of_activity: "ghi",
+                                          location: "mordor"}
       end
       assert_redirected_to scoreboard_path(assigns(:scoreboard)) #its redirecting to the wrong scoreboard
       assert_equal 'Scoreboard created successfully', flash[:success]

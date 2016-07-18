@@ -6,7 +6,7 @@ class ScoreboardTest < ActiveSupport::TestCase
   def setup
     @user = users(:divjot)
     @scoreboard = @user.scoreboards.build(name_of_scoreboard: "Scoreboard A", name_of_organization: 
-                  "Organization A", name_of_activity: "Activity A")
+                  "Organization A", name_of_activity: "Activity A", location: "mordor")
     @status = statuses(:status_a)
                   
   end

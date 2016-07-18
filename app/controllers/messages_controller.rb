@@ -2,6 +2,7 @@ class MessagesController < ApplicationController
     before_action :logged_in_user
     
     def create
+     @user = User.find(params[:user_id])
      @conversation = Conversation.find(params[:conversation_id])
      @message = @conversation.messages.build(message_params)
       if @message.save

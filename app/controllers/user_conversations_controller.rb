@@ -26,6 +26,7 @@ class UserConversationsController < ApplicationController
          @conversation.save!
          activate_unread
          redirect_to user_conversation_path(current_user, @conversation)
+         flash[:success] = "The conversation was successfully created"
     end
     
     def show
