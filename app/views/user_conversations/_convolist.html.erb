@@ -13,12 +13,16 @@
                 <div class="last-msg"> <%= truncate(convo.messages.last.body, length: 80) %></div>
             </div>
             <div class="convo-with">
-                <div class="recipient"><%= convo.messages.last.user.name %></div>
+                <div class="recipient">  
+                    <% people(convo).each do |r| %>
+                       <%= r.name %>
+                    <% end %>
+                </div>
                 <div class="convo-time"> <%= time_ago_in_words(convo.messages.last.created_at) %> ago </div>
             </div>
         </div>
         <div class="convo-del">
-            <%= link_to deletion_user_conversation_path(current_user, convo), method: :put do %>
+            <%= link_to deletion_user_conversation_path(current_user, convo), method: :put, data: {confirm: "Delete this Conversation?"} do %>
                 <i class="fa fa-trash-o fa-lg" aria-hidden="true"></i>
             <% end %>
         </div>

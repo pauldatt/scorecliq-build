@@ -117,15 +117,58 @@
 /* CONVERSATION INDEX PAGE  */
 /* ----------------------------------------------- */
 
-.conversation-index-header{
-    padding-bottom: 1%;
-    border-bottom: solid 1px #555;
+.msg-link-lg{
+    position: relative;
+    .badge{
+        font-size: 8px;
+        background: #d83434;
+        width: auto;
+        height: auto;
+        margin: 0;
+        border-radius: 50%;
+        position: absolute;
+        bottom: -10px;
+        right: -15px;
+    }
 }
 
+.msg-link{
+    .badge{
+        font-size: 7px;
+        background: #d83434;
+        width: auto;
+        height: auto;
+        margin: 0;
+        border-radius: 50%;
+        position: absolute;
+        bottom: 5px;
+        right: 5px;
+    }
+}
 
 
 .conversation-list{
     margin-top: 10px;
+    .convo-header{
+        width: 90%;
+        float: left;
+        font-size: 20px;
+        background-color: #253341;
+        text-align: center;
+        margin-bottom: 10px;
+        color: #efefef;
+        .convo-subject{
+            padding: 3px 0;
+            width: 80%;
+            float: left;
+            border-right: solid 1px #efefef;
+        }
+        .convo-recipient{
+            padding: 3px 0;
+            width: 20%;
+            float: left;
+        }
+    }
     .conversation-div{
         margin-top: 10px;
         .convo-div{
@@ -186,11 +229,6 @@
 /* CONVERSATION SHOW PAGE  */
 /* ----------------------------------------------- */
 
-.conversation-show-header{
-    padding-bottom: 1%;
-    border-bottom: solid 1px #555;
-    a{ text-decoration: none; }
-}
 
 .messages-form{
     margin-bottom: 10px;
@@ -341,6 +379,7 @@
             .thumbnail{ margin-bottom: 0; }
         }
         .league-info{ 
+            font-size: 13px;
             font-weight: 500; 
             .no-pad{ padding-left: 0; }
         }

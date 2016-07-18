@@ -3,18 +3,18 @@ class PrivatesController < ApplicationController
   
   def privatize
     @scoreboard = Scoreboard.find(params[:scoreboard_id])
-    if @scoreboard.update_attributes(:privatization => "1")
+    if @scoreboard.update_attribute(:privatization, "true")
         redirect_to @scoreboard
         flash[:success] = "The scoreboard #{@scoreboard.name_of_scoreboard} is now private"
     else
         redirect_to @scoreboard
-        flash[:success] = "There was an error, please try again." #the only reason why this error message would fire 
+        flash[:danger] = "There was an error, please try again." #the only reason why this error message would fire 
     end                                                          #because the validations failed but there are not validation 
   end                                                            #hence it should never really fire
   
   def unprivatize
     @scoreboard = Scoreboard.find(params[:scoreboard_id])
-    if @scoreboard.update_attributes(:privatization => "0")
+    if @scoreboard.update_attribute(:privatization, "false")
       if @scoreboard.pending_requests.any?
         @scoreboard.pending_requests.each do |user|
           @scoreboard.favourited_by << user

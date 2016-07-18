@@ -3,9 +3,13 @@ class StaticPagesController < ApplicationController
     @dash = true
   end
 
-  def help
+  def guide
   end
 
   def about
   end
+  
+  def policy
+  end
+  
 end

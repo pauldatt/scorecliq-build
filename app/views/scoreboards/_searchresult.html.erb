@@ -34,6 +34,9 @@
              Sport/Activity: <%= league.name_of_activity %>
             </div>
             <div class="col-xs-12 no-pad">
+             Location: <%= league.location %>
+            </div>
+            <div class="col-xs-12 no-pad">
              Admin: <%= link_to league.user.name, user_path(league.user) %>
             </div>
        </div>

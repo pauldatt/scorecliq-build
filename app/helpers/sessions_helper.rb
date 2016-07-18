@@ -48,6 +48,16 @@ module SessionsHelper
     @current_user = nil
   end
   
+  #user conversation counter
+  def convo_count
+    @convos = current_user.user_conversations.where('deleted = ? OR deleted IS ? AND read = ?', false, nil, true).count
+  end
+  
+  #user conversation recipient fetcher
+  def people(convo)
+    @recipients = convo.conversation.users.where('user_id <> ?', current_user)
+  end
+  
   # Stores the URL trying to be accessed.
   def store_location
     session[:forwarding_url] = request.url if request.get?

@@ -93,13 +93,14 @@
    </div>
    
    <div class="col-xs-12  col-sm-7 col-sm-pull-2 score-prof-bio">
-      <h5> Owner: <%= link_to @scoreboard.user.name, user_path(@scoreboard.user) %></h4>
-      <h5> Club Name: <%= @scoreboard.name_of_organization %></h4>
-      <h5> Sport/Activity: <%= @scoreboard.name_of_activity %> </h4>
+      <h5> Owner: <%= link_to @scoreboard.user.name, user_path(@scoreboard.user) %></h5>
+      <h5> Club Name: <%= @scoreboard.name_of_organization %></h5>
+      <h5> Sport/Activity: <%= @scoreboard.name_of_activity %> </h5>
+      <h5> Location: <%= @scoreboard.location %> </h5>
       <% if @scoreboard.privatization == true %> 
-      <h5> Access: Private </h4>
+      <h5> Access: Private </h5>
       <% else %>
-      <h5> Access: Public</h4>
+      <h5> Access: Public</h5>
       <% end %>
    </div>
    
@@ -112,9 +113,18 @@
       <h4> SHARE THIS PAGE</h4>
       
       <div class="media-icons">
-         <%= link_to "twitter", "http://twitter.com/intent/tweet?status= #{@scoreboard.name_of_scoreboard} + https://scorecliq.com/scoreboards/#{@scoreboard.id}" %>
-         <%= link_to "facebook", "http://www.facebook.com/share.php?u=https://scorecliq.com/scoreboards/#{@scoreboard.id}&title=#{@scoreboard.name_of_scoreboard}" %>
-         <%= link_to "google bookmarks", "http://www.google.com/bookmarks/mark?op=edit&bkmk=scorecliq.com/scoreboards/#{@scoreboard.id}&title=#{@scoreboard.name_of_scoreboard}" %>
+         <%= link_to "http://twitter.com/intent/tweet?status= #{@scoreboard.name_of_scoreboard} + https://scorecliq.com/scoreboards/#{@scoreboard.id}" do %>
+             <i class="fa fa-twitter twit-share" aria-hidden="true"></i>
+         <% end %>
+         <%= link_to "http://www.facebook.com/share.php?u=https://scorecliq.com/scoreboards/#{@scoreboard.id}&title=#{@scoreboard.name_of_scoreboard}"  do %>
+             <i class="fa fa-facebook-official  fb-share" aria-hidden="true"></i>
+         <% end %>
+         <%= link_to "#" do %>
+             <i class="fa fa-google-plus-square gplus-share" aria-hidden="true"></i>
+         <% end %>
+         <%= link_to "#" do %>
+             <i class="fa fa-instagram insta-share" aria-hidden="true"></i>
+         <% end %>
       </div>
       
    </div>

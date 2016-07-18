@@ -16,32 +16,37 @@
         .owned-content{
             padding: 0;
             border: 1px solid #555;
+            font-size: 13px;
            a{
             color: #efefef;
             text-decoration: none;
                 .score-name{
                       background-color: #1c75bf;
                       padding: 1%;
-                      font-size: 20px;
+                      font-size: 16px;
                 }
                 .score-name:hover{ background-color: #058eae; }
             }
             .score-org { 
                 padding-left: 1%;
-                font-weight: 500;
+                font-weight: 400;
             }
             .score-activity { 
                 padding-left: 1%; 
-                font-weight: 500;
+                font-weight: 400;
+            }
+            .score-location {
+                padding-left: 1%;
+                font-weight: 400;
             }
         }
         .owned-options{
             padding: 0;
+            font-size: 20px;
             .owned-edit{
                 text-align: center;
                 padding: 1%;
                 a{
-                    font-size: 20px;
                     text-decoration: none;
                     color: #555;
                 }
@@ -51,7 +56,6 @@
                 text-align: center;
                 padding: 1%;
                 a{
-                    font-size: 20px;
                     text-decoration: none;
                     color: #555;
                 }
@@ -68,23 +72,28 @@
         .followed-content{
             padding: 0;
             border: 1px solid #555;
+            font-size: 13px;
            a{
             color: #efefef;
             text-decoration: none;
                 .score-name{
                       background-color: #1c75bf;
                       padding: 1%;
-                      font-size: 20px;
+                      font-size: 16px;
                 }
                 .score-name:hover { background-color: #058eae; }
             }
             .score-org { 
                 padding-left: 1%;
-                font-weight: 500;
+                font-weight: 400;
             }
             .score-activity { 
                 padding-left: 1%; 
-                font-weight: 500;
+                font-weight: 400;
+            }
+            .score-location{
+                padding-left: 1%;
+                font-weight: 400;
             }
         }
      }
@@ -528,6 +537,19 @@
            border-radius: 10px;
            height: 78px;
            margin-bottom: 10px;
+           text-align: center;
+           a{ 
+               text-decoration: none;
+               color: #555;
+               .fa{ 
+                   font-size: 30px;
+                   margin-right: 10px;
+               }
+               .fb-share:hover{ color: #3b5998;}
+               .twit-share:hover{ color: #1da1f2;}
+               .gplus-share:hover{ color: #d44235;}
+               .insta-share:hover{ color: #262626;}
+           }
        }
        .btn{
            font-size: 70%;

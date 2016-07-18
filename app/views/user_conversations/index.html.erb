@@ -1,8 +1,17 @@
 <%= provide(:title, "Conversations") %>
-<h2 class="conversation-index-header">YOUR MESSAGES</h2>
+<h2 class="generic-header">YOUR MESSAGES</h2>
 
 <div class="conversation-list">
+
     <% if @conversations.any? %>
+        <div class="convo-header">
+            <div class="convo-subject">
+                SUBJECT
+            </div>
+            <div class="convo-recipient">
+                WITH:
+            </div>
+        </div>
         <%= render "convolist" %>
     <% else %>
         <div class="row default-div">

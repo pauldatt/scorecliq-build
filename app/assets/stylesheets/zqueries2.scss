@@ -1,0 +1,213 @@
+/* ----------------------------------------------- */
+/*CONTAINS CODE FOR: ITEMS NOT IN LEAGUE PAGES   */
+/* ----------------------------------------------- */
+
+/* Small tablet to big tablet: from 768px to 1023px */
+@media only screen and (max-width: 1023px) {
+
+/**************** CONVERSATION INDEX **************/
+.conversation-list{
+    .conversation-div{
+        .convo-div{
+            .convo-info{
+                a{
+                    .convo-subject{ font-size: 13px;}
+                }
+                .last-msg{ font-size: 10px;}
+            }
+            .convo-with{
+                .recipient { font-size: 11px; }
+            }
+        }
+    }
+}
+
+/****************** SCOREBOARD INDEX ****************/
+.owned-list .owned-div{
+    .owned-content{
+        font-size: 11px;
+        a .score-name{
+            font-size: 13px;
+            padding: 10px 1%;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    }
+}
+
+.followed-list .followed-div{
+    .followed-content{
+        font-size: 11px;
+        a .score-name{
+            font-size: 13px;
+            padding: 10px 1%;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    }
+}
+/*************** SEARCH INDEX PAGE *************/
+.search-display{
+    .search-div{
+        .league-link{
+               font-size: 14px;
+               padding: 10px 1%;
+        }
+        .league-info{ 
+            font-size: 11px;
+        }
+    }
+}
+
+}
+
+
+
+/* Small phones to small tablets: from 481px to 767px */
+@media only screen and (max-width: 767px) {
+    
+/******************* CONVERSATION INDEX ***************/
+.conversation-list{
+    .conversation-div{
+        .convo-div{
+            .convo-info{
+                a{
+                    .convo-subject{ font-size: 11px;}
+                }
+                .last-msg{ font-size: 8px;}
+            }
+            .convo-with{
+                .recipient { font-size: 9px; }
+                .convo-time{ font-size: 8px; }
+            }
+        }
+    }
+}
+/*************** SEARCH INDEX PAGE *************/
+.search-display{
+    .search-div{
+        .league-link{
+            font-size: 14px;
+            padding: 10px 1%;
+            .league-name{
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+        }
+        .league-info{ 
+            font-size: 12px;
+        }
+    }
+}
+
+}
+
+
+/* Small phones: from 0 to 480px */
+@media only screen and (max-width: 480px) {
+
+/**************** CONVERSATION INDEX ************/    
+.conversation-list{
+    .convo-header{
+        .convo-subject{ font-size: 15px}
+        .convo-recipient{ font-size: 15px; }
+    }
+    .conversation-div{
+        .convo-div{
+            .convo-info{
+                a{
+                    .convo-subject{
+                        font-size: 10px;
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                    }
+                }
+                .last-msg{ font-size: 8px;}
+            }
+            .convo-with{
+                .recipient { 
+                    font-size: 8px; 
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+                .convo-time{ font-size: 8px; }
+            }
+        }
+    }
+}
+
+/***************** CONVERSATION SHOW PAGE **************/
+.message-list{
+    .message-div{
+        .msg-info{
+            font-size: 10px;
+            .msg-name{
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+        }
+        .msg-body{ font-size: 10px;}
+    }
+}
+
+/******************** SCOREBOARD INDEX PAGE **********/
+.owned-list .owned-div{
+    .owned-content{
+        font-size: 9px;
+        a .score-name{
+            font-size: 10px;
+            padding: 10px 1%;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .score-org, .score-activity, .score-location{
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    }
+}
+
+.followed-list .followed-div{
+    .followed-content{
+        font-size: 9px;
+        a .score-name{
+            font-size: 10px;
+            padding: 10px 1%;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .score-org, .score-activity, .score-location{
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    }
+}
+/*************** SEARCH INDEX PAGE *************/
+.search-display{
+    .search-div{
+        .league-link{
+            font-size: 10px;
+            padding: 10px 1%;
+            .league-name{
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+        }
+        .league-info{ 
+            font-size: 9px;
+        }
+    }
+}
+
+}

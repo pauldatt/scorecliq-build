@@ -15,7 +15,12 @@
               
               <li <% if @convopage %> class="active" <%end%>>
                 <%= link_to user_conversations_path(current_user) do %>
-                 <i class="fa fa-envelope-o fa-lg" aria-hidden="true"></i>
+                 <div class="msg-link-lg">
+                   <i class="fa fa-envelope-o fa-lg" aria-hidden="true"></i>
+                    <% if convo_count > 0 %>
+                      <span class="badge"><%= convo_count %></span>
+                    <% end %>
+                 </div>
                 <% end %>
               </li>
               <li role="presentation" class="dropdown <% if @userpage %> active <%end%>">
@@ -44,23 +49,28 @@
 <!--THE FOLLOW NAVBAR IS FOR THE MOBILE ONLY-->
 <nav class="navbar navbar-fixed-top main-nav visible-xs">
       <div class="container-fluid">
-        <div class="navbar-header">
+        <div class="navbar-header top-icons">
           <% if logged_in? %>
             <button type="button" class="navbar-toggle collapsed side-menu" data-toggle="collapse" data-target="#side-navbar" aria-expanded="false" aria-controls="navbar">
               <span class="sr-only">Toggle navigation</span>
-              <a><i class="fa fa-bars fa-lg" aria-hidden="true"></i></a>
+              <a><i class="fa fa-bars" aria-hidden="true"></i></a>
             </button>
             
             <button type="button" class="navbar-toggle collapsed user-menu" data-toggle="collapse" data-target="#user-navbar" aria-expanded="false" aria-controls="navbar">
               <span class="sr-only">Toggle navigation</span>
-              <a><i class="fa fa-user fa-lg" aria-hidden="true"></i></a>
+              <a><i class="fa fa-user" aria-hidden="true"></i></a>
               <span class="caret"></span>
              </button>
             
             <button type="button" class="navbar-toggle collapsed" aria-expanded="false" aria-controls="navbar">
               <span class="sr-only">User Conversation</span>
-                <%= link_to user_conversations_path(current_user) do %>
-                 <i class="fa fa-envelope-o fa-lg" aria-hidden="true"></i>
+                <%= link_to user_conversations_path(current_user), class: "msg-link" do %>
+                   <div class="msg-link">
+                      <i class="fa fa-envelope-o" aria-hidden="true"></i>
+                      <% if convo_count > 0 %>
+                        <span class="badge"><%= convo_count %></span>
+                      <% end %>
+                   </div>
                 <% end %>
             </button>
           <% else %>
