@@ -7,7 +7,7 @@ class AddTsvectorColumns < ActiveRecord::Migration
       CREATE TRIGGER tsvectorupdate BEFORE INSERT OR UPDATE
       ON scoreboards FOR EACH ROW EXECUTE PROCEDURE
       tsvector_update_trigger(
-        tsv, 'pg_catalog.english', name_of_scoreboard, name_of_organization, name_of_activity
+        tsv, 'pg_catalog.english', name_of_scoreboard, name_of_organization, name_of_activity, location
       );
     SQL
 

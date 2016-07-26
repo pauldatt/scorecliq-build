@@ -116,6 +116,25 @@
             This page's access has been set to private by the owner. Please request to join
             the page to become a follower and recieve access to league information.
          </div>
+
+
+<div class="row score-stats">
+   <div class="col-xs-12 col-sm-3 col-md-3 share-div">
+      <h4> SHARE THIS PAGE</h4>
+      
+      <div class="media-icons">
+         <%= link_to "http://twitter.com/intent/tweet?status= Name of League: #{@scoreboard.name_of_scoreboard}, click the link to view + https://www.scorecliq.herokuapp.com/scoreboards/#{@scoreboard.id} #{image_tag @picture.picture.url}" do %>
+             <i class="fa fa-twitter twit-share" aria-hidden="true"></i>
+         <% end %>
+         <%= link_to "http://www.facebook.com/share.php?u=https://www.scorecliq.herokuapp.com/scoreboards/#{@scoreboard.id}&title= Name of League: #{@scoreboard.name_of_scoreboard}" do %>
+             <i class="fa fa-facebook-official  fb-share" aria-hidden="true"></i>
+         <% end %>
+         <%= link_to "https://plus.google.com/share?url=https://www.scorecliq.herokuapp.com/scoreboards/#{@scoreboard.id}&title= Name of League: #{@scoreboard.name_of_scoreboard}" do %>
+             <i class="fa fa-google-plus-square gplus-share" aria-hidden="true"></i>
+         <% end %>
+         <%= link_to "#" do %>
+             <i class="fa fa-instagram insta-share" aria-hidden="true"></i>
+         <% end %>
       </div>
    </div>
 <% else %>
@@ -204,7 +223,6 @@
 <% end %>
 
 <%= render "pictures/uploadphoto" %>
-
 
 
 

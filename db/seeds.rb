@@ -21,8 +21,6 @@ Teams.create!(name: "team1",
 #              activated: "true",
 #              admin: "true")
 
-<<<<<<< HEAD
-=======
 
 # User.create!(name:  "Arya",
 #              email: "Arya@gmail.com",
@@ -55,7 +53,7 @@ Teams.create!(name: "team1",
 #              activated: "true",
 #              admin: "true")
 
->>>>>>> origin/master
+
 # 1.times do
 #     Message.create!(body: "this is a message",
 #                     user_id: 1,
@@ -65,25 +63,6 @@ Teams.create!(name: "team1",
 #                           this message is possibly by swag.this message is possibly by swag.this message is possibly by swag.this message is possibly by swag.this message is possibly by swag.
 #                           this message is possibly by swag.this message is possibly by swag.this message is possibly by swag.this message is possibly by swag.",
 #                     user_id: 6613,
-<<<<<<< HEAD
-#                     conversation_id: 16)
-                    
-#     Message.create!(body: "4",
-#                     user_id: 6613,
-#                     conversation_id: 16)
-    
-#     Message.create!(body: "5",
-#                     user_id: 6613,
-#                     conversation_id: 16)
-                    
-#     Message.create!(body: "6",
-#                     user_id: 6613,
-#                     conversation_id: 16)
-                    
-#     Message.create!(body: "7",
-#                     user_id: 6613,
-#                     conversation_id: 16)
-=======
 #                     conversation_id: 4)
                     
 #     Message.create!(body: "4",
@@ -101,7 +80,23 @@ Teams.create!(name: "team1",
 #     Message.create!(body: "7",
 #                     user_id: 6613,
 #                     conversation_id: 4)
->>>>>>> origin/master
+#                     conversation_id: 16)
+                    
+#     Message.create!(body: "4",
+#                     user_id: 6613,
+#                     conversation_id: 16)
+    
+#     Message.create!(body: "5",
+#                     user_id: 6613,
+#                     conversation_id: 16)
+                    
+#     Message.create!(body: "6",
+#                     user_id: 6613,
+#                     conversation_id: 16)
+                    
+#     Message.create!(body: "7",
+#                     user_id: 6613,
+#                     conversation_id: 16)
                     
 #     Message.create!(body: "8",
 #                     user_id: 6613,

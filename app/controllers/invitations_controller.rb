@@ -34,6 +34,8 @@ private
        invite_params.permit(:recipient_email)
     end
     
+    VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
+    
     def allowed_user
         @scoreboard = Scoreboard.find(params[:scoreboard_id])
         if (manager_or_owner?(@scoreboard, current_user) == false)
@@ -41,8 +43,6 @@ private
             flash[:danger] = "Access Restricted To Admins only"
         end
     end
-    
-    VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
     def pick_emails
        @scoreboard = Scoreboard.find(params[:scoreboard_id])

@@ -3,8 +3,19 @@
 class PictureUploader < CarrierWave::Uploader::Base
   
   include CarrierWave::MiniMagick
-  process resize_to_fill: [203, 174]
-
+  
+   process :right_orientation
+   def right_orientation
+       manipulate! do |img|
+       img.auto_orient
+        img
+     end
+   end
+  
+  version :square do 
+    process resize_to_fill: [203, 174]
+  end
+  
 
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
@@ -41,8 +52,8 @@ class PictureUploader < CarrierWave::Uploader::Base
   # end
 
   # Create different versions of your uploaded files:
-  # version :thumb do
-  #   process :resize_to_fit => [50, 50]
+  # version :square do
+  #   process :
   # end
 
   # Add a white list of extensions which are allowed to be uploaded.
