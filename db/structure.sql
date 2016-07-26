@@ -763,7 +763,8 @@ CREATE TABLE teams (
     tie integer,
     scoreboard_id integer,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    win_percentage integer
 );
 
 
