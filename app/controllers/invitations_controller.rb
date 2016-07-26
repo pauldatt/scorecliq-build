@@ -33,7 +33,7 @@ private
        invite_params.permit(:recipient_email)
     end
     
-    VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+    VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
 
     def pick_emails
        @emails= []

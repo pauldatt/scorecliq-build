@@ -44,13 +44,13 @@ class User < ActiveRecord::Base
   before_save   :downcase_email 
   before_create :create_activation_digest 
   validates :name, presence: true, length: { maximum: 40 } 
-  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
   validates :email, presence: true, length: { maximum: 255 },
                     format: { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false }
     
   
-   VALID_PASSWORD_REGEX =  /\A(?=.*[a-z\A-Z])(?=.*[0-9]).{8,}\z/
+  VALID_PASSWORD_REGEX =  /\A(?=.*[a-z\A-Z])(?=.*[0-9]).{8,}\z/
    has_secure_password
    validates :password, length: { minimum: 8 }, allow_blank: true,
                       format: { with: VALID_PASSWORD_REGEX, :message => "must include one number and one letter" }

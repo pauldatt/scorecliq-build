@@ -16,19 +16,20 @@
 
 <div class="search-display">
     <% if params[:search].present? %>
-    
         <% if @scoreboard_search.present? %>
-        <% @scoreboard_search.each do |league| %>
-            <%= render "scoreboards/searchresult", league: league %>
-        <% end %>
-           
-        <!--css from new team member will apply here to the pages -->
-        <div class="row">
-            <div class="col-xs-12 new-member-pages">
-                <%= will_paginate @scoreboard_search %>
+          <% @scoreboard_search.each do |league| %>
+             <% @scoreboard_search.each do |search| %> <!-- caching fragments for each are set in place -->
+             <% cache search do %>
+                <%= render "scoreboards/searchresult", league: league %>
+             <% end %>
+          <% end %> <!-- ends here -->
+        <% end %> <!-- this is for the league block -->
+            <!--css from new team member will apply here to the pages -->
+            <div class="row">
+                <div class="col-xs-12 new-member-pages">
+                    <%= will_paginate @scoreboard_search %>
+                </div>
             </div>
-        </div>
-        
         <% else %>
            <div class="row default-div">
                <div class="col-xs-12">

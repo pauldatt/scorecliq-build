@@ -113,13 +113,13 @@
       <h4> SHARE THIS PAGE</h4>
       
       <div class="media-icons">
-         <%= link_to "http://twitter.com/intent/tweet?status= #{@scoreboard.name_of_scoreboard} + https://scorecliq.com/scoreboards/#{@scoreboard.id}" do %>
+         <%= link_to "http://twitter.com/intent/tweet?status= Name of League: #{@scoreboard.name_of_scoreboard}, click the link to view + https://www.scorecliq.herokuapp.com/scoreboards/#{@scoreboard.id} #{image_tag @picture.picture.url}" do %>
              <i class="fa fa-twitter twit-share" aria-hidden="true"></i>
          <% end %>
-         <%= link_to "http://www.facebook.com/share.php?u=https://scorecliq.com/scoreboards/#{@scoreboard.id}&title=#{@scoreboard.name_of_scoreboard}"  do %>
+         <%= link_to "http://www.facebook.com/share.php?u=https://www.scorecliq.herokuapp.com/scoreboards/#{@scoreboard.id}&title= Name of League: #{@scoreboard.name_of_scoreboard}" do %>
              <i class="fa fa-facebook-official  fb-share" aria-hidden="true"></i>
          <% end %>
-         <%= link_to "#" do %>
+         <%= link_to "https://plus.google.com/share?url=https://www.scorecliq.herokuapp.com/scoreboards/#{@scoreboard.id}&title= Name of League: #{@scoreboard.name_of_scoreboard}" do %>
              <i class="fa fa-google-plus-square gplus-share" aria-hidden="true"></i>
          <% end %>
          <%= link_to "#" do %>
@@ -193,7 +193,6 @@
 <% end %>
 
 <%= render "pictures/uploadphoto" %>
-
 
 
 

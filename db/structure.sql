@@ -624,9 +624,9 @@ CREATE TABLE scoreboards (
     user_id integer,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    tsv tsvector,
     privatization boolean DEFAULT false,
-    location character varying
+    location character varying,
+    tsv tsvector
 );
 
 
@@ -763,8 +763,7 @@ CREATE TABLE teams (
     tie integer,
     scoreboard_id integer,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
-    win_percentage integer
+    updated_at timestamp without time zone NOT NULL
 );
 
 
@@ -1574,7 +1573,7 @@ CREATE UNIQUE INDEX unique_schema_migrations ON schema_migrations USING btree (v
 -- Name: tsvectorupdate; Type: TRIGGER; Schema: public; Owner: -
 --
 
-CREATE TRIGGER tsvectorupdate BEFORE INSERT OR UPDATE ON scoreboards FOR EACH ROW EXECUTE PROCEDURE tsvector_update_trigger('tsv', 'pg_catalog.english', 'name_of_scoreboard', 'name_of_organization', 'name_of_activity');
+CREATE TRIGGER tsvectorupdate BEFORE INSERT OR UPDATE ON scoreboards FOR EACH ROW EXECUTE PROCEDURE tsvector_update_trigger('tsv', 'pg_catalog.english', 'name_of_scoreboard', 'name_of_organization', 'name_of_activity', 'location');
 
 
 --
