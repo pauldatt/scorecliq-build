@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
       if user.activated?
         log_in user
         params[:session][:remember_me] == '1' ? remember(user) : forget(user)
-        redirect_to home_path
+        redirect_back_or home_path #the methods are written in sessions helper for friendly forwarding
       else
         message = "Account not activated."
         message += "Please check your email for the activation link"
