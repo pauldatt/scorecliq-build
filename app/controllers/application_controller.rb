@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
   def logged_in_user
     unless logged_in?
       store_location
-      flash[:danger] = "Please sign-in to access this page."
+      flash.now[:danger] = "Please sign-in to access this page."
       render 'static_pages/home'
     end
   end
