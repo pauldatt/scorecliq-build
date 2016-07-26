@@ -1,9 +1,23 @@
-<p> Oops there were some errors!</p>
-<p> 
+<% provide(:title, "Error!") %>
+
+<h2 class="generic-header">
+    <%= link_to new_invitation_path(:scoreboard_id => @scoreboard.id) do %>
+     <i class="fa fa-arrow-circle-o-left" aria-hidden="true"></i>
+     <% end %>
+     Oops!
+</h2>
+
+<div class="row">
+    <div class="col-xs-12  invite-error-head">
+        The Following Email(s) could not be sent:
+    </div>
+    
+    <% @errors.each do |e| %>
+       <div class="col-xs-12 invite-error-msg">
+           <%= e %>
+       </div>
+    <% end %>
+</div>
 
 
-<%= @errors %>
 
-</p>
-
-<p> <%= link_to "Go back to Invites", new_invitation_path(scoreboard_id: @scoreboard.id) , class: 'btn btn-primary' %></p>

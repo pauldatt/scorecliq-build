@@ -2,16 +2,35 @@
   <footer class="footer">
        <div class="container-fluid">
          <div class="row">
-             <div class= "col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 footer-col">
-                 <nav>
-                     <ul>
-                         <li><%= link_to "About", about_path %></li>
-                         <li><%= link_to "Contact", contact_path %></li>
-                         <li><%= link_to "Site Guide", guide_path %></li>
-                         <li><%= link_to "Terms/Privacy", policy_path %></li>
-                     </ul>
-                 </nav>
-             </div>
+             <% if logged_in? %>
+                 <div class= "col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 footer-col">
+                     <nav>
+                         <ul>
+                             <li><%= link_to "About", about_path %></li>
+                             <li><%= link_to "Contact", contact_path %></li>
+                             <li><%= link_to "Site Guide", guide_path %></li>
+                             <li><%= link_to "Terms/Privacy", policy_path %></li>
+                         </ul>
+                         <div class="copyright-text">
+                             Copyright <i class="fa fa-copyright" aria-hidden="true"></i> <%= Time.now.year %> Scorecliq
+                         </div>
+                     </nav>
+                 </div>
+            <% else %>
+                 <div class="col-xs-12 footer-col">
+                     <nav>
+                         <ul>
+                             <li><%= link_to "About", about_path %></li>
+                             <li><%= link_to "Contact", contact_path %></li>
+                             <li><%= link_to "Site Guide", guide_path %></li>
+                             <li><%= link_to "Terms/Privacy", policy_path %></li>
+                         </ul>
+                         <div class="copyright-text">
+                             Copyright <i class="fa fa-copyright" aria-hidden="true"></i> <%= Time.now.year %> Scorecliq
+                         </div>
+                     </nav>
+                 </div>
+            <% end %>
          </div>
       </div>
   </footer>

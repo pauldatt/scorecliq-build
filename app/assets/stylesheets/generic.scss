@@ -9,6 +9,8 @@
 
 .custom-side > li > a:hover {  background-color: #428bca;}
 
+.login-button:hover{ cursor: pointer; }
+
 /* ----------------------------------------------- */
 /* PRELOGIN HOME PAGE  */
 /* ----------------------------------------------- */
@@ -32,7 +34,7 @@
 
 .home-header{
     margin-top: 50px;
-    font-size: 25px;
+    font-size: 16px;
     color: #efefef;
     .sub-content{
         text-align: center;
@@ -45,8 +47,8 @@
 }
 
 .how-it-works{
-    background-color: #fff;
     .work-head{
+        color: #4878AB;
         text-align: center;
     }
     .work-head:after {
@@ -58,15 +60,30 @@
         margin: 20px auto;
     }
     
+    .how-head{
+        text-align: center;
+        color: #555;
+        margin-bottom: 20px;
+        .number{
+            border: 3px solid;
+            padding: 5px 10px;
+            border-radius: 50%;
+        }
+    }
     .how-text{
         font-size: 20px;
         text-align: justify;
         line-height: 145%;
     }
+    .last-row{
+        margin-bottom: 20px;
+    }
 }
 
 .features{
+    background-color: #fff;
     .feature-head{
+        color: #4878AB;
         text-align: center;
     }
     .feature-head:after {
@@ -93,7 +110,57 @@
             text-align: justify;
         }
     }
+    .more-features{ text-align: right;}
 }
+
+.plans{
+    .plans-head{
+        color: #4878AB;
+        text-align: center;
+    }
+    .plans-head:after {
+        display: block;
+        height: 2px;
+        background-color: #4878AB;
+        content: " ";
+        width: 100px;
+        margin: 20px auto;
+    }
+    .plan-box{
+        background-color: #fff;
+        .plan-type{
+            text-align: center;
+            padding-top: 10px;
+        }
+        .plan-price{
+            text-align: center;
+            color: #4878AB;
+        }
+        .plan-desc{
+            text-align: center;
+            padding-top: 10px;
+            padding-bottom: 15px;
+            border-bottom: solid 5px #efefef;
+        }
+        .plan-features{
+            .point{
+                padding: 15px 0 15px 10px;
+                .fa-check{ color: #62c462;}
+                .fa-times{ color: #d83434; }
+            }
+        }
+    }
+    
+    .sign-up-offer{
+        text-align: center;
+        margin-top: 20px;
+    }
+    
+}
+
+/* ----------------------------------------------- */
+/* PASSWORD RESETS */
+/* ----------------------------------------------- */
 
 
 
@@ -289,63 +356,92 @@
     text-align: center;
 }
 
-.dash-options{
-    padding: 0;
-    .dash-plan{
-        .plan-label{
-            padding: 1%;
+
+.create-league{
+    background-image: -webkit-linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(create.jpg);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(create.jpg);
+    background-position: center;
+    width: 100%;
+    height: 200px;
+    border-radius: 10px;
+    color: #efefef;
+    text-align: center;
+    font-size: 20px;
+    padding: 20px 15px 10px 15px;
+}
+
+.find-league{
+    background-image: -webkit-linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(find.jpg);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(find.jpg);
+    background-position: center;
+    width: 100%;
+    height: 200px;
+    border-radius: 10px;
+    color: #efefef;
+    text-align: center;
+    font-size: 20px;
+    padding: 20px 15px 10px 15px;
+}
+
+.dash-plan{
+    margin-top: 20px;
+    border: 2px solid #253341;
+    height: 145px;
+    max-height: 145px;
+    border-radius: 0 0 10px 10px;
+    h3{
+        margin-top: 0;
+        padding: 1%;
+        background-color: #1c75bf;
+        color: #efefef;
+        text-align: center;
+    }
+    .plan-type{
+        margin-top: 20px;
+        margin-bottom: 20px;
+        text-align: center;
+        .plan-span{
+            padding: 10px;
+            font-size: 18px;
             background-color: #253341;
             color: #efefef;
-            font-size: 25px;
-            text-align: center;
-        }
-        .plan-type{
-            padding: 10px 1%;
-            background-color: #1c75bf;
-            color: #efefef;
-            font-size: 20px;
-            text-align: center;
-        }
-        .btn{
-            border-radius: 0;
+            border-radius: 10px;
         }
     }
-    .dash-create{
-        margin-top: 10px;
-        a{
-            text-decoration: none;
-            color: #efefef;
-            .create-link{
-                padding:  20px 1%;
-                background-color: #058eae;
-                font-size: 25px;
-                text-align: center;
-                border-radius: 10px;
-            }
-            .create-link:hover{
-                background-color: #216273;
-            }
-        }
+    .plan-upgrade{
+        margin-bottom: 10px;
+        text-align: center;
     }
 }
 
-.dash-info{
-    padding-right: 0;
-    .dash-generic-1, .dash-generic-2{
+.dash-share{
+    margin-top: 20px;
+    border: 2px solid #253341;
+    height: 145px;
+    max-height: 145px;
+    border-radius: 0 0 10px 10px;
+    h3{
+        margin-top: 0;
         padding: 1%;
-        background-color: #253341;
+        background-color: #1c75bf;
         color: #efefef;
-        font-size: 20px;
         text-align: center;
-        border-radius: 10px;
-        .generic-link{
-            margin-top: 5px;
+    }
+    .share-icons{
+        text-align: center;
+        a{
+            text-decoration: none;
+            font-size: 40px;
+            .twit-share, .fb-share, .gplus-share{ color: #555; }
+            .twit-share:hover{ color: #1da1f2; }
+            .fb-share:hover{ color: #3b5998;}
+            .gplus-share:hover{ color: #d44235; }
         }
     }
-    .dash-generic-2{
-        margin-top: 10px;
-    }
+    
 }
+
+
 
 /* ----------------------------------------------- */
 /* SEARCH PAGE  */

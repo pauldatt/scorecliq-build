@@ -289,10 +289,10 @@
     margin-top: 10px;
     .category-div{
         margin-bottom: 10px;
-        border: 2px solid #555;
         .cat-info{
             padding: 0;
             color: #efefef;
+            border: 2px solid #555;
             a{
                 color: #efefef;
                 text-decoration: none;
@@ -386,9 +386,10 @@
     }
     .topic-div{
         margin-bottom: 10px;
-        border: 2px solid #555;
         .topic-info{
             padding: 0;
+            border: 2px solid #253341;
+            border-right: none;
             a{
                 color: #efefef;
                 text-decoration: none;
@@ -409,7 +410,9 @@
         .comments-count{ 
             padding: 0;
             background-color: #253341;
-            height: 66px;  
+            height: 67px;  
+            border: 2px solid #253341;
+            border-left: none;
             div{
               text-align: center;
               font-size: 120%;

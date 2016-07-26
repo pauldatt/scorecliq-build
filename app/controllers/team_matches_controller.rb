@@ -1,6 +1,7 @@
 class TeamMatchesController < ApplicationController
     before_action :logged_in_user
     before_action :allowed,       only: :new
+    before_action :private_entry, only: [:index, :new]
     require 'will_paginate/array'
     
     def index
@@ -88,6 +89,14 @@ class TeamMatchesController < ApplicationController
             flash[:danger] = "Only the owner or admin can access this page"
             redirect_to scoreboard_team_matches_path(@scoreboard)
         end
+    end
+    
+    def private_entry
+     @scoreboard = Scoreboard.find(params[:scoreboard_id])
+     if privacy_restriction?(@scoreboard, current_user)
+       redirect_to scoreboard_path(@scoreboard)
+       flash[:danger] = "Private League. You must make a request to join before accessing league pages."
+     end
     end
     
         

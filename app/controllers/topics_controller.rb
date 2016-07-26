@@ -1,5 +1,6 @@
 class TopicsController < ApplicationController
     before_action :logged_in_user
+    before_action :private_entry, only: [:index, :new, :show]
     
     def index 
         @selected = true
@@ -50,6 +51,14 @@ class TopicsController < ApplicationController
     
     def topic_params
         params.require(:topic).permit(:subject, comments_attributes: [:body, :user_id]).merge(user_id: current_user.id)
+    end
+    
+    def private_entry
+     @scoreboard = Scoreboard.find(params[:scoreboard_id])
+     if privacy_restriction?(@scoreboard, current_user)
+       redirect_to scoreboard_path(@scoreboard)
+       flash[:danger] = "Private League. You must make a request to join before accessing league pages."
+     end
     end
     
     

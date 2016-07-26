@@ -1,5 +1,5 @@
 /* ----------------------------------------------- */
-/*CONTAINS CODE FOR: LEAGUE PROFILE, */
+/*CONTAINS CODE FOR: LEAGUE PROFILE & ASSOCIATED PAGES */
 /* ----------------------------------------------- */
 /* Small tablet to big tablet: from 768px to 1023px */
 @media only screen and (max-width: 1023px) {
@@ -41,6 +41,7 @@
 .topic-list{
     .topic-div{
         .topic-info{
+            border-right: 2px solid #253341;
              a .topic-name{
                  padding: 10px 1%;
                 font-size: 17px;
@@ -232,6 +233,11 @@
                     .score { height: 35px; }
                 }
             }
+            .location{
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
         }
         .match-delete{ height: 71px; }
     }
@@ -315,6 +321,10 @@
 }
 .comment-reply-form{ margin-left: 0; }
 .nested-comment{ margin-left: 20px; }
+
+/******************INVITE CREATE PAGE **************/
+.invite-error-head{ font-size: 14px; }
+.invite-error-msg{ font-size: 12px; }
 
 }
 

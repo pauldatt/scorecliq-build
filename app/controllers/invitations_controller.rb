@@ -1,5 +1,6 @@
 class InvitationsController < ApplicationController
     before_action :pick_emails, only: :create
+    before_action :allowed_user, only: [:new, :create]
     before_action :logged_in_user
     
     def new
@@ -7,7 +8,7 @@ class InvitationsController < ApplicationController
         @scoreboard = Scoreboard.find(params[:scoreboard_id])
         @invitation= Invitation.new 
         @invitations = []
-        2.times do 
+        10.times do 
             @invitations << Invitation.new
         end
     end
@@ -33,22 +34,31 @@ private
        invite_params.permit(:recipient_email)
     end
     
+    def allowed_user
+        @scoreboard = Scoreboard.find(params[:scoreboard_id])
+        if (manager_or_owner?(@scoreboard, current_user) == false)
+            redirect_to scoreboard_path(@scoreboard)
+            flash[:danger] = "Access Restricted To Admins only"
+        end
+    end
+    
     VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
     def pick_emails
+       @scoreboard = Scoreboard.find(params[:scoreboard_id])
        @emails= []
        @errors=[]
        if not_blank?
         params["invites"].each do |invite|
          if valid_email?(invite[:recipient_email])
             @emails << invite[:recipient_email]
-         else if !valid_email?(invite[:recipient_email]) && (invite[:recipient_email] != "")
+         elsif !valid_email?(invite[:recipient_email]) && (invite[:recipient_email] != "")
             @errors << invite[:recipient_email]
-         end
          end
         end
        else
-          @errors << "You entered no emails. Please go back and enter at least 1 email address"
+          redirect_to new_invitation_path(scoreboard_id: @scoreboard.id)
+          flash[:danger] = "Error: No emails were entered."
        end
            
     end

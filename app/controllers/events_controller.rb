@@ -1,6 +1,7 @@
 class EventsController < ApplicationController
     before_action :logged_in_user
     before_action :fix_time,   only: [:create, :update]
+    before_action :private_entry, only: [:index, :new]
     require 'will_paginate/array'
     
     def index
@@ -78,6 +79,14 @@ class EventsController < ApplicationController
             
         def event_params
             params.require(:event).permit(:event_name, :event_date, :event_time, :location, :notes)
+        end
+        
+        def private_entry
+         @scoreboard = Scoreboard.find(params[:scoreboard_id])
+         if privacy_restriction?(@scoreboard, current_user)
+           redirect_to scoreboard_path(@scoreboard)
+           flash[:danger] = "Private League. You must make a request to join before accessing league pages."
+         end
         end
 
 end

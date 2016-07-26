@@ -2,6 +2,7 @@ class ScoreboardsController < ApplicationController
  
  before_action :logged_in_user, only: [:new, :create, :show, :index]
  before_action :scoreboard_owner, only: [:destroy, :edit, :update, :admins]
+ before_action :private_entry, only: [:followers]
 
  
  require 'will_paginate/array'
@@ -170,6 +171,14 @@ private
     redirect_to @scoreboard
    end
   end
+  
+   def private_entry
+     @scoreboard = Scoreboard.find(params[:id])
+     if privacy_restriction?(@scoreboard, current_user)
+       redirect_to scoreboard_path(@scoreboard)
+       flash[:danger] = "Private League. You must make a request to join before accessing league pages."
+     end
+   end
 
 end
     

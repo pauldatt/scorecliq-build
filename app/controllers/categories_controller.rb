@@ -1,5 +1,6 @@
 class CategoriesController < ApplicationController
     before_action :logged_in_user
+    before_action :private_entry, only: [:index, :show]
     
     def index 
         @selected = true 
@@ -73,6 +74,14 @@ class CategoriesController < ApplicationController
     
     def category_params
        params.require(:category).permit(:name)
+    end
+    
+    def private_entry
+     @scoreboard = Scoreboard.find(params[:scoreboard_id])
+     if privacy_restriction?(@scoreboard, current_user)
+       redirect_to scoreboard_path(@scoreboard)
+       flash[:danger] = "Private League. You must make a request to join before accessing league pages."
+     end
     end
     
     

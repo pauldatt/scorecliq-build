@@ -1,6 +1,17 @@
-//Flash messages
+//Flash messages 
 $(document).ready(function(){ 
+    
   $('.alert').delay(3000).slideUp(500);
+});
+
+// SCROLL DOWN TO FIRST SECTION ON HOME
+
+$(document).ready(function(){ 
+    $("#home-down").click(function() {
+    $('html, body').animate({
+        scrollTop: $("#home-first-sec").offset().top
+    }, 1000);
+});
 });
 
 //MOBILE NAVIGATION

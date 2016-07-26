@@ -1,12 +1,9 @@
 <% provide(:title, "Sign-up") %>
-<div class="row">
-    <div class="col-xs-12">
-        <h2 class="generic-header"> SIGN-UP!</h2>
-    </div>
-</div>
+
 
 <div class="row">
-    <div class="col-sm-8 col-md-6">
+    <div class="col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3">
+        <h2 class="generic-header"> SIGN-UP!</h2>
         <%= form_for(@user) do |f| %>
             <%= render 'shared/error_messages', object: f.object %>
             <div class="form-group">

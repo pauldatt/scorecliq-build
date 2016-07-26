@@ -61,6 +61,48 @@
     }
 }
 
+/*************** PRELOGIN HOME PAGE ***************/
+
+.how-it-works{
+    .how-head{ font-size: 20px; }
+    .how-text{ font-size: 16px; }
+}
+
+.plans .plan-box .plan-features{
+    .point{ font-size: 14px; }
+}
+
+/*************** DASHBOARD PAGE *********************/
+.create-league{ 
+    font-size: 16px; 
+    padding-top: 30px;
+}
+.find-league{ 
+    font-size: 16px; 
+    padding-top: 30px;
+}
+
+.dash-plan{
+    h3{ 
+        font-size: 20px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    .plan-type{
+        .plan-span{ font-size: 16px;}
+    } 
+}
+
+.dash-share{
+    h3{
+        font-size: 20px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    .share-icons{
+        a{ font-size: 30px;}
+    }
+}
 }
 
 
@@ -102,6 +144,20 @@
         }
     }
 }
+
+/***************** DASHBOARD PAGE ******************/
+
+.find-league{ 
+    margin-top: 20px; 
+}
+
+.dash-share{
+    .share-icons{
+        a{ font-size: 40px;}
+    }
+}
+
+
 
 }
 
@@ -210,4 +266,54 @@
     }
 }
 
+/****************** PRELOGIN HOME PAGE ***************/
+
+.home-header{
+    h2{ font-size: 20px;}
+    p{ font-size: 12px; }
 }
+
+.how-it-works{
+    .work-head{ font-size: 20px;}
+    .how-head{ font-size: 16px;}
+    .how-text{ 
+        font-size: 12px;
+        line-height: 175%;
+    }
+}
+
+.features{
+    .feature-head{ font-size: 20px;}
+    .feature-column{
+        i{ font-size: 40px;}
+        h3{ font-size: 18px;}
+        p{ 
+            font-size: 12px;
+            line-height: 175%;
+        }
+    }
+    .more-features{ font-size: 20px; }
+}
+
+.plans{
+    .plans-head{ font-size: 20px;}
+    .plan-box{
+        .plan-type{ font-size: 16px;}
+        .plan-price { font-size: 20px; }
+        .plan-desc{ font-size: 12px; }
+        .plan-features{
+            .point{ font-size: 13px;}
+        }
+    }
+    .sign-up-offer{
+        .btn { font-size: 14px;}
+    }
+}
+
+
+
+/*******************DASHBOARD PAGE ********************/
+.dash-header{ font-size: 20px;}
+
+}
+

@@ -106,87 +106,98 @@
    
 </div>
 
-
-
-<div class="row score-stats">
-   <div class="col-xs-12 col-sm-3 col-md-3 share-div">
-      <h4> SHARE THIS PAGE</h4>
-      
-      <div class="media-icons">
-         <%= link_to "http://twitter.com/intent/tweet?status= #{@scoreboard.name_of_scoreboard} + https://scorecliq.com/scoreboards/#{@scoreboard.id}" do %>
-             <i class="fa fa-twitter twit-share" aria-hidden="true"></i>
-         <% end %>
-         <%= link_to "http://www.facebook.com/share.php?u=https://scorecliq.com/scoreboards/#{@scoreboard.id}&title=#{@scoreboard.name_of_scoreboard}"  do %>
-             <i class="fa fa-facebook-official  fb-share" aria-hidden="true"></i>
-         <% end %>
-         <%= link_to "#" do %>
-             <i class="fa fa-google-plus-square gplus-share" aria-hidden="true"></i>
-         <% end %>
-         <%= link_to "#" do %>
-             <i class="fa fa-instagram insta-share" aria-hidden="true"></i>
-         <% end %>
-      </div>
-      
-   </div>
-   <div class="col-xs-12 col-sm-7 col-md-7 status-div">
-      <h4> STATUS </h4>
-      <div class="score-status" <% if @scoreboard.user %> id="admin-status" <% end %>>
-         <% if manager_or_owner?(@scoreboard, current_user) %>
-             <%= render 'statusedit' %>
-         <% end %>
-          
-         <% if @scoreboard.status.content.present? && !(manager_or_owner?(@scoreboard,current_user)) %>
-            <%= @scoreboard.status.content %>
-         <% end %>
-         
-         <% if @scoreboard.status.content.present? == false && !(manager_or_owner?(@scoreboard,current_user)) %>
-            There is no status available!
-         <% end %>
-      </div>
-    </div>
-</div>
-
-<div class="row">
-   <div class="col-xs-12 col-sm-6 admin-panel">
-      <h4>
-         ADMINS 
-         <% if current_user == @scoreboard.user %>
-            <%= link_to admins_scoreboard_path(@scoreboard), class: "pull-right" do %> 
-               <i class="fa fa-cog fa-lg" aria-hidden="true"></i>
-            <% end %>
-         <% end %>
-      </h4>
-      
-      <div class="admin-divs">
-         <div class="row admin">
-             <div class="col-xs-12 admin-name">
-                  <%= link_to @scoreboard.user.name, user_path(@scoreboard.user) %>(owner)
-             
-                  <%= link_to new_user_conversation_path(@scoreboard.user) do %>
-                     <i class="fa fa-envelope pull-right" aria-hidden="true"></i>
-                  <% end %> 
-              </div>
+<% if privacy_restriction?(@scoreboard,current_user) %>
+   <div class="row">
+      <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3 private-overlay">
+         <div class="private-icon">
+            <i class="fa fa-lock" aria-hidden="true"></i>
          </div>
-         <% if @admins.any? %>
-            <%= render 'profileadmins' %>
-         <% end %>
+         <div class="default-div">
+            This page's access has been set to private by the owner. Please request to join
+            the page to become a follower and recieve access to league information.
+         </div>
       </div>
+   </div>
+<% else %>
+   
+   <div class="row score-stats">
+      <div class="col-xs-12 col-sm-3 col-md-3 share-div">
+         <h4> SHARE THIS PAGE</h4>
+         
+         <div class="media-icons">
+            <%= link_to "http://twitter.com/intent/tweet?status= #{@scoreboard.name_of_scoreboard} + https://scorecliq.com/scoreboards/#{@scoreboard.id}" do %>
+                <i class="fa fa-twitter twit-share" aria-hidden="true"></i>
+            <% end %>
+            <%= link_to "http://www.facebook.com/share.php?u=https://scorecliq.com/scoreboards/#{@scoreboard.id}&title=#{@scoreboard.name_of_scoreboard}"  do %>
+                <i class="fa fa-facebook-official  fb-share" aria-hidden="true"></i>
+            <% end %>
+            <%= link_to "#" do %>
+                <i class="fa fa-google-plus-square gplus-share" aria-hidden="true"></i>
+            <% end %>
+         </div>
+         
+      </div>
+      <div class="col-xs-12 col-sm-7 col-md-7 status-div">
+         <h4> STATUS </h4>
+         <div class="score-status" <% if @scoreboard.user %> id="admin-status" <% end %>>
+            <% if manager_or_owner?(@scoreboard, current_user) %>
+                <%= render 'statusedit' %>
+            <% end %>
+             
+            <% if @scoreboard.status.content.present? && !(manager_or_owner?(@scoreboard,current_user)) %>
+               <%= @scoreboard.status.content %>
+            <% end %>
+            
+            <% if @scoreboard.status.content.present? == false && !(manager_or_owner?(@scoreboard,current_user)) %>
+               There is no status available!
+            <% end %>
+         </div>
+       </div>
    </div>
    
-   <div class="col-xs-12 col-sm-4 follower-panel">
-      <h4>FOLLOWERS</h4>
-
-      <div class= "follower-info">
-         <% if @scoreboard.favourited_by.any? %>
-            This league has <%= @scoreboard.favourited_by.count %> followers. <br>
-            <%= link_to "View Followers", followers_scoreboard_path(@scoreboard), class: "btn btn-primary" %>
-         <% else %>
-            Currently, there are no followers!
-         <% end %>
+   <div class="row">
+      <div class="col-xs-12 col-sm-6 admin-panel">
+         <h4>
+            ADMINS 
+            <% if current_user == @scoreboard.user %>
+               <%= link_to admins_scoreboard_path(@scoreboard), class: "pull-right" do %> 
+                  <i class="fa fa-cog fa-lg" aria-hidden="true"></i>
+               <% end %>
+            <% end %>
+         </h4>
+         
+         <div class="admin-divs">
+            <div class="row admin">
+                <div class="col-xs-12 admin-name">
+                     <%= link_to @scoreboard.user.name, user_path(@scoreboard.user) %>(owner)
+                
+                     <%= link_to new_user_conversation_path(@scoreboard.user) do %>
+                        <i class="fa fa-envelope pull-right" aria-hidden="true"></i>
+                     <% end %> 
+                 </div>
+            </div>
+            <% if @admins.any? %>
+               <%= render 'profileadmins' %>
+            <% end %>
+         </div>
       </div>
       
+      <div class="col-xs-12 col-sm-4 follower-panel">
+         <h4>FOLLOWERS</h4>
+   
+         <div class= "follower-info">
+            <% if @scoreboard.favourited_by.any? %>
+               This league has <%= @scoreboard.favourited_by.count %> followers. <br>
+               <%= link_to "View Followers", followers_scoreboard_path(@scoreboard), class: "btn btn-primary" %>
+            <% else %>
+               Currently, there are no followers!
+            <% end %>
+         </div>
+         
+      </div>
    </div>
-</div>
+<% end %>
+
 
 <% if @scoreboard.user == current_user %>
 <%= render 'joinrequests' %>

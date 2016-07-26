@@ -15,7 +15,6 @@ def create
  @comment = @topic.comments.build(comment_params)
   if @comment.save
      redirect_to scoreboard_topic_path(@scoreboard,@topic)
-     flash[:success] = "Comment posted successfully"
   else
     redirect_to scoreboard_topic_path(@scoreboard,@topic)
     flash[:danger] = 'Comment cannot be blank and must be less than 600 characters'
