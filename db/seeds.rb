@@ -8,11 +8,11 @@
 
 # # end
 
-Teams.create!(name: "team1",
-              win: 1,
-              loss: 2,
-              tie: 3,
-              scoreboard_id: 1000)
+# Teams.create!(name: "team1",
+#               win: 1,
+#               loss: 2,
+#               tie: 3,
+#               scoreboard_id: 1000)
 
 # User.create!(name:  "khalesi",
 #              email: "khalesi@gmail.com",
@@ -22,12 +22,12 @@ Teams.create!(name: "team1",
 #              admin: "true")
 
 
-# User.create!(name:  "Arya",
-#              email: "Arya@gmail.com",
-#              password:              "1dragons",
-#              password_confirmation: "1dragons",
-#              activated: "true",
-#              admin: "true")
+User.create!(name:  "Arya",
+             email: "Arya@gmail.com",
+             password:              "1dragons",
+             password_confirmation: "1dragons",
+             activated: "true",
+             admin: "true")
 
 
 # User.create!(name:  "Jon Snow",
