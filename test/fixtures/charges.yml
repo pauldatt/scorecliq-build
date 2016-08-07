@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  amount: 1
+  card_last4: MyString
+  stripe_charge_id: MyString
+  success: false
+
+two:
+  user_id: 1
+  amount: 1
+  card_last4: MyString
+  stripe_charge_id: MyString
+  success: false

@@ -62,6 +62,41 @@ ALTER SEQUENCE categories_id_seq OWNED BY categories.id;
 
 
 --
+-- Name: charges; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE charges (
+    id integer NOT NULL,
+    user_id integer,
+    amount integer,
+    card_last4 character varying,
+    stripe_charge_id character varying,
+    success boolean,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: charges_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE charges_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: charges_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE charges_id_seq OWNED BY charges.id;
+
+
+--
 -- Name: comments; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -871,7 +906,12 @@ CREATE TABLE users (
     activated boolean DEFAULT false,
     activated_at timestamp without time zone,
     reset_digest character varying,
-    reset_sent_at timestamp without time zone
+    reset_sent_at timestamp without time zone,
+    stripe_id character varying,
+    stripe_subscription_id character varying,
+    card_last4 character varying,
+    card_exp_month integer,
+    card_exp_year integer
 );
 
 
@@ -899,6 +939,13 @@ ALTER SEQUENCE users_id_seq OWNED BY users.id;
 --
 
 ALTER TABLE ONLY categories ALTER COLUMN id SET DEFAULT nextval('categories_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY charges ALTER COLUMN id SET DEFAULT nextval('charges_id_seq'::regclass);
 
 
 --
@@ -1075,6 +1122,14 @@ ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regcl
 
 ALTER TABLE ONLY categories
     ADD CONSTRAINT categories_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: charges_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY charges
+    ADD CONSTRAINT charges_pkey PRIMARY KEY (id);
 
 
 --
@@ -1274,6 +1329,13 @@ ALTER TABLE ONLY users
 --
 
 CREATE INDEX index_categories_on_scoreboard_id ON categories USING btree (scoreboard_id);
+
+
+--
+-- Name: index_charges_on_stripe_charge_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE UNIQUE INDEX index_charges_on_stripe_charge_id ON charges USING btree (stripe_charge_id);
 
 
 --
@@ -1561,6 +1623,13 @@ CREATE INDEX index_user_conversations_on_user_id ON user_conversations USING btr
 --
 
 CREATE UNIQUE INDEX index_users_on_email ON users USING btree (email);
+
+
+--
+-- Name: index_users_on_stripe_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_users_on_stripe_id ON users USING btree (stripe_id);
 
 
 --
@@ -1886,4 +1955,8 @@ INSERT INTO schema_migrations (version) VALUES ('20160619195246');
 INSERT INTO schema_migrations (version) VALUES ('20160619200009');
 
 INSERT INTO schema_migrations (version) VALUES ('20160709225638');
+
+INSERT INTO schema_migrations (version) VALUES ('20160804081128');
+
+INSERT INTO schema_migrations (version) VALUES ('20160806085512');
 

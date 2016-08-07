@@ -30,6 +30,8 @@ gem 'bootstrap3-datetimepicker-rails', '~> 4.17.37'
 gem 'dalli'
 gem 'memcachier'
 gem 'font_assets'
+gem 'stripe'
+gem 'stripe_event', '~> 1.5'
 
 group :development, :test do
   gem 'byebug',      '3.4.0'
