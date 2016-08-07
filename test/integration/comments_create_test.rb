@@ -13,10 +13,7 @@ class CommentsCreateTest < ActionDispatch::IntegrationTest
     test "valid creation of the comment" do 
         assert_difference("@topic.comments.count", 1) do 
             post scoreboard_topic_comments_path(@scoreboard, @topic), comment: {body: "abc",
-                                                                                user_id: @user.id
-                                                                                
-            }
-            assert_equal "Comment posted successfully", flash[:success]                                                                 
+                                                                                user_id: @user.id}
         end
     end
     
@@ -33,7 +30,6 @@ class CommentsCreateTest < ActionDispatch::IntegrationTest
              post scoreboard_topic_comments_path(@scoreboard, @topic), comment: {body: "abc",
                                                                                  user_id: @user.id,
                                                                                  parent_id: @comment.id}
-              assert_equal "Comment posted successfully", flash[:success] 
         end
     end
   

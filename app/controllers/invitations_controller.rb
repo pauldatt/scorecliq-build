@@ -50,9 +50,9 @@ private
        @errors=[]
        if not_blank?
         params["invites"].each do |invite|
-         if valid_email?(invite[:recipient_email])
+         if valid_email?(invite[:recipient_email].strip)
             @emails << invite[:recipient_email]
-         elsif !valid_email?(invite[:recipient_email]) && (invite[:recipient_email] != "")
+         elsif !valid_email?(invite[:recipient_email]) && (invite[:recipient_email].strip != "")
             @errors << invite[:recipient_email]
          end
         end
@@ -67,7 +67,7 @@ private
         @not_blanks = []
         
         params["invites"].each do |invite|
-            if (invite[:recipient_email] != "")
+            if (invite[:recipient_email].strip != "")
                @not_blanks << invite[:recipient_email]
             end
         end
@@ -81,7 +81,7 @@ private
     end
     
     def valid_email?(email)
-        (email != "")&&(email =~ VALID_EMAIL_REGEX )
+        (email.strip != "")&&(email =~ VALID_EMAIL_REGEX )
     end
 
 
