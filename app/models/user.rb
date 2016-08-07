@@ -40,9 +40,6 @@ class User < ActiveRecord::Base
   
   has_many :messages, through: :conversations, dependent: :destroy
   
-  #association for subscription
-  has_one :subscription
-  
   #association for stripe charges
   has_many :charges
   
