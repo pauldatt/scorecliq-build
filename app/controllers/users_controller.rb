@@ -50,7 +50,31 @@ class UsersController < ApplicationController
     redirect_to search_path
   end
   
-
+  def resend_verification
+    
+  end
+  
+  def resend_verification_email
+    @user = User.find_by(email: params[:resend_verification_email] [:email].downcase)
+    if valid_email(params[:resend_verification_email] [:email])
+      if !@user 
+        redirect_to :back
+        flash[:danger] = "Email does not exist"
+      elsif
+        !@user.activated? 
+        @user.send_activation_email
+        flash[:success] = "Check your email for the activation token"
+        redirect_to :back
+      else
+        flash[:success] = "User is already activated."
+        redirect_to :back
+      end
+    else
+      flash[:danger] = "Email format is Invalid"
+      redirect_to :back
+    end
+  end
+  
 private
 
   def user_params
@@ -67,6 +91,20 @@ private
   def admin_user
     redirect_to(root_url) unless current_user.admin?
   end
-     
+  
+  def valid_user
+    unless (@user && @user.activated? &&
+            @user.authenticated?(:reset, params[:id]))
+    redirect_to root_url
+    end
+  end
+  
+  def valid_email(email)
+    (email != "")&&(email =~ VALID_EMAIL_REGEX)
+  end
+  
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
+  
+  
 end
 

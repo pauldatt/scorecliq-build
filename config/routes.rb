@@ -20,9 +20,17 @@ Rails.application.routes.draw do
   put  'unassign_captain'         => 'team_members#unassign'
   post 'assign_manager'           => 'managers#create'
   delete 'unassign_manager'       => 'managers#delete'
+  get 'resend_verification'  => 'users#resend_verification'
+  post 'resend_verification_email'  => 'users#resend_verification_email'
+  
+  
+  #this sets up a receptor for webhooks with the stripe event gem
+  mount StripeEvent::Engine, at: '/stripe/webhook'
   
   resources :users do
       resources :pictures, only: [:create, :update, :destroy]
+      resource :subscription
+      resource :card
       resources :conversations, controller: "user_conversations" do 
         member do
           put :deletion
