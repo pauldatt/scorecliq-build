@@ -1,4 +1,5 @@
 class CardsController < ApplicationController
+    before_action :logged_in_user
     
     def update
         customer = Stripe::Customer.retrieve(current_user.stripe_id)

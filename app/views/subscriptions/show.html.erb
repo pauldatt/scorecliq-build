@@ -11,3 +11,5 @@ you need to have a link for edit and delete with an if statement so they dont ha
 <% @charges.each do |charge| %>
  You were charged <%= charge.amount %>
 <% end %>
+
+<%= current_user.stripe_subscription_id %>

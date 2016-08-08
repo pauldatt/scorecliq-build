@@ -1,6 +1,5 @@
 class SubscriptionsController < ApplicationController
-    #you need people to be logged in and authenticated in the before actions here
-    #make sure to put them here
+    before_action :logged_in_user
     
     def show
         @charges = current_user.charges
