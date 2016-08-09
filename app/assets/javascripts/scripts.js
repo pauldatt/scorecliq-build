@@ -163,6 +163,12 @@ $(document).ready(function(){
      
 });
 
+//BELOW IS THE CODE FOR ANY STRIPE STUFF
+$(document).ready(function() {
+  $("#has-javascript").show();
+});
+
+
 
 
 

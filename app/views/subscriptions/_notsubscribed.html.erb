@@ -1,0 +1,28 @@
+<div class="row unsub-settings">
+    <div class="col-xs-12 col-sm-5">
+        <div class="current-plan">
+            <h3>
+                YOUR PLAN
+            </h3>
+            
+            <div class="plan-type">
+                <span class="plan-span">
+                    INDIVIDUAL
+                </span>
+            </div>
+        
+        </div>
+    </div>
+    
+    <div class="col-xs-12 col-sm-5">
+        <div class="upgrade-plan">
+            <h4> 
+              Check <%= link_to "site guide", "#" %> to learn about the differences between Individual vs Master.
+            </h4>
+            
+            <div class="new-plan">
+                <%= link_to "Upgrade to Master", new_user_subscription_path(current_user), class: "btn btn-primary" %>
+            </div>
+        </div>
+    </div>
+</div>

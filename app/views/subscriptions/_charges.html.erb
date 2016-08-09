@@ -1,0 +1,19 @@
+<h3 class="payment-history">
+    YOUR PAYMENT HISTORY
+</h3>
+
+<div class="charge-list">
+    <% @charges.each do |charge| %>
+       <div class="row charge-div">
+           <% if charge.success? %>
+              <div class="col-xs-12 charge-success">
+                  Card ending with <%= charge.card_last4 %> was charged for <%= charge.amount/100.to_f %> on <%= charge.created_at.strftime("%^b %d,%Y") %>.
+              </div>
+           <% else %>
+              <div class="col-xs-12 charge-failed">
+                  Card ending with <%= charge.card_last4 %> was declined on <%= charge.created_at.strftime("%^b %d,%Y") %>. Plan defaulted to Individual. 
+              </div>
+           <% end %>
+       </div>
+    <% end %>
+</div>

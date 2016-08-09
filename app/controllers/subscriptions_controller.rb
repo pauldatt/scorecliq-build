@@ -1,9 +1,8 @@
 class SubscriptionsController < ApplicationController
-    #you need people to be logged in and authenticated in the before actions here
-    #make sure to put them here
+    before_action :logged_in_user
     
     def show
-        @charges = current_user.charges
+        @charges = current_user.charges.order("created_at DESC").limit(10)
     end
     
     def new
@@ -49,8 +48,8 @@ class SubscriptionsController < ApplicationController
         customer.subscriptions.retrieve(current_user.stripe_subscription_id).delete
         current_user.update(stripe_subscription_id: nil)
 
-        redirect_to root_path
-        flash[:success]= "Your subscription has been canceled."
+        redirect_to user_subscription_path(current_user)
+        flash[:success]= "Your subscription has been cancelled."
     end
     
 end
