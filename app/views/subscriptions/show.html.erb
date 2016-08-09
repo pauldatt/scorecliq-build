@@ -1,15 +1,20 @@
-<h1> this is subscription show page. Start off with a button for new page if they have no subscription. If they do then
-you need to have a link for edit and delete with an if statement so they dont have a new one. 
-</h1>
-<% if current_user.stripe_subscription_id? %>
+<% provide(:title, "Plan Settings") %>
+<h2 class="generic-header">
+    <%= link_to home_path do %>
+     <i class="fa fa-arrow-circle-o-left" aria-hidden="true"></i>
+   <% end %>
+    Your Plan Settings
+</h2>
+
+<% if subscribed?(current_user) %>
       <%= link_to "Edit Card", edit_user_subscription_path, class: "btn btn-primary" %>
       <%= link_to "Cancel my account", user_subscription_path, data: { confirm: "Are you sure?" }, method: :delete %>
 <% else %>
-     <%= link_to "new subscription", new_user_subscription_path, class: "btn btn-primary" %>
+     <%= render 'notsubscribed' %>
 <% end %>
 
-<% @charges.each do |charge| %>
- You were charged <%= charge.amount %>
+<% if @charges.any? %>
+   <%= render 'charges' %>
 <% end %>
 
 <%= current_user.stripe_subscription_id %>

@@ -8,7 +8,7 @@ class RecordCharges
 
     # Look up the user in our database
     user = User.find_by(stripe_id: charge.customer)
-
+    
     # Record a charge in our database
     c = user.charges.where(stripe_charge_id: charge.id).first_or_create
     c.update(
@@ -34,6 +34,8 @@ class FailCharges
       card_last4: charge.source.last4,
       success: "false"
     )
+    #the user that we found we want to cancel their subscription
+    user.update(stripe_subscription_id: nil)
   end
 end
 

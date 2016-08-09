@@ -486,6 +486,72 @@
 /* ----------------------------------------------- */
 /* STRIPE SHOW PAGE  */
 /* ----------------------------------------------- */
+.unsub-settings{
+    .current-plan{
+        border: 2px solid #253341;
+        height: 140px;
+        max-height: 140px;
+        border-radius: 0 0 10px 10px;
+        h3{
+            margin-top: 0;
+            padding: 1%;
+            background-color: #1c75bf;
+            color: #efefef;
+            text-align: center;
+        }
+        .plan-type{
+            margin-top: 40px;
+            margin-bottom: 40px;
+            text-align: center;
+            .plan-span{
+                padding: 10px;
+                font-size: 18px;
+                background-color: #253341;
+                color: #efefef;
+                border-radius: 10px;
+            }
+        }
+    }
+    
+    .upgrade-plan{
+        border: 2px solid #253341;
+        height: 140px;
+        max-height: 140px;
+        border-radius: 0 0 10px 10px;
+        h4{
+            padding: 1%;
+            text-align: center;
+        }
+        .new-plan{
+            margin-top: 20px;
+            text-align: center;
+        }
+    }
+}
+
+.payment-history{
+    text-align: center;
+    background-color: #1c75bf;
+    border-radius: 10px;
+    padding: 1%;
+    color: #efefef;
+}
+
+.charge-list{
+    margin-top: 20px;
+    .charge-div{
+        margin-bottom: 10px;
+        color: #efefef;
+        font-size: 15px;
+        .charge-success{
+            background-color: #9ebf6d;
+            padding: 1%;
+        }
+        .charge-failed{
+            
+        }
+    }
+}
 
 /* ----------------------------------------------- */
 /* STRIPE NEW PAGE  */
