@@ -6,7 +6,7 @@ class InvitationsController < ApplicationController
     def new
         @selected = true
         @scoreboard = Scoreboard.find(params[:scoreboard_id])
-        @invitation= Invitation.new 
+        @invitation = Invitation.new 
         @invitations = []
         10.times do 
             @invitations << Invitation.new

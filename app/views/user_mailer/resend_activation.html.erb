@@ -1,0 +1,9 @@
+<h1>Scorecliq</h1>
+
+<p>Hi <%= @user.name %>,</p>
+
+<p>
+  Thanks you for registering at scorecliq! Click on the activation link below:
+</p>
+
+<%= link_to "Activate your account", edit_account_activation_url(@user.activation_token, email: @user.email) %>

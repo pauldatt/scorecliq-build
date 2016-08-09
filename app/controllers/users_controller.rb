@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
-  before_action :logged_in_user, only: [:index, :edit, :update, :show, :destroy] # Each individual must sign up before they can see any profiles
-  before_action :correct_user,   only: [:edit, :update]
-  before_action :admin_user,     only: :destroy
+  before_action :logged_in_user,  only: [:index, :edit, :update, :show, :destroy] # Each individual must sign up before they can see any profiles
+  before_action :correct_user,    only: [:edit, :update]
+  before_action :admin_user,      only: :destroy
+  before_action :logged_out_user, only: :new
   
  
   def show
@@ -21,7 +22,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      @user.send_activation_email
+      @user.send_activation_email #this method is written in the user model
       flash[:info] = "Please check you email to activate your account."
       redirect_to root_url
     else
@@ -61,8 +62,8 @@ class UsersController < ApplicationController
         redirect_to :back
         flash[:danger] = "Email does not exist"
       elsif
-        !@user.activated? 
-        @user.send_activation_email
+        !@user.activated?
+        UserMailer.resend_activation(@user).deliver_now
         flash[:success] = "Check your email for the activation token"
         redirect_to :back
       else
@@ -80,7 +81,6 @@ private
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation)
   end
-  
   
   # This method confirms that the correct user 
   def correct_user
@@ -104,6 +104,13 @@ private
   end
   
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
+  
+  def logged_out_user
+    if logged_in?
+      flash.now[:danger] = "You are already logged in"
+      render 'static_pages/home'
+    end
+  end
   
   
 end

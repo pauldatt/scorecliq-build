@@ -141,9 +141,7 @@ class User < ActiveRecord::Base
 end
   
 #Notes1
-# The method gets defined in the user models. Then they get written in the sessions helper,
-# Once they are in the session helper they can get used by the sessions controller.
-
+# The method gets defined in the user models and they can be called in the user controller.
 
 
 

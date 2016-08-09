@@ -30,6 +30,7 @@ class InvitationCreateTest < ActionDispatch::IntegrationTest
     assert_equal "Invitations made", flash[:success]
   end
   
+  
  
   
 end

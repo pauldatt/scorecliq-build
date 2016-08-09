@@ -30,6 +30,7 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
         <%= f.submit "Log in", class: "btn btn-primary" %>
+        <%= link_to "Resend token", resend_verification_path %>
       </div>
       <% end %>
     </div>
