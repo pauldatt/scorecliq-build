@@ -5,6 +5,7 @@ class AddSubscriptionToUsers < ActiveRecord::Migration
     add_column :users, :card_last4, :string
     add_column :users, :card_exp_month, :integer
     add_column :users, :card_exp_year, :integer
+    
     add_index :users, :stripe_id
   end
 end
