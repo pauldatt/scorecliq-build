@@ -22,20 +22,20 @@
 #              admin: "true")
 
 
-User.create!(name:  "Arya",
-             email: "Arya@gmail.com",
-             password:              "1dragons",
-             password_confirmation: "1dragons",
-             activated: "true",
-             admin: "true")
-
-
-# User.create!(name:  "Jon Snow",
-#              email: "Jonsnow@gmail.com",
+# User.create!(name:  "Arya",
+#              email: "Arya@gmail.com",
 #              password:              "1dragons",
 #              password_confirmation: "1dragons",
 #              activated: "true",
 #              admin: "true")
+
+
+User.create!(name:  "Jon Snow",
+             email: "Jonsnow@example.com",
+             password:              "1dragons",
+             password_confirmation: "1dragons",
+             activated: "true",
+             admin: "true")
 
 
 # User.create!(name:  "Sansa",
