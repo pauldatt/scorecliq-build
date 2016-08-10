@@ -297,148 +297,6 @@ ALTER SEQUENCE invitations_id_seq OWNED BY invitations.id;
 
 
 --
--- Name: mailboxer_conversation_opt_outs; Type: TABLE; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE TABLE mailboxer_conversation_opt_outs (
-    id integer NOT NULL,
-    unsubscriber_id integer,
-    unsubscriber_type character varying,
-    conversation_id integer
-);
-
-
---
--- Name: mailboxer_conversation_opt_outs_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE mailboxer_conversation_opt_outs_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: mailboxer_conversation_opt_outs_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE mailboxer_conversation_opt_outs_id_seq OWNED BY mailboxer_conversation_opt_outs.id;
-
-
---
--- Name: mailboxer_conversations; Type: TABLE; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE TABLE mailboxer_conversations (
-    id integer NOT NULL,
-    subject character varying DEFAULT ''::character varying,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
-);
-
-
---
--- Name: mailboxer_conversations_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE mailboxer_conversations_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: mailboxer_conversations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE mailboxer_conversations_id_seq OWNED BY mailboxer_conversations.id;
-
-
---
--- Name: mailboxer_notifications; Type: TABLE; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE TABLE mailboxer_notifications (
-    id integer NOT NULL,
-    type character varying,
-    body text,
-    subject character varying DEFAULT ''::character varying,
-    sender_id integer,
-    sender_type character varying,
-    conversation_id integer,
-    draft boolean DEFAULT false,
-    notification_code character varying,
-    notified_object_id integer,
-    notified_object_type character varying,
-    attachment character varying,
-    updated_at timestamp without time zone NOT NULL,
-    created_at timestamp without time zone NOT NULL,
-    global boolean DEFAULT false,
-    expires timestamp without time zone
-);
-
-
---
--- Name: mailboxer_notifications_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE mailboxer_notifications_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: mailboxer_notifications_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE mailboxer_notifications_id_seq OWNED BY mailboxer_notifications.id;
-
-
---
--- Name: mailboxer_receipts; Type: TABLE; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE TABLE mailboxer_receipts (
-    id integer NOT NULL,
-    receiver_id integer,
-    receiver_type character varying,
-    notification_id integer NOT NULL,
-    is_read boolean DEFAULT false,
-    trashed boolean DEFAULT false,
-    deleted boolean DEFAULT false,
-    mailbox_type character varying(25),
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
-);
-
-
---
--- Name: mailboxer_receipts_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE mailboxer_receipts_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: mailboxer_receipts_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE mailboxer_receipts_id_seq OWNED BY mailboxer_receipts.id;
-
-
---
 -- Name: managers; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -603,42 +461,6 @@ ALTER SEQUENCE requests_id_seq OWNED BY requests.id;
 
 
 --
--- Name: schedules; Type: TABLE; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE TABLE schedules (
-    id integer NOT NULL,
-    team1 character varying,
-    team2 character varying,
-    detail text,
-    scoreboard_id integer,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
-    match_date date,
-    match_time character varying
-);
-
-
---
--- Name: schedules_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE schedules_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: schedules_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE schedules_id_seq OWNED BY schedules.id;
-
-
---
 -- Name: schema_migrations; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -659,9 +481,9 @@ CREATE TABLE scoreboards (
     user_id integer,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
+    tsv tsvector,
     privatization boolean DEFAULT false,
-    location character varying,
-    tsv tsvector
+    location character varying
 );
 
 
@@ -993,34 +815,6 @@ ALTER TABLE ONLY invitations ALTER COLUMN id SET DEFAULT nextval('invitations_id
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY mailboxer_conversation_opt_outs ALTER COLUMN id SET DEFAULT nextval('mailboxer_conversation_opt_outs_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY mailboxer_conversations ALTER COLUMN id SET DEFAULT nextval('mailboxer_conversations_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY mailboxer_notifications ALTER COLUMN id SET DEFAULT nextval('mailboxer_notifications_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY mailboxer_receipts ALTER COLUMN id SET DEFAULT nextval('mailboxer_receipts_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
---
-
 ALTER TABLE ONLY managers ALTER COLUMN id SET DEFAULT nextval('managers_id_seq'::regclass);
 
 
@@ -1050,13 +844,6 @@ ALTER TABLE ONLY pictures ALTER COLUMN id SET DEFAULT nextval('pictures_id_seq':
 --
 
 ALTER TABLE ONLY requests ALTER COLUMN id SET DEFAULT nextval('requests_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY schedules ALTER COLUMN id SET DEFAULT nextval('schedules_id_seq'::regclass);
 
 
 --
@@ -1180,38 +967,6 @@ ALTER TABLE ONLY invitations
 
 
 --
--- Name: mailboxer_conversation_opt_outs_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
---
-
-ALTER TABLE ONLY mailboxer_conversation_opt_outs
-    ADD CONSTRAINT mailboxer_conversation_opt_outs_pkey PRIMARY KEY (id);
-
-
---
--- Name: mailboxer_conversations_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
---
-
-ALTER TABLE ONLY mailboxer_conversations
-    ADD CONSTRAINT mailboxer_conversations_pkey PRIMARY KEY (id);
-
-
---
--- Name: mailboxer_notifications_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
---
-
-ALTER TABLE ONLY mailboxer_notifications
-    ADD CONSTRAINT mailboxer_notifications_pkey PRIMARY KEY (id);
-
-
---
--- Name: mailboxer_receipts_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
---
-
-ALTER TABLE ONLY mailboxer_receipts
-    ADD CONSTRAINT mailboxer_receipts_pkey PRIMARY KEY (id);
-
-
---
 -- Name: managers_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -1249,14 +1004,6 @@ ALTER TABLE ONLY pictures
 
 ALTER TABLE ONLY requests
     ADD CONSTRAINT requests_pkey PRIMARY KEY (id);
-
-
---
--- Name: schedules_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
---
-
-ALTER TABLE ONLY schedules
-    ADD CONSTRAINT schedules_pkey PRIMARY KEY (id);
 
 
 --
@@ -1401,62 +1148,6 @@ CREATE INDEX index_invitations_on_scoreboard_id ON invitations USING btree (scor
 
 
 --
--- Name: index_mailboxer_conversation_opt_outs_on_conversation_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE INDEX index_mailboxer_conversation_opt_outs_on_conversation_id ON mailboxer_conversation_opt_outs USING btree (conversation_id);
-
-
---
--- Name: index_mailboxer_conversation_opt_outs_on_unsubscriber_id_type; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE INDEX index_mailboxer_conversation_opt_outs_on_unsubscriber_id_type ON mailboxer_conversation_opt_outs USING btree (unsubscriber_id, unsubscriber_type);
-
-
---
--- Name: index_mailboxer_notifications_on_conversation_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE INDEX index_mailboxer_notifications_on_conversation_id ON mailboxer_notifications USING btree (conversation_id);
-
-
---
--- Name: index_mailboxer_notifications_on_notified_object_id_and_type; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE INDEX index_mailboxer_notifications_on_notified_object_id_and_type ON mailboxer_notifications USING btree (notified_object_id, notified_object_type);
-
-
---
--- Name: index_mailboxer_notifications_on_sender_id_and_sender_type; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE INDEX index_mailboxer_notifications_on_sender_id_and_sender_type ON mailboxer_notifications USING btree (sender_id, sender_type);
-
-
---
--- Name: index_mailboxer_notifications_on_type; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE INDEX index_mailboxer_notifications_on_type ON mailboxer_notifications USING btree (type);
-
-
---
--- Name: index_mailboxer_receipts_on_notification_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE INDEX index_mailboxer_receipts_on_notification_id ON mailboxer_receipts USING btree (notification_id);
-
-
---
--- Name: index_mailboxer_receipts_on_receiver_id_and_receiver_type; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE INDEX index_mailboxer_receipts_on_receiver_id_and_receiver_type ON mailboxer_receipts USING btree (receiver_id, receiver_type);
-
-
---
 -- Name: index_managers_on_scoreboard_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -1510,13 +1201,6 @@ CREATE INDEX index_requests_on_scoreboard_id ON requests USING btree (scoreboard
 --
 
 CREATE INDEX index_requests_on_user_id ON requests USING btree (user_id);
-
-
---
--- Name: index_schedules_on_scoreboard_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE INDEX index_schedules_on_scoreboard_id ON schedules USING btree (scoreboard_id);
 
 
 --
@@ -1646,227 +1330,99 @@ CREATE TRIGGER tsvectorupdate BEFORE INSERT OR UPDATE ON scoreboards FOR EACH RO
 
 
 --
--- Name: fk_rails_0ce0c1904e; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY comments
-    ADD CONSTRAINT fk_rails_0ce0c1904e FOREIGN KEY (topic_id) REFERENCES topics(id);
-
-
---
--- Name: fk_rails_1269f469ee; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY invitations
-    ADD CONSTRAINT fk_rails_1269f469ee FOREIGN KEY (scoreboard_id) REFERENCES scoreboards(id);
-
-
---
--- Name: fk_rails_383ba8ca21; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY events
-    ADD CONSTRAINT fk_rails_383ba8ca21 FOREIGN KEY (scoreboard_id) REFERENCES scoreboards(id);
-
-
---
--- Name: fk_rails_46e62c5a8c; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY categories
-    ADD CONSTRAINT fk_rails_46e62c5a8c FOREIGN KEY (scoreboard_id) REFERENCES scoreboards(id);
-
-
---
--- Name: fk_rails_47b6237a29; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY categories
-    ADD CONSTRAINT fk_rails_47b6237a29 FOREIGN KEY (scoreboard_id) REFERENCES scoreboards(id);
-
-
---
--- Name: fk_rails_590ffe0a26; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY documents
-    ADD CONSTRAINT fk_rails_590ffe0a26 FOREIGN KEY (category_id) REFERENCES categories(id);
-
-
---
--- Name: fk_rails_613edbb757; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY teams
-    ADD CONSTRAINT fk_rails_613edbb757 FOREIGN KEY (scoreboard_id) REFERENCES scoreboards(id);
-
-
---
--- Name: fk_rails_74043f8e75; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY documents
-    ADD CONSTRAINT fk_rails_74043f8e75 FOREIGN KEY (category_id) REFERENCES categories(id);
-
-
---
--- Name: fk_rails_75838a463e; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY topics
-    ADD CONSTRAINT fk_rails_75838a463e FOREIGN KEY (scoreboard_id) REFERENCES scoreboards(id);
-
-
---
--- Name: fk_rails_8ba1ce7c15; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY invitations
-    ADD CONSTRAINT fk_rails_8ba1ce7c15 FOREIGN KEY (scoreboard_id) REFERENCES scoreboards(id);
-
-
---
--- Name: fk_rails_8c7cebd3d3; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY events
-    ADD CONSTRAINT fk_rails_8c7cebd3d3 FOREIGN KEY (scoreboard_id) REFERENCES scoreboards(id);
-
-
---
--- Name: fk_rails_984b32b6b4; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY statuses
-    ADD CONSTRAINT fk_rails_984b32b6b4 FOREIGN KEY (scoreboard_id) REFERENCES scoreboards(id);
-
-
---
--- Name: fk_rails_a458e0adcb; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY teams
-    ADD CONSTRAINT fk_rails_a458e0adcb FOREIGN KEY (scoreboard_id) REFERENCES scoreboards(id);
-
-
---
--- Name: fk_rails_a500cfff1c; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY comments
-    ADD CONSTRAINT fk_rails_a500cfff1c FOREIGN KEY (user_id) REFERENCES users(id);
-
-
---
--- Name: fk_rails_a5481060e5; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY messages
-    ADD CONSTRAINT fk_rails_a5481060e5 FOREIGN KEY (conversation_id) REFERENCES conversations(id);
-
-
---
--- Name: fk_rails_bcdd7ed2e3; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY topics
-    ADD CONSTRAINT fk_rails_bcdd7ed2e3 FOREIGN KEY (scoreboard_id) REFERENCES scoreboards(id);
-
-
---
--- Name: fk_rails_cc9712d921; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY schedules
-    ADD CONSTRAINT fk_rails_cc9712d921 FOREIGN KEY (scoreboard_id) REFERENCES scoreboards(id);
-
-
---
--- Name: fk_rails_cef1313a99; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY messages
-    ADD CONSTRAINT fk_rails_cef1313a99 FOREIGN KEY (user_id) REFERENCES users(id);
-
-
---
--- Name: fk_rails_d233927ac7; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: fk_rails_1bd619fd58; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY scoreboards
-    ADD CONSTRAINT fk_rails_d233927ac7 FOREIGN KEY (user_id) REFERENCES users(id);
+    ADD CONSTRAINT fk_rails_1bd619fd58 FOREIGN KEY (user_id) REFERENCES users(id);
 
 
 --
--- Name: fk_rails_d303e131ed; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: fk_rails_2552fd2038; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY messages
-    ADD CONSTRAINT fk_rails_d303e131ed FOREIGN KEY (conversation_id) REFERENCES conversations(id);
-
-
---
--- Name: fk_rails_d909df6877; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY comments
-    ADD CONSTRAINT fk_rails_d909df6877 FOREIGN KEY (user_id) REFERENCES users(id);
+ALTER TABLE ONLY invitations
+    ADD CONSTRAINT fk_rails_2552fd2038 FOREIGN KEY (scoreboard_id) REFERENCES scoreboards(id);
 
 
 --
--- Name: fk_rails_dbe1cda2af; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: fk_rails_304480446a; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY messages
-    ADD CONSTRAINT fk_rails_dbe1cda2af FOREIGN KEY (user_id) REFERENCES users(id);
+ALTER TABLE ONLY events
+    ADD CONSTRAINT fk_rails_304480446a FOREIGN KEY (scoreboard_id) REFERENCES scoreboards(id);
 
 
 --
--- Name: fk_rails_dd0274f360; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: fk_rails_42aa6bf0fa; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY comments
-    ADD CONSTRAINT fk_rails_dd0274f360 FOREIGN KEY (topic_id) REFERENCES topics(id);
+    ADD CONSTRAINT fk_rails_42aa6bf0fa FOREIGN KEY (topic_id) REFERENCES topics(id);
 
 
 --
--- Name: fk_rails_e5dbc1d5b1; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: fk_rails_64e088bcbb; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY scoreboards
-    ADD CONSTRAINT fk_rails_e5dbc1d5b1 FOREIGN KEY (user_id) REFERENCES users(id);
+ALTER TABLE ONLY documents
+    ADD CONSTRAINT fk_rails_64e088bcbb FOREIGN KEY (category_id) REFERENCES categories(id);
 
 
 --
--- Name: fk_rails_f3dcdab9aa; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: fk_rails_6ec2bf9044; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY messages
+    ADD CONSTRAINT fk_rails_6ec2bf9044 FOREIGN KEY (conversation_id) REFERENCES conversations(id);
+
+
+--
+-- Name: fk_rails_73979e89a7; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY topics
+    ADD CONSTRAINT fk_rails_73979e89a7 FOREIGN KEY (scoreboard_id) REFERENCES scoreboards(id);
+
+
+--
+-- Name: fk_rails_9802f785fb; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY messages
+    ADD CONSTRAINT fk_rails_9802f785fb FOREIGN KEY (user_id) REFERENCES users(id);
+
+
+--
+-- Name: fk_rails_a060af0e11; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY categories
+    ADD CONSTRAINT fk_rails_a060af0e11 FOREIGN KEY (scoreboard_id) REFERENCES scoreboards(id);
+
+
+--
+-- Name: fk_rails_ada804747c; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY comments
+    ADD CONSTRAINT fk_rails_ada804747c FOREIGN KEY (user_id) REFERENCES users(id);
+
+
+--
+-- Name: fk_rails_ce112f16ec; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY statuses
-    ADD CONSTRAINT fk_rails_f3dcdab9aa FOREIGN KEY (scoreboard_id) REFERENCES scoreboards(id);
+    ADD CONSTRAINT fk_rails_ce112f16ec FOREIGN KEY (scoreboard_id) REFERENCES scoreboards(id);
 
 
 --
--- Name: mb_opt_outs_on_conversations_id; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: fk_rails_cfb0304e59; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY mailboxer_conversation_opt_outs
-    ADD CONSTRAINT mb_opt_outs_on_conversations_id FOREIGN KEY (conversation_id) REFERENCES mailboxer_conversations(id);
-
-
---
--- Name: notifications_on_conversation_id; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY mailboxer_notifications
-    ADD CONSTRAINT notifications_on_conversation_id FOREIGN KEY (conversation_id) REFERENCES mailboxer_conversations(id);
-
-
---
--- Name: receipts_on_notification_id; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY mailboxer_receipts
-    ADD CONSTRAINT receipts_on_notification_id FOREIGN KEY (notification_id) REFERENCES mailboxer_notifications(id);
+ALTER TABLE ONLY teams
+    ADD CONSTRAINT fk_rails_cfb0304e59 FOREIGN KEY (scoreboard_id) REFERENCES scoreboards(id);
 
 
 --
@@ -1893,33 +1449,17 @@ INSERT INTO schema_migrations (version) VALUES ('20150701225546');
 
 INSERT INTO schema_migrations (version) VALUES ('20150927064023');
 
-INSERT INTO schema_migrations (version) VALUES ('20150927144239');
-
-INSERT INTO schema_migrations (version) VALUES ('20151001052443');
-
 INSERT INTO schema_migrations (version) VALUES ('20151015143455');
-
-INSERT INTO schema_migrations (version) VALUES ('20151023082156');
-
-INSERT INTO schema_migrations (version) VALUES ('20151023082157');
-
-INSERT INTO schema_migrations (version) VALUES ('20151023082158');
 
 INSERT INTO schema_migrations (version) VALUES ('20151102170716');
 
-INSERT INTO schema_migrations (version) VALUES ('20151120064847');
-
 INSERT INTO schema_migrations (version) VALUES ('20151209160720');
-
-INSERT INTO schema_migrations (version) VALUES ('20151216222801');
 
 INSERT INTO schema_migrations (version) VALUES ('20151220193756');
 
 INSERT INTO schema_migrations (version) VALUES ('20160128031906');
 
 INSERT INTO schema_migrations (version) VALUES ('20160307212202');
-
-INSERT INTO schema_migrations (version) VALUES ('20160307235847');
 
 INSERT INTO schema_migrations (version) VALUES ('20160313172147');
 
@@ -1934,8 +1474,6 @@ INSERT INTO schema_migrations (version) VALUES ('20160415000346');
 INSERT INTO schema_migrations (version) VALUES ('20160415011705');
 
 INSERT INTO schema_migrations (version) VALUES ('20160426134550');
-
-INSERT INTO schema_migrations (version) VALUES ('20160428005130');
 
 INSERT INTO schema_migrations (version) VALUES ('20160519013903');
 

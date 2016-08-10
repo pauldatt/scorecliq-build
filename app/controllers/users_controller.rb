@@ -52,27 +52,26 @@ class UsersController < ApplicationController
   end
   
   def resend_verification
-    
   end
   
   def resend_verification_email
     @user = User.find_by(email: params[:resend_verification_email] [:email].downcase)
     if valid_email(params[:resend_verification_email] [:email])
       if !@user 
-        redirect_to :back
+        redirect_to resend_verification_path
         flash[:danger] = "Email does not exist"
       elsif
         !@user.activated?
         UserMailer.resend_activation(@user).deliver_now
         flash[:success] = "Check your email for the activation token"
-        redirect_to :back
+        redirect_to resend_verification_path
       else
+        redirect_to resend_verification_path
         flash[:success] = "User is already activated."
-        redirect_to :back
       end
     else
       flash[:danger] = "Email format is Invalid"
-      redirect_to :back
+      redirect_to resend_verification_path
     end
   end
   

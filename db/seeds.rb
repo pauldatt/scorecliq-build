@@ -14,6 +14,14 @@
 #               tie: 3,
 #               scoreboard_id: 1000)
 
+User.create!(name:  "Divjot",
+             email: "Divjot65@gmail.com",
+             password:              "foobar12",
+             password_confirmation: "foobar12",
+             activated: "true",
+             admin: "true") 
+
+
 # User.create!(name:  "khalesi",
 #              email: "khalesi@gmail.com",
 #              password:              "1dragons",
@@ -30,12 +38,12 @@
 #              admin: "true")
 
 
-User.create!(name:  "Jon Snow",
-             email: "Jonsnow@example.com",
-             password:              "1dragons",
-             password_confirmation: "1dragons",
-             activated: "true",
-             admin: "true")
+# User.create!(name:  "Jon Snow",
+#              email: "Jonsnow@example.com",
+#              password:              "1dragons",
+#              password_confirmation: "1dragons",
+#              activated: "true",
+#              admin: "true")
 
 
 # User.create!(name:  "Sansa",

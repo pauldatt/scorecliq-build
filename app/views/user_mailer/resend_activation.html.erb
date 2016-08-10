@@ -7,3 +7,4 @@
 </p>
 
 <%= link_to "Activate your account", edit_account_activation_url(@user.activation_token, email: @user.email) %>
+<!--params[:id] is the first variable in the url, which in this case is the activation token-->
