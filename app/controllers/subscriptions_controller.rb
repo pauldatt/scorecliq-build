@@ -18,7 +18,7 @@ class SubscriptionsController < ApplicationController
     
         subscription = customer.subscriptions.create(
           source: params[:stripeToken],
-          plan: "master"
+          plan: "test" # THIS IS HUGE. MAKE SURE TO TEST IT ON MASTER
         )
     
         options = {
