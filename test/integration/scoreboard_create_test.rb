@@ -33,6 +33,7 @@ class ScoreboardCreateTest < ActionDispatch::IntegrationTest
       assert_redirected_to scoreboard_path(assigns(:scoreboard)) #its redirecting to the wrong scoreboard
       assert_equal 'Scoreboard created successfully', flash[:success]
   end
-    
+  
+  #just want to test staging env
     
 end
