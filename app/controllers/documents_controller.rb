@@ -7,18 +7,23 @@ class DocumentsController < ApplicationController
     def create 
         @scoreboard = Scoreboard.find(params[:scoreboard_id])
         @category = Category.find(params[:category_id])
-        @document = @category.documents.build(document_params)
-        if (@category.documents.count < 25)
-            if @document.save
-                flash[:success] = "Document uploaded successfully."
-                redirect_to scoreboard_category_path(@scoreboard, @category) 
-            else
-                flash[:danger] = "Failed to Upload. Please check accepted file formats and try again."
-                redirect_to scoreboard_category_path(@scoreboard, @category) 
-            end
-        else
-            flash[:danger] = "Only 25 documents can be uploaded per category."
+        if !subscribed?(@scoreboard.user)&&(@category.documents.count > 9)
+            flash[:danger] = "Owner of league page must be subscribed in order to create more than 10 documents"
             redirect_to scoreboard_category_path(@scoreboard, @category)
+        else
+            @document = @category.documents.build(document_params)
+            if (@category.documents.count < 25)
+                if @document.save
+                    flash[:success] = "Document uploaded successfully."
+                    redirect_to scoreboard_category_path(@scoreboard, @category) 
+                else
+                    flash[:danger] = "Failed to Upload. Please check accepted file formats and try again."
+                    redirect_to scoreboard_category_path(@scoreboard, @category) 
+                end
+            else
+                flash[:danger] = "Only 25 documents can be uploaded per category."
+                redirect_to scoreboard_category_path(@scoreboard, @category)
+            end
         end
     end
     

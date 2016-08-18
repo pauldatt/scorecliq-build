@@ -21,26 +21,33 @@ class TeamsController < ApplicationController
    
     
    def create
-     @scoreboard = Scoreboard.find(params[:scoreboard_id])
-     @team = @scoreboard.teams.build(team_params)
-     if (@scoreboard.teams.count < 100) #a scoreboard can have maximum 100 teams 
-        if @team.save
-           respond_to do |format|
-            format.html {redirect_to scoreboard_teams_path(@scoreboard)}
-            format.js  #this allows the controller to respond to the ajax request that was made by the form.
-           end
-        else
+    @scoreboard = Scoreboard.find(params[:scoreboard_id])
+    if !subscribed?(@scoreboard.user)&&(@scoreboard.teams.count > 14)
          respond_to do |format|
-            format.html { redirect_to scoreboard_teams_path(@scoreboard) }
-            format.js { render action: "create_error" }
+             format.html{redirect_to scoreboard_teams_path(@scoreboard) }
+             format.js { render action: "sub_create_error" }
          end
-        end
-     else
-         respond_to do |format|
-            format.html { redirect_to scoreboard_teams_path(@scoreboard) }
-            format.js { render action: "create_error2" }
+    else
+         @team = @scoreboard.teams.build(team_params)
+         if (@scoreboard.teams.count < 100) #a scoreboard can have maximum 100 teams 
+            if @team.save
+               respond_to do |format|
+                format.html {redirect_to scoreboard_teams_path(@scoreboard)}
+                format.js  #this allows the controller to respond to the ajax request that was made by the form.
+               end
+            else
+             respond_to do |format|
+                format.html { redirect_to scoreboard_teams_path(@scoreboard) }
+                format.js { render action: "create_error" }
+             end
+            end
+         else
+             respond_to do |format|
+                format.html { redirect_to scoreboard_teams_path(@scoreboard) }
+                format.js { render action: "create_error2" }
+             end
          end
-     end
+    end
    end
      
    # Edit

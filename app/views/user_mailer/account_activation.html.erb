@@ -1,9 +1,34 @@
-<h1>Scorecliq</h1>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+   "http://www.w3.org/TR/html4/loose.dtd">
 
-<p>Hi <%= @user.name %>,</p>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+<body>
+  <h2 style="color: #efefef; background-color: #4878AB; text-align: center; padding: 1%;">
+    Scorecliq
+  </h2>
 
-<p>
-  Thanks you for registering at scorecliq! Click on the link below to activate your account:
-</p>
 
-<%= link_to "Activate your account", edit_account_activation_url(@user.activation_token, email: @user.email) %>
+  <p>Hi <%= @user.name %>,</p>
+
+  <p>
+    Thanks you for registering at scorecliq! Below is the activation link you requested. Please click on the link
+    to activate your account. The link expires in 2 hours. 
+  </p>
+  
+  <%= link_to "Activate your account", edit_account_activation_url(@user.activation_token, email: @user.email) %>
+  
+  <div style="margin-top: 10px; border-bottom: solid 1px; content: "";"> </div>
+  
+  <h5>scorecliq.com</h5>
+  <h5>Support: support@scorecliq.com</h5>
+  <p>Please do not reply to this email. Contact support if need of further assistance. </p>
+  
+</body>
+</html>
+
+
+
+

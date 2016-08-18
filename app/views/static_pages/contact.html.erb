@@ -1,3 +1,36 @@
 <% provide(:title, 'Contact') %>
-<h1>Contact</h1>
-<p>Contact the ScoreBoard management via email or other means of contact information you want to provide.</p>
+
+<h2 class="generic-header">
+    CONTACT US
+</h2>
+
+<div class="row contact-divs">
+    <div class="col-sm-6">
+        <h3 class>Support</h3>
+        <h4>
+            For assistance with site features or other type of support, please send us an email at 
+            <%= mail_to "support@scorecliq.com" do %>
+               support@scorecliq.com
+            <% end %>
+        </h4>
+        
+        <h3>Feedback</h3>
+        <h4>
+            We're always looking to improve our user experience. In order to help 
+            improve Scorecliq and make it better for you, please help us find bugs and errors on the site!
+            Send us an email at 
+            <%= mail_to "info@scorecliq.com" do %>
+               feedback@scorecliq.com
+            <% end %>
+        </h4>
+        
+        <h3>Business or General Inquiries</h3>
+        <h4>
+            For business and general inquiries, please send us an email at 
+            <%= mail_to "inquiry@scorecliq.com" do %>
+               inquiry@scorecliq.com
+            <% end %>
+        </h4>
+    </div>
+</div>
+

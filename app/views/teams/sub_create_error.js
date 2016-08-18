@@ -1,0 +1,1 @@
+alert("Owner of league page must be subscribed in order to create more than 15 teams.");

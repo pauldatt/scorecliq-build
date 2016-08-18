@@ -32,6 +32,7 @@ gem 'memcachier'
 gem 'font_assets'
 gem 'stripe'
 gem 'stripe_event', '~> 1.5'
+gem 'stripe-ruby-mock', '~> 2.2', '>= 2.2.1'
 
 group :development, :test do
   gem 'byebug',      '3.4.0'

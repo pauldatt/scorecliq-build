@@ -103,6 +103,24 @@
         a{ font-size: 30px;}
     }
 }
+
+/********************** SUBSCRIPTION SHOW PAGE ****************/
+.unsub-settings{
+    .current-plan{
+        h3{ font-size: 18px; }
+    }
+    .upgrade-plan{
+        h4{ font-size: 14px; }
+    }
+}
+.sub-settings{
+    .current-plan{
+        h3{ font-size: 18px; }
+    }
+    .plan-options{
+        margin-top: 10px;
+    }
+}
 }
 
 
@@ -154,6 +172,13 @@
 .dash-share{
     .share-icons{
         a{ font-size: 40px;}
+    }
+}
+
+/********************** SUBSCRIPTION SHOW PAGE ****************/
+.unsub-settings{
+    .upgrade-plan{
+        margin-top: 10px;
     }
 }
 
@@ -314,6 +339,24 @@
 
 /*******************DASHBOARD PAGE ********************/
 .dash-header{ font-size: 20px;}
+
+/*********************LOGIN MODAL**********************/
+.act-activation{ font-size: 11px; }
+
+/**********************SITE GUIDE ********************/
+.guide-wrapper{
+    h3{ font-size: 20px; }
+    h4{ font-size: 16px; }
+    h5{ font-size: 12px; }
+    p{ font-size: 12px; }
+}
+
+/**********************TERMS OF SERVICE****************/
+.service-wrapper{
+    h4{ font-size: 16px; }
+    h5{ font-size: 14px; }
+    p{ font-size: 12px; }
+}
 
 }
 

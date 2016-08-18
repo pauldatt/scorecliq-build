@@ -14,12 +14,12 @@
 #               tie: 3,
 #               scoreboard_id: 1000)
 
-User.create!(name:  "Divjot",
-             email: "Divjot65@gmail.com",
-             password:              "foobar12",
-             password_confirmation: "foobar12",
-             activated: "true",
-             admin: "true") 
+# User.create!(name:  "Divjot",
+#              email: "Divjot65@gmail.com",
+#              password:              "foobar12",
+#              password_confirmation: "foobar12",
+#              activated: "true",
+#              admin: "true") 
 
 
 # User.create!(name:  "khalesi",

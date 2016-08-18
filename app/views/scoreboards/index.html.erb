@@ -6,9 +6,18 @@
 <div class="owned-list">
     <% if @owned_scoreboards.any? %>
        <%= render 'ownedboards' %>
+       <% if !subscribed?(current_user)&&(current_user.scoreboards.count > 1) %>
+          <div class="row">
+              <div class="col-xs-12 default-div">
+                  Your league pages have been restricted to your most recent page created. Please 
+                  <%= link_to "re-subscribe", user_subscription_path(current_user) %> to 
+                  access all your league pages. 
+              </div>
+          </div>
+       <% end %>
     <% else %>
        <div class="row">
-           <div class="col-xs-12 owned-default">
+           <div class="col-xs-12 default-div">
                You don't own any league pages currently. If you would like to set up a page for your
                league or club, please <%= link_to "create a new page.",new_scoreboard_path %>
            </div>
@@ -23,7 +32,7 @@
         <%= render 'followedboards' %>
     <% else %>
           <div class="row">
-           <div class="col-xs-12 followed-default">
+           <div class="col-xs-12 default-div">
                You don't follow any league pages currently. Please use the <%= link_to "search", search_path %> page to 
                search for a league page for your organization/club. 
            </div>
