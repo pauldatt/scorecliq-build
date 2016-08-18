@@ -1,5 +1,7 @@
 class SubscriptionsController < ApplicationController
     before_action :logged_in_user
+    before_action :has_not_subscription, only: [:edit, :destroy]
+    before_action :has_subscription, only: :new
     
     def show
         @charges = current_user.charges.order("created_at DESC").limit(10)
@@ -18,7 +20,7 @@ class SubscriptionsController < ApplicationController
     
         subscription = customer.subscriptions.create(
           source: params[:stripeToken],
-          plan: "test" # THIS IS HUGE. MAKE SURE TO TEST IT ON MASTER
+          plan: "master" # THIS IS HUGE. MAKE SURE TO TEST IT ON MASTER
         )
     
         options = {
@@ -51,5 +53,22 @@ class SubscriptionsController < ApplicationController
         redirect_to user_subscription_path(current_user)
         flash[:success]= "Your subscription has been cancelled."
     end
+    
+    private
+    
+    def has_subscription
+        if subscribed?(current_user)
+            redirect_to user_subscription_path(current_user)
+            flash[:danger] = "You already have a subscription. No need for two! :) "
+        end
+    end
+    
+    def has_not_subscription
+        if !subscribed?(current_user)
+            redirect_to user_subscription_path(current_user)
+            flash[:danger] = "You must have a subscription in order to access this page"
+        end
+    end
+        
     
 end

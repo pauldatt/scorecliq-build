@@ -25,6 +25,10 @@
              <%= f.label :password_confirmation %>
              <%= f.password_field :password_confirmation, class: "form-control" %> 
             </div>
+            
+            <div class="form-group">
+                By signing up, you agree to be bound by the <%= link_to "Scorecliq Terms of Service.", policy_path %>
+            </div>
 
             <%= f.submit "Sign-up",:data => {:disable_with => "Registering..."},  class: "btn btn-primary form-control" %>
         <% end %> 

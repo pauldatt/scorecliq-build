@@ -3,6 +3,7 @@ class ScoreboardsController < ApplicationController
  before_action :logged_in_user, only: [:new, :create, :show, :index]
  before_action :scoreboard_owner, only: [:destroy, :edit, :update, :admins]
  before_action :private_entry, only: [:followers]
+ before_action :deny_admin_sub, only: [:admins]
 
  
  require 'will_paginate/array'
@@ -15,12 +16,17 @@ class ScoreboardsController < ApplicationController
  end
  
  def create
-  @scoreboard = current_user.scoreboards.build(scoreboard_params)
-  if @scoreboard.save
-   flash[:success] = "Scoreboard created successfully"
-   redirect_to scoreboard_path(@scoreboard)
+  if !subscribed?(current_user)&&(current_user.scoreboards.count > 0)
+     flash[:danger] = "You must be subscribed to own more than 1 league page."
+     redirect_to new_scoreboard_path
   else
-   render 'new'
+    @scoreboard = current_user.scoreboards.build(scoreboard_params)
+    if @scoreboard.save
+     flash[:success] = "Scoreboard created successfully"
+     redirect_to scoreboard_path(@scoreboard)
+    else
+     render 'new'
+    end
   end
  end
  
@@ -59,7 +65,11 @@ class ScoreboardsController < ApplicationController
  
  
   def index
-   @owned_scoreboards = current_user.scoreboards
+   if subscribed?(current_user)
+      @owned_scoreboards = current_user.scoreboards
+   else
+      @owned_scoreboards = current_user.scoreboards.order("created_at DESC").limit(1)
+   end
    @followed_scoreboards= current_user.favourite_scoreboards
    @mypages = true
   end
@@ -178,6 +188,14 @@ private
        redirect_to scoreboard_path(@scoreboard)
        flash[:danger] = "Private League. You must make a request to join before accessing league pages."
      end
+   end
+   
+   def deny_admin_sub
+    @scoreboard = Scoreboard.find(params[:id])
+    if !subscribed?(@scoreboard.user)
+       redirect_to scoreboard_path(@scoreboard)
+       flash[:danger] = "You must be subscribed in order to assign admins for your league page"
+    end
    end
 
 end

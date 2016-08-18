@@ -157,7 +157,7 @@ $(document).ready(function(){
     });
     
 
-    $('.comment-list').on('click', '.hide-reply-form', function() {
+    $('#comment-list').on('click', '.hide-reply-form', function() {
         $(".comment-reply-form").hide();
     });
      

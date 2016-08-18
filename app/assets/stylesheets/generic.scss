@@ -435,7 +435,6 @@
             .twit-share, .fb-share, .gplus-share{ color: #555; }
             .twit-share:hover{ color: #1da1f2; }
             .fb-share:hover{ color: #3b5998;}
-            .gplus-share:hover{ color: #d44235; }
         }
     }
     
@@ -529,6 +528,56 @@
     }
 }
 
+.sub-settings{
+    .current-plan{
+        border: 2px solid #253341;
+        height: 140px;
+        max-height: 140px;
+        border-radius: 0 0 10px 10px;
+        h3{
+            margin-top: 0;
+            padding: 1%;
+            background-color: #1c75bf;
+            color: #efefef;
+            text-align: center;
+        }
+        .plan-type{
+            margin-top: 40px;
+            margin-bottom: 40px;
+            text-align: center;
+            .plan-span{
+                padding: 10px;
+                font-size: 18px;
+                background-color: #253341;
+                color: #efefef;
+                border-radius: 10px;
+            }
+        }
+    }
+    .plan-options{
+        border: 2px solid #253341;
+        height: 140px;
+        max-height: 140px;
+        border-radius: 0 0 10px 10px;
+        .edit-card{
+            text-align: center;
+            margin-top: 17px;
+        }
+        .cancel-plan{
+            text-align: center;
+            margin-top: 17px;
+        }
+    }
+}
+
+.payment-card{
+    margin-top: 10px;
+    padding: 1%;
+    background-color: #253341;
+    color: #efefef;
+    border-radius: 5px;
+}
+
 .payment-history{
     text-align: center;
     background-color: #1c75bf;
@@ -548,10 +597,12 @@
             padding: 1%;
         }
         .charge-failed{
-            
+            background-color: #d9534f;
+            padding: 1%;
         }
     }
 }
+
 
 /* ----------------------------------------------- */
 /* STRIPE NEW PAGE  */
@@ -560,7 +611,123 @@
 #has-javascript{
     display: none;
 }
+//the disable cover
 
+
+
+
+// //this payment form will apply to the edit card page as well
+#payment-form{
+    .payment-wrapper{
+        width: 280px;
+        padding: 1%;
+        position: relative;
+        #cover {
+               position: absolute;
+               width: 100%;
+               height: 100%;
+               top: 0;
+               left: 0;
+               opacity: 0.30;
+               background-color: #4878AB;
+               border-radius: 5px;
+               z-index: 999;
+               display: none;
+               background-image: url('ajax-loader.gif');
+               background-repeat: no-repeat;
+               background-position: center;
+            }
+        .payment-errors{
+            margin-bottom: 10px;
+            color: #d9534f;
+        }
+        .card-icons{
+            margin-bottom: 10px;
+            font-size: 18px;
+            .fa{
+                margin-left: 10px;
+                font-size: 28px;
+            }
+        }
+        .exp-details{
+            margin-top: 10px;
+            .exp-label{
+                width: 50%;
+                float: left;
+                font-size: 18px;
+            }
+            .exp-month-field{
+                width: 22%;
+                float: left;
+            }
+            .divider-span{
+                width: 6%;
+                float: left;
+                text-align: center;
+                font-size: 20px;
+            }
+            .exp-year-field{
+                width: 22%;
+                float: left;
+            }
+        }
+        .cvc-details{
+            margin-top: 10px;
+            .cvc-label{
+                width: 50%;
+                float: left;
+                font-size: 18px;
+            }
+            .cvc-field{
+                width: 50%;
+                float: left;
+            }
+        }
+        .btn{
+            margin-top: 10px;
+        }
+    }
+}
 /* ----------------------------------------------- */
 /* STRIPE EDIT PAGE  */
 /* ----------------------------------------------- */
+//the credit card fields on this page are connected on edit page 
+
+/* ----------------------------------------------- */
+/* STATIC PAGES */
+/* ----------------------------------------------- */
+
+//contact page 
+.contact-divs{
+    h3{
+        padding: 1%;
+        border-radius: 5px;
+        background-color: #1c75bf;
+        color: #efefef;
+    }
+}
+
+//site guide
+.guide-wrapper{
+    padding: 1%;
+    .big-guide{
+        padding: 1%;
+        text-align: center;
+        background-color: #253341;
+        color: #efefef;
+        border-radius: 5px;
+    }
+
+    .small-guide{
+        padding: 1%;
+        text-align: center;
+        background-color: #1c75bf;
+        color: #efefef;
+        border-radius: 5px;
+    }
+}
+
+// terms of service page 
+.service-wrapper{
+    padding: 1%;
+}

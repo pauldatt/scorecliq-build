@@ -22,7 +22,6 @@ class UserMailer < ApplicationMailer
   
   def resend_activation(user)
     @user = user
-    @userid = user.id
     mail to: user.email, subject: "Account activation"
   end
      

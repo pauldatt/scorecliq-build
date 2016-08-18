@@ -34,7 +34,9 @@ class FailCharges
       card_last4: charge.source.last4,
       success: "false"
     )
-    #the user that we found we want to cancel their subscription
+    #the user that we found we want to cancel their subscription on our site and on stripe
+    customer = Stripe::Customer.retrieve(user.stripe_id)
+    customer.subscriptions.retrieve(user.stripe_subscription_id).delete
     user.update(stripe_subscription_id: nil)
   end
 end

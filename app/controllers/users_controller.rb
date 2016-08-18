@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_action :logged_in_user,  only: [:index, :edit, :update, :show, :destroy] # Each individual must sign up before they can see any profiles
   before_action :correct_user,    only: [:edit, :update]
   before_action :admin_user,      only: :destroy
-  before_action :logged_out_user, only: :new
+  before_action :logged_out_user, only: [:new, :resend_verification]
   
  
   def show
@@ -62,6 +62,8 @@ class UsersController < ApplicationController
         flash[:danger] = "Email does not exist"
       elsif
         !@user.activated?
+        @user.update_activation_digest
+        @user.save
         UserMailer.resend_activation(@user).deliver_now
         flash[:success] = "Check your email for the activation token"
         redirect_to resend_verification_path

@@ -1,20 +1,36 @@
-<div class="row">
-        <div class="col-xs-12 col-sm-5 col-sm-offset-1">
-        <div class="dash-plan">
+<div class="row sub-settings">
+    <div class="col-xs-12 col-sm-5">
+        <div class="current-plan">
             <h3>
                 YOUR PLAN
             </h3>
             
             <div class="plan-type">
                 <span class="plan-span">
-                    INDIVIDUAL
+                    Master
                 </span>
             </div>
-            
-            <div class="plan-upgrade">
-                <%= link_to "Upgrade", user_subscription_path(current_user), class: "btn btn-primary" %>
+        
+        </div>
+    </div>
+    
+    <div class="col-xs-12 col-sm-5">
+        <div class="plan-options">
+            <div class="edit-card"> 
+              <%= link_to "Edit Your Card", edit_user_subscription_path(current_user), class: "btn btn-primary" %>
             </div>
             
+            <div class="cancel-plan">
+              <%= link_to "Cancel my account", user_subscription_path(current_user), data: { confirm: "Your subscription will be terminated instantly. Please read the site guide to be more informed. Proceed?" }, method: :delete, class: "btn btn-primary" %>
+            </div>
         </div>
     </div>
 </div>
+
+<div class="row payment-card">
+    <div class="col-xs-12">
+        Payment Card on File: **** **** **** <%= current_user.card_last4 %>
+    </div>
+</div>
+
+

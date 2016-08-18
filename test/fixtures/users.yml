@@ -6,11 +6,11 @@ divjot:
   admin: true
   activated: true
   activated_at: <%= Time.zone.now %>
-  stripe_id: stripe_id_1
-  stripe_subscription_id: subscription_id_1
-  card_last4: 1234
-  card_exp_month: 1702
-  card_exp_year: 2017
+  # stripe_id: stripe_id_1
+  # stripe_subscription_id: subscription_id_1
+  # card_last4: "1234"
+  # card_exp_month: 1702
+  # card_exp_year: 2017
 
   
 sukh:
@@ -21,6 +21,19 @@ sukh:
   activated_at: <%= Time.zone.now %>
   stripe_id: stripe_id_2
   stripe_subscription_id: subscription_id_2
+  card_last4: 4321
+  card_exp_month: 1704
+  card_exp_year: 2017
+
+#a user who is a stripe customer but has no subscription id 
+kuljinder:
+  name:  kuljinder
+  email: kuljinder@whatever.com
+  password_digest: <%= User.digest('password1') %>
+  activated: true
+  activated_at: <%= Time.zone.now %>
+  stripe_id: stripe_id_3
+  # stripe_subscription_id: nil
   card_last4: 4321
   card_exp_month: 1704
   card_exp_year: 2017

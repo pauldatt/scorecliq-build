@@ -7,8 +7,7 @@
 </h2>
 
 <% if subscribed?(current_user) %>
-      <%= link_to "Edit Card", edit_user_subscription_path, class: "btn btn-primary" %>
-      <%= link_to "Cancel my account", user_subscription_path, data: { confirm: "Are you sure?" }, method: :delete %>
+      <%= render 'subscribed' %>
 <% else %>
      <%= render 'notsubscribed' %>
 <% end %>
@@ -16,5 +15,3 @@
 <% if @charges.any? %>
    <%= render 'charges' %>
 <% end %>
-
-<%= current_user.stripe_subscription_id %>
