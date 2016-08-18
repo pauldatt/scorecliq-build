@@ -10,7 +10,7 @@ class StaticPagesControllerTest < ActionController::TestCase
   test "should get Guide" do
     get :guide
     assert_response :success
-    assert_select "title", "Guide | Scorecliq"
+    assert_select "title", "Site Guide | Scorecliq"
   end
 
   test "should get about" do
