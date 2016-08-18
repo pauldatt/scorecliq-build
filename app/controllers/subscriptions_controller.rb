@@ -8,7 +8,6 @@ class SubscriptionsController < ApplicationController
     end
     
     def new
-    
     end
     
     def create 
