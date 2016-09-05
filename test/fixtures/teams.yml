@@ -1,8 +1,146 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
+<% 18.times do |n| %>
+team_<%= n %>:
+  name:   <%= Faker::Lorem.sentence(5) %>
+  win:  <%= 1 %>
+  loss: <%= 2 %>
+  tie: <%= 3 %>
+  scoreboard: scoreboard_e #owned by shane(unsub)
+<% end %>
+
+
 team_a:
     name: team
     win: 1
     loss: 2
     tie: 0
     scoreboard: scoreboard_a
+
+
+#scoreboard c is owned by sukh(sub)
+team_b:
+    name: team
+    win: 1
+    loss: 2
+    tie: 0
+    scoreboard: scoreboard_c
+
+team_b:
+    name: team
+    win: 1
+    loss: 2
+    tie: 0
+    scoreboard: scoreboard_c
+
+team_d:
+    name: team
+    win: 1
+    loss: 2
+    tie: 0
+    scoreboard: scoreboard_c
+
+team_e:
+    name: team
+    win: 1
+    loss: 2
+    tie: 0
+    scoreboard: scoreboard_c
+
+team_f:
+    name: team
+    win: 1
+    loss: 2
+    tie: 0
+    scoreboard: scoreboard_c
+
+team_g:
+    name: team
+    win: 1
+    loss: 2
+    tie: 0
+    scoreboard: scoreboard_c
+
+team_h:
+    name: team
+    win: 1
+    loss: 2
+    tie: 0
+    scoreboard: scoreboard_c
+
+team_i:
+    name: team
+    win: 1
+    loss: 2
+    tie: 0
+    scoreboard: scoreboard_c
+
+team_j:
+    name: team
+    win: 1
+    loss: 2
+    tie: 0
+    scoreboard: scoreboard_c
+
+team_k:
+    name: team
+    win: 1
+    loss: 2
+    tie: 0
+    scoreboard: scoreboard_c
+
+team_l:
+    name: team
+    win: 1
+    loss: 2
+    tie: 0
+    scoreboard: scoreboard_c
+
+team_m:
+    name: team
+    win: 1
+    loss: 2
+    tie: 0
+    scoreboard: scoreboard_c
+
+team_n:
+    name: team
+    win: 1
+    loss: 2
+    tie: 0
+    scoreboard: scoreboard_c
+
+team_o:
+    name: team
+    win: 1
+    loss: 2
+    tie: 0
+    scoreboard: scoreboard_c
+
+team_p:
+    name: team
+    win: 1
+    loss: 2
+    tie: 0
+    scoreboard: scoreboard_c
+
+team_q:
+    name: team
+    win: 1
+    loss: 2
+    tie: 0
+    scoreboard: scoreboard_c
+
+team_r:
+    name: team
+    win: 1
+    loss: 2
+    tie: 0
+    scoreboard: scoreboard_c
+
+team_s:
+    name: team
+    win: 1
+    loss: 2
+    tie: 0
+    scoreboard: scoreboard_c

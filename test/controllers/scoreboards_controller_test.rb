@@ -6,6 +6,8 @@ class ScoreboardsControllerTest < ActionController::TestCase
         @user = users(:divjot) # correct user
         @second_user = users(:sukh) # incorrect user
         @scoreboard_c = scoreboards(:scoreboard_c)
+        @unsub_user = users(:shane)
+        @scoreboard_e = scoreboards(:scoreboard_e)
     end
     
     test "should get new" do
@@ -107,6 +109,13 @@ class ScoreboardsControllerTest < ActionController::TestCase
         get :admins, id: @scoreboard_c.id
         assert_redirected_to @scoreboard_c
         assert_equal "Access is restricted to owner only.", flash[:danger]
+    end
+    
+    test "should redirect when unsub user tries to access the admin page" do
+        log_in_as(@unsub_user)
+        get :admins, id: @scoreboard_e.id
+        assert_redirected_to @scoreboard_e
+        assert_equal "You must be subscribed in order to assign admins for your league page", flash[:danger]
     end
     
 end

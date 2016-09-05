@@ -20,14 +20,14 @@ def create
     end
 end
 
-    def delete 
-        @user = User.find(params[:user_id])
-        @scoreboard = Scoreboard.find(params[:scoreboard_id])
-        @manager = Manager.where(:scoreboard_id => @scoreboard.id, :user_id => @user.id).last
-        @manager.destroy
-        flash[:success] = "#{@user.name} was removed as a manager"
-        redirect_to admins_scoreboard_path(@scoreboard)
-    end
+def delete 
+    @user = User.find(params[:user_id])
+    @scoreboard = Scoreboard.find(params[:scoreboard_id])
+    @manager = Manager.where(:scoreboard_id => @scoreboard.id, :user_id => @user.id).last
+    @manager.destroy
+    flash[:success] = "#{@user.name} was removed as a manager"
+    redirect_to admins_scoreboard_path(@scoreboard)
+end
         
     
 end
