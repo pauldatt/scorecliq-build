@@ -4,6 +4,67 @@ category_a:
   name: category_one
   scoreboard: scoreboard_a
 
+category_sukh:
+  name: category_one
+  scoreboard: scoreboard_c
+
+<% 5.times do |n| %>
+category_<%= n %>:
+  name:   <%= Faker::Lorem.sentence(5) %>
+  scoreboard: scoreboard_e #owned by shane(unsub)
+<% end %>
+
 category_b:
   name: category_two
   scoreboard: scoreboard_b 
+  
+#10 categories owned by sukh are given below.
+
+category_b:
+  name: category_two
+  scoreboard: scoreboard_c
+
+category_c:
+  name: category_two
+  scoreboard: scoreboard_c
+
+category_d:
+  name: category_two
+  scoreboard: scoreboard_c
+
+category_e:
+  name: category_two
+  scoreboard: scoreboard_c
+
+category_f:
+  name: category_two
+  scoreboard: scoreboard_c
+
+category_g:
+  name: category_two
+  scoreboard: scoreboard_c 
+
+category_h:
+  name: category_two
+  scoreboard: scoreboard_c 
+
+category_i:
+  name: category_two
+  scoreboard: scoreboard_c 
+
+category_j:
+  name: category_two
+  scoreboard: scoreboard_c 
+  
+category_k:
+  name: category_two
+  scoreboard: scoreboard_c
+
+category_l:
+  name: category_two
+  scoreboard: scoreboard_c
+
+category_m:
+  name: category_two
+  scoreboard: scoreboard_c
+

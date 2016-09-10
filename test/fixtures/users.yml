@@ -51,7 +51,47 @@ mallory:
   password_digest: <%= User.digest('password1') %>
   activated: true
   activated_at: <%= Time.zone.now %>
+
+sherbie:
+  name: sherbie
+  email: sherbie@example.com # In the databse, emails are stored as lowercase, so you must have emails submitting in you tests as lowercase
+  password_digest: <%= User.digest('password1') %>
+  admin: true
+  activated: true
+  activated_at: <%= Time.zone.now %>
+  # stripe_id: stripe_id_1
+  # stripe_subscription_id: subscription_id_1
+  # card_last4: "1234"
+  # card_exp_month: 1702
+  # card_exp_year: 2017
   
+dilman:
+  name: dilman
+  email: dilman@example.com # In the databse, emails are stored as lowercase, so you must have emails submitting in you tests as lowercase
+  password_digest: <%= User.digest('password1') %>
+  admin: true
+  activated: true
+  activated_at: <%= Time.zone.now %>
+  # stripe_id: stripe_id_1
+  # stripe_subscription_id: subscription_id_1
+  # card_last4: "1234"
+  # card_exp_month: 1702
+  # card_exp_year: 2017
+ 
+shane: #shane unsubscribed user owns 14 scoreboards
+  name: shane
+  email: shane@example.com # In the databse, emails are stored as lowercase, so you must have emails submitting in you tests as lowercase
+  password_digest: <%= User.digest('password1') %>
+  admin: true
+  activated: true
+  activated_at: <%= Time.zone.now %>
+  # stripe_id: stripe_id_1
+  # stripe_subscription_id: subscription_id_1
+  # card_last4: "1234"
+  # card_exp_month: 1702
+  # card_exp_year: 2017
+
+
   
 <% 30.times do |n| %>
 user_<%= n %>:

@@ -26,7 +26,25 @@ scoreboard_c:
   created_at: <%= 10.minutes.ago %>
   user: sukh
   privatization: true  
+
+scoreboard_d:
+  name_of_scoreboard: MyString
+  name_of_organization: MyString
+  name_of_activity: MyStrings
+  location: Ontario
+  created_at: <%= 10.minutes.ago %>
+  user: dilman
+  privatization: true  
   
+scoreboard_e:
+  name_of_scoreboard: MyString
+  name_of_organization: MyString
+  name_of_activity: MyStrings
+  location: Ontario
+  created_at: <%= 10.minutes.ago %>
+  user: shane
+  privatization: true  
+
 
 most_recent:
   name_of_scoreboard: MyString

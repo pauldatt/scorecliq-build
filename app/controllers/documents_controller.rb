@@ -2,8 +2,6 @@ class DocumentsController < ApplicationController
   before_action :logged_in_user
   before_action :valid_document, only: :create
     
-  
-    
     def create 
         @scoreboard = Scoreboard.find(params[:scoreboard_id])
         @category = Category.find(params[:category_id])

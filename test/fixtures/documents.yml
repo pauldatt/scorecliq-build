@@ -9,3 +9,11 @@ document_b:
   file_name: string
   file: rails.doc
   category: category_a 
+
+
+<% 25.times do |n| %>
+category_<%= n %>:
+  file_name:   <%= Faker::Lorem.sentence(5) %>
+  file: rails.doc
+  category: category_sukh
+<% end %>
