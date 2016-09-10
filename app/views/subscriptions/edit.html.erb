@@ -8,7 +8,7 @@
 <div id="has-javascript">
   <div class="row">
     <div class="col-xs-12 col-sm-6">
-        <%= form_tag user_card_path(current_user), id: "payment-form" do %>
+        <%= form_tag user_card_path(current_user), method: :put, id: "payment-form" do %>
           <div class="payment-wrapper">
               <div id="cover">
                  <!--this div is meant to disable payment section-->

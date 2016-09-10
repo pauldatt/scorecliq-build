@@ -134,7 +134,9 @@ $(document).ready(function() {
 
 //BELOW IS THE CODE FOR EVENTS 
 $(document).ready(function() {
+    
   $('#event-datepicker').datetimepicker({format: 'LL'});
+  
 });
 
 //the code for edit events 
