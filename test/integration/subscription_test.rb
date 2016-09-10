@@ -165,36 +165,36 @@ class SubscriptionTest < ActionDispatch::IntegrationTest
       end
     end
     
-    # test "charge.failed webhooks create a charge subscription id becomes null" do
-    #   # customer = Stripe::Customer.create(id: @user2.stripe_id, email: @user2.email)
-    #   # plan = stripe_helper.create_plan(:id => 'master', :amount => 2999)
-    #   # subscription = customer.subscriptions.create(
-    #   #                       id: @user2.stripe_subscription_id, 
-    #   #                       source: gen_card_tk,
-    #   #                       plan: "master"
-    #   #               )
-    #   event = StripeMock.mock_webhook_event('charge.failed',
-    #   { customer: @user2.stripe_id,
-    #     amount: 2999,
-    #     source: { last4: "4242"}
-    #   })
+    test "charge.failed webhooks create a charge subscription id becomes null" do
+      # customer = Stripe::Customer.create(id: @user2.stripe_id, email: @user2.email)
+      # plan = stripe_helper.create_plan(:id => 'master', :amount => 2999)
+      # subscription = customer.subscriptions.create(
+      #                       id: @user2.stripe_subscription_id, 
+      #                       source: gen_card_tk,
+      #                       plan: "master"
+      #               )
+      event = StripeMock.mock_webhook_event('charge.failed',
+      { customer: @user2.stripe_id,
+        amount: 2999,
+        source: { last4: "4242"}
+      })
       
-    #   assert_nil @user2.stripe_subscription_id do
-    #     charge = event.data.object
+      assert_nil @user2.stripe_subscription_id do
+        charge = event.data.object
 
-    #     # Look up the user in our database
-    #     user = @user2
+        # Look up the user in our database
+        user = @user2
     
-    #     # Record a charge in our database
-    #     c = user.charges.where(stripe_charge_id: charge.id).first_or_create
-    #     c.update(
-    #       amount: charge.amount,
-    #       card_last4: charge.source.last4,
-    #       success: "false"
-    #     )
-    #     user.update(stripe_subscription_id: nil)
-    #   end
-    # end
+        # Record a charge in our database
+        c = user.charges.where(stripe_charge_id: charge.id).first_or_create
+        c.update(
+          amount: charge.amount,
+          card_last4: charge.source.last4,
+          success: "false"
+        )
+        user.update(stripe_subscription_id: nil)
+      end
+    end
     
     
     
