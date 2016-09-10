@@ -1,6 +1,6 @@
 <% provide(:title, 'Contact') %>
 
-<h2 class="generic-header">
+<h2 class="<% unless logged_in? %> unlogged-head <% else %> generic-header <% end %>">
     CONTACT US
 </h2>
 

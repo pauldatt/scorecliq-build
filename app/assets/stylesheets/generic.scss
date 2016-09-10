@@ -151,6 +151,10 @@
         }
     }
     
+    .sign-up-guider{
+        text-align: center;
+    }
+    
     .sign-up-offer{
         text-align: center;
         margin-top: 20px;
@@ -696,6 +700,12 @@
 /* ----------------------------------------------- */
 /* STATIC PAGES */
 /* ----------------------------------------------- */
+//the header when not logged in 
+.unlogged-head{
+    text-align: center;
+    border-bottom: solid 1px #555;
+    a{ text-decoration: none; }
+}
 
 //contact page 
 .contact-divs{
@@ -725,6 +735,10 @@
         color: #efefef;
         border-radius: 5px;
     }
+}
+
+.guide-disclaimer{
+    color: #d9534f;
 }
 
 // terms of service page 

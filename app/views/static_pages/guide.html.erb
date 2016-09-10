@@ -1,6 +1,6 @@
 <% provide(:title, "Site Guide") %>
 
-<h2 class="generic-header">
+<h2 class="<% unless logged_in? %> unlogged-head <% else %> generic-header <% end %>">
   Site Guide
 </h2>
 <div class="guide-wrapper">
@@ -10,8 +10,8 @@
   <p>
     Scorecliq offers two plans to its users. When you first sign up, you are assigned an "Individual" plan. 
     This plan is free and offers sufficient functionality for very small leagues/clubs. You have the option to upgrade to 
-    a "Master" plan for 29.99 monthly. This plan provides with greater options in order to better medium to bigger sized leagues. A references
-    is provides below as to what you get with each plan. 
+    a "Master" plan for 29.99 monthly. This plan provides better options for medium to bigger sized leagues. A reference
+    is provided which entails the differences between the two plans. 
   </p>
   
   <h4 class="small-guide">INDIVIDUAL</h4>
@@ -35,6 +35,13 @@
     <h5><i class="fa fa-circle" aria-hidden="true"></i> Up to 25 documents allowed per category page </h5>
   </div>
   
+  <p class="guide-disclaimer">
+    Note: If you are subscribed to a "Master" plan and would like to unsubscribe, please consider the following. Upon unsubscribing
+    your account will be default back to the "Individual" plan instantly. If you own more than 1 league/club page, you will be restricted 
+    to the page created most recently. If you delete any pages, you will be defaulted back to the most recent remaining page. Your pages 
+    are not deleted by us when you unsubscribe and you may re-access them after re-subscribing. Any pages you delete
+    cannot be recovered. 
+  </p>
   
   <h3 class="big-guide">SITE MAP</h3>
   
@@ -47,8 +54,8 @@
   
   <p>
     The dashboard is designed to give you direction on the site. You are presented with options such as create, view and search. 
-  If you wish to create league profile, you can click on create otherwise you can search for 
-  existing league profiles to follow or request to join. It also offers important updates on the site. From the dashboard, you 
+  If you wish to create a page for your league or club, you can click on create otherwise you can search for 
+  existing page to follow or request to join. Important updates for the site will be displayed on this page. From the dashboard, you 
   may navigate to your plan settings as well. 
   </p>
   
@@ -61,7 +68,8 @@
   <p>
     On this page you may search for a league page that you may be a part of. As an organizer or owner of a league/club, 
     you should provide info to your members as to what your league page is called so they may easily search for it. Even better is to
-    email them direct links to your league page to make it easy for them to find it. 
+    email them direct links to your league page to make it easy for them to find it. A social media button is provided on the league page so
+    members can share a link on social media as well. 
   </p>
   
   <h3 class="big-guide">LEAGUE PAGE FEATURES</h3>
@@ -95,7 +103,8 @@
     The admin feature is designed to help delegate the duties to other members. 
     The owner can assign admins(max 2) by clicking on the setting icon. Admins have 
     the same control over the league, for example, they can change team scores, create team matches,
-    update statuses and more. Admins cannot assign other admins, that is exclusive to the owner of the page.
+    update statuses and more. Admins cannot assign other admins, that is exclusive to the owner of the page. This feature
+    is only available on a paid plan. 
   </p>
   
   <h5>Privatize</h5>
