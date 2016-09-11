@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <% if content_for? :for_head %>
-    <%= yield :for_head %>
-  <% end %>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,6 +13,10 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
   <%= csrf_meta_tags %>
   <%= tag :meta, name: "stripe-key", content: STRIPE_PUBLIC_KEY %>
+  <!--this code will execute if any view has additional head content-->
+  <% if content_for? :for_head %>
+    <%= yield :for_head %>
+  <% end %>
   
   <%= render 'layouts/shim' %>
 </head>
