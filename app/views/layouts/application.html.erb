@@ -11,16 +11,9 @@
   <%= javascript_include_tag 'https://js.stripe.com/v2/', 'application', 'data-turbolinks-track' => true %>
   <!--Font Awesome Icons -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+  <%= yield :head %>
   <%= csrf_meta_tags %>
   <%= tag :meta, name: "stripe-key", content: STRIPE_PUBLIC_KEY %>
-  <meta property="og:title" content="Follow your page on Scorecliq" />
-  <meta property="og:description" content="You have been invited to follow scorecliq. Swaaaag up. Sometimes, things can be super swag but sometimes they aren't. " />
-  <meta property="og:image:secure_url" content="https://s3.amazonaws.com/scorecliq/static/fb+logo+final+.jpg" />
-  <!--this code will execute if any view has additional head content-->
-  <!-- if content_for? :for_head %>-->
-  <!--  = yield :for_head %>-->
-  <!-- end %>-->
-  
   <%= render 'layouts/shim' %>
 </head>
  <body>
