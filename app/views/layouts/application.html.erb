@@ -11,14 +11,17 @@
   <%= javascript_include_tag 'https://js.stripe.com/v2/', 'application', 'data-turbolinks-track' => true %>
   <!--Font Awesome Icons -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
-  <% if content_for? :head %>
-    <%= yield :head %>
-  <% end %>
+  <meta property="og:title" content="Follow your league/club on Scorecliq." />
+  <meta property="og:image" content="https://scorecliq.s3.amazonaws.com/uploads/picture/picture/1/red.jpg"/>
+  <meta property="og:image:secure_url" content="https://scorecliq.s3.amazonaws.com/uploads/picture/picture/1/red.jpg" />
+  <meta property="og:description" content="Scorecliq is an application which enables better league management and communications amongst staff and members. Click on the link to follow your league/club page on Scorecliq."
+  
   <%= csrf_meta_tags %>
   <%= tag :meta, name: "stripe-key", content: STRIPE_PUBLIC_KEY %>
+
   <%= render 'layouts/shim' %>
 </head>
- <body>
+ <body <%= yield(:body_attributes) %>>
    <%= render 'layouts/header' %>
     
     <% if logged_in? %>

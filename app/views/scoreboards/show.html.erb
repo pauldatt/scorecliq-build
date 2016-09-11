@@ -1,10 +1,6 @@
 <% provide(:title, @scoreboard.name_of_scoreboard) %>
 <!--insert the following into the head just for this page-->
-<% content_for :head do %>
-  <meta property="og:url" content="https://scorecliq.com/scoreboards/<%= @scoreboard.id %>" />
-  <meta property="og:title" content="Follow your page on Scorecliq" />
-  <meta property="og:description" content="You have been invited to follow scorecliq. Swaaaag up. Sometimes, things can be super swag but sometimes it is done anew. " />
-<% end %>
+<%= content_for(:body_attributes) do %>data-no-turbolink<% end %>
 <script>
   window.fbAsyncInit = function() {
      
