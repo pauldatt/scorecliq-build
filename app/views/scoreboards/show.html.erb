@@ -1,12 +1,5 @@
 <% provide(:title, @scoreboard.name_of_scoreboard) %>
 <!--insert the following into the head just for this page-->
-<% content_for :for_head do %>
-  <meta property="og:title" content="Join <%= @scoreboard.name_of_scoreboard %> on Scorecliq!" />
-  <meta property="og:url" content=”https://www.scorecliq.com” />
-  <meta property="og:description" content="This is an invitation to the league/club page named <%= @scoreboard.name_of_scoreboard %> on Scorecliq. Join Scorecliq and follow for updates!" />
-  <meta property="og:image" content="https://s3.amazonaws.com/scorecliq/static/fb+logo+final+.jpg" />
-<% end %>
-
 <script>
   window.fbAsyncInit = function() {
      
@@ -25,7 +18,7 @@
           if (response && !response.error_message) {
              alert('Page Shared Successfully');
           } else {
-             alert('Error! Please try again.');
+             alert('Page not shared');
           }
        });
     }
