@@ -1,4 +1,44 @@
 <% provide(:title, @scoreboard.name_of_scoreboard) %>
+<script>
+  window.fbAsyncInit = function() {
+     
+    FB.init({
+      appId      : '533154843546949',
+      xfbml      : true,
+      version    : 'v2.7'
+    });
+    
+    document.getElementById('fb-share-icon').onclick = function() {
+       FB.ui({
+          method: 'share',
+          display: 'popup',
+          href: 'https://developers.facebook.com/docs/',
+       }, function(response){
+          if (response && !response.error_message) {
+             alert('Page Shared Successfully');
+          } else {
+             alert('Error! Please try again.');
+          }
+       });
+    }
+
+    
+    
+  };
+
+    
+  
+  
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+
+
 <h4 class="score-profile-header"> <%= @scoreboard.name_of_scoreboard %> </h4>
 
 <div class="row score-prof-info">
@@ -123,18 +163,14 @@
       <h4> SHARE THIS PAGE</h4>
       
       <div class="media-icons">
-         <%= link_to "http://twitter.com/intent/tweet?status= Name of League: #{@scoreboard.name_of_scoreboard}, click the link to view + https://www.scorecliq.herokuapp.com/scoreboards/#{@scoreboard.id} #{image_tag @picture.picture.url}" do %>
+         <%= link_to "http://twitter.com/intent/tweet?status= Name of League: #{@scoreboard.name_of_scoreboard}, click the link to view + https://www.scorecliq.com/scoreboards/#{@scoreboard.id} #{image_tag @picture.picture.url}" do %>
              <i class="fa fa-twitter twit-share" aria-hidden="true"></i>
          <% end %>
-         <%= link_to "http://www.facebook.com/share.php?u=https://www.scorecliq.herokuapp.com/scoreboards/#{@scoreboard.id}&title= Name of League: #{@scoreboard.name_of_scoreboard}" do %>
-             <i class="fa fa-facebook-official  fb-share" aria-hidden="true"></i>
-         <% end %>
-         <%= link_to "https://plus.google.com/share?url=https://www.scorecliq.herokuapp.com/scoreboards/#{@scoreboard.id}&title= Name of League: #{@scoreboard.name_of_scoreboard}" do %>
-             <i class="fa fa-google-plus-square gplus-share" aria-hidden="true"></i>
-         <% end %>
-         <%= link_to "#" do %>
-             <i class="fa fa-instagram insta-share" aria-hidden="true"></i>
-         <% end %>
+      
+         <a id="fb-share-icon"><i class="fa fa-facebook-official  fb-share" id="fb-share-link" aria-hidden="true"></i></a>
+         <!-- #link_to "http://www.facebook.com/share.php?u=https://www.scorecliq.com/scoreboards/#{@scoreboard.id}&title= Name of League: #{@scoreboard.name_of_scoreboard}" do %>-->
+         <!--    <i class="fa fa-facebook-official  fb-share" aria-hidden="true"></i>-->
+         <!-- #end %>-->
       </div>
    </div>
 <% else %>
@@ -147,12 +183,10 @@
             <%= link_to "http://twitter.com/intent/tweet?status= #{@scoreboard.name_of_scoreboard} + https://scorecliq.com/scoreboards/#{@scoreboard.id}" do %>
                 <i class="fa fa-twitter twit-share" aria-hidden="true"></i>
             <% end %>
-            <%= link_to "http://www.facebook.com/share.php?u=https://scorecliq.com/scoreboards/#{@scoreboard.id}&title=#{@scoreboard.name_of_scoreboard}"  do %>
-                <i class="fa fa-facebook-official  fb-share" aria-hidden="true"></i>
-            <% end %>
-            <%= link_to "#" do %>
-                <i class="fa fa-google-plus-square gplus-share" aria-hidden="true"></i>
-            <% end %>
+            
+            
+            <a id="fb-share-icon"><i class="fa fa-facebook-official  fb-share" aria-hidden="true"></i></a>
+   
          </div>
          
       </div>
