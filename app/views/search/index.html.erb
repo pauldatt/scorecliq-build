@@ -18,11 +18,11 @@
     <% if params[:search].present? %>
         <% if @scoreboard_search.present? %>
           <% @scoreboard_search.each do |league| %>
-             <% @scoreboard_search.each do |search| %> <!-- caching fragments for each are set in place -->
-             <% cache search do %>
+             <%# @scoreboard_search.each do |search| %> <!-- caching fragments for each are set in place -->
+             <%# cache search do %>
                 <%= render "scoreboards/searchresult", league: league %>
-             <% end %>
-          <% end %> <!-- ends here -->
+             <%# end %>
+          <%# end %> <!-- ends here -->
         <% end %> <!-- this is for the league block -->
             <!--css from new team member will apply here to the pages -->
             <div class="row">
