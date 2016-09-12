@@ -1,4 +1,6 @@
 <% provide(:title, @scoreboard.name_of_scoreboard) %>
+<!--insert the following into the head just for this page-->
+<%= content_for(:body_attributes) do %>data-no-turbolink<% end %>
 <script>
   window.fbAsyncInit = function() {
      
@@ -17,7 +19,7 @@
           if (response && !response.error_message) {
              alert('Page Shared Successfully');
           } else {
-             alert('Error! Please try again.');
+             alert('Page not shared');
           }
        });
     }
