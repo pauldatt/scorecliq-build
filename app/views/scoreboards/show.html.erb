@@ -2,6 +2,7 @@
 <!--insert the following into the head just for this page-->
 <%= content_for(:body_attributes) do %>data-no-turbolink<% end %>
 <script>
+//  fb share script
   window.fbAsyncInit = function() {
      
     FB.init({
@@ -23,14 +24,8 @@
           }
        });
     }
-
-    
-    
   };
 
-    
-  
-  
   (function(d, s, id){
      var js, fjs = d.getElementsByTagName(s)[0];
      if (d.getElementById(id)) {return;}
@@ -38,6 +33,24 @@
      js.src = "//connect.facebook.net/en_US/sdk.js";
      fjs.parentNode.insertBefore(js, fjs);
    }(document, 'script', 'facebook-jssdk'));
+   
+   // twitter share script
+   window.twttr = (function(d, s, id) {
+     var js, fjs = d.getElementsByTagName(s)[0],
+       t = window.twttr || {};
+     if (d.getElementById(id)) return t;
+     js = d.createElement(s);
+     js.id = id;
+     js.src = "https://platform.twitter.com/widgets.js";
+     fjs.parentNode.insertBefore(js, fjs);
+    
+     t._e = [];
+     t.ready = function(f) {
+       t._e.push(f);
+     };
+    
+     return t;
+   }(document, "script", "twitter-wjs"));
 </script>
 
 
@@ -165,14 +178,15 @@
       <h4> SHARE THIS PAGE</h4>
       
       <div class="media-icons">
-         <%= link_to "http://twitter.com/intent/tweet?status= Name of League: #{@scoreboard.name_of_scoreboard}, click the link to view + https://www.scorecliq.com/scoreboards/#{@scoreboard.id} #{image_tag @picture.picture.url}" do %>
-             <i class="fa fa-twitter twit-share" aria-hidden="true"></i>
+         
+         <%= link_to "http://twitter.com/intent/tweet?status= Come view the page #{@scoreboard.name_of_scoreboard} on Scorecliq. + https://scorecliq.com/scoreboards/#{@scoreboard.id}" do %>
+                <i class="fa fa-twitter twit-share" aria-hidden="true"></i>
          <% end %>
       
-         <a id="fb-share-icon"><i class="fa fa-facebook-official  fb-share" id="fb-share-link" aria-hidden="true"></i></a>
-         <!-- #link_to "http://www.facebook.com/share.php?u=https://www.scorecliq.com/scoreboards/#{@scoreboard.id}&title= Name of League: #{@scoreboard.name_of_scoreboard}" do %>-->
-         <!--    <i class="fa fa-facebook-official  fb-share" aria-hidden="true"></i>-->
-         <!-- #end %>-->
+         <a id="fb-share-icon">
+            <i class="fa fa-facebook-official  fb-share" id="fb-share-link" aria-hidden="true"></i>
+         </a>
+ 
       </div>
    </div>
 <% else %>
@@ -182,12 +196,14 @@
          <h4> SHARE THIS PAGE</h4>
          
          <div class="media-icons">
-            <%= link_to "http://twitter.com/intent/tweet?status= #{@scoreboard.name_of_scoreboard} + https://scorecliq.com/scoreboards/#{@scoreboard.id}" do %>
+            
+            <%= link_to "http://twitter.com/intent/tweet?status= Come view the page #{@scoreboard.name_of_scoreboard} on Scorecliq. + https://scorecliq.com/scoreboards/#{@scoreboard.id}" do %>
                 <i class="fa fa-twitter twit-share" aria-hidden="true"></i>
             <% end %>
-            
-            
-            <a id="fb-share-icon"><i class="fa fa-facebook-official  fb-share" aria-hidden="true"></i></a>
+         
+            <a id="fb-share-icon">
+               <i class="fa fa-facebook-official  fb-share" aria-hidden="true"></i>
+            </a>
    
          </div>
          
