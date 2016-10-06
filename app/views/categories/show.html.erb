@@ -5,8 +5,9 @@
     <% end %>
     <%= @category.name %>
     </h2>
-
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#documentmodal">Upload Document</button>
+<% if manager_or_owner?(@scoreboard, current_user) %>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#documentmodal">Upload Document</button>
+<% end %>
 
 <div class="document-list">
     <% if @documents.any? %>
@@ -22,4 +23,6 @@
       </div>
    <% end %>
 </div>
-<%= render 'documents/documentform' %>
+<% if manager_or_owner?(@scoreboard, current_user) %>
+   <%= render 'documents/documentform' %>
+<% end %>
